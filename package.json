@@ -1,0 +1,36 @@
+{
+  "name": "engineering_project",
+  "version": "1.0.0",
+  "description": "Engineering project UAM WMI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xmarianF/engineering_project.git"
+  },
+  "keywords": [
+    "MongoDB",
+    "ExpressJS",
+    "AngularJS",
+    "NodeJS"
+  ],
+  "author": "Marian Faron, Mateusz Piotrowicz, Aleksander Pośka, Kamil Wójcik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xmarianF/engineering_project/issues"
+  },
+  "homepage": "https://github.com/xmarianF/engineering_project#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.0",
+    "webpack": "^2.2.1",
+    "express": "^4.15.2",
+    "body-parser": "^1.0.1",
+    "mongoose": "^4.6.2",
+    "passport": "^0.3.2",
+    "passport-local" : "^0.1.6",    
+    "passport-facebook" : "^1.0.2",
+    "webpack-dev-server": "^2.4.1"
+  },
+}
