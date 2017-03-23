@@ -1,0 +1,17 @@
+<% include ./header %>
+
+<h2>
+  Witaj
+  <% if (user) { %>
+    <%= user.local.login %>
+  <% } %>
+</h2>
+
+<a href="/app/users/register">Rejestracja</a>
+<% if (user) { %>
+  <a href="/app/users/logout">Wyloguj</a>
+<% } else { %>
+  <a href="/app/users/login">Logowanie</a>
+<% } %>
+
+<% include ./footer %>

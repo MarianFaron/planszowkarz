@@ -1,6 +1,46 @@
-var express = require('express');        
+var express = require('express');
 var router = express.Router();
 var User = require('../models/user.model');
+var ejs = require('ejs');
+var passport = require('passport');
+
+/* REGISTER */
+
+router.route('/users/register')
+	.get(function(req, res, next){
+		res.render('register', { message: req.flash('registerMessage') });
+	})
+	.post(function(req, res, next) {
+    passport.authenticate('local-register', {
+        successRedirect : '/',
+        failureRedirect : '/app/users/register',
+        failureFlash : true
+    })(req, res, next);
+	});
+
+/* LOGIN */
+
+router.route('/users/login')
+	.get(function(req, res, next){
+		res.render('login', { message: req.flash('loginMessage') });
+	})
+	.post(function(req, res, next) {
+    passport.authenticate('local-login', {
+        successRedirect : '/',
+        failureRedirect : '/app/users/login',
+        failureFlash : true
+    })(req, res, next);
+	});
+
+/* LOGOUT */
+
+router.route('/users/logout')
+	.get(function(req, res, next){
+      req.logout();
+      res.redirect('/');
+	})
+
+
 
 router.route('/users')
 	// get all users
@@ -27,7 +67,7 @@ router.route('/users')
 			// save the user
 			newUser.save(function(err) {
 				if (err){
-					return res.status(409).json({ message: 'Wrong user'});	
+					return res.status(409).json({ message: 'Wrong user'});
 				} else {
 					return res.status(201).json(newUser);
 				}
