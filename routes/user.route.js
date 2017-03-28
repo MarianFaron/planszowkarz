@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.model');
-var ejs = require('ejs');
-var passport = require('passport');
+//var ejs = require('ejs');
+//var passport = require('passport');
 
 /* REGISTER */
 
-router.route('/users/register')
+/*router.route('/users/register')
 	.get(function(req, res, next){
 		res.render('register', { message: req.flash('registerMessage') });
 	})
@@ -20,7 +20,7 @@ router.route('/users/register')
 
 /* LOGIN */
 
-router.route('/users/login')
+/*router.route('/users/login')
 	.get(function(req, res, next){
 		res.render('login', { message: req.flash('loginMessage') });
 	})
@@ -34,12 +34,12 @@ router.route('/users/login')
 
 /* LOGOUT */
 
-router.route('/users/logout')
+/*router.route('/users/logout')
 	.get(function(req, res, next){
       req.logout();
       res.redirect('/');
 	})
-
+*/
 
 
 router.route('/users')
@@ -67,12 +67,59 @@ router.route('/users')
 			// save the user
 			newUser.save(function(err) {
 				if (err){
-					return res.status(409).json({ message: 'Wrong user'});
+					return res.status(409).json({message: 'Wrong user'});
 				} else {
 					return res.status(201).json(newUser);
 				}
 			});
 		}
+	});
+
+router.route('/users/:id')
+	.get(function(req, res){
+		User.findById(req.params.id, function(err, user) {
+			if(err){
+				return res.status(400).json({message: "Bad Requested"});
+			} else if(!user){
+				return res.status(404).json({message: "User not Found"});
+			} else {
+				return res.status(200).json(user);
+			}
+		});
+	})
+
+	.patch(function(req, res){
+		if(!req.body.password){
+			return res.status(401).json({ message: "You haven't entered a password."});
+		}
+
+		User.findByIdAndUpdate({_id: req.params.id}, req.body, function(err, user) {
+			if(err){
+				return res.status(400).json({message: "Bad Requested"});
+			} else if(!user){
+				return res.status(404).json({message: "User not Found"});
+			} else {
+				return res.status(200).json({user});
+			}
+		});
+	})
+
+	.delete(function(req, res){
+		User.findById(req.params.id, function(err, user) {
+			if(err){
+				return res.status(400).json({message: "Bad Requested"});
+			} else if(!user){
+				return res.status(404).json({message: "User not Found"});
+			} else {
+				User.remove({_id: req.params.id}, function(err, user){
+					if(err) {
+						return res.status(400).json({message: "Bad Requested"});
+					} else {
+						return res.status(204).end();
+					}
+				});
+			}
+		})
 	});
 
 module.exports = router;

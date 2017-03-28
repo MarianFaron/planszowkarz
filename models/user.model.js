@@ -1,15 +1,15 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt-nodejs');
+var bcrypt = require('bcryptjs');
 
 var User = new Schema({
-    local: {
+    //local: {
         login: {
             type: String,
             unique: true,
             require: true
         },
-				email: {
+		email: {
             type: String,
             unique: true,
             require: true
@@ -19,25 +19,37 @@ var User = new Schema({
             unique: false,
             require: true
         },
-    },
-    facebook: {
+    //},
+    /*facebook: {
         id: String,
         token: String,
         email: String,
         name: String
     },
-
+    */
 }, {
     versionKey: false
 });
 
-
-User.methods.generateHash = function(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
-
-User.methods.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.local.password);
-};
+User.pre('save', function (callback) {
+    var user = this;
+    if(!this.isModified('password')){
+        return callback();
+    } else {
+        // Password changed so we need to hash it
+        bcrypt.genSalt(10, function (err, salt) {
+            if (err) {
+                return callback(err);
+            }
+            bcrypt.hash(user.password, salt, function (err, hash) {
+                if (err) {
+                    return callback(err);
+                }
+                user.password = hash;
+                callback();
+            });
+        });
+    }
+});
 
 module.exports = mongoose.model('User', User);
