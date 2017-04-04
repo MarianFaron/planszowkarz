@@ -1,10 +1,10 @@
-import { EngineeringProjectPage } from './app.po';
+import { PlanszowkarzPage } from './app.po';
 
-describe('engineering-project App', function() {
-  let page: EngineeringProjectPage;
+describe('planszowkarz App', () => {
+  let page: PlanszowkarzPage;
 
   beforeEach(() => {
-    page = new EngineeringProjectPage();
+    page = new PlanszowkarzPage();
   });
 
   it('should display message saying app works', () => {
