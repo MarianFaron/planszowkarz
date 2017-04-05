@@ -9,9 +9,11 @@ var mongoose = require('mongoose');
 
 // MODELS
 var userModel = require('./models/user.model');
+var userGameModel = require('./models/userGame.model');
 
 // ROUTES
 var userRoute = require('./routes/user.route.js');
+var userGameRoute = require('./routes/userGame.route.js');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://gamesapp:engineering@ds135800.mlab.com:35800/gamesapp');
@@ -37,5 +39,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/app', userRoute);
+app.use('/app', userGameRoute);
 
 app.listen(port, () => console.log("Server running on: " + port));
