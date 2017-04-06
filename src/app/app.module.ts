@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 import { RoutingModule } from './routing.module';
 import { AppComponent } from './app.component';
 import { UserGameComponent } from './user-game/user-game.component';
+import { CoreComponent } from './core/core.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserGameComponent
+    UserGameComponent,
+    CoreComponent
   ],
   imports: [
     BrowserModule,
