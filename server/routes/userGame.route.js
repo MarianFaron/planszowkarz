@@ -18,6 +18,7 @@ router.route('/userGames')
 		var newGame = new userGame({
 			title: req.body.title,
 			description: req.body.description,
+			userID: req.body.userID
 		});
 		// save the game
 		newGame.save((err) => {

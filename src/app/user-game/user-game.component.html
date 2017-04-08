@@ -1,3 +1,17 @@
 <p>
   user-game works!
 </p>
+
+
+<h3>Dodaj grę:</h3>
+
+<label>Tytuł: <input #userGameName /></label>
+<label>Opis: <textarea #userGameDescription ></textarea>
+<button (click)="addUserGame(userGameName.value, userGameDescription.value);
+                userGameName.value=''; userGameDescription.value=''">Dodaj
+</button>
+
+<h3>Usuń grę:</h3>
+
+<label>ID: <input #userGameID /></label>
+<button (click)="removeUserGame(userGameID.value); userGameID.value=''">Usuń</button>
