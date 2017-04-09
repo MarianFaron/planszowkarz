@@ -5,11 +5,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.config.json",
-    "build": "ng build",
+    "build": "ng build && node server.js",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "build": "ng build && node server.js"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "body-parser": "^1.17.1",
+    "bootstrap": "^4.0.0-alpha.5",
     "core-js": "^2.4.1",
     "express": "^4.15.2",
     "mongoose": "^4.9.3",

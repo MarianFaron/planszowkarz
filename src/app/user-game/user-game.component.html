@@ -1,17 +1,99 @@
-<p>
-  user-game works!
-</p>
+<section id="user-panel" class="user-info-panel">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="user-sidebar">
+					<div class="main-section">
+						<img class="user-avatar" src="./assets/images/avatar.png" alt="user-avatar" />
+						<h4>{{ user.name }} {{user.surname}}</h4>
+						<h5>Wiek: {{ user.age}} </h5>
+						<a class="">Edytuj profil</a>
+					</div>
+					<div class="other-info">
+						<h5>Pozostałe informacje</h5>
+						<ul>
+							<li>Telefon</li>
+							<li>Email</li>
+							<li>Data urodzenia</li>
+							<li>Płeć</li>
+						</ul>
+					</div>
+					<div class="other-info">
+						<h5>Serwisy społecznościowe</h5>
+						<ul>
+							<li>Facebook</li>
+							<li>Twitter</li>
+							<li>...</li>
+							<li>...</li>
+						</ul>
+					</div>
+					<div class="other-info">
+						<h5>Ulubione kategorie gier</h5>
+						<ul>
+							<li>kategoria 1</li>
+							<li>kategoria 2</li>
+							<li>kategoria 3</li>
+							<li>kategoria 4</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="user-main-panel">
+					<div class="other-info">
+						<h5>O mnie</h5>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in turpis ac purus semper consequat. Phasellus dolor leo, tristique vitae orci non, mattis porttitor nulla. Aenean id viverra neque. Cras elementum maximus nunc, nec ultricies eros. Nullam elementum quis odio in varius. Nam malesuada magna a nulla rhoncus, vitae efficitur ligula tincidunt. Duis ac diam odio. Maecenas quis neque sit amet felis euismod sodales. Nulla nisi felis, facilisis nec arcu non, ultricies blandit odio. In ac ex at ipsum pulvinar tempor eu vitae magna. In et ex luctus, feugiat risus fermentum, feugiat nulla. Fusce mattis vulputate mauris sed facilisis.</p>
+					</div>
+					<div class="other-info">
+						<h5>Moje gry planszowe</h5>
+						<div class="game-box">
+							<div class="game-single-box">
+								<div class="game-img">
+									<img src="./assets/images/game1.jpg">
+								</div>
+								<div class="game-info">
+									<h5>Nazwa gry: {{ user.games.name }} </h5>
+									<h5>Categoria gry: {{ user.games.name }} </h5>
+									<h5>Data dodania: {{ user.games.addDate }} </h5>
+									<div class="form-group">
+										<button class="btn float-xs-right">Edytuj</button>
+									</div>
+								</div>
+							</div>
+							<div class="game-single-box">
+								<div class="game-img">
+									<img src="./assets/images/game1.jpg">
+								</div>
+								<div class="game-info">
+									<h5>Nazwa gry: {{ user.games.name }} </h5>
+									<h5>Categoria gry: {{ user.games.name }} </h5>
+									<h5>Data dodania: {{ user.games.addDate }} </h5>
+									<div class="form-group">
+										<button class="btn float-xs-right">Edytuj</button>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<h4>Dodaj grę:</h4>
+								<label>Tytuł: <input #userGameName /></label>
+								<label>Opis: <textarea #userGameDescription ></textarea></label>
+								<button (click)="addUserGame(userGameName.value, userGameDescription.value); 
+								userGameName.value=''; 
+								userGameDescription.value=''">Dodaj</button>
+								<h4>Usuń grę:</h4>
+								<label>ID: <input #userGameID /></label>
+								<button (click)="removeUserGame(userGameID.value); userGameID.value=''">Usuń</button>	
+							</div>
+						</div>
+					</div>		
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
 
-<h3>Dodaj grę:</h3>
 
-<label>Tytuł: <input #userGameName /></label>
-<label>Opis: <textarea #userGameDescription ></textarea>
-<button (click)="addUserGame(userGameName.value, userGameDescription.value);
-                userGameName.value=''; userGameDescription.value=''">Dodaj
-</button>
 
-<h3>Usuń grę:</h3>
 
-<label>ID: <input #userGameID /></label>
-<button (click)="removeUserGame(userGameID.value); userGameID.value=''">Usuń</button>
+

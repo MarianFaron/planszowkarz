@@ -1,0 +1,125 @@
+.user-info-panel{
+	margin: 0;
+	background-color: #222233;
+	width: 100%;
+	padding-top: 50px;
+	color: #AACCFF;
+}
+
+.user-sidebar{
+	margin: 0;
+	padding: 25px 10%;
+	display: block;
+}
+
+.main-section{
+	margin-bottom: 50px; 
+}
+
+.main-section a{
+	cursor: pointer;
+	font-weight: bold; 
+}
+
+.user-sidebar .user-avatar{
+	max-width: 100%;
+	max-height: 300px;
+	display: block;
+}
+
+.user-sidebar h4{
+	padding-top: 10px;
+	font-size: 20px;
+	font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif
+}
+
+.user-sidebar h5{
+	font-size: 16px;
+	font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif
+}
+
+.other-info{
+	margin-bottom: 40px;
+}
+
+.other-info h5{
+	padding-left: 40px;
+	font-size: 16px;
+	line-height: 40px;
+	background-color: #3F3F5F;
+	color: inherit;
+	margin: 0;
+}
+
+.other-info ul{
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	display: block;	
+	border: 1px solid #3F3F5F;
+}
+
+.other-info li{
+	text-decoration: none;
+	list-style: none;
+	line-height: 40px;
+	padding-left: 40px;
+}
+
+.other-info ul li:hover{
+	background-color: #3F3F5F;
+	cursor: pointer;
+}
+
+.user-main-panel{
+	margin: 0;
+	padding: 25px 10%;
+	display: block;	
+}
+
+.other-info p{
+	padding: 10px 40px;
+	font-size: 16px;
+	border: 1px solid #3F3F5F;
+}
+
+.game-box{
+	margin-top: 10px;
+	display: block;
+}
+
+.game-single-box{
+	margin-bottom: 15px;
+	padding: 20px 40px;
+	border: 1px solid #3F3F5F;
+}
+
+.game-img{
+	display: inline-block;
+	width: 100px;
+	height: 70px;
+	vertical-align: top;
+	margin-right: 20px;
+}
+
+.game-img img{
+	max-width: 100px;
+	max-height: 70px;
+}
+
+
+.game-info{
+	display: inline-block;
+	vertical-align: top;
+}
+
+.game-info h5{
+	background-color: inherit;
+	font-size: 13px;
+	line-height: normal;
+	padding: 0;
+}
+
+.add-game{
+	margin-right: 20px;
+}
