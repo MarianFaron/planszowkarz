@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.model');
+var userGame = require('../models/userGame.model');
 
 router.route('/users')
 	// get all users
@@ -81,5 +82,19 @@ router.route('/users/:id')
 			}
 		})
 	});
+
+router.route('/users/:id/userGames')
+	.get(function(req, res){
+		userGame.find({ userID: req.params.id }, function(err, game) {
+			if(err){
+				return res.status(400).json({message: "Bad Requested"});
+			} else if(!game){
+				return res.status(404).json({message: "User not Found"});
+			} else {
+				return res.status(200).json(game);
+			}
+		});
+	});
+
 
 module.exports = router;
