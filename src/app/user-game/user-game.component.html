@@ -1,69 +1,19 @@
 <section id="user-panel" class="user-info-panel">
 	<div class="container">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="user-sidebar">
-					<div class="main-section">
-						<img class="user-avatar" src="./assets/images/avatar.png" alt="user-avatar" />
-						<h4>Imię i nazwisko</h4>
-						<!--<h4>{{ user.name }} {{user.surname}}</h4>-->
-						<h5>Wiek: wiek </h5>
-						<!--<h5>Wiek: {{ user.age}} </h5>-->
-						<a class="">Edytuj profil</a>
-					</div>
-					<div class="other-info">
-						<div class="user-panel-header">
-							<h5>Pozostałe informacje</h5>
-						</div>
-						<ul>
-							<li>Telefon</li>
-							<li>Email</li>
-							<li>Data urodzenia</li>
-							<li>Płeć</li>
-						</ul>
-					</div>
-					<div class="other-info">
-						<div class="user-panel-header">
-							<h5>Serwisy społecznościowe</h5>
-						</div>
-						<ul>
-							<li>Facebook</li>
-							<li>Twitter</li>
-							<li>...</li>
-							<li>...</li>
-						</ul>
-					</div>
-					<div class="other-info">
-						<div class="user-panel-header">
-							<h5>Ulubione kategorie gier</h5>
-						</div>
-						<ul>
-							<li>kategoria 1</li>
-							<li>kategoria 2</li>
-							<li>kategoria 3</li>
-							<li>kategoria 4</li>
-						</ul>
-					</div>
-				</div>
-			</div>
+		<div class="row">			
 			<div class="col-md-8">
 				<div class="user-main-panel">
 					<div class="other-info">
 						<div class="user-panel-header">
-							<h5>O mnie</h5>
+							<h5>Informacje o mnie</h5>
 						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in turpis ac purus semper consequat. Phasellus dolor leo, tristique vitae orci non, mattis porttitor nulla. Aenean id viverra neque. Cras elementum maximus nunc, nec ultricies eros. Nullam elementum quis odio in varius. Nam malesuada magna a nulla rhoncus, vitae efficitur ligula tincidunt. Duis ac diam odio. Maecenas quis neque sit amet felis euismod sodales. Nulla nisi felis, facilisis nec arcu non, ultricies blandit odio. In ac ex at ipsum pulvinar tempor eu vitae magna. In et ex luctus, feugiat risus fermentum, feugiat nulla. Fusce mattis vulputate mauris sed facilisis.</p>
+						<p>DiCaprio zadebiutował na ekranie w wieku 5 lat w serialu Romper Room. Później występował w reklamówkach. Oficjalnie za jego pierwszą ważną rolę uznaje się występ w filmie Critters 3. W 1993 zdobył rolę w filmie Chłopięcy świat u boku Roberta De Niro. Przełomem w karierze była rola upośledzonego chłopca w filmie Co gryzie Gilberta Grape’a, za którą został nominowany do Oscara jako najlepszy aktor drugoplanowy. Potem jako dwudziestodwuletni chłopak zagrał w filmie Romeo i Julia. Natomiast największym jego sukcesem był film pod tytułem Titanic wyreżyserowany przez Jamesa Camerona, który zdobył 11 Oscarów. Zagrał w nim rolę głównego bohatera – Jacka Dawsona.</p>
 					</div>
 					<div class="other-info">
 						<div class="user-panel-header">
-							<div class="row">
-								<div class="col-md-6">
-									<h5>Moje gry planszowe</h5>
-								</div>
-								<div class="col-md-6">
-									<button class="btn right" data-toggle="modal" data-target="#add-game">Dodaj grę</button>
-								</div>
-							</div>
+							<h5>Moje gry planszowe</h5>
+							<button class="btn right" data-toggle="modal" data-target="#add-game">
+							<img class="icon-size" src="./assets/images/icons/Plus.png">Dodaj grę</button>
 						</div>
 
 						<div class="game-box">
@@ -72,11 +22,14 @@
 									<img src="./assets/images/game1.jpg">
 								</div>
 								<div class="game-info">
-									<h5>Nazwa gry: {{ game.title }}</h5>
 									<h5>ID: {{ game._id }} </h5>
-									<h5>Data dodania: </h5>
-									<button class="btn float-xs-right" data-toggle="modal" attr.data-target="#edit-game-{{game._id}}">Edytuj</button>
-									<button (click)="removeUserGame(game._id);" class="btn float-xs-right">Usuń</button>
+									<h5>Nazwa gry: {{ game.title }}</h5>									
+									<h5>Opis gry: {{ game.description }} </h5>
+								</div>
+								<div class="game-info-function-box">
+									<img class="icon-size" alt="Edytuj"src="./assets/images/icons/Edit.png" data-toggle="modal" attr.data-target="#edit-game-{{game._id}}" />
+									<img class="icon-size" alt="Usuń" src="./assets/images/icons/Delete.png"
+									 (click)="removeUserGame(game._id);" />
 
 									<!-- Edit Game Modal -->
 
@@ -107,9 +60,55 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-md-4">
+				<div class="user-sidebar">
+					<div class="main-section">
+						<img class="user-avatar" src="./assets/images/avatar.png" alt="user-avatar" />
+						<h4>Imię i nazwisko</h4>
+						<!--<h4>{{ user.name }} {{user.surname}}</h4>-->
+						<button class="btn right" disabled>
+							<img class="icon-size" src="./assets/images/icons/Edit.png" />Edytuj dane
+						</button>
+					</div>
+					<div class="other-info">
+						<div class="user-panel-header">
+							<h5>Dane użytkownika</h5>
+						</div>
+						<ul>
+							<li><img class="icon-size" src="./assets/images/icons/Phone.png" /> Telefon: 123 456 789</li>
+							<li><img class="icon-size" src="./assets/images/icons/Message.png" />Email: example@gmail.com</li>
+							<li><img class="icon-size" src="./assets/images/icons/Calendar.png" />Data urodzenia: 10-04-1990</li>
+							<li><img class="icon-size" src="./assets/images/icons/Gender.png" />Płeć: mężczyzna</li>
+						</ul>
+					</div>
+					<div class="other-info">
+						<div class="user-panel-header">
+							<h5>Serwisy społecznościowe</h5>
+						</div>
+						<ul>
+							<li><img class="icon-size" src="./assets/images/icons/Facebook.png" />Facebook</li>
+							<li><img class="icon-size" src="./assets/images/icons/Twitter.png" />Twitter</li>
+							<li><img class="icon-size" src="./assets/images/icons/Plus.png" />add information</li>
+							<li><img class="icon-size" src="./assets/images/icons/Plus.png" />add information</li>
+						</ul>
+					</div>
+					<div class="other-info">
+						<div class="user-panel-header">
+							<h5>Ulubione kategorie gier</h5>
+						</div>
+						<ul>
+							<li><img class="icon-size" src="./assets/images/icons/Card.png" />Kategoria 1</li>
+							<li><img class="icon-size" src="./assets/images/icons/Card.png" />Kategoria 2</li>
+							<li><img class="icon-size" src="./assets/images/icons/Card.png" />Kategoria 3</li>
+							<li><img class="icon-size" src="./assets/images/icons/Card.png" />Kategoria 4</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
+
 
 <!-- Add Game Modal -->
 <div class="modal fade" id="add-game" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
