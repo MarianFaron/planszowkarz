@@ -48,8 +48,15 @@
 					</div>
 					<div class="other-info">
 						<h5>Moje gry planszowe</h5>
-						<div class="game-box">
-						
+						<button class="btn float-xs-right" (click)="addNewGameBtnClicked = true">Dodaj gre</button>
+						<div [class]="addNewGameBtnClicked == true? '' : 'niewidoczne'">
+							<h5> Uzupełnij dane</h5>							
+							<label>Tytuł: <input #userGameName /></label>
+							<p> cdn... </p>
+							<button class="btn float-xs-right">Dodaj (niepodpięte)</button>
+							<button class="btn float-xs-right" (click)="addNewGameBtnClicked = false">Anuluj</button>
+						</div>
+						<div class="game-box">						
 							<div class="game-single-box" *ngFor="let game of userGame">
 								<div class="game-img">
 									<img src="./assets/images/game1.jpg">

@@ -123,3 +123,7 @@
 .add-game{
 	margin-right: 20px;
 }
+
+.niewidoczne{
+	display: none;
+}

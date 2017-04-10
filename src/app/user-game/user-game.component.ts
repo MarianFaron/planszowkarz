@@ -16,6 +16,8 @@ export class UserGameComponent implements OnInit {
   userGame: UserGame;
   mode = 'Observable';
 
+  addNewGameBtnClicked = false;
+
   constructor (private userGameService: UserGameService) {}
 
   ngOnInit() {
