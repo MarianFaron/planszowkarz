@@ -31,6 +31,7 @@ export class UserGameComponent implements OnInit {
                      .subscribe(
                         userGame  =>this.userGame,
                         error =>  this.errorMessage = <any>error);
+    location.reload();
   }
 
   removeUserGame(id: string) {
@@ -38,6 +39,7 @@ export class UserGameComponent implements OnInit {
                      .subscribe(
                         userGame  => this.userGame,
                         error =>  this.errorMessage = <any>error);
+    location.reload();
   }
 
   getUserGame(){

@@ -7,8 +7,8 @@ import { CoreComponent }		  from './core/core.component';
 
 export const router: Routes = [
 	{ path: 'user-game', component: UserGameComponent},
-	{ path: '', redirectTo: '/core', pathMatch:'full'},
-	{ path: 'core', component: CoreComponent}
+	{ path: '', redirectTo: '/main', pathMatch:'full'},
+	{ path: 'main', component: AppComponent}
 ];
 
 @NgModule({

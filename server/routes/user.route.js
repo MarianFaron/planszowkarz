@@ -15,7 +15,7 @@ router.route('/users')
 		});
 	})
 	// post new user
-	.post(function(req,res){
+	.post((req,res) => {
 		if (!req.body.login || !req.body.password) {
 			return res.status(401).end({message: "You must pass login/password"});
 		} else {
@@ -26,7 +26,7 @@ router.route('/users')
 			   email: req.body.email
 			});
 			// save the user
-			newUser.save(function(err) {
+			newUser.save((err) => {
 				if (err){
 					return res.status(409).json({message: 'Wrong user'});
 				} else {
@@ -37,8 +37,8 @@ router.route('/users')
 	});
 
 router.route('/users/:id')
-	.get(function(req, res){
-		User.findById(req.params.id, function(err, user) {
+	.get((req, res) => {
+		User.findById(req.params.id, (err, user) => {
 			if(err){
 				return res.status(400).json({message: "Bad Requested"});
 			} else if(!user){
@@ -49,12 +49,12 @@ router.route('/users/:id')
 		});
 	})
 
-	.patch(function(req, res){
+	.patch((req, res) => {
 		if(!req.body.password){
 			return res.status(401).json({ message: "You haven't entered a password."});
 		}
 
-		User.findByIdAndUpdate({_id: req.params.id}, req.body, function(err, user) {
+		User.findByIdAndUpdate({_id: req.params.id}, req.body, (err, user) => {
 			if(err){
 				return res.status(400).json({message: "Bad Requested"});
 			} else if(!user){
@@ -66,13 +66,13 @@ router.route('/users/:id')
 	})
 
 	.delete(function(req, res){
-		User.findById(req.params.id, function(err, user) {
+		User.findById(req.params.id, (err, user) => {
 			if(err){
 				return res.status(400).json({message: "Bad Requested"});
 			} else if(!user){
 				return res.status(404).json({message: "User not Found"});
 			} else {
-				User.remove({_id: req.params.id}, function(err, user){
+				User.remove({_id: req.params.id}, (err, user) => {
 					if(err) {
 						return res.status(400).json({message: "Bad Requested"});
 					} else {
@@ -84,8 +84,8 @@ router.route('/users/:id')
 	});
 
 router.route('/users/:id/userGames')
-	.get(function(req, res){
-		userGame.find({ userID: req.params.id }, function(err, game) {
+	.get((req, res) => {
+		userGame.find({ userID: req.params.id }, (err, game) => {
 			if(err){
 				return res.status(400).json({message: "Bad Requested"});
 			} else if(!game){

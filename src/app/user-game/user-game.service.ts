@@ -34,7 +34,7 @@ export class UserGameService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(`${this.userUrl}/${id}/userGames`, options)
-                    .map(res => res.json())
+                    .map(this.extractData)
                     .catch(this.handleError);
   }
 
@@ -46,14 +46,14 @@ export class UserGameService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.delete(`${this.userGameUrl}/${id}`, options)
-                    .map(res => res.json())
+                    .map(this.extractData)
                     .catch(this.handleError);
   }
 
 
   private extractData(res: Response) {
     let body = res.json();
-    return body.data || { };
+    return body || { };
   }
 
   private handleError (error: Response | any) {
