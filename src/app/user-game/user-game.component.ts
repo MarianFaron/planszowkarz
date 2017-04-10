@@ -34,6 +34,14 @@ export class UserGameComponent implements OnInit {
     location.reload();
   }
 
+  editUserGame(id: string, title: string, description: string) {
+    this.userGameService.update(id, title, description)
+                     .subscribe(
+                        userGame  =>this.userGame,
+                        error =>  this.errorMessage = <any>error);
+    location.reload();
+  }
+
   removeUserGame(id: string) {
     this.userGameService.delete(id)
                      .subscribe(

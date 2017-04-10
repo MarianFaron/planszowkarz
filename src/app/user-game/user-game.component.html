@@ -12,7 +12,9 @@
 						<a class="">Edytuj profil</a>
 					</div>
 					<div class="other-info">
-						<h5>Pozostałe informacje</h5>
+						<div class="user-panel-header">
+							<h5>Pozostałe informacje</h5>
+						</div>
 						<ul>
 							<li>Telefon</li>
 							<li>Email</li>
@@ -21,7 +23,9 @@
 						</ul>
 					</div>
 					<div class="other-info">
-						<h5>Serwisy społecznościowe</h5>
+						<div class="user-panel-header">
+							<h5>Serwisy społecznościowe</h5>
+						</div>
 						<ul>
 							<li>Facebook</li>
 							<li>Twitter</li>
@@ -30,7 +34,9 @@
 						</ul>
 					</div>
 					<div class="other-info">
-						<h5>Ulubione kategorie gier</h5>
+						<div class="user-panel-header">
+							<h5>Ulubione kategorie gier</h5>
+						</div>
 						<ul>
 							<li>kategoria 1</li>
 							<li>kategoria 2</li>
@@ -43,52 +49,89 @@
 			<div class="col-md-8">
 				<div class="user-main-panel">
 					<div class="other-info">
-						<h5>O mnie</h5>
+						<div class="user-panel-header">
+							<h5>O mnie</h5>
+						</div>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in turpis ac purus semper consequat. Phasellus dolor leo, tristique vitae orci non, mattis porttitor nulla. Aenean id viverra neque. Cras elementum maximus nunc, nec ultricies eros. Nullam elementum quis odio in varius. Nam malesuada magna a nulla rhoncus, vitae efficitur ligula tincidunt. Duis ac diam odio. Maecenas quis neque sit amet felis euismod sodales. Nulla nisi felis, facilisis nec arcu non, ultricies blandit odio. In ac ex at ipsum pulvinar tempor eu vitae magna. In et ex luctus, feugiat risus fermentum, feugiat nulla. Fusce mattis vulputate mauris sed facilisis.</p>
 					</div>
 					<div class="other-info">
-						<h5>Moje gry planszowe</h5>
-						<button class="btn float-xs-right" (click)="addNewGameBtnClicked = true">Dodaj gre</button>
-						<div [class]="addNewGameBtnClicked == true? '' : 'niewidoczne'">
-							<h5> Uzupełnij dane</h5>							
-							<label>Tytuł: <input #userGameName /></label>
-							<p> cdn... </p>
-							<button class="btn float-xs-right">Dodaj (niepodpięte)</button>
-							<button class="btn float-xs-right" (click)="addNewGameBtnClicked = false">Anuluj</button>
+						<div class="user-panel-header">
+							<div class="row">
+								<div class="col-md-6">
+									<h5>Moje gry planszowe</h5>
+								</div>
+								<div class="col-md-6">
+									<button class="btn right" data-toggle="modal" data-target="#add-game">Dodaj grę</button>
+								</div>
+							</div>
 						</div>
-						<div class="game-box">						
+
+						<div class="game-box">
 							<div class="game-single-box" *ngFor="let game of userGame">
 								<div class="game-img">
 									<img src="./assets/images/game1.jpg">
 								</div>
 								<div class="game-info">
 									<h5>Nazwa gry: {{ game.title }}</h5>
-									<h5> ID: {{ game._id }} </h5>
+									<h5>ID: {{ game._id }} </h5>
 									<h5>Data dodania: </h5>
-									<div class="form-group">
-										<button class="btn float-xs-right">Edytuj</button>
-										<button (click)="removeUserGame(game._id);" class="btn float-xs-right">Usuń</button>
+									<button class="btn float-xs-right" data-toggle="modal" attr.data-target="#edit-game-{{game._id}}">Edytuj</button>
+									<button (click)="removeUserGame(game._id);" class="btn float-xs-right">Usuń</button>
+
+									<!-- Edit Game Modal -->
+
+									<div class="modal fade" id="edit-game-{{game._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									  <div class="modal-dialog" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h4 class="modal-title">Edytuj grę</h4>
+									      </div>
+									      <div class="modal-body">
+														<div class="form-group">
+															<label>Tytuł: <input class="form-control" value="{{game.title}}" #userGameName /></label>
+														</div>
+														<div class="form-group">
+															<label>Opis: <textarea class="form-control" value="{{game.description}}" #userGameDescription ></textarea></label>
+														</div>
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+													<button class="btn btn-default" (click)="editUserGame(game._id, userGameName.value, userGameDescription.value)">Zapisz</button>
+									      </div>
+									    </div>
+									  </div>
 									</div>
 								</div>
-							</div>							
-							<div class="form-group">
-								<h4>Dodaj grę:</h4>
-								<label>Tytuł: <input #userGameName /></label>
-								<label>Opis: <textarea #userGameDescription ></textarea></label>
-								<button (click)="addUserGame(userGameName.value, userGameDescription.value); 
-								userGameName.value=''; 
-								userGameDescription.value=''">Dodaj</button>
 							</div>
 						</div>
-					</div>		
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
 
-
-
-
-
-
+<!-- Add Game Modal -->
+<div class="modal fade" id="add-game" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Dodaj grę</h4>
+			</div>
+			<div class="modal-body">
+					<div class="form-group">
+						<label>Tytuł: <input class="form-control" #userGameName /></label>
+					</div>
+					<div class="form-group">
+						<label>Opis: <textarea class="form-control" #userGameDescription ></textarea></label>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+				<button class="btn btn-default" (click)="addUserGame(userGameName.value, userGameDescription.value);
+				userGameName.value='';
+				userGameDescription.value=''">Dodaj</button>
+			</div>
+		</div>
+	</div>
+</div>

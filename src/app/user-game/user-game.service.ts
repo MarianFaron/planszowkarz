@@ -14,7 +14,7 @@ export class UserGameService {
   private userUrl = 'http://localhost:8080/app/users';
 
   constructor (private http: Http) {}
-  
+
   // Create user game
 
   create(title: string, description: string, userID: string): Observable<UserGame> {
@@ -23,6 +23,29 @@ export class UserGameService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.userGameUrl, { title, description, userID }, options)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+  // Update user game
+
+  update(id: string, title: string, description: string): Observable<UserGame[]> {
+
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+
+      return this.http.patch(`${this.userGameUrl}/${id}`, {title, description}, options)
+                      .map(this.extractData)
+                      .catch(this.handleError);
+  }
+
+  // Delete user game
+
+  delete(id: string): Observable<UserGame> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.delete(`${this.userGameUrl}/${id}`, options)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
@@ -36,20 +59,7 @@ export class UserGameService {
     return this.http.get(`${this.userUrl}/${id}/userGames`, options)
                     .map(this.extractData)
                     .catch(this.handleError);
-  }
-
-
-  // Delete user game
-
-  delete(id: string): Observable<UserGame> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.delete(`${this.userGameUrl}/${id}`, options)
-                    .map(this.extractData)
-                    .catch(this.handleError);
-  }
-
+  }  
 
   private extractData(res: Response) {
     let body = res.json();
