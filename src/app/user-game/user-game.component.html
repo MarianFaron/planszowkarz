@@ -5,8 +5,10 @@
 				<div class="user-sidebar">
 					<div class="main-section">
 						<img class="user-avatar" src="./assets/images/avatar.png" alt="user-avatar" />
-						<h4>{{ user.name }} {{user.surname}}</h4>
-						<h5>Wiek: {{ user.age}} </h5>
+						<h4>Imię i nazwisko</h4>
+						<!--<h4>{{ user.name }} {{user.surname}}</h4>-->
+						<h5>Wiek: wiek </h5>
+						<!--<h5>Wiek: {{ user.age}} </h5>-->
 						<a class="">Edytuj profil</a>
 					</div>
 					<div class="other-info">
@@ -47,32 +49,21 @@
 					<div class="other-info">
 						<h5>Moje gry planszowe</h5>
 						<div class="game-box">
-							<div class="game-single-box">
+						
+							<div class="game-single-box" *ngFor="let game of userGame">
 								<div class="game-img">
 									<img src="./assets/images/game1.jpg">
 								</div>
 								<div class="game-info">
-									<h5>Nazwa gry: {{ user.games.name }} </h5>
-									<h5>Categoria gry: {{ user.games.name }} </h5>
-									<h5>Data dodania: {{ user.games.addDate }} </h5>
+									<h5>Nazwa gry: {{ game.title }}</h5>
+									<h5> ID: {{ game._id }} </h5>
+									<h5>Data dodania: </h5>
 									<div class="form-group">
 										<button class="btn float-xs-right">Edytuj</button>
+										<button (click)="removeUserGame(game._id);" class="btn float-xs-right">Usuń</button>
 									</div>
 								</div>
-							</div>
-							<div class="game-single-box">
-								<div class="game-img">
-									<img src="./assets/images/game1.jpg">
-								</div>
-								<div class="game-info">
-									<h5>Nazwa gry: {{ user.games.name }} </h5>
-									<h5>Categoria gry: {{ user.games.name }} </h5>
-									<h5>Data dodania: {{ user.games.addDate }} </h5>
-									<div class="form-group">
-										<button class="btn float-xs-right">Edytuj</button>
-									</div>
-								</div>
-							</div>
+							</div>							
 							<div class="form-group">
 								<h4>Dodaj grę:</h4>
 								<label>Tytuł: <input #userGameName /></label>

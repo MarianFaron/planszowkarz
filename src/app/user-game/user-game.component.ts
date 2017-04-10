@@ -18,23 +18,31 @@ export class UserGameComponent implements OnInit {
 
   constructor (private userGameService: UserGameService) {}
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getUserGame();
+  }
 
   addUserGame(title: string, description: string) {
     var userID = "58e45c5c9030ea1928a33fea";
     if (!title || !description) { return; }
     this.userGameService.create(title, description, userID)
                      .subscribe(
-                       userGame  => userGame,
-                       error =>  this.errorMessage = <any>error);
+                        userGame  =>this.userGame,
+                        error =>  this.errorMessage = <any>error);
   }
 
   removeUserGame(id: string) {
     this.userGameService.delete(id)
                      .subscribe(
-                       userGame  => userGame,
-                       error =>  this.errorMessage = <any>error);
+                        userGame  => this.userGame,
+                        error =>  this.errorMessage = <any>error);
   }
 
-
+  getUserGame(){
+    var userID = "58e45c5c9030ea1928a33fea";
+    this.userGameService.getGames(userID)
+                      .subscribe(
+                        userGame => this.userGame = userGame,
+                        error => this.errorMessage = <any>error);
+    }
 }

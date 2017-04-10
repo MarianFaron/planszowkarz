@@ -11,9 +11,10 @@ import { UserGame } from './user-game';
 export class UserGameService {
 
   private userGameUrl = 'http://localhost:8080/app/userGames';
+  private userUrl = 'http://localhost:8080/app/users';
 
   constructor (private http: Http) {}
-
+  
   // Create user game
 
   create(title: string, description: string, userID: string): Observable<UserGame> {
@@ -26,17 +27,29 @@ export class UserGameService {
                     .catch(this.handleError);
   }
 
-  // Delete user game
+  // Get user games
 
-  delete(id: string): Observable<UserGame> {
-
+  getGames(id: string): Observable<UserGame>{
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.delete(`${this.userGameUrl}/${id}`)
-                    .map(this.extractData)
+    return this.http.get(`${this.userUrl}/${id}/userGames`, options)
+                    .map(res => res.json())
                     .catch(this.handleError);
   }
+
+
+  // Delete user game
+
+  delete(id: string): Observable<UserGame> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.delete(`${this.userGameUrl}/${id}`, options)
+                    .map(res => res.json())
+                    .catch(this.handleError);
+  }
+
 
   private extractData(res: Response) {
     let body = res.json();
