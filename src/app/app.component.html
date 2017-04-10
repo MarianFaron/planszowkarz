@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
+  <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -7,15 +7,31 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" routerLink="root" routerLinkActive="active">{{title}}</a>
+      <a class="navbar-brand" routerLink="/main" routerLinkActive="active">{{title}}</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a routerLink="/main" routerLinkActive="active">Strona Główna</a></li>
+        <li><a routerLink="/main" routerLinkActive="active">Ranking Gier</a></li>
+        <li><a routerLink="/main" routerLinkActive="active">Katalog Gier</a></li>
         <li><a routerLink="/user-game" routerLinkActive="active">Profil</a></li>
-        <li><a routerLink="/main" routerLinkActive="active">Main</a></li>
       </ul>
     </div>
   </div>
 </nav>
+
 <router-outlet></router-outlet>
+
+<footer>
+  <section id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+          <h2>Copyright 2017 &copy; Planszowkarz</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+</footer>
+
