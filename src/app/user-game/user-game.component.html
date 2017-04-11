@@ -5,12 +5,6 @@
 				<div class="user-main-panel">
 					<div class="other-info">
 						<div class="user-panel-header">
-							<h5>Informacje o mnie</h5>
-						</div>
-						<p>DiCaprio zadebiutował na ekranie w wieku 5 lat w serialu Romper Room. Później występował w reklamówkach. Oficjalnie za jego pierwszą ważną rolę uznaje się występ w filmie Critters 3. W 1993 zdobył rolę w filmie Chłopięcy świat u boku Roberta De Niro. Przełomem w karierze była rola upośledzonego chłopca w filmie Co gryzie Gilberta Grape’a, za którą został nominowany do Oscara jako najlepszy aktor drugoplanowy. Potem jako dwudziestodwuletni chłopak zagrał w filmie Romeo i Julia. Natomiast największym jego sukcesem był film pod tytułem Titanic wyreżyserowany przez Jamesa Camerona, który zdobył 11 Oscarów. Zagrał w nim rolę głównego bohatera – Jacka Dawsona.</p>
-					</div>
-					<div class="other-info">
-						<div class="user-panel-header">
 							<h5>Moje gry planszowe</h5>
 							<button class="btn right" data-toggle="modal" data-target="#add-game">
 							<img class="icon-size" src="./assets/images/icons/Plus.png">Dodaj grę</button>
@@ -22,12 +16,11 @@
 									<img src="./assets/images/game1.jpg">
 								</div>
 								<div class="game-info">
-									<h5>ID: {{ game._id }} </h5>
-									<h5>Nazwa gry: {{ game.title }}</h5>									
-									<h5>Opis gry: {{ game.description }} </h5>
+									<p>Nazwa gry: {{ game.title }}</p>									
+									<p>Opis gry: {{ game.description }}</p>
 								</div>
 								<div class="game-info-function-box">
-									<img class="icon-size" alt="Edytuj"src="./assets/images/icons/Edit.png" data-toggle="modal" attr.data-target="#edit-game-{{game._id}}" />
+									<img class="icon-size" alt="Edytuj" src="./assets/images/icons/Edit.png" data-toggle="modal" attr.data-target="#edit-game-{{game._id}}" />
 									<img class="icon-size" alt="Usuń" src="./assets/images/icons/Delete.png"
 									 (click)="removeUserGame(game._id);" />
 
@@ -40,16 +33,16 @@
 									        <h4 class="modal-title">Edytuj grę</h4>
 									      </div>
 									      <div class="modal-body">
-														<div class="form-group">
-															<label>Tytuł: <input class="form-control" value="{{game.title}}" #userGameName /></label>
-														</div>
-														<div class="form-group">
-															<label>Opis: <textarea class="form-control" value="{{game.description}}" #userGameDescription ></textarea></label>
-														</div>
+											<div class="form-group">
+												<label>Tytuł: <input class="form-control" value="{{game.title}}" #userGameName /></label>
+											</div>
+											<div class="form-group">
+												<label>Opis: <textarea class="form-control" value="{{game.description}}"#userGameDescription></textarea></label>
+											</div>
 									      </div>
 									      <div class="modal-footer">
+									      	<button class="btn btn-default" (click)="editUserGame(game._id, userGameName.value, userGameDescription.value)">Zapisz</button>
 									        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-													<button class="btn btn-default" (click)="editUserGame(game._id, userGameName.value, userGameDescription.value)">Zapisz</button>
 									      </div>
 									    </div>
 									  </div>
@@ -62,46 +55,21 @@
 			</div>
 			<div class="col-md-4">
 				<div class="user-sidebar">
-					<div class="main-section">
-						<img class="user-avatar" src="./assets/images/avatar.png" alt="user-avatar" />
-						<h4>Imię i nazwisko</h4>
-						<!--<h4>{{ user.name }} {{user.surname}}</h4>-->
-						<button class="btn right" disabled>
-							<img class="icon-size" src="./assets/images/icons/Edit.png" />Edytuj dane
-						</button>
-					</div>
 					<div class="other-info">
 						<div class="user-panel-header">
 							<h5>Dane użytkownika</h5>
 						</div>
+						<img class="user-avatar" src="./assets/images/avatar.png" alt="user-avatar" />
+						<h4>Imię i nazwisko</h4>
 						<ul>
 							<li><img class="icon-size" src="./assets/images/icons/Phone.png" /> Telefon: 123 456 789</li>
 							<li><img class="icon-size" src="./assets/images/icons/Message.png" />Email: example@gmail.com</li>
 							<li><img class="icon-size" src="./assets/images/icons/Calendar.png" />Data urodzenia: 10-04-1990</li>
 							<li><img class="icon-size" src="./assets/images/icons/Gender.png" />Płeć: mężczyzna</li>
 						</ul>
-					</div>
-					<div class="other-info">
-						<div class="user-panel-header">
-							<h5>Serwisy społecznościowe</h5>
-						</div>
-						<ul>
-							<li><img class="icon-size" src="./assets/images/icons/Facebook.png" />Facebook</li>
-							<li><img class="icon-size" src="./assets/images/icons/Twitter.png" />Twitter</li>
-							<li><img class="icon-size" src="./assets/images/icons/Plus.png" />add information</li>
-							<li><img class="icon-size" src="./assets/images/icons/Plus.png" />add information</li>
-						</ul>
-					</div>
-					<div class="other-info">
-						<div class="user-panel-header">
-							<h5>Ulubione kategorie gier</h5>
-						</div>
-						<ul>
-							<li><img class="icon-size" src="./assets/images/icons/Card.png" />Kategoria 1</li>
-							<li><img class="icon-size" src="./assets/images/icons/Card.png" />Kategoria 2</li>
-							<li><img class="icon-size" src="./assets/images/icons/Card.png" />Kategoria 3</li>
-							<li><img class="icon-size" src="./assets/images/icons/Card.png" />Kategoria 4</li>
-						</ul>
+						<button class="btn right" disabled>
+							<img class="icon-size" src="./assets/images/icons/Edit.png" />Edytuj dane
+						</button>
 					</div>
 				</div>
 			</div>
@@ -126,10 +94,9 @@
 					</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
 				<button class="btn btn-default" (click)="addUserGame(userGameName.value, userGameDescription.value);
-				userGameName.value='';
-				userGameDescription.value=''">Dodaj</button>
+				userGameName.value=''; userGameDescription.value=''">Dodaj</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
 			</div>
 		</div>
 	</div>

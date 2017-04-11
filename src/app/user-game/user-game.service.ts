@@ -29,7 +29,7 @@ export class UserGameService {
 
   // Update user game
 
-  update(id: string, title: string, description: string): Observable<UserGame[]> {
+  update(id: string, title: string, description: string): Observable<UserGame> {
 
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
