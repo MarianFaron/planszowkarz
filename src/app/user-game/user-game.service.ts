@@ -17,7 +17,7 @@ export class UserGameService {
 
   // Create user game
 
-  create(title: string, description: string, userID: string): Observable<UserGame> {
+  create(title: string, description: string, userID: string): Observable<UserGame[]> {
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -29,7 +29,7 @@ export class UserGameService {
 
   // Update user game
 
-  update(id: string, title: string, description: string): Observable<UserGame> {
+  update(id: string, title: string, description: string): Observable<UserGame[]> {
 
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
@@ -41,7 +41,7 @@ export class UserGameService {
 
   // Delete user game
 
-  delete(id: string): Observable<UserGame> {
+  delete(id: string): Observable<UserGame[]> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
@@ -52,7 +52,7 @@ export class UserGameService {
 
   // Get user games
 
-  getGames(id: string): Observable<UserGame>{
+  getGames(id: string): Observable<UserGame[]>{
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 

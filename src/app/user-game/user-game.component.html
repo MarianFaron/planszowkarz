@@ -9,7 +9,6 @@
 							<button class="btn right" data-toggle="modal" data-target="#add-game">
 							<img class="icon-size" src="./assets/images/icons/Plus.png">Dodaj grę</button>
 						</div>
-
 						<div class="game-box">
 							<div class="game-single-box" *ngFor="let game of userGame">
 								<div class="game-img">
@@ -30,6 +29,7 @@
 									  <div class="modal-dialog" role="document">
 									    <div class="modal-content">
 									      <div class="modal-header">
+									      	<button type="button" class="close" data-dismiss="modal">&times;</button>
 									        <h4 class="modal-title">Edytuj grę</h4>
 									      </div>
 									      <div class="modal-body">
@@ -42,7 +42,6 @@
 									      </div>
 									      <div class="modal-footer">
 									      	<button class="btn btn-default" (click)="editUserGame(game._id, userGameName.value, userGameDescription.value)">Zapisz</button>
-									        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
 									      </div>
 									    </div>
 									  </div>
@@ -62,13 +61,12 @@
 						<img class="user-avatar" src="./assets/images/avatar.png" alt="user-avatar" />
 						<h4>Imię i nazwisko</h4>
 						<ul>
-							<li><img class="icon-size" src="./assets/images/icons/Phone.png" /> Telefon: 123 456 789</li>
+							<li><img class="icon-size" src="./assets/images/icons/Phone.png" />Telefon: 123 456 789</li>
 							<li><img class="icon-size" src="./assets/images/icons/Message.png" />Email: example@gmail.com</li>
 							<li><img class="icon-size" src="./assets/images/icons/Calendar.png" />Data urodzenia: 10-04-1990</li>
-							<li><img class="icon-size" src="./assets/images/icons/Gender.png" />Płeć: mężczyzna</li>
 						</ul>
-						<button class="btn right" disabled>
-							<img class="icon-size" src="./assets/images/icons/Edit.png" />Edytuj dane
+						<button class="btn right">
+							Edytuj dane
 						</button>
 					</div>
 				</div>
@@ -76,27 +74,25 @@
 		</div>
 	</div>
 </section>
-
-
 <!-- Add Game Modal -->
 <div class="modal fade" id="add-game" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title">Dodaj grę</h4>
 			</div>
 			<div class="modal-body">
-					<div class="form-group">
-						<label>Tytuł: <input class="form-control" #userGameName /></label>
-					</div>
-					<div class="form-group">
-						<label>Opis: <textarea class="form-control" #userGameDescription ></textarea></label>
-					</div>
+				<div class="form-group">
+					<label>Tytuł: <input class="form-control" #userGameName /></label>
+				</div>
+				<div class="form-group">
+					<label>Opis: <textarea class="form-control" #userGameDescription ></textarea></label>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-default" (click)="addUserGame(userGameName.value, userGameDescription.value);
 				userGameName.value=''; userGameDescription.value=''">Dodaj</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
 			</div>
 		</div>
 	</div>

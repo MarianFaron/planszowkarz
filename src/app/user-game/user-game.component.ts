@@ -13,7 +13,7 @@ import { UserGameService }       from './user-game.service';
 export class UserGameComponent implements OnInit {
 
   errorMessage: string;
-  userGame: UserGame;
+  userGame: UserGame[];
   mode = 'Observable';
 
   addNewGameBtnClicked = false;
@@ -29,7 +29,7 @@ export class UserGameComponent implements OnInit {
     if (!title || !description) { return; }
     this.userGameService.create(title, description, userID)
                      .subscribe(
-                        userGame  =>this.userGame,
+                        userGame  => this.userGame,
                         error =>  this.errorMessage = <any>error);
     location.reload();
   }
@@ -37,7 +37,7 @@ export class UserGameComponent implements OnInit {
   editUserGame(id: string, title: string, description: string) {
     this.userGameService.update(id, title, description)
                      .subscribe(
-                        userGame  =>this.userGame,
+                        userGame  => this.userGame,
                         error =>  this.errorMessage = <any>error);
     location.reload();
   }
@@ -54,7 +54,7 @@ export class UserGameComponent implements OnInit {
     var userID = "58e45c5c9030ea1928a33fea";
     this.userGameService.getGames(userID)
                       .subscribe(
-                        userGame => this.userGame = userGame,
+                        userGame => this.userGame = userGame.reverse(),
                         error => this.errorMessage = <any>error);
     }
 }
