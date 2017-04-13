@@ -19,41 +19,89 @@ describe('UserGameService', () => {
     });
   });
 
-  it('should get user-game list', inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
+  it('should get user-game list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
     mockbackend.connections.subscribe((connection) => {
-      //if sprawdzajacy id
-      connection.mockRespond(new Response(new ResponseOptions({
+        expect(connection.request.method).toBe(RequestMethod.Get);
+        connection.mockRespond(new Response(new ResponseOptions({
         body: [
                 {"_id":"58ebec8a16f8161d00f8e063","title":"ccsdcsc123123333","description":"cscscs","userID":"58e45c5c9030ea1928a33fea"},
                 {"_id":"58ece357fec91a2160819036","title":"Tajniacy","description":"Taka niezła","userID":"58e45c5c9030ea1928a33fea"},
                 {"_id":"58ed29f7f9bc3f1b08cabb46","title":"asdasda","description":"asdasdas","userID":"58e45c5c9030ea1928a33fea"},
                 {"_id":"58ed3117f9bc3f1b08cabb47","title":"asdasda","description":"asdasdadas","userID":"58e45c5c9030ea1928a33fea"}
               ]
-      })));
+        })));
     });
 
-    usergameservice.getGames('58e45c5c9030ea1928a33fea').subscribe((games) => {
+    usergameservice.getGames('58e45c5c9030ea1928a33feaz').subscribe((games) => {
           expect(games.length).toBe(4);
           expect(games[0].title).toEqual('ccsdcsc123123333');
+          expect(games[3].description).toEqual('asdasdadas');
+          expect(games[2]._id).toEqual('58ed29f7f9bc3f1b08cabb46');
     });
-  }));
+  })));
 
-  /*it('should add user-game to list', inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
+  it('should show error when we dont have id to get user-games', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
     mockbackend.connections.subscribe((connection) => {
-      // is it the correct REST type for an insert? (POST)
-      expect(connection.request.method).toBe(RequestMethod.Post);
-      connection.mockRespond(new Response(new ResponseOptions({status: 201})));
+        expect(connection.request.method).toBe(RequestMethod.Get);
+        connection.mockRespond(new Response(new ResponseOptions(
+        {status: 404}
+        )));
     });
-    let data: [{"_id":"58ebec8a16f8161d00f8e063","title":"ccsdcsc123123333444","description":"cscscs","userID":"58e45c5c9030ea1928a33fea"}];
-    usergameservice.create(data[0].title, data[0].description, data[0].userID).subscribe(
-      (successResult) => {
-        expect(successResult).toBeDefined();
-        expect(successResult.status).toBe(201);
-        expect(successResult.title).toBe('ccsdcsc123123333444')
+
+    usergameservice.getGames().subscribe((games) => {
+      expect(games).toBeDefined();
+          //expect(games.status).toEqual(404);
+    });
+  })));
+
+  it('should add user-game to list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
+      mockbackend.connections.subscribe((connection) => {
+        expect(connection.request.method).toBe(RequestMethod.Post);
+        connection.mockRespond(new Response(new ResponseOptions(
+          {status: 201}
+        )));
       });
-   }));*/
 
-  it('should edit user-game in list', inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
+      const body = {"title":"ccsdcsc123123333","description":"cscscs","userID":"58e45c5c9030ea1928a33fea"};
 
-  }));
+      usergameservice.create(body.title, body.description, body.userID).subscribe(
+        (games) => {
+          expect(games).toBeDefined();
+          //expect(games.status).toEqual(200);
+        });
+  })));
+
+  it('should edit user-game on list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
+    mockbackend.connections.subscribe(connection => {
+      expect(connection.request.method).toBe(RequestMethod.Patch);
+      connection.mockRespond(new Response(new ResponseOptions(
+        {status: 200}
+      )));
+    });
+
+    const body = {"_id":"58ebec8a16f8161d00f8e063","title":"ccsdcsc123123333elo","description":"2132312312312","userID":"58e45c5c9030ea1928a33fea"};
+
+    usergameservice.update(body._id, body.title, body.description).subscribe(
+      (games) => {
+        expect(games).toBeDefined();
+        //expect(games.status).toEqual(200);
+    });
+  })));
+
+  it('should delete user-game from list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
+    mockbackend.connections.subscribe(connection => {
+      expect(connection.request.method).toBe(RequestMethod.Delete);
+      connection.mockRespond(new Response(new ResponseOptions(
+        {status: 204}
+      )));
+    });
+
+    const body = {"_id":"58ebec8a16f8161d00f8e063","title":"ccsdcsc123123333","description":"cscscs","userID":"58e45c5c9030ea1928a33fea"};
+
+    usergameservice.delete(body._id).subscribe(
+      (games) => {
+        expect(games).toBeDefined();
+        //expect(games.status).toEqual(204);
+    });
+  })));
 });

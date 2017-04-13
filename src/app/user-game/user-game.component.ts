@@ -33,6 +33,7 @@ export class UserGameComponent implements OnInit {
                         error =>  this.errorMessage = <any>error);
     location.reload();
   }
+  
 
   editUserGame(id: string, title: string, description: string) {
     this.userGameService.update(id, title, description)

@@ -89,7 +89,7 @@ router.route('/users/:id/userGames')
 			if(err){
 				return res.status(400).json({message: "Bad Requested"});
 			} else if(!game){
-				return res.status(404).json({message: "User not Found"});
+				return res.status(404).json({message: "Games not Found"});
 			} else {
 				return res.status(200).json(game);
 			}
