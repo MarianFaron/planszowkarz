@@ -6,6 +6,7 @@ import { RoutingModule } from './routing.module';
 import { AppComponent } from './app.component';
 import { UserGameComponent } from './user-game/user-game.component';
 import { CoreComponent } from './core/core.component';
+import { FlashMessagesModule} from 'angular2-flash-messages';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CoreComponent } from './core/core.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RoutingModule
+    RoutingModule,
+    FlashMessagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

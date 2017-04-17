@@ -6,8 +6,7 @@
 					<div class="other-info">
 						<div class="user-panel-header">
 							<h5>Moje gry planszowe</h5>
-							<button class="btn right" data-toggle="modal" data-target="#add-game">
-							<img class="icon-size" src="./assets/images/icons/Plus.png">Dodaj grę</button>
+							<button class="btn right" data-toggle="modal" data-target="#add-game"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>dodaj grę</button>
 						</div>
 						<div class="game-box">
 							<div class="game-single-box" *ngFor="let game of userGame">
@@ -16,12 +15,17 @@
 								</div>
 								<div class="game-info">
 									<p>Nazwa gry: {{ game.title }}</p>									
-									<p>Opis gry: {{ game.description }}</p>
+									<p>Kategoria: {{ game.category }}</p>
+									<p>Stan: {{ game.state }}</p>									
+									<p>Dodatkowy opis: {{ game.description }}</p>
 								</div>
 								<div class="game-info-function-box">
-									<img class="icon-size" alt="Edytuj" src="./assets/images/icons/Edit.png" data-toggle="modal" attr.data-target="#edit-game-{{game._id}}" />
-									<img class="icon-size" alt="Usuń" src="./assets/images/icons/Delete.png"
-									 (click)="removeUserGame(game._id);" />
+									<button class="btn btn-default" data-toggle="modal" attr.data-target="#edit-game-{{game._id}}">
+										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+									</button>
+									<button class="btn btn-default" data-toggle="modal" attr.data-target="#remove-game-{{game._id}}">
+										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									</button>
 
 									<!-- Edit Game Modal -->
 
@@ -34,14 +38,39 @@
 									      </div>
 									      <div class="modal-body">
 											<div class="form-group">
-												<label>Tytuł: <input class="form-control" value="{{game.title}}" #userGameName /></label>
+												<label>Tytuł: <input class="form-control" value="{{game.title}}" #userGameTitle /></label>
 											</div>
 											<div class="form-group">
-												<label>Opis: <textarea class="form-control" value="{{game.description}}"#userGameDescription></textarea></label>
+												<label>Kategoria: <input class="form-control" value="{{game.category}}" #userGameCategory /></label>
+											</div>
+											<div class="form-group">
+												<label>Stan: <input class="form-control" value="{{game.state}}" #userGameState /></label>
+											</div>
+											<div class="form-group">
+												<label>Dodatkowy opis: <textarea class="form-control" value="{{game.description}}"#userGameDescription></textarea></label>
 											</div>
 									      </div>
 									      <div class="modal-footer">
-									      	<button class="btn btn-default" (click)="editUserGame(game._id, userGameName.value, userGameDescription.value)">Zapisz</button>
+									      	<button class="btn btn-default" (click)="editUserGame(game._id, userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value)" data-dismiss="modal">Akceptuj</button>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+
+									<!-- Remove Game Modal -->
+
+									<div class="modal fade" id="remove-game-{{game._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									  <div class="modal-dialog" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									      	<button type="button" class="close" data-dismiss="modal">&times;</button>
+									        <h4 class="modal-title">Potwierdzenie</h4>
+									      </div>
+									      <div class="modal-body">
+											<label>Czy na pewno chcesz usunąć grę ze swojego profilu?</label>
+									      </div>
+									      <div class="modal-footer">
+									      	<button class="btn btn-default" (click)="removeUserGame(game._id);" data-dismiss="modal">Potwierdź</button>
 									      </div>
 									    </div>
 									  </div>
@@ -61,9 +90,9 @@
 						<img class="user-avatar" src="./assets/images/avatar.png" alt="user-avatar" />
 						<h4>Imię i nazwisko</h4>
 						<ul>
-							<li><img class="icon-size" src="./assets/images/icons/Phone.png" />Telefon: 123 456 789</li>
-							<li><img class="icon-size" src="./assets/images/icons/Message.png" />Email: example@gmail.com</li>
-							<li><img class="icon-size" src="./assets/images/icons/Calendar.png" />Data urodzenia: 10-04-1990</li>
+							<li><img class="icon-size" />Telefon: 123 456 789</li>
+							<li><img class="icon-size" />Email: example@gmail.com</li>
+							<li><img class="icon-size" />Data urodzenia: 10-04-1990</li>
 						</ul>
 						<button class="btn right">
 							Edytuj dane
@@ -74,6 +103,7 @@
 		</div>
 	</div>
 </section>
+
 <!-- Add Game Modal -->
 <div class="modal fade" id="add-game" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
@@ -84,15 +114,20 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>Tytuł: <input class="form-control" #userGameName /></label>
+					<label>Tytuł: <input class="form-control" #userGameTitle /></label>
 				</div>
 				<div class="form-group">
-					<label>Opis: <textarea class="form-control" #userGameDescription ></textarea></label>
+					<label>Kategoria: <input class="form-control" #userGameCategory /></label>
+				</div>
+				<div class="form-group">
+					<label>Stan: <input class="form-control" #userGameState /></label>
+				</div>
+				<div class="form-group">
+					<label>Dodatkowy opis: <textarea class="form-control" #userGameDescription ></textarea></label>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-default" (click)="addUserGame(userGameName.value, userGameDescription.value);
-				userGameName.value=''; userGameDescription.value=''">Dodaj</button>
+				<button class="btn btn-default" (click)="addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value); userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameDescription.value='';" data-dismiss="modal">Akceptuj</button>
 			</div>
 		</div>
 	</div>

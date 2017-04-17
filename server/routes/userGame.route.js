@@ -17,6 +17,8 @@ router.route('/userGames')
 	.post((req,res) => {
 		var newGame = new userGame({
 			title: req.body.title,
+			category: req.body.category,
+			state: req.body.state,
 			description: req.body.description,
 			userID: req.body.userID
 		});
@@ -56,19 +58,13 @@ router.route('/userGames/:id')
 	})
 
 	.delete((req, res) => {
-		userGame.findById(req.params.id, (err, game) => {
-			if(err){
+		userGame.findByIdAndRemove({_id: req.params.id}, (err, game) => {
+			if(err) {
 				return res.status(400).json({message: "Bad Requested"});
 			} else if(!game){
 				return res.status(404).json({message: "Game not Found"});
 			} else {
-				userGame.remove({_id: req.params.id}, (err, game) => {
-					if(err) {
-						return res.status(400).json({message: "Bad Requested"});
-					} else {
-						return res.status(204).end();
-					}
-				});
+				return res.status(204).end();
 			}
 		})
 	});

@@ -44,12 +44,15 @@ describe('UserGameService', () => {
     mockbackend.connections.subscribe((connection) => {
         expect(connection.request.method).toBe(RequestMethod.Get);
         connection.mockRespond(new Response(new ResponseOptions(
-        {status: 404}
+        { body: {message: "User games not found"},
+          status: 404
+        }
         )));
     });
 
     usergameservice.getGames().subscribe((games) => {
       expect(games).toBeDefined();
+      expect(games.message).toBe("User games not found");
           //expect(games.status).toEqual(404);
     });
   })));
@@ -58,7 +61,9 @@ describe('UserGameService', () => {
       mockbackend.connections.subscribe((connection) => {
         expect(connection.request.method).toBe(RequestMethod.Post);
         connection.mockRespond(new Response(new ResponseOptions(
-          {status: 201}
+          { body: {message: "User game created"},
+            status: 201
+          }
         )));
       });
 
@@ -67,6 +72,7 @@ describe('UserGameService', () => {
       usergameservice.create(body.title, body.description, body.userID).subscribe(
         (games) => {
           expect(games).toBeDefined();
+          expect(games.message).toBe("User game created");
           //expect(games.status).toEqual(200);
         });
   })));
@@ -75,7 +81,8 @@ describe('UserGameService', () => {
     mockbackend.connections.subscribe(connection => {
       expect(connection.request.method).toBe(RequestMethod.Patch);
       connection.mockRespond(new Response(new ResponseOptions(
-        {status: 200}
+        { body: {message: "User game edited"},
+          status: 200}
       )));
     });
 
@@ -84,6 +91,7 @@ describe('UserGameService', () => {
     usergameservice.update(body._id, body.title, body.description).subscribe(
       (games) => {
         expect(games).toBeDefined();
+        expect(games.message).toBe("User game edited");
         //expect(games.status).toEqual(200);
     });
   })));
@@ -92,7 +100,8 @@ describe('UserGameService', () => {
     mockbackend.connections.subscribe(connection => {
       expect(connection.request.method).toBe(RequestMethod.Delete);
       connection.mockRespond(new Response(new ResponseOptions(
-        {status: 204}
+        { body: {message: "User game deleted"},
+          status: 204}
       )));
     });
 
@@ -101,6 +110,7 @@ describe('UserGameService', () => {
     usergameservice.delete(body._id).subscribe(
       (games) => {
         expect(games).toBeDefined();
+        expect(games.message).toBe("User game deleted");
         //expect(games.status).toEqual(204);
     });
   })));

@@ -7,6 +7,14 @@ var userGame = new Schema({
             type: String,
             require: true
         },
+        category: {
+            type: String,
+            require: true
+        },
+        state: {
+            type: String,
+            require: true
+        },
         description: {
             type: String,
         },
