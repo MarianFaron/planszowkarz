@@ -39,7 +39,7 @@ module.exports = function(passport) {
     passport.use('local-register', new LocalStrategy({
         usernameField : 'email',
         passwordField : 'password',
-        passReqToCallback : false
+        passReqToCallback : true
     },
     function(req, email, password, done) {
 

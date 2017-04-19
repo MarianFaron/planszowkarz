@@ -12,8 +12,11 @@ export class UsersService {
 
   private userRegisterUrl = 'http://localhost:8080/app/users/register';
   private userLoginUrl = 'http://localhost:8080/app/users/login';
+  private userLogoutUrl = 'http://localhost:8080/app/users/logout';
 
-  constructor (private http: Http) {}
+  constructor (private http: Http) {
+    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
 
   // Login user
 
@@ -23,20 +26,42 @@ export class UsersService {
     let options = new RequestOptions({ headers: headers});
 
     return this.http.post(this.userLoginUrl, {email, password}, options)
+                    .map((response: Response) => {
+                        console.log(response.json().user);
+                        if (response.json().user) {
+                            localStorage.setItem('currentUser', JSON.stringify(response.json().user));
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    })
+                    .catch(this.handleError);
+
+  }
+
+  // Logout user
+
+  logout(): Observable<User[]> {
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers});
+
+    return this.http.post(this.userLogoutUrl, options)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
 
   // Register user
 
-  register(user: Object): Observable<User[]> {
+  register(login: string, email: string, password: string): Observable<User[]> {
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers});
 
-    return this.http.post(this.userRegisterUrl, { user }, options)
+    return this.http.post(this.userRegisterUrl, {login, email, password}  , options)
                     .map(this.extractData)
                     .catch(this.handleError);
+
   }
 
   private extractData(res: Response) {

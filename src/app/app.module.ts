@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { UserGameComponent } from './user-game/user-game.component';
 import { CoreComponent } from './core/core.component';
 import { UsersComponent } from './users/users.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { UsersComponent } from './users/users.component';
     HttpModule,
     RoutingModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -24,26 +24,18 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://gamesapp:engineering@ds135800.mlab.com:35800/gamesapp');
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(session({ secret: 'secret' }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(flash());
 require('./config/passport')(passport);
 app.use('/', express.static(__dirname));
-app.use(cors({
-    origin: true,
-    credentials: true
-}));
 
-app.use(express.static(path.join(__dirname, 'dist')));
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
+app.use(express.static(path.join(__dirname, '../dist')));
 
 app.get('/app', (req, res) => {
   res.send('Page about board games');
@@ -59,5 +51,9 @@ app.use((req, res, next) => {
 
 app.use('/app', userRoute);
 app.use('/app', userGameRoute);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
 
 app.listen(port, () => console.log("Server running on: " + port));

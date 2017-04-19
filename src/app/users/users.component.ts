@@ -15,30 +15,39 @@ export class UsersComponent implements OnInit {
   mode = 'Observable';
 
 
-  constructor (private userGameService: UsersService) {}
+  constructor(private userGameService: UsersService) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   login(email: string, password: string) {
 
     this.userGameService.login(email, password)
-                     .subscribe(
-                        user  => this.user,
-                        error =>  this.errorMessage = <any>error);
-    // location.reload();
+                        .subscribe(
+                        user => {
+                          this.user;
+                          window.location.reload();
+                        },
+                        error => this.errorMessage = <any>error);
+
+  }
+
+  logout() {
+
+    this.userGameService.logout()
+                        .subscribe(
+                        user => this.user,
+                        error => this.errorMessage = <any>error);
+                        
+    localStorage.clear();
+    window.location.reload();
   }
 
   register(login: string, email: string, password: string) {
 
-    var user = new User({ login, email, password });
-
-    this.userGameService.register(JSON.stringify(user))
-                     .subscribe(
-                        user  => this.user,
-                        error =>  this.errorMessage = <any>error);
-    // location.reload();
+    this.userGameService.register(login, email, password)
+                        .subscribe(
+                        user => this.user,
+                        error => this.errorMessage = <any>error);
   }
 
 
