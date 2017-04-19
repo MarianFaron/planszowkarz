@@ -2,6 +2,38 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user.model');
 var userGame = require('../models/userGame.model');
+var passport = require('passport');
+
+/* REGISTER */
+
+router.route('/users/register')
+	.post(function(req, res, next) {
+    passport.authenticate('local-register')(req, res, function () {
+      return res.status(200).json({
+        status: 'Zarejestrowano poprawnie!',
+				user: req.user
+      });
+    });
+	});
+
+/* LOGIN */
+
+router.route('/users/login')
+	.post(function(req, res, next) {
+    passport.authenticate('local-login')(req, res, function () {
+      return res.status(200).json({
+        status: 'Zalogowano poprawnie!',
+				user: req.user
+      });
+    });
+	});
+
+/* LOGOUT */
+
+router.route('/users/logout')
+	.post(function(req, res, next){
+      req.logout();
+	})
 
 router.route('/users')
 	// get all users

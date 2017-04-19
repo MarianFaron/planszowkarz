@@ -7,12 +7,16 @@ import { AppComponent } from './app.component';
 import { UserGameComponent } from './user-game/user-game.component';
 import { CoreComponent } from './core/core.component';
 import { FlashMessagesModule} from 'angular2-flash-messages';
+import { UsersComponent } from './users/users.component';
+import { AuthGuard } from './guards/auth.guard';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     UserGameComponent,
-    CoreComponent
+    CoreComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +25,7 @@ import { FlashMessagesModule} from 'angular2-flash-messages';
     RoutingModule,
     FlashMessagesModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
