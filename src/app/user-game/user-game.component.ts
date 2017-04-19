@@ -14,10 +14,9 @@ import { FlashMessagesService} from 'angular2-flash-messages';
 export class UserGameComponent implements OnInit {
 
   errorMessage: string;
+  status: string;
   userGame: UserGame[];
   mode = 'Observable';
-
-  addNewGameBtnClicked = false;
 
   constructor (private userGameService: UserGameService, private flashMessage:FlashMessagesService) {}
 
@@ -30,32 +29,41 @@ export class UserGameComponent implements OnInit {
     if (!title || !description || !category || !state) { return; }
     this.userGameService.create(title, category, state, description, userID)
                      .subscribe(
-                        userGame  => this.userGame,
-                        error =>  this.errorMessage = <any>error);
-
-    this.flashMessage.show('Successful add new game', {cssClass: 'alert-success', timeout: 3000});
-    this.getUserGame();
+                        userGame  => {
+                          this.userGame;
+                          this.getUserGame();               
+                          this.flashMessage.show('Successful add new game', {cssClass: 'alert-success', timeout: 3000});
+                        },
+                        error =>  {
+                          this.errorMessage = <any>error
+                        });
   }
   
 
   editUserGame(id: string, title: string, category: string, state: string, description: string) {
     this.userGameService.update(id, title, category, state, description)
                      .subscribe(
-                        userGame  => this.userGame,
-                        error =>  this.errorMessage = <any>error);
-
-    this.flashMessage.show('Successful edit game', {cssClass: 'alert-success', timeout: 3000});
-    this.getUserGame();
+                        userGame => {
+                          this.userGame;
+                          this.getUserGame();
+                          this.flashMessage.show('Successful edit game', {cssClass: 'alert-success', timeout: 3000});
+                        },
+                        error =>  {
+                          this.errorMessage = <any>error
+                        });
   }
 
   removeUserGame(id: string) {
     this.userGameService.delete(id)
                      .subscribe(
-                        userGame  => this.userGame,
-                        error =>  this.errorMessage = <any>error);
-
-    this.flashMessage.show('Successful delete game', {cssClass: 'alert-success', timeout: 3000});
-    this.getUserGame();
+                        userGame  => {
+                          this.userGame;
+                          this.getUserGame();
+                          this.flashMessage.show('Successful delete game', {cssClass: 'alert-success', timeout: 3000});
+                        },
+                        error => {
+                          this.errorMessage = <any>error
+                        });
   }
 
   getUserGame(){

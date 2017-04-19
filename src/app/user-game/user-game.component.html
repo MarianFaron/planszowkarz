@@ -40,11 +40,32 @@
 											<div class="form-group">
 												<label>Tytuł: <input class="form-control" value="{{game.title}}" #userGameTitle /></label>
 											</div>
-											<div class="form-group">
+											<!--<div class="form-group">
 												<label>Kategoria: <input class="form-control" value="{{game.category}}" #userGameCategory /></label>
 											</div>
 											<div class="form-group">
 												<label>Stan: <input class="form-control" value="{{game.state}}" #userGameState /></label>
+											</div>-->
+											<div class="form-group">
+											    <label for="exampleSelect1">Kategoria</label>
+											    <select class="form-control" value="{{game.category}}" id="exampleSelect1" #userGameCategory>
+											      <option>Strategiczna</option>
+											      <option>Logiczna</option>
+											      <option>Ekonomiczna</option>
+											      <option>Imprezowa</option>
+											      <option>Karciana</option>
+											      <option>Figurkowa</option>
+											      <option>Przygodowa</option>
+											      <option>Rodzinna</option>
+											      <option>Zręcznościowa</option>
+											    </select>
+											</div>
+											<div class="form-group">
+												<label for="exampleSelect1">Kategoria</label>
+											    <select class="form-control" value="{{game.state}}" id="exampleSelect1" #userGameState>
+											      <option>Nowa</option>
+											      <option>Używana</option>
+											    </select>
 											</div>
 											<div class="form-group">
 												<label>Dodatkowy opis: <textarea class="form-control" value="{{game.description}}"#userGameDescription></textarea></label>
@@ -117,10 +138,25 @@
 					<label>Tytuł: <input class="form-control" #userGameTitle /></label>
 				</div>
 				<div class="form-group">
-					<label>Kategoria: <input class="form-control" #userGameCategory /></label>
+				    <label for="exampleSelect1">Kategoria</label>
+				    <select class="form-control" id="exampleSelect1" #userGameCategory>
+				      <option>Strategiczna</option>
+				      <option>Logiczna</option>
+				      <option>Ekonomiczna</option>
+				      <option>Imprezowa</option>
+				      <option>Karciana</option>
+				      <option>Figurkowa</option>
+				      <option>Przygodowa</option>
+				      <option>Rodzinna</option>
+				      <option>Zręcznościowa</option>
+				    </select>
 				</div>
 				<div class="form-group">
-					<label>Stan: <input class="form-control" #userGameState /></label>
+					<label for="exampleSelect1">Kategoria</label>
+				    <select class="form-control" id="exampleSelect1" #userGameState>
+				      <option>Nowa</option>
+				      <option>Używana</option>
+				    </select>
 				</div>
 				<div class="form-group">
 					<label>Dodatkowy opis: <textarea class="form-control" #userGameDescription ></textarea></label>
