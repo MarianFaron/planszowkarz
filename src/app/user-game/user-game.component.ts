@@ -25,20 +25,23 @@ export class UserGameComponent implements OnInit {
   }
 
   addUserGame(title: string, category: string, state: string, description: string) {
-    var userID = "58e45c5c9030ea1928a33fea";
+
+    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    var userID = currentUser._id;
+
     if (!title || !description || !category || !state) { return; }
     this.userGameService.create(title, category, state, description, userID)
                      .subscribe(
                         userGame  => {
                           this.userGame;
-                          this.getUserGame();               
+                          this.getUserGame();
                           this.flashMessage.show('Successful add new game', {cssClass: 'alert-success', timeout: 3000});
                         },
                         error =>  {
                           this.errorMessage = <any>error
                         });
   }
-  
+
 
   editUserGame(id: string, title: string, category: string, state: string, description: string) {
     this.userGameService.update(id, title, category, state, description)
@@ -66,8 +69,11 @@ export class UserGameComponent implements OnInit {
                         });
   }
 
-  getUserGame(){
-    var userID = "58e45c5c9030ea1928a33fea";
+  getUserGame() {
+
+    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    var userID = currentUser._id;
+
     this.userGameService.getGames(userID)
                       .subscribe(
                         userGame => this.userGame = userGame.reverse(),
