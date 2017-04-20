@@ -20,7 +20,8 @@ router.route('/userGames')
 			category: req.body.category,
 			state: req.body.state,
 			description: req.body.description,
-			userID: req.body.userID
+			userID: req.body.userID,
+			gameImage: req.body.gameImage
 		});
 		// save the game
 		newGame.save((err) => {

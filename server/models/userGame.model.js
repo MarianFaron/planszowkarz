@@ -20,6 +20,9 @@ var userGame = new Schema({
         },
         userID: {
             type: ObjectId,
+        },
+        gameImage: {
+            type: String,
         }
 }, {
     versionKey: false

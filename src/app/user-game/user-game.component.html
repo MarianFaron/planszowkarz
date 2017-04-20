@@ -161,9 +161,12 @@
 				<div class="form-group">
 					<label>Dodatkowy opis: <textarea class="form-control" #userGameDescription ></textarea></label>
 				</div>
+				<div class="form-control">
+					<label>Zdjęcie: <input class="form-control" #userGameGameImage /></label>
+				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-default" (click)="addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value); userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameDescription.value='';" data-dismiss="modal">Akceptuj</button>
+				<button class="btn btn-default" (click)="addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameGameImage.value); userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameDescription.value=''; userGameGameImage.value='';" data-dismiss="modal">Akceptuj</button>
 			</div>
 		</div>
 	</div>

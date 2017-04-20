@@ -5,5 +5,6 @@ export class UserGame {
     public category: string,
     public state: string,
     public description: string,
-    public userID: string) { }
+    public userID: string,
+    public gameImage: string) { }
 }

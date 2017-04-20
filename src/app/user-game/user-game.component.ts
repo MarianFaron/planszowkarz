@@ -24,13 +24,13 @@ export class UserGameComponent implements OnInit {
     this.getUserGame();
   }
 
-  addUserGame(title: string, category: string, state: string, description: string) {
+  addUserGame(title: string, category: string, state: string, description: string, gameImage: string) {
 
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var userID = currentUser._id;
 
-    if (!title || !description || !category || !state) { return; }
-    this.userGameService.create(title, category, state, description, userID)
+    if (!title || !description || !category || !state || !gameImage) { return; }
+    this.userGameService.create(title, category, state, description, userID, gameImage)
                      .subscribe(
                         userGame  => {
                           this.userGame;
