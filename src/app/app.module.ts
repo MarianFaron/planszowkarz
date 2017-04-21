@@ -9,6 +9,7 @@ import { CoreComponent } from './core/core.component';
 import { FlashMessagesModule} from 'angular2-flash-messages';
 import { UsersComponent } from './users/users.component';
 import { AuthGuard } from './guards/auth.guard';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AuthGuard } from './guards/auth.guard';
     AppComponent,
     UserGameComponent,
     CoreComponent,
-    UsersComponent
+    UsersComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

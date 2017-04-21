@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ElementRef, Input} from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import { UserGame }              from './user-game';
 import { UserGameService }       from './user-game.service';
 import { FlashMessagesService} from 'angular2-flash-messages';
+import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+
+const URL = 'http://localhost:8080/app/uploads';
 
 @Component({
   selector: 'app-user-game',
@@ -18,10 +21,16 @@ export class UserGameComponent implements OnInit {
   userGame: UserGame[];
   mode = 'Observable';
 
-  constructor (private userGameService: UserGameService, private flashMessage:FlashMessagesService) {}
+  public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
+
+  constructor (private http: Http, private el: ElementRef, private userGameService: UserGameService, private flashMessage:FlashMessagesService) {}
 
   ngOnInit() {
     this.getUserGame();
+    this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+    this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+            console.log("ImageUpload:uploaded:", item, status, response);
+        };
   }
 
   addUserGame(title: string, category: string, state: string, description: string, gameImage: string) {
