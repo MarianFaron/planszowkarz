@@ -33,7 +33,7 @@ export class UserGameComponent implements OnInit {
       console.log("ImageUpload:uploaded:", item, status, response);
     };
   }
-  
+
   file: File;
   onChange(event: EventTarget) {
     let eventObj: MSInputMethodContext = <MSInputMethodContext> event;
@@ -42,7 +42,7 @@ export class UserGameComponent implements OnInit {
     this.file = files[0];
     this.gameImgName = this.file.name;
   }
-  
+
 
   addUserGame(title: string, category: string, state: string, description: string, gameImage: string) {
 
@@ -58,7 +58,7 @@ export class UserGameComponent implements OnInit {
                         userGame  => {
                           this.userGame;
                           this.getUserGame();
-                          this.flashMessage.show('Successful add new game', {cssClass: 'alert-success', timeout: 3000});
+                          this.flashMessage.show('Dodano nową grę.', {cssClass: 'alert-success', timeout: 3000});
                         },
                         error =>  {
                           this.errorMessage = <any>error
@@ -72,7 +72,7 @@ export class UserGameComponent implements OnInit {
                         userGame => {
                           this.userGame;
                           this.getUserGame();
-                          this.flashMessage.show('Successful edit game', {cssClass: 'alert-success', timeout: 3000});
+                          this.flashMessage.show('Zapisano zmiany.', {cssClass: 'alert-success', timeout: 3000});
                         },
                         error =>  {
                           this.errorMessage = <any>error
@@ -85,7 +85,7 @@ export class UserGameComponent implements OnInit {
                         userGame  => {
                           this.userGame;
                           this.getUserGame();
-                          this.flashMessage.show('Successful delete game', {cssClass: 'alert-success', timeout: 3000});
+                          this.flashMessage.show('Gra została usunięta.', {cssClass: 'alert-success', timeout: 3000});
                         },
                         error => {
                           this.errorMessage = <any>error

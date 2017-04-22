@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -16,6 +17,8 @@
         <li><a routerLink="/main" routerLinkActive="active">Katalog Gier</a></li>
         <li><a *ngIf="currentUser == null" routerLink="/register" routerLinkActive="active">Rejestracja / Logowanie</a></li>
         <li><a *ngIf="currentUser != null" routerLink="/user-game" routerLinkActive="active">Profil</a></li>
+        <li><a *ngIf="currentUser != null" (click)="logout()">Wyloguj</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -23,5 +26,12 @@
 <br>
 <br>
 <br>
-<flash-messages></flash-messages>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <flash-messages></flash-messages>
+    </div>
+  </div>
+</div>
+
 <router-outlet></router-outlet>

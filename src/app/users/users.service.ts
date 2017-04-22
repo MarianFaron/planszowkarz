@@ -27,7 +27,7 @@ export class UsersService {
 
     return this.http.post(this.userLoginUrl, {email, password}, options)
                     .map((response: Response) => {
-                        console.log(response.json().user);
+                        // console.log(response.json().user);
                         if (response.json().user) {
                             localStorage.setItem('currentUser', JSON.stringify(response.json().user));
                             return true;
@@ -59,7 +59,14 @@ export class UsersService {
     let options = new RequestOptions({ headers: headers});
 
     return this.http.post(this.userRegisterUrl, {login, email, password}  , options)
-                    .map(this.extractData)
+                    .map((response: Response) => {
+                        if (response.json().user) {
+                            localStorage.setItem('currentUser', JSON.stringify(response.json().user));
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    })
                     .catch(this.handleError);
 
   }

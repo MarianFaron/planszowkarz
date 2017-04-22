@@ -23,14 +23,13 @@ module.exports = function(passport) {
     function(req, email, password, done) {
         User.findOne({ 'local.email' :  email }, function(err, user) {
             if (err)
-                return done(err);
-            if (!user)
-                return done(null, false, req.flash('loginMessage', 'Nie znaleziono użytkownika.'));
-
-            if (!user.validPassword(password))
-              return done(null, false, req.flash('loginMessage', 'Niepoprawne hasło.'));
-
-            return done(null, user);
+              return done(null, false);
+            else if (!user)
+              return done(null, false);
+            else if (!user.validPassword(password))
+              return done(null, false);
+            else
+              return done(null, user);
         });
     }));
 
@@ -47,10 +46,9 @@ module.exports = function(passport) {
 
         User.findOne({ 'local.email' :  email }, function(err, user) {
             if (err)
-                return done(err);
-
-            if (user) {
-                return done(null, false, req.flash('registerMessage', 'Ten email jest już zajęty.'));
+                return done(null, false);
+            else if (user) {
+                return done(null, false);
             } else {
 
                 var newUser = new User();
