@@ -21,44 +21,50 @@ describe('UserGameService', () => {
 
   it('should get user-game list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
     mockbackend.connections.subscribe((connection) => {
+        expect(connection.request.url).toEqual('http://localhost:8080/app/users/58e45c5c9030ea1928a33feaz/userGames');
         expect(connection.request.method).toBe(RequestMethod.Get);
         connection.mockRespond(new Response(new ResponseOptions({
         body: [
-                {"_id":"58ebec8a16f8161d00f8e063","title":"ccsdcsc123123333","description":"cscscs","userID":"58e45c5c9030ea1928a33fea"},
-                {"_id":"58ece357fec91a2160819036","title":"Tajniacy","description":"Taka niezła","userID":"58e45c5c9030ea1928a33fea"},
-                {"_id":"58ed29f7f9bc3f1b08cabb46","title":"asdasda","description":"asdasdas","userID":"58e45c5c9030ea1928a33fea"},
-                {"_id":"58ed3117f9bc3f1b08cabb47","title":"asdasda","description":"asdasdadas","userID":"58e45c5c9030ea1928a33fea"}
+                {"_id":"58ebec8a16f8161d00f8e063","title":"ccsdcsc123123333", "category":"Logiczna", "state":"Używana", "description":"cscscs","userID":"58e45c5c9030ea1928a33feaz"},
+                {"_id":"58ece357fec91a2160819036","title":"Tajniacy", "category":"Strategiczna", "state":"Nowa","description":"Taka niezła","userID":"58e45c5c9030ea1928a33feaz"},
+                {"_id":"58ed29f7f9bc3f1b08cabb46","title":"asdasda", "category":"Figurkowa", "state":"używana","description":"asdasdas","userID":"58e45c5c9030ea1928a33feaz"},
+                {"_id":"58ed3117f9bc3f1b08cabb47","title":"asdasda", "category":"Strategiczna", "state":"Nowa","description":"asdasdadas","userID":"58e45c5c9030ea1928a33feaz"}
               ]
         })));
     });
 
     usergameservice.getGames('58e45c5c9030ea1928a33feaz').subscribe((games) => {
-          expect(games.length).toBe(4);
-          expect(games[0].title).toEqual('ccsdcsc123123333');
-          expect(games[3].description).toEqual('asdasdadas');
-          expect(games[2]._id).toEqual('58ed29f7f9bc3f1b08cabb46');
+        expect(games.length).toBe(4);
+        expect(games[0].title).toEqual('ccsdcsc123123333');
+        expect(games[3].description).toEqual('asdasdadas');
+        expect(games[1].category).toEqual('Strategiczna');
+        expect(games[3].state).toEqual('Nowa');
+        expect(games[2]._id).toEqual('58ed29f7f9bc3f1b08cabb46');
     });
   })));
 
   it('should show error when we dont have id to get user-games', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
     mockbackend.connections.subscribe((connection) => {
+        expect(connection.request.url).toEqual('http://localhost:8080/app/users//userGames');
         expect(connection.request.method).toBe(RequestMethod.Get);
         connection.mockRespond(new Response(new ResponseOptions(
-        { body: {message: "User games not found"},
-          status: 404
-        }
+          { body: {message: "User games not found"},
+            status: 404
+          }
         )));
     });
 
-    usergameservice.getGames().subscribe((games) => {
-      expect(games).toBeDefined();
-      expect(games.message).toBe("User games not found");
-          //expect(games.status).toEqual(404);
+    usergameservice.getGames('').subscribe(
+      (games) => {
+        expect(games).toBeDefined();
+        expect(games.message).toBe("User games not found");
+            //expect(games.status).toEqual(404);
     });
   })));
 
   it('should add user-game to list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
+        expect(connection.request.url).toEqual('http://localhost:8080/app/userGames');
         expect(connection.request.method).toBe(RequestMethod.Post);
         connection.mockRespond(new Response(new ResponseOptions(
           { body: {message: "User game created"},
@@ -67,51 +73,52 @@ describe('UserGameService', () => {
         )));
       });
 
-      const body = {"title":"ccsdcsc123123333","description":"cscscs","userID":"58e45c5c9030ea1928a33fea"};
+      const body = {"title":"ccsdcsc123123333", "category":"Strategiczna", "state":"Nowa", "description":"cscscs","userID":"58e45c5c9030ea1928a33fea"};
 
-      usergameservice.create(body.title, body.description, body.userID).subscribe(
+      usergameservice.create(body.title, body.category, body.state,  body.description, body.userID).subscribe(
         (games) => {
           expect(games).toBeDefined();
           expect(games.message).toBe("User game created");
-          //expect(games.status).toEqual(200);
-        });
+      });
   })));
 
   it('should edit user-game on list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
-    mockbackend.connections.subscribe(connection => {
-      expect(connection.request.method).toBe(RequestMethod.Patch);
-      connection.mockRespond(new Response(new ResponseOptions(
-        { body: {message: "User game edited"},
-          status: 200}
-      )));
-    });
+      mockbackend.connections.subscribe(connection => {
+        expect(connection.request.url).toEqual('http://localhost:8080/app/userGames/58ebec8a16f8161d00f8e063');
+        expect(connection.request.method).toBe(RequestMethod.Patch);
+        connection.mockRespond(new Response(new ResponseOptions(
+          { body: {message: "User game edited"},
+            status: 200
+          }
+        )));
+      });
 
-    const body = {"_id":"58ebec8a16f8161d00f8e063","title":"ccsdcsc123123333elo","description":"2132312312312","userID":"58e45c5c9030ea1928a33fea"};
+      const body = {"_id":"58ebec8a16f8161d00f8e063","title":"ccsdcsc123123333elo", "category":"Strategiczna", "state":"Nowa", "description":"2132312312312","userID":"58e45c5c9030ea1928a33fea"};
 
-    usergameservice.update(body._id, body.title, body.description).subscribe(
-      (games) => {
-        expect(games).toBeDefined();
-        expect(games.message).toBe("User game edited");
-        //expect(games.status).toEqual(200);
-    });
+      usergameservice.update(body._id, body.title, body.category, body.state, body.description).subscribe(
+        (games) => {
+          expect(games).toBeDefined();
+          expect(games.message).toBe("User game edited");
+      });
   })));
 
   it('should delete user-game from list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
-    mockbackend.connections.subscribe(connection => {
-      expect(connection.request.method).toBe(RequestMethod.Delete);
-      connection.mockRespond(new Response(new ResponseOptions(
-        { body: {message: "User game deleted"},
-          status: 204}
-      )));
-    });
+      mockbackend.connections.subscribe(connection => {
+        expect(connection.request.url).toEqual('http://localhost:8080/app/userGames/58ebec8a16f8161d00f8e063');
+        expect(connection.request.method).toBe(RequestMethod.Delete);
+        connection.mockRespond(new Response(new ResponseOptions(
+          { body: {message: "User game deleted"},
+            status: 204
+          }
+        )));
+      });
 
-    const body = {"_id":"58ebec8a16f8161d00f8e063","title":"ccsdcsc123123333","description":"cscscs","userID":"58e45c5c9030ea1928a33fea"};
+      const body = {"_id":"58ebec8a16f8161d00f8e063","title":"ccsdcsc123123333", "category":"Strategiczna", "state":"Nowa", "description":"cscscs","userID":"58e45c5c9030ea1928a33fea"};
 
-    usergameservice.delete(body._id).subscribe(
-      (games) => {
-        expect(games).toBeDefined();
-        expect(games.message).toBe("User game deleted");
-        //expect(games.status).toEqual(204);
-    });
+      usergameservice.delete(body._id).subscribe(
+        (games) => {
+          expect(games).toBeDefined();
+          expect(games.message).toBe("User game deleted");
+      });
   })));
 });
