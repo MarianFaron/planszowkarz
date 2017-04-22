@@ -162,7 +162,7 @@
 					<label>Dodatkowy opis: <textarea class="form-control" #userGameDescription ></textarea></label>
 				</div>
 				<div class="form-control">
-					<input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+					<input type="file" name="photo" type="file" #userGameGameImg (change)="onChange($event)"/> 
 					<button type="button" class="btn btn-success btn-s"
 						(click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
 						Upload image
@@ -170,7 +170,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-default" (click)="addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameGameImage.value); userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameDescription.value=''; userGameGameImage.value='';" data-dismiss="modal">Akceptuj</button>
+				<button class="btn btn-default" (click)="addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameGameImg.value); userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameGameImg.value=''; userGameDescription.value;" data-dismiss="modal">Akceptuj</button>
 			</div>
 		</div>
 	</div>
