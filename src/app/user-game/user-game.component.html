@@ -11,7 +11,7 @@
 						<div class="game-box">
 							<div class="game-single-box" *ngFor="let game of userGame">
 								<div class="game-img">
-									<img src="./assets/images/game1.jpg">
+									<img src="./assets/uploads/{{ game.gameImage }}">
 								</div>
 								<div class="game-info">
 									<p>Nazwa gry: {{ game.title }}</p>
