@@ -1,50 +1,131 @@
-
 <section id="user-panel" class="user-info-panel">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
 
-        <!-- LOGOUT FORM -->
-        <form action="/app/users/logout" method="post" style="margin-top:100px">
-          <h2>Wyloguj</h2>
-            <button type="submit" class="btn " (click)="logout();">Wyloguj</button>
-        </form>
+				<!-- LOGOUT FORM -->
+				<form action="/app/users/logout" method="post">
+					<h2>Wyloguj</h2>
+					<button type="submit" class="btn " (click)="logout();">Wyloguj</button>
+				</form>
 
-        <!-- LOGIN FORM -->
-        <form action="/app/users/register" method="post" style="margin-top:100px">
-          <h2>Rejestracja</h2>
-          <div class="form-group">
-              <label>Login:</label>
-              <input type="text" class="form-control" name="login" #registerUserLogin />
-          </div>
-            <div class="form-group">
-                <label>E-mail:</label>
-                <input type="text" class="form-control" name="email" #registerUserEmail />
-            </div>
-            <div class="form-group">
-                <label>Hasło:</label>
-                <input type="password" class="form-control" name="password" #registerUserPassword />
-            </div>
-            <button type="submit" class="btn " (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value);">Zarejestruj</button>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <!-- LOGIN FORM -->
-       <form action="/app/users/login" method="post" style="margin-top:100px">
-         <h2>Logowanie</h2>
-           <div class="form-group">
-               <label>E-mail:</label>
-               <input type="text" class="form-control" name="email" #loginUserEmail>
-           </div>
-           <div class="form-group">
-               <label>Hasło:</label>
-               <input type="password" class="form-control" name="password" #loginUserPassword>
-           </div>
-           <button type="submit" class="btn" (click)="login(loginUserEmail.value, loginUserPassword.value);">Zaloguj</button>
-       </form>
-      </div>
-    </div>
-  </div>
+
+				<!-- REGISTER FORM -->
+				<form action="/app/users/register" #registerForm="ngForm" method="post">
+					<h2>Rejestracja</h2>
+					<div class="form-group">
+						<label>Login:</label>
+
+						<input type="text" class="form-control" required minlength="5" maxlength="15" name="login" [ngModel]="model.login" #registerUserLogin="ngModel">
+
+						<div *ngIf="registerUserLogin.errors && (registerUserLogin.dirty || registerUserLogin.touched)" class="alert alert-danger">
+
+							<div [hidden]="!registerUserLogin.errors.required">
+								Login jest wymagany
+							</div>
+
+							<div [hidden]="!registerUserLogin.errors.minlength">
+								Conajmniej 5 znaków
+							</div>
+
+						</div>
+					</div>
+					<div class="form-group">
+						<label>E-mail:</label>
+						<input type="text" class="form-control" name="email" [ngModel]="model.email" #registerUserEmail="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+
+						<div *ngIf="registerUserEmail.errors && (registerUserEmail.dirty || registerUserEmail.touched)" class="alert alert-danger">
+
+							<div [hidden]="!registerUserEmail.errors.required">
+								Email jest wymagany
+							</div>
+
+							<div [hidden]="!registerUserEmail.errors.pattern">
+								To musi być adres email (example@example.pl)
+							</div>
+
+						</div>
+
+
+					</div>
+					<div class="form-group">
+						<label>Hasło:</label>
+						<input type="password" class="form-control" name="password" minlength="3" required [ngModel]="model.password" #registerUserPassword="ngModel" >
+						<div *ngIf="registerUserPassword.errors && (registerUserPassword.dirty || registerUserPassword.touched)" class="alert alert-danger">
+
+							<div [hidden]="!registerUserPassword.errors.required">
+								Hasło jest wymagane
+							</div>
+
+							<div [hidden]="!registerUserPassword.errors.minlength">
+								Conajmniej 3 znaki
+							</div>
+
+						</div>
+					
+					</div>
+<!--
+					<div class="form-group">
+						<label>Potwierdź hasło:</label>
+						<input type="password" class="form-control" name="confirm-password" minlength="3" validateEqual="registerUserPassword.value" required [ngModel]="model.password" #registerUserConfirmPassword="ngModel" />
+						<div *ngIf="registerUserConfirmPassword.errors && (registerUserConfirmPassword.dirty || registerUserConfirmPassword.touched)" class="alert alert-danger">
+
+							<div [hidden]="!registerUserConfirmPassword.errors.required">
+								Potwierdzenie hasła jest wymagane
+							</div>
+
+							<div [hidden]="!registerUserPassword.errors.minlength">
+								Conajmniej 3 znaki
+							</div>
+
+							<div [hidden]="!registerUserConfirmPassword.errors.validateEqual">
+								Musi być takie samo jak hasło
+							</div>
+
+						</div>
+					</div>
+-->
+					<button type="submit" class="btn" [disabled]="!registerForm.form.valid" (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value);">Zarejestruj</button>
+				</form>
+			</div>
+
+
+
+			<div class="col-md-6">
+				<!-- LOGIN FORM -->
+				<form action="/app/users/login" #loginForm="ngForm" method="post">
+					<h2>Logowanie</h2>
+					<div class="form-group">
+						<label>E-mail:</label>
+						<input type="text" class="form-control" name="email" #loginUserEmail="ngModel" [ngModel]="model.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+						<div *ngIf="loginUserEmail.errors && (loginUserEmail.dirty || loginUserEmail.touched)" class="alert alert-danger">
+
+							<div [hidden]="!loginUserEmail.errors.required">
+								Email jest wymagany
+							</div>
+
+							<div [hidden]="!registerUserEmail.errors.pattern">
+								To musi być adres email (example@example.pl)
+							</div>
+
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Hasło:</label>
+						<input type="password" class="form-control" name="password" [ngModel]="model.password" #loginUserPassword="ngModel" required>
+						<div *ngIf="loginUserPassword.errors && (loginUserPassword.dirty || loginUserPassword.touched)" class="alert alert-danger">
+
+							<div [hidden]="!loginUserPassword.errors.required">
+								Email jest wymagany
+							</div>
+
+						</div>
+					</div>
+					<button type="submit" class="btn" [disabled]="!loginForm.form.valid" (click)="login(loginUserEmail.value, loginUserPassword.value);">Zaloguj</button>
+				</form>
+			</div>
+		</div>
+	</div>
 
 
 </section>

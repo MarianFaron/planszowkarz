@@ -11,13 +11,19 @@ import { UsersService }       from './users.service';
 export class UsersComponent implements OnInit {
 
   errorMessage: string;
-  user: User[];
+  public user: User;
   mode = 'Observable';
 
-
+  model = {
+      login: '',
+      email: '',
+      password: ''
+    };
   constructor(private userGameService: UsersService) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    
+  }
 
   login(email: string, password: string) {
 
