@@ -49,9 +49,6 @@ export class UserGameComponent implements OnInit {
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var userID = currentUser._id;
 
-    console.log("tu funkcja addUserGame");
-    console.log("nazwa obrazu = " + this.gameImgName);
-
     if (!title || !description || !category || !state || !gameImage) { return; }
     this.userGameService.create(title, category, state, description, userID, this.gameImgName)
                      .subscribe(
@@ -66,8 +63,8 @@ export class UserGameComponent implements OnInit {
   }
 
 
-  editUserGame(id: string, title: string, category: string, state: string, description: string) {
-    this.userGameService.update(id, title, category, state, description)
+  editUserGame(id: string, title: string, category: string, state: string, description: string, gameImage: string) {
+    this.userGameService.update(id, title, category, state, description, this.gameImgName)
                      .subscribe(
                         userGame => {
                           this.userGame;

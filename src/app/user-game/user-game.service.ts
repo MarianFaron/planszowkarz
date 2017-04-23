@@ -30,12 +30,12 @@ export class UserGameService {
 
   // Update user game
 
-  update(id: string, title: string, category: string, state: string, description: string): Observable<UserGame[]> {
+  update(id: string, title: string, category: string, state: string, description: string, gameImage: string): Observable<UserGame[]> {
 
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
 
-      return this.http.patch(`${this.userGameUrl}/${id}`, {title, category, state, description}, options)
+      return this.http.patch(`${this.userGameUrl}/${id}`, {title, category, state, description, gameImage}, options)
                       .map(this.extractData)
                       .catch(this.handleError);
   }
