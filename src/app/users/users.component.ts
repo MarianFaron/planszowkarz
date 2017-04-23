@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User }              from './user';
 import { UsersService }       from './users.service';
+import { FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-users',
@@ -19,10 +20,14 @@ export class UsersComponent implements OnInit {
       email: '',
       password: ''
     };
-  constructor(private userGameService: UsersService) { }
+  constructor(private userGameService: UsersService, private flashMessage:FlashMessagesService) { }
 
   ngOnInit() { 
     
+  }
+
+  test() {
+    console.log("test");
   }
 
   login(email: string, password: string) {
@@ -31,7 +36,7 @@ export class UsersComponent implements OnInit {
                         .subscribe(
                         user => {
                           this.user;
-                          window.location.reload();
+                          window.location.replace('/user-game');                  
                         },
                         error => this.errorMessage = <any>error);
 
@@ -41,18 +46,23 @@ export class UsersComponent implements OnInit {
 
     this.userGameService.logout()
                         .subscribe(
-                        user => this.user,
+                        user => {
+                          this.user;
+                          localStorage.clear();
+                          window.location.reload();
+                        },
                         error => this.errorMessage = <any>error);
-                        
-    localStorage.clear();
-    window.location.reload();
+
   }
 
   register(login: string, email: string, password: string) {
 
     this.userGameService.register(login, email, password)
                         .subscribe(
-                        user => this.user,
+                        user => {
+                          this.user;
+                          this.flashMessage.show('Zarejestrowano nowego użytkownika.', {cssClass: 'alert-success', timeout: 3000});
+                        },
                         error => this.errorMessage = <any>error);
   }
 

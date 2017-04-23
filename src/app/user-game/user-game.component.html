@@ -11,7 +11,7 @@
 						<div class="game-box">
 							<div class="game-single-box" *ngFor="let game of userGame">
 								<div class="game-img">
-									<img src="./assets/images/game1.jpg">
+									<img src="./assets/uploads/{{ game.gameImage }}">
 								</div>
 								<div class="game-info">
 									<p>Nazwa gry: {{ game.title }}</p>
@@ -162,15 +162,12 @@
 					<label>Dodatkowy opis: <textarea class="form-control" #userGameDescription ></textarea></label>
 				</div>
 				<div class="form-control">
-					<input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
-					<button type="button" class="btn btn-success btn-s"
-						(click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-						Upload image
-					</button>
+					<input type="file" name="photo" ng2FileSelect [uploader]="uploader" #userGameGameImg (change)="onChange($event)" />
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-default" (click)="addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameGameImage.value); userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameDescription.value=''; userGameGameImage.value='';" data-dismiss="modal">Akceptuj</button>
+				<button class="btn btn-default" (click)="uploader.uploadAll(); addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameGameImg.value); userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameGameImg.value=''; userGameDescription.value;" data-dismiss="modal" 
+				[disabled]="!uploader.getNotUploadedItems().length">Akceptuj</button>
 			</div>
 		</div>
 	</div>

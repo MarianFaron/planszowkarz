@@ -20,6 +20,7 @@ export class UserGameComponent implements OnInit {
   status: string;
   userGame: UserGame[];
   mode = 'Observable';
+  gameImgName: string;
 
   public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
 
@@ -29,22 +30,35 @@ export class UserGameComponent implements OnInit {
     this.getUserGame();
     this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-            console.log("ImageUpload:uploaded:", item, status, response);
-        };
+      console.log("ImageUpload:uploaded:", item, status, response);
+    };
   }
+
+  file: File;
+  onChange(event: EventTarget) {
+    let eventObj: MSInputMethodContext = <MSInputMethodContext> event;
+    let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
+    let files: FileList = target.files;
+    this.file = files[0];
+    this.gameImgName = this.file.name;
+  }
+
 
   addUserGame(title: string, category: string, state: string, description: string, gameImage: string) {
 
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var userID = currentUser._id;
 
+    console.log("tu funkcja addUserGame");
+    console.log("nazwa obrazu = " + this.gameImgName);
+
     if (!title || !description || !category || !state || !gameImage) { return; }
-    this.userGameService.create(title, category, state, description, userID, gameImage)
+    this.userGameService.create(title, category, state, description, userID, this.gameImgName)
                      .subscribe(
                         userGame  => {
                           this.userGame;
                           this.getUserGame();
-                          this.flashMessage.show('Successful add new game', {cssClass: 'alert-success', timeout: 3000});
+                          this.flashMessage.show('Dodano nową grę.', {cssClass: 'alert-success', timeout: 3000});
                         },
                         error =>  {
                           this.errorMessage = <any>error
@@ -58,7 +72,7 @@ export class UserGameComponent implements OnInit {
                         userGame => {
                           this.userGame;
                           this.getUserGame();
-                          this.flashMessage.show('Successful edit game', {cssClass: 'alert-success', timeout: 3000});
+                          this.flashMessage.show('Zapisano zmiany.', {cssClass: 'alert-success', timeout: 3000});
                         },
                         error =>  {
                           this.errorMessage = <any>error
@@ -71,7 +85,7 @@ export class UserGameComponent implements OnInit {
                         userGame  => {
                           this.userGame;
                           this.getUserGame();
-                          this.flashMessage.show('Successful delete game', {cssClass: 'alert-success', timeout: 3000});
+                          this.flashMessage.show('Gra została usunięta.', {cssClass: 'alert-success', timeout: 3000});
                         },
                         error => {
                           this.errorMessage = <any>error
