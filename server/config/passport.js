@@ -69,15 +69,16 @@ module.exports = function(passport) {
       passReqToCallback: true
     },
     function(req, email, password, done) {
+
       User.findOne({
         'local.email': email
-      }, function(err, user) {
+      }, function(err, user, info) {
         if (err)
-          return done(null, false);
+          return done(null, false, {message: "Wystąpił błąd."});
         else if (!user)
-          return done(null, false);
+          return done(null, false, {message: "Podany użytkownik nie istnieje."});
         else if (!user.validPassword(password))
-          return done(null, false);
+          return done(null, false, {message: "Niepoprawne hasło"});
         else
           return done(null, user);
       });
@@ -98,9 +99,9 @@ module.exports = function(passport) {
           'local.email': email
         }, function(err, user) {
           if (err)
-            return done(null, false);
+            return done(null, false, {message: "Wystąpił błąd."});
           else if (user) {
-            return done(null, false);
+            return done(null, false, {message: "Podany użytkownik już istnieje."});
           } else {
 
             var newUser = new User();

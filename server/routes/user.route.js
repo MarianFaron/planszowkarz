@@ -21,12 +21,11 @@ router.route('/auth/facebook/callback')
     // 	successRedirect : '/user-game,
     // 	failureRedirect : '/register',
     // })(req, res, next);
-    passport.authenticate('facebook')(req, res, function() {
-      return res.status(200).json({
-        status: 'Zalogowano poprawnie!',
-        user: req.user
-      });
-    });;
+    passport.authenticate('facebook', function(err, user, info) {
+      if (err) { return next(err) }
+      if (!user) { return res.json( { message: info.message }) }
+      res.json({user: user});
+    })(req, res, next);
   });
 
 // =====================================
@@ -37,24 +36,23 @@ router.route('/auth/facebook/callback')
 
 router.route('/users/register')
   .post(function(req, res, next) {
-    passport.authenticate('local-register')(req, res, function() {
-      return res.status(200).json({
-        status: 'Zarejestrowano poprawnie!',
-        user: req.user
-      });
-    });
+    passport.authenticate('local-register', function(err, user, info) {
+      if (err) { return next(err) }
+      if (!user) { return res.json( { message: info.message }) }
+      res.json({user: user});
+    })(req, res, next);
   });
 
 /* LOGIN */
 
 router.route('/users/login')
   .post(function(req, res, next) {
-    passport.authenticate('local-login')(req, res, function() {
-      return res.status(200).json({
-        status: 'Zalogowano poprawnie!',
-        user: req.user
-      });
-    });
+    passport.authenticate('local-login', function(err, user, info) {
+      if (err) { return next(err) }
+      if (!user) { return res.json( { message: info.message }) }
+      res.json({user: user});
+    })(req, res, next);
+
   });
 
 /* LOGOUT */

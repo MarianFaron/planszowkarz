@@ -27,23 +27,25 @@ export class UsersComponent implements OnInit {
   fbLogin() {
     this.userGameService.fbLogin()
                         .subscribe(
-                        user => {
-                          console.log(this.user);
-                          this.user;
-                          window.location.replace('/user-game');
-                        },
-                        error => this.errorMessage = <any>error);
+                           user => {
+                             console.log(this.user);
+                             this.user;
+                             window.location.replace('/user-game');
+                           },
+                           error => this.errorMessage = <any>error);
   }
 
   login(email: string, password: string) {
 
-    this.userGameService.login(email, password)
-                        .subscribe(
-                        user => {
-                          this.user;
-                          window.location.replace('/user-game');
-                        },
-                        error => this.errorMessage = <any>error);
+     this.userGameService.login(email, password)
+                        .map((response) => {
+                          if(response.message) {
+                            this.flashMessage.show(response.message.toString(), {cssClass: 'alert-danger', timeout: 3000});
+                          } else if(response.user) {
+                             window.location.replace('/user-game');
+                          }
+                        })
+                        .subscribe(user => this.user, error => this.errorMessage = <any>error);
 
   }
 
@@ -51,24 +53,26 @@ export class UsersComponent implements OnInit {
 
     this.userGameService.logout()
                         .subscribe(
-                        user => {
-                          this.user;
-                          localStorage.clear();
-                          window.location.reload();
-                        },
-                        error => this.errorMessage = <any>error);
+                          user => {
+                            this.user;
+                            localStorage.clear();
+                            window.location.reload();
+                          },
+                          error => this.errorMessage = <any>error);
 
   }
 
   register(login: string, email: string, password: string) {
 
     this.userGameService.register(login, email, password)
-                        .subscribe(
-                        user => {
-                          this.user;
-                          this.flashMessage.show('Zarejestrowano nowego użytkownika.', {cssClass: 'alert-success', timeout: 3000});
-                        },
-                        error => this.errorMessage = <any>error);
+                        .map((response) => {
+                          if(response.message) {
+                            this.flashMessage.show(response.message.toString(), {cssClass: 'alert-danger', timeout: 3000});
+                          } else if(response.user) {
+                            this.flashMessage.show("Zarejestrowano nowego użytkownika.", {cssClass: 'alert-success', timeout: 3000});
+                          }
+                        })
+                        .subscribe(user => this.user, error => this.errorMessage = <any>error);
   }
 
 
