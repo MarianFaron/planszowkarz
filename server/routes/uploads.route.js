@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
+var rootUrl = 'localhost:8080';
+
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../src/assets/uploads/')
+    cb(null, '../dist/assets/uploads/')
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
@@ -20,9 +22,9 @@ router.route('/uploads')
       if (err) {
         console.log(err);
         return res.status(422).send("an Error occured")
-      }  
+      }
       path = req.file.path;
-  });  
+  });
 })
 
 module.exports = router;

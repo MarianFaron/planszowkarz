@@ -13,9 +13,27 @@ export class UsersService {
   private userRegisterUrl = 'http://localhost:8080/app/users/register';
   private userLoginUrl = 'http://localhost:8080/app/users/login';
   private userLogoutUrl = 'http://localhost:8080/app/users/logout';
+  private facebookLoginUrl = 'http://localhost:8080/app/auth/facebook';
 
   constructor (private http: Http) {
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+  fbLogin(): Observable<User[]> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers});
+
+    return this.http.get(this.facebookLoginUrl, options)
+                    .map((response: Response) => {
+                        if (response.json().user) {
+                            console.log(response.json().user);
+                            // localStorage.setItem('currentUser', JSON.stringify(response.json().user));
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    })
+                    .catch(this.handleError);
   }
 
   // Login user
@@ -27,7 +45,6 @@ export class UsersService {
 
     return this.http.post(this.userLoginUrl, {email, password}, options)
                     .map((response: Response) => {
-                        // console.log(response.json().user);
                         if (response.json().user) {
                             localStorage.setItem('currentUser', JSON.stringify(response.json().user));
                             return true;

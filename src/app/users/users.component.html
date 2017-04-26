@@ -3,6 +3,14 @@
 		<div class="row">
 			<div class="col-md-6">
 
+				<!-- FACEBOOK LOGIN -->
+				<h2>Facebook Login</h2>
+				<button class="btn" type="button"(click)="this.fbLogin()" name="button">Login with service</button>
+				<button class="btn" type="button" name="button">
+						<a href="http://localhost:8080/app/auth/facebook"><span class="fa fa-facebook"></span>Login without angular2</a>
+				</button>
+
+
 				<!-- REGISTER FORM -->
 				<form action="/app/users/register" #registerForm="ngForm" method="post">
 					<h2>Rejestracja</h2>
@@ -55,7 +63,7 @@
 							</div>
 
 						</div>
-					
+
 					</div>
 <!--
 					<div class="form-group">
@@ -97,7 +105,7 @@
 								Email jest wymagany
 							</div>
 
-							<div [hidden]="!registerUserEmail.errors.pattern">
+							<div [hidden]="!loginUserEmail.errors.pattern">
 								To musi być adres email (example@example.pl)
 							</div>
 

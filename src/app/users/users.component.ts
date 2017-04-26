@@ -22,12 +22,17 @@ export class UsersComponent implements OnInit {
     };
   constructor(private userGameService: UsersService, private flashMessage:FlashMessagesService) { }
 
-  ngOnInit() { 
-    
-  }
+  ngOnInit() {}
 
-  test() {
-    console.log("test");
+  fbLogin() {
+    this.userGameService.fbLogin()
+                        .subscribe(
+                        user => {
+                          console.log(this.user);
+                          this.user;
+                          window.location.replace('/user-game');
+                        },
+                        error => this.errorMessage = <any>error);
   }
 
   login(email: string, password: string) {
@@ -36,7 +41,7 @@ export class UsersComponent implements OnInit {
                         .subscribe(
                         user => {
                           this.user;
-                          window.location.replace('/user-game');                  
+                          window.location.replace('/user-game');
                         },
                         error => this.errorMessage = <any>error);
 
