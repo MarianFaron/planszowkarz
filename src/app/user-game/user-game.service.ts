@@ -18,24 +18,24 @@ export class UserGameService {
 
   // Create user game
 
-  create(title: string, category: string, state: string, description: string, userID: string, gameImage: string): Observable<UserGame[]> {
+  create(title: string, category: string, state: string, description: string, createdDate: string, userID: string, gameImage: string): Observable<UserGame[]> {
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.userGameUrl, { title, category, state, description, userID, gameImage }, options)
+    return this.http.post(this.userGameUrl, { title, category, state, description, createdDate, userID, gameImage }, options)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
 
   // Update user game
 
-  update(id: string, title: string, category: string, state: string, description: string, gameImage: string): Observable<UserGame[]> {
+  update(id: string, title: string, category: string, state: string, description: string, modifiedDate: string, gameImage: string): Observable<UserGame[]> {
 
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
 
-      return this.http.patch(`${this.userGameUrl}/${id}`, {title, category, state, description, gameImage}, options)
+      return this.http.patch(`${this.userGameUrl}/${id}`, {title, category, state, description, modifiedDate, gameImage}, options)
                       .map(this.extractData)
                       .catch(this.handleError);
   }

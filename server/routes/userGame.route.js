@@ -20,6 +20,8 @@ router.route('/userGames')
 			category: req.body.category,
 			state: req.body.state,
 			description: req.body.description,
+			createdDate: req.body.createdDate,
+			modifiedDate: req.body.modifiedDate,
 			userID: req.body.userID,
 			gameImage: req.body.gameImage
 		});

@@ -18,6 +18,13 @@ var userGame = new Schema({
         description: {
             type: String,
         },
+        createdDate: {
+            type: Date,
+        },
+        modifiedDate: {
+            type: Date,
+            default: Date.now
+        },
         userID: {
             type: ObjectId,
         },
