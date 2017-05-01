@@ -11,7 +11,7 @@
 						<div class="game-box">
 							<div class="game-single-box" *ngFor="let game of userGame">
 								<div class="game-img">
-									<img src="./assets/uploads/{{ game.gameImage }}">
+									<img src="http://localhost:8080/assets/uploads/{{ game.gameImage }}">
 								</div>
 								<div class="game-info">
 									<p>Nazwa gry: {{ game.title }}</p>
@@ -40,7 +40,7 @@
 											<div class="form-group">
 												<label>Tytuł: <input class="form-control" value="{{game.title}}" #userGameTitle /></label>
 											</div>
-											<label>Zdjęcie: 
+											<label>Zdjęcie:
 												<div class="game-img">
 													<img src="./assets/uploads/{{ game.gameImage }}">
 												</div>
@@ -149,7 +149,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-default" (click)="uploader.uploadAll(); addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameGameImage.value); userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameDescription.value; userGameGameImage.value='';" data-dismiss="modal" 
+				<button class="btn btn-default" (click)="uploader.uploadAll(); addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameGameImage.value); userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameDescription.value; userGameGameImage.value='';" data-dismiss="modal"
 				[disabled]="!uploader.getNotUploadedItems().length">Akceptuj</button>
 			</div>
 		</div>

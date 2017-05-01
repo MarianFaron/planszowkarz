@@ -3,13 +3,21 @@
 		<div class="row">
 			<div class="col-md-6">
 
+				<!-- FACEBOOK LOGIN -->
+				<h2>Facebook Login</h2>
+				<button class="btn" type="button"(click)="this.fbLogin()" name="button">Login with service</button>
+				<button class="btn" type="button" name="button">
+						<a href="http://localhost:8080/app/auth/facebook"><span class="fa fa-facebook"></span>Login without angular2</a>
+				</button>
+
+
 				<!-- REGISTER FORM -->
 				<form action="/app/users/register" #registerForm="ngForm" method="post">
 					<h2>Rejestracja</h2>
 					<div class="form-group">
 						<label>Login:</label>
 
-						<input type="text" class="form-control" required minlength="5" maxlength="15" name="login" [ngModel]="model.login" #registerUserLogin="ngModel">
+						<input type="text" class="form-control" required minlength="5" name="login" [ngModel]="model.login" #registerUserLogin="ngModel">
 
 						<div *ngIf="registerUserLogin.errors && (registerUserLogin.dirty || registerUserLogin.touched)" class="alert alert-danger">
 
@@ -18,7 +26,7 @@
 							</div>
 
 							<div [hidden]="!registerUserLogin.errors.minlength">
-								Conajmniej 5 znaków
+								Wpisz co najmniej 5 znaków
 							</div>
 
 						</div>
@@ -30,11 +38,11 @@
 						<div *ngIf="registerUserEmail.errors && (registerUserEmail.dirty || registerUserEmail.touched)" class="alert alert-danger">
 
 							<div [hidden]="!registerUserEmail.errors.required">
-								Email jest wymagany
+								E-mail jest wymagany
 							</div>
 
 							<div [hidden]="!registerUserEmail.errors.pattern">
-								To musi być adres email (example@example.pl)
+								Wpisz poprawny adres e-mail (example@example.pl)
 							</div>
 
 						</div>
@@ -51,11 +59,11 @@
 							</div>
 
 							<div [hidden]="!registerUserPassword.errors.minlength">
-								Conajmniej 3 znaki
+								Wpisz co najmniej 3 znaki
 							</div>
 
 						</div>
-					
+
 					</div>
 <!--
 					<div class="form-group">
@@ -94,11 +102,11 @@
 						<div *ngIf="loginUserEmail.errors && (loginUserEmail.dirty || loginUserEmail.touched)" class="alert alert-danger">
 
 							<div [hidden]="!loginUserEmail.errors.required">
-								Email jest wymagany
+								E-mail jest wymagany
 							</div>
 
-							<div [hidden]="!registerUserEmail.errors.pattern">
-								To musi być adres email (example@example.pl)
+							<div [hidden]="!loginUserEmail.errors.pattern">
+								Wpisz poprawny adres e-mail (example@example.pl)
 							</div>
 
 						</div>
@@ -109,16 +117,58 @@
 						<div *ngIf="loginUserPassword.errors && (loginUserPassword.dirty || loginUserPassword.touched)" class="alert alert-danger">
 
 							<div [hidden]="!loginUserPassword.errors.required">
-								Email jest wymagany
+								E-mail jest wymagany
 							</div>
 
 						</div>
 					</div>
 					<button type="submit" class="btn" [disabled]="!loginForm.form.valid" (click)="login(loginUserEmail.value, loginUserPassword.value);">Zaloguj</button>
 				</form>
+				<br /><button type="button" class="btn" data-toggle="modal" data-target="#forgot-password">Zapomniałem hasła</button>
 			</div>
 		</div>
 	</div>
 
 
+
+
 </section>
+
+<!-- Modal -->
+<div id="forgot-password" class="modal fade" role="dialog" >
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Resetowanie hasła</h4>
+      </div>
+      <div class="modal-body">
+				<form class="" action="/app/users/forgot" method="post" #forgotPasswordForm="ngForm">
+					<div class="form-group">
+						<label for="email">Podaj adres e-mail:</label>
+						<input type="text" class="form-control" name="email" #forgotPasswordEmail="ngModel" required [ngModel]="model.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+
+						<div *ngIf="forgotPasswordEmail.errors && (forgotPasswordEmail.dirty || forgotPasswordEmail.touched)" class="alert alert-danger">
+
+							<div [hidden]="!forgotPasswordEmail.errors.required">
+								E-mail jest wymagany
+							</div>
+							<div [hidden]="!forgotPasswordEmail.errors.pattern">
+								Wpisz poprawny adres e-mail (example@example.pl)
+							</div>
+
+						</div>
+					</div>
+
+					<button [disabled]="!forgotPasswordForm.form.valid"  (click)="this.forgotPassword(forgotPasswordEmail.value)" data-dismiss="modal" class="btn" type="button" name="button">Resetuj hasło</button>
+				</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+      </div>
+    </div>
+
+  </div>
+</div>
