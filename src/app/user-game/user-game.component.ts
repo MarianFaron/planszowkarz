@@ -44,13 +44,18 @@ export class UserGameComponent implements OnInit {
   }
 
 
-  addUserGame(title: string, category: string, state: string, description: string, gameImage: string) {
+  addUserGame(title: string, category: string, state: string, description: string,  gameImage: string) {
 
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var userID = currentUser._id;
 
-    if (!title || !description || !category || !state || !gameImage) { return; }
-    this.userGameService.create(title, category, state, description, userID, this.gameImgName)
+    var currentDate = new Date();
+    var createdDate = currentDate.getFullYear().toString() + '-' + 
+               ('0' + (currentDate.getMonth()+1).toString()).slice(-2) + '-' +
+               ('0' + (currentDate.getDate()).toString()).slice(-2);
+
+    if (!title || !description || !category || !state) { return; }
+    this.userGameService.create(title, category, state, description, createdDate, userID, this.gameImgName)
                      .subscribe(
                         userGame  => {
                           this.userGame;
@@ -63,8 +68,14 @@ export class UserGameComponent implements OnInit {
   }
 
 
-  editUserGame(id: string, title: string, category: string, state: string, description: string, gameImage: string) {
-    this.userGameService.update(id, title, category, state, description, this.gameImgName)
+  editUserGame(id: string, title: string, category: string, state: string, description: string, modifiedDate: string, gameImage: string) {
+
+    var currentDate = new Date();
+    var modifiedDate = currentDate.getFullYear().toString() + '-' + 
+               ('0' + (currentDate.getMonth()+1).toString()).slice(-2) + '-' +
+               ('0' + (currentDate.getDate()).toString()).slice(-2);
+
+    this.userGameService.update(id, title, category, state, description, modifiedDate, this.gameImgName)
                      .subscribe(
                         userGame => {
                           this.userGame;
