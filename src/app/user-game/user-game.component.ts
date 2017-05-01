@@ -1,8 +1,9 @@
 import { Component, OnInit , ElementRef, Input} from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
-import { UserGame }              from './user-game';
-import { UserGameService }       from './user-game.service';
-import { FlashMessagesService} from 'angular2-flash-messages';
+import { UserGame } from './user-game';
+import { UserGameService } from './user-game.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { UserInfoComponent } from './user-info/user-info.component'
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 const URL = 'http://localhost:8080/app/uploads';
@@ -19,7 +20,6 @@ export class UserGameComponent implements OnInit {
   errorMessage: string;
   status: string;
   userGame: UserGame[];
-  mode = 'Observable';
   gameImgName: string;
 
   public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});

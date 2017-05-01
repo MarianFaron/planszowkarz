@@ -9,7 +9,7 @@ var User = new Schema({
             unique: true,
             require: true
         },
-				email: {
+		email: {
             type: String,
             unique: true,
             require: true
@@ -19,6 +19,15 @@ var User = new Schema({
             unique: false,
             require: true
         }
+    },
+    surname: {
+        type: String
+    },
+    contactNumber: {
+        type: String
+    },
+    city: {
+        type: String
     }
 }, {
     versionKey: false
