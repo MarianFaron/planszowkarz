@@ -20,19 +20,27 @@ export class UsersComponent implements OnInit {
       email: '',
       password: ''
     };
+    
   constructor(private userGameService: UsersService, private flashMessage:FlashMessagesService) { }
 
   ngOnInit() {}
 
+  forgotPassword(email: string) {
+    this.userGameService.forgotPassword(email)
+                        .subscribe(response => {
+                          this.flashMessage.show("Wysłano nowe hasło.", {cssClass: 'alert-danger', timeout: 3000});
+                        });
+  }
+
   fbLogin() {
     this.userGameService.fbLogin()
                         .subscribe(
-                           user => {
-                             console.log(this.user);
-                             this.user;
-                             window.location.replace('/user-game');
-                           },
-                           error => this.errorMessage = <any>error);
+                          user => {
+                            console.log(this.user);
+                            this.user;
+                            window.location.replace('/user-game');
+                          },
+                          error => this.errorMessage = <any>error);
   }
 
   login(email: string, password: string) {

@@ -3,6 +3,50 @@ var router = express.Router();
 var User = require('../models/user.model');
 var userGame = require('../models/userGame.model');
 var passport = require('passport');
+var generator = require('generate-password');
+const nodemailer = require('nodemailer');
+
+router.route('/forgot')
+  .post(function(req, res, next) {
+
+    var email = req.body.email;
+
+    var password = generator.generate({
+        length: 10,
+        numbers: true
+    });
+
+    User.findOne({'local.email': email}, function(err, user, info) {
+      user.local.password = user.generateHash(password);
+      user.save(function(err) {
+        if (err)
+          throw err;
+      });
+    });
+
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'planszowkarz@gmail.com',
+            pass: '123456789ABC'
+        }
+    });
+
+    let mailOptions = {
+        from: '"Planszówkarz" <planszowkarz@gmail.com>',
+        to: email,
+        subject: 'Resetowanie hasła',
+        text: 'Nowe hasło: ' + password,
+        html: 'Nowe hasło: <b>' + password + '</b>'
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message %s sent: %s', info.messageId, info.response);
+    });
+  });
 
 // =====================================
 // FACEBOOK ROUTES =====================

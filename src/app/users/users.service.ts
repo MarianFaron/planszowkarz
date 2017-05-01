@@ -14,8 +14,18 @@ export class UsersService {
   private userLoginUrl = 'http://localhost:8080/app/users/login';
   private userLogoutUrl = 'http://localhost:8080/app/users/logout';
   private facebookLoginUrl = 'http://localhost:8080/app/auth/facebook';
+  private forgotPasswordUrl = 'http://localhost:8080/app/forgot';
 
   constructor (private http: Http) {}
+
+  forgotPassword(email: string) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers});
+
+    return this.http.post(this.forgotPasswordUrl, {email}, options)
+                    .map((response: Response) => response.json())
+                    .catch(this.handleError);
+  }
 
   // Facebook login
 
