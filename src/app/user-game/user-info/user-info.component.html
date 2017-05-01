@@ -6,13 +6,50 @@
 		<img class="user-avatar" src="./assets/images/avatar.png" alt="user-avatar" />
 		<ul>
 			<li>Login: {{userInfo?.local.login}}</li>
-			<li>ID: {{userInfo?._id}}</li>
 			<li>Email: {{userInfo?.local.email}}</li>
-			<li>Telefon: </li>
-			<li>Data urodzenia: </li>
+			<li>Imię: {{userInfo?.surName}}</li>
+			<li>Data urodzenia: {{userInfo?.dateBirth}}</li>
+			<li>Miasto: {{userInfo?.city}}</li>
+			<li>Numer telefonu: {{userInfo?.contactNumber}}</li>
 		</ul>
 		<div>
-			<button class="btn right">Edytuj dane</button>
+			<button class="btn right" data-toggle="modal" attr.data-target="#edit-user-{{userInfo?._id}}">Edytuj dane</button>
+		</div>
+		<!-- Edit User Modal -->
+		<div class="modal fade" id="edit-user-{{userInfo?._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Edytuj dane</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label>Login: </label>
+							<input class="form-control" value="{{userInfo?.local.login}}" #userLogin />
+						</div>
+						<div class="form-group">
+							<label>Imię: </label>
+							<input class="form-control" placeholder="podaj imię" value="{{userInfo?.surName}}" #userSurname />
+						</div>
+						<div class="form-group">
+							<label>Data urodzenia: </label>
+							<input class="form-control" placeholder="rrrr-mm-dd" value="{{userInfo?.dateBirth}}" #userDateBirth />
+						</div>
+						<div class="form-group">
+							<label>Miasto: </label>
+							<input class="form-control" placeholder="podaj miasto" value="{{userInfo?.city}}" #userCity />
+						</div>
+						<div class="form-group">
+							<label>Numer telefonu: </label>
+							<input class="form-control" placeholder="666-888-999" value="{{userInfo?.contactNumber}}" #userContactNumber />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-default" (click)="editUserInfo(userInfo?._id, userLogin.value, userSurname.value, userDateBirth.value, userCity.value, userContactNumber.value)" data-dismiss="modal">Zatwierdź</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

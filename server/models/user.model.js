@@ -20,7 +20,24 @@ var User = new Schema({
             require: true
         }
     },
-    surname: {
+    facebook: {
+        id: {
+            type: String
+        },
+        token: {
+            type: String
+        },
+        email: {
+            type: String
+        },
+        name: {
+            type: String
+        }
+    },
+    surName: {
+        type: String
+    },
+    dateBirth: {
         type: String
     },
     contactNumber: {
@@ -28,12 +45,6 @@ var User = new Schema({
     },
     city: {
         type: String
-    },
-    facebook: {
-        id: String,
-        token: String,
-        email: String,
-        name: String
     }
 }, {
   versionKey: false

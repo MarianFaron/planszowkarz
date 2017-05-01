@@ -3,6 +3,9 @@ export class UserInfo {
     public id: number,
     public login: string,
     public email: string,
-    public password: string
+    public surName: string,
+    public dateBirth: string,
+    public city: string,
+    public contactNumber: string
     ) { }
 }

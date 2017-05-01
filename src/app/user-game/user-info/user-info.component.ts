@@ -36,13 +36,13 @@ export class UserInfoComponent implements OnInit {
 
   //edit user information
 
-  editUserInfo(id: string, login: string) {
-    this.userInfoService.updateUser(id, login)
+  editUserInfo(id: string, login: string, surName: string, dateBirth: string, city: string, contactNumber: string) {
+    this.userInfoService.updateUser(id, login, surName, dateBirth, city, contactNumber)
                      .subscribe(
                         userInfo  => {
                           this.userInfo;
                           this.getUserInfo();
-                          this.flashMessage.show('Dane użytkownika zostały zmienione.', {cssClass: 'alert-success', timeout: 3000});
+                          this.flashMessage.show('Dane użytkownika zostały zmienione.', {cssClass: 'alert-success', timeout: 2000});
                         },
                         error =>  {
                           this.errorMessage = <any>error

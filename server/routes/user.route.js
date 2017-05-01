@@ -221,7 +221,6 @@ router.route('/users')
       var newUser = new User({
         login: req.body.login,
         password: req.body.password,
-        nameame: req.body.name,
         email: req.body.email
       });
       // save the user
@@ -255,12 +254,6 @@ router.route('/users/:id')
   })
 
   .patch((req, res) => {
-    if (!req.body.password) {
-      return res.status(401).json({
-        message: "You haven't entered a password."
-      });
-    }
-
     User.findByIdAndUpdate({
       _id: req.params.id
     }, req.body, (err, user) => {
