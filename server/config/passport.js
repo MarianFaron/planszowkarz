@@ -1,6 +1,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var User = require('../models/user.model');
+var TempUser = require('../models/tempUser.model');
 var configAuth = require('./auth');
 
 module.exports = function(passport) {
@@ -103,12 +104,11 @@ module.exports = function(passport) {
           else if (user) {
             return done(null, false, {message: "Podany użytkownik już istnieje."});
           } else {
+            var newUser = new TempUser();
 
-            var newUser = new User();
-
-            newUser.local.login = req.body.login;
-            newUser.local.email = email;
-            newUser.local.password = newUser.generateHash(password);
+            newUser.login = req.body.login;
+            newUser.email = email;
+            newUser.password = newUser.generateHash(password);
 
             newUser.save(function(err) {
               if (err)

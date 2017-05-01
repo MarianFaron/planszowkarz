@@ -3,8 +3,21 @@ var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 
 var TempUser = new Schema({
-    email: String,
-    password: String
+    login: {
+      type: String,
+      unique: true,
+      require: true
+    },
+    email: {
+      type: String,
+      unique: true,
+      require: true
+    },
+    password: {
+      type: String,
+      unique: false,
+      require: true
+    }
 }, {
     versionKey: false
 });

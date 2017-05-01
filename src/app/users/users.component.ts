@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit {
       email: '',
       password: ''
     };
-    
+
   constructor(private userGameService: UsersService, private flashMessage:FlashMessagesService) { }
 
   ngOnInit() {}
@@ -77,7 +77,7 @@ export class UsersComponent implements OnInit {
                           if(response.message) {
                             this.flashMessage.show(response.message.toString(), {cssClass: 'alert-danger', timeout: 3000});
                           } else if(response.user) {
-                            this.flashMessage.show("Zarejestrowano nowego użytkownika.", {cssClass: 'alert-success', timeout: 3000});
+                            this.flashMessage.show("E-mail aktywacyjny został wysłany. Sprawdź swoją pocztę.", {cssClass: 'alert-success', timeout: 3000});
                           }
                         })
                         .subscribe(user => this.user, error => this.errorMessage = <any>error);

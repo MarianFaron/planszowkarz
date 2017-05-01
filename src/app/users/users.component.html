@@ -17,7 +17,7 @@
 					<div class="form-group">
 						<label>Login:</label>
 
-						<input type="text" class="form-control" required minlength="5" maxlength="15" name="login" [ngModel]="model.login" #registerUserLogin="ngModel">
+						<input type="text" class="form-control" required minlength="5" name="login" [ngModel]="model.login" #registerUserLogin="ngModel">
 
 						<div *ngIf="registerUserLogin.errors && (registerUserLogin.dirty || registerUserLogin.touched)" class="alert alert-danger">
 
