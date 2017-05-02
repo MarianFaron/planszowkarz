@@ -2,10 +2,29 @@ import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing'
 import { HttpModule, Http, BaseRequestOptions, XHRBackend, Response, ResponseOptions, RequestMethod } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 
+import { UserGameComponent } from './user-game.component';
 import { UserGameService } from './user-game.service';
 
-describe('UserGameService', () => {
 
+describe('UserGameComponent', () => {
+  let component: UserGameComponent;
+  let fixture: ComponentFixture<UserGameComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ UserGameComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UserGameComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+});
+
+describe('UserGameService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpModule],
@@ -66,6 +85,17 @@ describe('UserGameService', () => {
       mockbackend.connections.subscribe((connection) => {
         expect(connection.request.url).toEqual('http://localhost:8080/app/userGames');
         expect(connection.request.method).toBe(RequestMethod.Post);
+        expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
+        expect(connection.request.getBody()).toEqual(JSON.stringify(
+            {
+              title: 'ccsdcsc123123333',
+              category: 'Strategiczna',
+              state: 'Nowa',
+              description: 'cscscs',
+              createdDate: '28-04-2017',
+              userID: '58e45c5c9030ea1928a33fea'
+            }, null, 2
+        ));
         connection.mockRespond(new Response(new ResponseOptions(
           { body: {message: "User game created"},
             status: 201
@@ -73,9 +103,9 @@ describe('UserGameService', () => {
         )));
       });
 
-      const body = {"title":"ccsdcsc123123333", "category":"Strategiczna", "state":"Nowa", "description":"cscscs","userID":"58e45c5c9030ea1928a33fea"};
+      const user = {"title":"ccsdcsc123123333", "category":"Strategiczna", "state":"Nowa", "description":"cscscs","createdDate":"28-04-2017", "userID":"58e45c5c9030ea1928a33fea"};
 
-      usergameservice.create(body.title, body.category, body.state,  body.description, body.userID).subscribe(
+      usergameservice.create(user.title, user.category, user.state,  user.description, user.createdDate, user.userID).subscribe(
         (games) => {
           expect(games).toBeDefined();
           expect(games.message).toBe("User game created");
@@ -86,6 +116,15 @@ describe('UserGameService', () => {
       mockbackend.connections.subscribe(connection => {
         expect(connection.request.url).toEqual('http://localhost:8080/app/userGames/58ebec8a16f8161d00f8e063');
         expect(connection.request.method).toBe(RequestMethod.Patch);
+        expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
+        expect(connection.request.getBody()).toEqual(JSON.stringify(
+            {
+              title: 'ccsdcsc123123333elo',
+              category: 'Strategiczna',
+              state: 'Nowa',
+              description: '2132312312312'
+            }, null, 2
+        ));
         connection.mockRespond(new Response(new ResponseOptions(
           { body: {message: "User game edited"},
             status: 200
