@@ -2,7 +2,26 @@ import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing'
 import { HttpModule, Http, BaseRequestOptions, XHRBackend, Response, ResponseOptions, RequestMethod } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 
+import { UsersComponent } from './users.component';
 import { UsersService } from './users.service';
+
+describe('UsersComponent', () => {
+  let component: UsersComponent;
+  let fixture: ComponentFixture<UsersComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ UsersComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UsersComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+});
 
 describe('UsersService', () => {
   beforeEach(() => {

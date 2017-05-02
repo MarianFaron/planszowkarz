@@ -42,7 +42,7 @@ export class UserInfoComponent implements OnInit {
                         userInfo  => {
                           this.userInfo;
                           this.getUserInfo();
-                          this.flashMessage.show('Dane użytkownika zostały zmienione.', {cssClass: 'alert-success', timeout: 2000});
+                          this.flashMessage.show('Dane użytkownika zostały zmienione.', {cssClass: 'alert-success', timeout: 3000});
                         },
                         error =>  {
                           this.errorMessage = <any>error
