@@ -4,23 +4,25 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RoutingModule } from './routing.module';
 import { AppComponent } from './app.component';
-import { UserGameComponent } from './user-game/user-game.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CoreComponent } from './core/core.component';
 import { FlashMessagesModule} from 'angular2-flash-messages';
 import { UsersComponent } from './users/users.component';
 import { AuthGuard } from './guards/auth.guard';
 import { FileSelectDirective } from 'ng2-file-upload';
-import { UserInfoComponent } from './user-game/user-info/user-info.component';
+import { UserInfoComponent } from './user-profile/user-info/user-info.component';
+import { UserGamesComponent } from './user-profile/user-games/user-games.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserGameComponent,
+    UserProfileComponent,
     CoreComponent,
     UsersComponent,
     FileSelectDirective,
-    UserInfoComponent
+    UserInfoComponent,
+    UserGamesComponent
   ],
   imports: [
     BrowserModule,

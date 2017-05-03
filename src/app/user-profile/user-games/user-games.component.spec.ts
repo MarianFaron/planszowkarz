@@ -3,26 +3,26 @@ import { HttpModule, Http, BaseRequestOptions, XHRBackend, Response, ResponseOpt
 import { MockBackend } from '@angular/http/testing';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
-import { UserInfoComponent } from './user-info/user-info.component'
-import { UserGameComponent } from './user-game.component';
-import { UserGameService } from './user-game.service';
+import { UserInfoComponent } from '../user-info/user-info.component'
+import { UserGamesComponent } from './user-games.component';
+import { UserGameService } from './user-games.service';
 
 
 describe('UserGameComponent', () => {
-  let component: UserGameComponent;
-  let fixture: ComponentFixture<UserGameComponent>;
+  let component: UserGamesComponent;
+  let fixture: ComponentFixture<UserGamesComponent>;
   let usergameservice: UserGameService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ HttpModule, UserInfoComponent ],
-      declarations: [ UserGameComponent ],
+      declarations: [ UserGamesComponent ],
       providers: [ UserGameService, FlashMessagesService ]
     })
   }));
 
   beforeEach(() => {
-    component = TestBed.createComponent(UserGameComponent).componentInstance;
+    component = TestBed.createComponent(UserGamesComponent).componentInstance;
     usergameservice = TestBed.get(UserGameService);
 
     spyOn(usergameservice, "getGames").and.callFake(function(can, be, received) {
