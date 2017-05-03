@@ -1,7 +1,9 @@
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { HttpModule, Http, BaseRequestOptions, XHRBackend, Response, ResponseOptions, RequestMethod } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
+import { UserInfoComponent } from './user-info/user-info.component'
 import { UserGameComponent } from './user-game.component';
 import { UserGameService } from './user-game.service';
 
@@ -9,19 +11,63 @@ import { UserGameService } from './user-game.service';
 describe('UserGameComponent', () => {
   let component: UserGameComponent;
   let fixture: ComponentFixture<UserGameComponent>;
+  let usergameservice: UserGameService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserGameComponent ]
+      imports: [ HttpModule, UserInfoComponent ],
+      declarations: [ UserGameComponent ],
+      providers: [ UserGameService, FlashMessagesService ]
     })
-    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserGameComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.createComponent(UserGameComponent).componentInstance;
+    usergameservice = TestBed.get(UserGameService);
+
+    spyOn(usergameservice, "getGames").and.callFake(function(can, be, received) {
+        var body = [
+            {"_id":"58ebec8a16f8161d00f8e063","title":"ccsdcsc123123333", "category":"Logiczna", "state":"Używana", "description":"cscscs","userID":"58e45c5c9030ea1928a33feaz"},
+            {"_id":"58ece357fec91a2160819036","title":"Tajniacy", "category":"Strategiczna", "state":"Nowa","description":"Taka niezła","userID":"58e45c5c9030ea1928a33feaz"},
+            {"_id":"58ed29f7f9bc3f1b08cabb46","title":"asdasda", "category":"Figurkowa", "state":"używana","description":"asdasdas","userID":"58e45c5c9030ea1928a33feaz"},
+            {"_id":"58ed3117f9bc3f1b08cabb47","title":"asdasda", "category":"Strategiczna", "state":"Nowa","description":"asdasdadas","userID":"58e45c5c9030ea1928a33feaz"}
+        ];
+        return body;
+    });
+
+    spyOn(usergameservice, "create").and.callFake(function(can, be, received) {
+        var message: 'Success create';
+        return message;
+    });
+
+    spyOn(usergameservice, "update").and.callFake(function(can, be, received) {
+        var message: 'Success update';
+        return message;
+    });
+
+    spyOn(usergameservice, "delete").and.callFake(function(can, be, received) {
+        var message: 'Success delete';
+        return message;
+    });
   });
+
+  var game = [
+        {"_id":"58ebec8a16f8161d00f8e063","title":"ccsdcsc123123333", "category":"Logiczna", "state":"Używana", "description":"cscscs", "createdDate": "2017-05-04", "userID":"58e45c5c9030ea1928a33feaz"},
+        {"_id":"58ece357fec91a2160819036","title":"Tajniacy", "category":"Strategiczna", "state":"Nowa","description":"Taka niezła", "createdDate": "2017-05-04","userID":"58e45c5c9030ea1928a33feaz"},
+        {"_id":"58ed29f7f9bc3f1b08cabb46","title":"asdasda", "category":"Figurkowa", "state":"używana","description":"asdasdas", "createdDate": "2017-05-04","userID":"58e45c5c9030ea1928a33feaz"},
+        {"_id":"58ed3117f9bc3f1b08cabb47","title":"asdasda", "category":"Strategiczna", "state":"Nowa","description":"asdasdadas", "createdDate": "2017-05-04","userID":"58e45c5c9030ea1928a33feaz"}
+  ];
+
+  /*it("get user game from service", async() => {
+    component.ngOnInit();
+    expect(usergameservice.getGames("58f9f03cb4695b0250a6eb43")).toHaveBeenCalled();
+    expect(component.userGame).toBe(game);
+  });
+
+  it('should take user data to service', async() => {
+    expect(usergameservice.create("ccsdcsc123123333", "Strategiczna", "Nowa", "cscscs", "28-04-2017", "58e45c5c9030ea1928a33fea", "image1.jpg")).toHaveBeenCalled();
+    expect(component.userGame).toBe(game[0]);
+  });*/
 });
 
 describe('UserGameService', () => {
