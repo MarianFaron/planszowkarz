@@ -1,6 +1,7 @@
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { HttpModule, Http, BaseRequestOptions, XHRBackend, Response, ResponseOptions, RequestMethod } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { UserInfoComponent } from './user-info.component';
 import { UserInfoService } from './user-info.service';
@@ -8,18 +9,41 @@ import { UserInfoService } from './user-info.service';
 describe('UserInfoComponent', () => {
   let component: UserInfoComponent;
   let fixture: ComponentFixture<UserInfoComponent>;
+  let userInfoService: UserInfoService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserInfoComponent ]
+      imports: [ HttpModule ],
+      declarations: [ UserInfoComponent ],
+      providers: [ UserInfoService, FlashMessagesService ]
     })
-    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserInfoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.createComponent(UserInfoComponent).componentInstance;
+    userInfoService = TestBed.get(UserInfoService);
+    spyOn(userInfoService, "getUser").and.callFake(function(can, be, received) {
+        var body: {"_id":"58f9f03cb4695b0250a6eb43","surName":"Kamil","dateBirth":"1995-04-18","city":"Poznań","contactNumber":"881-945-780","local":{"password":"$2a$08$gFmk22JCuBaqz0K.82IWaeP0oW9mqiNo357W0z7TFR11hlevBhxSy","email":"kamil.wojcik.525@gmail.com","login":"Magic525"}};
+        return body;
+    });
+
+    spyOn(userInfoService, "updateUser").and.callFake(function(can, be, received) {
+        var message: 'Success edit';
+        return message;
+    });
+  });
+
+  var user: {"_id":"58f9f03cb4695b0250a6eb43","surName":"Kamil","dateBirth":"1995-04-18","city":"Poznań","contactNumber":"881-945-780","local":{"password":"$2a$08$gFmk22JCuBaqz0K.82IWaeP0oW9mqiNo357W0z7TFR11hlevBhxSy","email":"kamil.wojcik.525@gmail.com","login":"Magic525"}};
+
+  it("get user data from service", async() => {
+    component.ngOnInit();
+    expect(userInfoService.getUser("58f9f03cb4695b0250a6eb43")).toHaveBeenCalled();
+    expect(component.userInfo).toBe(user);
+  });
+
+  it('should take user data to service', async() => {
+    expect(userInfoService.updateUser("58f9f03cb4695b0250a6eb43", "Magic525", "Kamil", "1995-04-18", "Poznań", "881-945-780")).toHaveBeenCalled();
+    expect(component.userInfo).toBe(user);
   });
 });
 
