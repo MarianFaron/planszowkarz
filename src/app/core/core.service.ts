@@ -6,7 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import "rxjs/add/operator/do";
 
-import { UserGame } from './../user-game/user-game';
+import { UserGame } from './../user-profile/user-games/user-games';
 
 @Injectable()
 export class CoreService {
