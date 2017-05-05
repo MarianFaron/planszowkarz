@@ -3,44 +3,14 @@
     <h3>Najnowsze ogłoszenia</h3>
 		<hr class="main-hr">
 		<div class="row">
-			<div class="col-md-3 col-sm-6 col-xs-12 new-game-wrapper">
+			<div class="col-md-3 col-sm-6 col-xs-12 new-game-wrapper" *ngFor="let game of userGame | slice:0:4">
 				<div class="inner">
-					<img src=".\src\assets\images\wiedzmin.jpg" alt="wiedźmin" class="img-responsive center-block">
-					<h3>Wiedźmin</h3>
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Dodane przez: Mateusz Piotrowicz<br>
+					<img src="http://localhost:8080/assets/uploads/{{ game.gameImage }}" alt="{{game.title}}" class="img-responsive center-block">
+					<h3>{{ game.title }}</h3>
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Dodane przez: {{ game.userID }} <br>
 					<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lokalizacja: Poznań<br>
-					<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane 4h temu<br>
-					<div class="text-center"><button type="button" class="btn btn-default custom-button">Wymień się!</button></div>
-				</div>
-			</div>
-			<div class="col-md-3 col-sm-6 col-xs-12 new-game-wrapper">
-				<div class="inner">
-					<img src=".\src\assets\images\wiedzmin.jpg" alt="wiedźmin" class="img-responsive center-block">
-					<h3>Wiedźmin</h3>
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Dodane przez: Mateusz Piotrowicz<br>
-					<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lokalizacja: Poznań<br>
-					<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane 4h temu<br>
-					<div class="text-center"><button type="button" class="btn btn-default custom-button">Wymień się!</button></div>
-				</div>
-			</div>
-			<div class="col-md-3 col-sm-6 col-xs-12 new-game-wrapper">
-				<div class="inner">
-					<img src=".\src\assets\images\wiedzmin.jpg" alt="wiedźmin" class="img-responsive center-block">
-					<h3>Wiedźmin</h3>
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Dodane przez: Mateusz Piotrowicz<br>
-					<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lokalizacja: Poznań<br>
-					<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane 4h temu<br>
-					<div class="text-center"><button type="button" class="btn btn-default custom-button">Wymień się!</button></div>
-				</div>
-			</div>
-			<div class="col-md-3 col-sm-6 col-xs-12 new-game-wrapper">
-				<div class="inner">
-					<img src=".\src\assets\images\wiedzmin.jpg" alt="wiedźmin" class="img-responsive center-block">
-					<h3>Wiedźmin</h3>
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Dodane przez: Mateusz Piotrowicz<br>
-					<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lokalizacja: Poznań<br>
-					<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane 4h temu<br>
-					<div class="text-center"><button type="button" class="btn btn-default custom-button">Wymień się!</button></div>
+					<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane {{ game.createdDate }}<br>
+					<div class="text-center"><button type="button" class="btn btn-default custom-button" disabled>Wymień się!</button></div>
 				</div>
 			</div>
 			
