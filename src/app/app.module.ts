@@ -12,6 +12,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { UserInfoComponent } from './user-profile/user-info/user-info.component';
 import { UserGamesComponent } from './user-profile/user-games/user-games.component';
+import { EqualValidator } from './users/equal-validator.directive'
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { UserGamesComponent } from './user-profile/user-games/user-games.compone
     UsersComponent,
     FileSelectDirective,
     UserInfoComponent,
-    UserGamesComponent
+    UserGamesComponent,
+    EqualValidator
   ],
   imports: [
     BrowserModule,

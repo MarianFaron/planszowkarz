@@ -62,22 +62,16 @@
 							</div>
 
 						</div>
-						<button type="submit" class="btn custom-button" [disabled]="!registerForm.form.valid" (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value);">Zarejestruj</button>
-					</div>
-
-
-
-<!--
 					<div class="form-group">
 						<label>Potwierdź hasło:</label>
-						<input type="password" class="form-control" name="confirm-password" minlength="3" validateEqual="registerUserPassword.value" required [ngModel]="model.password" #registerUserConfirmPassword="ngModel" />
+						<input type="password" class="form-control" name="confirmPassword" minlength="3" validateEqual="password" required [ngModel]="model.confirmPassword" #registerUserConfirmPassword="ngModel" />
 						<div *ngIf="registerUserConfirmPassword.errors && (registerUserConfirmPassword.dirty || registerUserConfirmPassword.touched)" class="alert alert-danger">
 
 							<div [hidden]="!registerUserConfirmPassword.errors.required">
 								Potwierdzenie hasła jest wymagane
 							</div>
 
-							<div [hidden]="!registerUserPassword.errors.minlength">
+							<div [hidden]="!registerUserConfirmPassword.errors.minlength">
 								Conajmniej 3 znaki
 							</div>
 
@@ -87,7 +81,9 @@
 
 						</div>
 					</div>
--->
+						<button type="submit" class="btn custom-button" [disabled]="!registerForm.form.valid" (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value);">Zarejestruj</button>
+					</div>
+
 
 				</form>
 			</div>

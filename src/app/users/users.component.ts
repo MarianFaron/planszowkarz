@@ -18,7 +18,8 @@ export class UsersComponent implements OnInit {
   model = {
       login: '',
       email: '',
-      password: ''
+      password: '',
+      confirmPassword: ''
     };
 
   constructor(private userGameService: UsersService, private flashMessage:FlashMessagesService) { }
