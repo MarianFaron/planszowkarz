@@ -3,68 +3,70 @@
 		<div class="row">
 			<div class="col-md-6">
 
-				<!-- FACEBOOK LOGIN -->
-				<h2>Facebook Login</h2>
-				<button class="btn" type="button"(click)="this.fbLogin()" name="button">Login with service</button>
-				<button class="btn" type="button" name="button">
-						<a href="http://localhost:8080/app/auth/facebook"><span class="fa fa-facebook"></span>Login without angular2</a>
-				</button>
-
 
 				<!-- REGISTER FORM -->
 				<form action="/app/users/register" #registerForm="ngForm" method="post">
-					<h2>Rejestracja</h2>
-					<div class="form-group">
-						<label>Login:</label>
+					<h3>Rejestracja</h3>
+					<hr class="main-hr">
+					<div class="inner">
+						<div class="form-group">
+							<label>Login:</label>
 
-						<input type="text" class="form-control" required minlength="5" name="login" [ngModel]="model.login" #registerUserLogin="ngModel">
+							<input type="text" class="form-control" required minlength="5" name="login" [ngModel]="model.login" #registerUserLogin="ngModel">
 
-						<div *ngIf="registerUserLogin.errors && (registerUserLogin.dirty || registerUserLogin.touched)" class="alert alert-danger">
+							<div *ngIf="registerUserLogin.errors && (registerUserLogin.dirty || registerUserLogin.touched)" class="alert alert-danger">
 
-							<div [hidden]="!registerUserLogin.errors.required">
-								Login jest wymagany
+								<div [hidden]="!registerUserLogin.errors.required">
+									Login jest wymagany
+								</div>
+
+								<div [hidden]="!registerUserLogin.errors.minlength">
+									Wpisz co najmniej 5 znaków
+								</div>
+
 							</div>
-
-							<div [hidden]="!registerUserLogin.errors.minlength">
-								Wpisz co najmniej 5 znaków
-							</div>
-
-						</div>
-					</div>
-					<div class="form-group">
-						<label>E-mail:</label>
-						<input type="text" class="form-control" name="email" [ngModel]="model.email" #registerUserEmail="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
-
-						<div *ngIf="registerUserEmail.errors && (registerUserEmail.dirty || registerUserEmail.touched)" class="alert alert-danger">
-
-							<div [hidden]="!registerUserEmail.errors.required">
-								E-mail jest wymagany
-							</div>
-
-							<div [hidden]="!registerUserEmail.errors.pattern">
-								Wpisz poprawny adres e-mail (example@example.pl)
-							</div>
-
 						</div>
 
+						<div class="form-group">
+							<label>E-mail:</label>
+							<input type="text" class="form-control" name="email" [ngModel]="model.email" #registerUserEmail="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
 
-					</div>
-					<div class="form-group">
-						<label>Hasło:</label>
-						<input type="password" class="form-control" name="password" minlength="3" required [ngModel]="model.password" #registerUserPassword="ngModel" >
-						<div *ngIf="registerUserPassword.errors && (registerUserPassword.dirty || registerUserPassword.touched)" class="alert alert-danger">
+							<div *ngIf="registerUserEmail.errors && (registerUserEmail.dirty || registerUserEmail.touched)" class="alert alert-danger">
 
-							<div [hidden]="!registerUserPassword.errors.required">
-								Hasło jest wymagane
+								<div [hidden]="!registerUserEmail.errors.required">
+									E-mail jest wymagany
+								</div>
+
+								<div [hidden]="!registerUserEmail.errors.pattern">
+									Wpisz poprawny adres e-mail (example@example.pl)
+								</div>
+
 							</div>
 
-							<div [hidden]="!registerUserPassword.errors.minlength">
-								Wpisz co najmniej 3 znaki
-							</div>
 
 						</div>
 
+						<div class="form-group">
+							<label>Hasło:</label>
+							<input type="password" class="form-control" name="password" minlength="3" required [ngModel]="model.password" #registerUserPassword="ngModel" >
+							<div *ngIf="registerUserPassword.errors && (registerUserPassword.dirty || registerUserPassword.touched)" class="alert alert-danger">
+
+								<div [hidden]="!registerUserPassword.errors.required">
+									Hasło jest wymagane
+								</div>
+
+								<div [hidden]="!registerUserPassword.errors.minlength">
+									Wpisz co najmniej 3 znaki
+								</div>
+
+							</div>
+
+						</div>
+						<button type="submit" class="btn custom-button" [disabled]="!registerForm.form.valid" (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value);">Zarejestruj</button>
 					</div>
+
+
+
 <!--
 					<div class="form-group">
 						<label>Potwierdź hasło:</label>
@@ -86,7 +88,7 @@
 						</div>
 					</div>
 -->
-					<button type="submit" class="btn" [disabled]="!registerForm.form.valid" (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value);">Zarejestruj</button>
+
 				</form>
 			</div>
 
@@ -95,36 +97,55 @@
 			<div class="col-md-6">
 				<!-- LOGIN FORM -->
 				<form action="/app/users/login" #loginForm="ngForm" method="post">
-					<h2>Logowanie</h2>
-					<div class="form-group">
-						<label>E-mail:</label>
-						<input type="text" class="form-control" name="email" #loginUserEmail="ngModel" [ngModel]="model.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
-						<div *ngIf="loginUserEmail.errors && (loginUserEmail.dirty || loginUserEmail.touched)" class="alert alert-danger">
+					<h3>Logowanie</h3>
+					<hr class="main-hr">
+					<div class="inner">
+						<div class="form-group">
+							<label>E-mail:</label>
+							<input type="text" class="form-control" name="email" #loginUserEmail="ngModel" [ngModel]="model.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+							<div *ngIf="loginUserEmail.errors && (loginUserEmail.dirty || loginUserEmail.touched)" class="alert alert-danger">
 
-							<div [hidden]="!loginUserEmail.errors.required">
-								E-mail jest wymagany
+								<div [hidden]="!loginUserEmail.errors.required">
+									E-mail jest wymagany
+								</div>
+
+								<div [hidden]="!loginUserEmail.errors.pattern">
+									Wpisz poprawny adres e-mail (example@example.pl)
+								</div>
+
 							</div>
-
-							<div [hidden]="!loginUserEmail.errors.pattern">
-								Wpisz poprawny adres e-mail (example@example.pl)
-							</div>
-
 						</div>
-					</div>
-					<div class="form-group">
-						<label>Hasło:</label>
-						<input type="password" class="form-control" name="password" [ngModel]="model.password" #loginUserPassword="ngModel" required>
-						<div *ngIf="loginUserPassword.errors && (loginUserPassword.dirty || loginUserPassword.touched)" class="alert alert-danger">
+						<div class="form-group">
+							<label>Hasło:</label>
+							<input type="password" class="form-control" name="password" [ngModel]="model.password" #loginUserPassword="ngModel" required>
+							<div *ngIf="loginUserPassword.errors && (loginUserPassword.dirty || loginUserPassword.touched)" class="alert alert-danger">
 
-							<div [hidden]="!loginUserPassword.errors.required">
-								E-mail jest wymagany
+								<div [hidden]="!loginUserPassword.errors.required">
+									E-mail jest wymagany
+								</div>
+
 							</div>
-
 						</div>
+						<button type="submit" class="btn custom-button" [disabled]="!loginForm.form.valid" (click)="login(loginUserEmail.value, loginUserPassword.value);">Zaloguj</button>
+						<button type="button" class="btn forgot-button" data-toggle="modal" data-target="#forgot-password">Zapomniałem hasła</button>
 					</div>
-					<button type="submit" class="btn" [disabled]="!loginForm.form.valid" (click)="login(loginUserEmail.value, loginUserPassword.value);">Zaloguj</button>
+
+
+
 				</form>
-				<br /><button type="button" class="btn" data-toggle="modal" data-target="#forgot-password">Zapomniałem hasła</button>
+
+				<!-- FACEBOOK LOGIN -->
+				<h3>Zaloguj przez Facebooka</h3>
+				<hr class="main-hr">
+				<div class="inner">
+					<button class="btn custom-button" type="button"(click)="this.fbLogin()" name="button">Login with service</button>
+					<button class="btn custom-button" type="button" name="button">
+							<a href="http://localhost:8080/app/auth/facebook"><span class="fa fa-facebook"></span>Login without angular2</a>
+					</button>
+				</div>
+
+
+
 			</div>
 		</div>
 	</div>
@@ -162,7 +183,7 @@
 						</div>
 					</div>
 
-					<button [disabled]="!forgotPasswordForm.form.valid"  (click)="this.forgotPassword(forgotPasswordEmail.value)" data-dismiss="modal" class="btn" type="button" name="button">Resetuj hasło</button>
+					<button [disabled]="!forgotPasswordForm.form.valid"  (click)="this.forgotPassword(forgotPasswordEmail.value)" data-dismiss="modal" class="btn custom-button" type="button" name="button">Resetuj hasło</button>
 				</form>
       </div>
       <div class="modal-footer">

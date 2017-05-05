@@ -1,8 +1,29 @@
-router-outlet{
-    margin-top: 30px;
+router-outlet {
+  margin-top: 30px;
 }
 
-#footer{
-    position: fixed;
-    bottom: 0;
+#footer {
+  position: fixed;
+  bottom: 0;
+}
+
+.navbar {
+  background: #f98d1a;
+  border: none;
+  position: absolute;
+}
+
+.navbar a {
+  color: #fff;
+  border-top: 2px solid transparent;
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  -o-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+.navbar a:hover, .navbar a:focus, .navbar a:active {
+  color: #fff;
+  border-top: 2px solid #fff;
 }
