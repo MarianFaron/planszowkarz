@@ -9,7 +9,7 @@
 					<h3>{{ game.title }}</h3>
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Dodane przez: {{ game.userID }} <br>
 					<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lokalizacja: Poznań<br>
-					<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane {{ game.createdDate }}<br>
+					<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane {{ game.createdDate | date:'longDate' }}<br>
 					<div class="text-center"><button type="button" class="btn btn-default custom-button" disabled>Wymień się!</button></div>
 				</div>
 			</div>

@@ -75,7 +75,7 @@
 								Conajmniej 3 znaki
 							</div>
 
-							<div [hidden]="!registerUserConfirmPassword.errors.validateEqual">
+							<div [hidden]="!registerUserConfirmPassword.errors">
 								Musi być takie samo jak hasło
 							</div>
 
@@ -117,7 +117,7 @@
 							<div *ngIf="loginUserPassword.errors && (loginUserPassword.dirty || loginUserPassword.touched)" class="alert alert-danger">
 
 								<div [hidden]="!loginUserPassword.errors.required">
-									E-mail jest wymagany
+									Wpisz hasło
 								</div>
 
 							</div>

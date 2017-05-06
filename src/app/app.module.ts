@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { LOCALE_ID } from '@angular/core'
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -33,7 +34,7 @@ import { EqualValidator } from './users/equal-validator.directive'
     RoutingModule,
     FlashMessagesModule
   ],
-  providers: [AuthGuard],
+  providers: [{ provide: LOCALE_ID, useValue: "pl-PL" },AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
