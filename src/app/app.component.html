@@ -16,7 +16,7 @@
         <li><a routerLink="/main" routerLinkActive="active">Ranking Gier</a></li>
         <li><a routerLink="/main" routerLinkActive="active">Katalog Gier</a></li>
         <li><a *ngIf="currentUser == null" routerLink="/register" routerLinkActive="active">Rejestracja / Logowanie</a></li>
-        <li><a *ngIf="currentUser != null" routerLink="/user-game" routerLinkActive="active">Profil</a></li>
+        <li><a *ngIf="currentUser != null" routerLink="/user-games" routerLinkActive="active">Profil</a></li>
         <li><a *ngIf="currentUser != null" (click)="logout()">Wyloguj</a>
         </li>
       </ul>
