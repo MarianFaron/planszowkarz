@@ -12,6 +12,9 @@
 		</ul>
 	</div>
 	<div class="game-box">
+		<div class="user-panel-header">
+			<h5>Gry użytkownika: </h5>
+		</div>
 		<div class="game-single-box" *ngFor="let game of userGame">
 			<div class="game-img">
 				<img src="http://localhost:8080/assets/uploads/{{ game.gameImage }}">
