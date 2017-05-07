@@ -11,21 +11,21 @@
 			padding-left: 3%;
 			padding-right: 3%;
 			height: 50px;
-			display: block;				
+			display: block;
 			h5{
 				font-family: Roboto;
-			    color: #184b58;
-			    letter-spacing: -0.02em;
-			    font-size: 26px;
-			    line-height: 30px;
-			    display: inline-block;
+				color: #184b58;
+				letter-spacing: -0.02em;
+				font-size: 26px;
+				line-height: 30px;
+				display: inline-block;
 			}
 			.button-add-new-game{
 				float: right;
 				height: 100%;
 				display: flex;
-			    justify-content: center;
-			    align-items: center;
+				justify-content: center;
+				align-items: center;
 				button{
 					background-color: #f98d1a;
 					color: #FFF;
@@ -40,7 +40,7 @@
 				button:hover{
 					opacity: 0.8;
 				}
-			}			
+			}
 		}
 		hr.style1{
 			border-top: 1px solid #f98d1a;
@@ -79,11 +79,11 @@
 						width: calc(100% - 150px);
 						p.title{
 							font-family: Roboto;
-						    color: #000;
-						    letter-spacing: -0.02em;
-						    font-size: 26px;
-						    line-height: 30px;
-						    display: inline-block;
+							color: #000;
+							letter-spacing: -0.02em;
+							font-size: 26px;
+							line-height: 30px;
+							display: inline-block;
 						}
 						p.description{
 							text-align: justify;

@@ -10,7 +10,7 @@ import { UserGame } from '../user-profile/user-games/user-games';
 @Component({
   selector: 'app-other-user',
   templateUrl: './other-user.component.html',
-  styleUrls: ['./other-user.component.css'],
+  styleUrls: ['./other-user.component.scss'],
   providers: [OtherUserService]
 })
 

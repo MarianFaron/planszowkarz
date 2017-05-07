@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="other-info">
 		<div class="user-panel-header">
-			<h5>Znajdujesz się na profilu użytkownika: {{userInfo?.local.login}}</h5>
+			<h5>Przeglądasz profil użytkownika: {{userInfo?.local.login}}</h5>
 		</div>
 		<ul>
 			<li>Email: {{userInfo?.local.email}}</li>
@@ -11,19 +11,18 @@
 			<li>Numer telefonu: {{userInfo?.contactNumber}}</li>
 		</ul>
 	</div>
-	<div class="game-box">
-		<div class="user-panel-header">
-			<h5>Gry użytkownika: </h5>
-		</div>
-		<div class="game-single-box" *ngFor="let game of userGame">
-			<div class="game-img">
-				<img src="http://localhost:8080/assets/uploads/{{ game.gameImage }}">
-			</div>
-			<div class="game-info">
-				<p>Nazwa gry: {{ game.title }}</p>
-				<p>Kategoria: {{ game.category }}</p>
-				<p>Stan: {{ game.state }}</p>
-				<p>Dodatkowy opis: {{ game.description }}</p>
+	<div class="games-panel-content">
+		<div class="single-game-box" *ngFor="let game of userGame">
+			<div class="single-box-content">
+				<div class="game-image">
+					<img src="http://localhost:8080/assets/uploads/{{ game.gameImage }}">
+				</div>
+				<div class="game-info">
+					<p class="title">{{ game.title }}</p>
+					<p><strong>Kategoria: </strong>{{ game.category }}</p>
+					<p><strong>Stan: </strong>{{ game.state }}</p>
+					<p class="description">{{ game.description }}</p>
+				</div>
 			</div>
 		</div>
 	</div>
