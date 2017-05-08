@@ -1,0 +1,93 @@
+.other-info{
+	margin-bottom: 40px;
+	ul{
+		width: 100%;
+		margin: 0px;
+		padding: 0px;
+		display: block;
+		border-top: none;
+		li{
+			text-decoration: none;
+			list-style: none;
+			line-height: 40px;
+			padding-left: 40px;
+		}
+	}
+	.user-panel-header{
+		margin: 0;
+		padding-left: 3%;
+		padding-right: 3%;
+		height: 50px;
+		display: block;
+		h5{
+			font-family: Roboto;
+			color: #184b58;
+			letter-spacing: -0.02em;
+			font-size: 26px;
+			line-height: 30px;
+			display: inline-block;
+		}
+	}
+}
+
+.games-panel-content{
+	display: block;
+	.single-game-box{
+		margin-top: 20px;
+		padding-right: 3%;
+		padding-left: 3%;
+		width: 100%;
+		min-height: 130px;
+		display: table;
+		.single-box-content{
+			border-bottom: 2px solid #e7e7e7;
+			width: 100%;
+			display: inline-flex;
+			.game-image{
+				display: flex;
+				vertical-align: middle;
+				width: 120px;
+				height: 120px;
+				border: 1px solid #e7e7e7;
+				img{
+					background-position: top;
+					max-height: 95%;
+					max-width: 95%;
+					position: relative;
+					margin: auto;
+					display: block;
+				}
+			}
+			.game-info{
+				margin-left: 30px;
+				width: calc(100% - 150px);
+				p.title{
+					font-family: Roboto;
+					color: #000;
+					letter-spacing: -0.02em;
+					font-size: 26px;
+					line-height: 30px;
+					display: inline-block;
+				}
+				p.description{
+					text-align: justify;
+				}
+				.game-info-buttons{
+					float: right;
+					button{
+						width: 80px;
+						background-color: #e7e7e7;
+						border-radius: 5px;
+						border:none;
+						span{
+							margin-right: 5px;
+						}
+					}
+					.btn-remove-game{
+						color: #FF0000;
+					}
+				}
+			}
+		}
+	}
+}

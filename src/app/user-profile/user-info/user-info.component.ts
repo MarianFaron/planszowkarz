@@ -7,7 +7,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
-  styleUrls: ['./user-info.component.css'],
+  styleUrls: ['./user-info.component.scss'],
   providers: [UserInfoService]
 })
 export class UserInfoComponent implements OnInit {
@@ -19,13 +19,13 @@ export class UserInfoComponent implements OnInit {
   constructor(private http: Http, private userInfoService: UserInfoService, private flashMessage:FlashMessagesService) { }
 
   ngOnInit() {
-  	this.getUserInfo();
+    this.getUserInfo();
   }
 
   //get user information
 
   getUserInfo() {
-  	var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var userID = currentUser._id;
 
     this.userInfoService.getUser(userID)

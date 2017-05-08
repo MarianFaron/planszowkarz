@@ -1,0 +1,29 @@
+<div class="container">
+	<div class="other-info">
+		<div class="user-panel-header">
+			<h5>Przeglądasz profil użytkownika: {{userInfo?.local.login}}</h5>
+		</div>
+		<ul>
+			<li>Email: {{userInfo?.local.email}}</li>
+			<li>Imię: {{userInfo?.surName}}</li>
+			<li>Data urodzenia: {{userInfo?.dateBirth}}</li>
+			<li>Miasto: {{userInfo?.city}}</li>
+			<li>Numer telefonu: {{userInfo?.contactNumber}}</li>
+		</ul>
+	</div>
+	<div class="games-panel-content">
+		<div class="single-game-box" *ngFor="let game of userGame">
+			<div class="single-box-content">
+				<div class="game-image">
+					<img src="http://localhost:8080/assets/uploads/{{ game.gameImage }}">
+				</div>
+				<div class="game-info">
+					<p class="title">{{ game.title }}</p>
+					<p><strong>Kategoria: </strong>{{ game.category }}</p>
+					<p><strong>Stan: </strong>{{ game.state }}</p>
+					<p class="description">{{ game.description }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

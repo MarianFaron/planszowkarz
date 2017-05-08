@@ -1,16 +1,35 @@
 <div class="user-sidebar">
 	<div class="other-info">
-		<div class="user-panel-header">
-			<h5>Dane użytkownika</h5>
-		</div>
 		<img class="user-avatar" src="./assets/images/avatar.png" alt="user-avatar" />
 		<ul>
-			<li>Login: {{userInfo?.local.login}}</li>
-			<li>Email: {{userInfo?.local.email}}</li>
-			<li>Imię: {{userInfo?.surName}}</li>
-			<li>Data urodzenia: {{userInfo?.dateBirth}}</li>
-			<li>Miasto: {{userInfo?.city}}</li>
-			<li>Numer telefonu: {{userInfo?.contactNumber}}</li>
+			<li class="username">{{userInfo?.surName}}</li>
+			<li>
+				<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>Telefon {{userInfo?.contactNumber}}
+			</li>
+			<li>
+				<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+				Email: {{userInfo?.local.email}}
+			</li>
+			<li>
+				<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+				Data urodzenia: {{userInfo?.dateBirth}}
+			</li>
+			<li class="usercity">
+				<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+				Miasto: {{userInfo?.city}}
+			</li>
+			<li>
+				<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+				Ilość gier na wymianę: 2
+			</li>
+			<li>
+				<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+				4 przeprowadzonych wymian
+			</li>
+			<li>
+				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+				Ocena społeczności: 8,7/10
+			</li>
 		</ul>
 		<div>
 			<button class="btn right" data-toggle="modal" attr.data-target="#edit-user-{{userInfo?._id}}">Edytuj dane</button>

@@ -10,7 +10,7 @@ const URL = 'http://localhost:8080/app/uploads';
 @Component({
   selector: 'app-user-games',
   templateUrl: './user-games.component.html',
-  styleUrls: ['./user-games.component.css'],
+  styleUrls: ['./user-games.component.scss'],
   providers: [UserGameService]
 })
 

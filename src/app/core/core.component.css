@@ -52,3 +52,18 @@
     width: 90%;
     margin-bottom: 0;
 }
+
+.center-block{
+    max-width: 150px;
+    height: 150px;
+}
+
+
+.game-card{
+    color: #000;
+}
+
+.game-card:hover{
+    text-decoration: none;
+    color: #000;
+}

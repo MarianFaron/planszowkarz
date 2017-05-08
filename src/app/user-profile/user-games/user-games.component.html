@@ -1,96 +1,107 @@
-<div class="user-main-panel">
-	<div class="other-info">
-		<div class="user-panel-header">
+<div class="games-main-panel">
+	<div class="games-info">
+		<div class="games-panel-header">
 			<h5>Moje gry planszowe</h5>
-			<button class="btn right" data-toggle="modal" data-target="#add-game"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>dodaj grę</button>
+			<div class="button-add-new-game">
+				<button class="btn right" data-toggle="modal" data-target="#add-game">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Dodaj
+				</button>
+			</div>
 		</div>
-		<div class="game-box">
-			<div class="game-single-box" *ngFor="let game of userGame">
-				<div class="game-img">
-					<img src="http://localhost:8080/assets/uploads/{{ game.gameImage }}">
-				</div>
-				<div class="game-info">
-					<p>Nazwa gry: {{ game.title }}</p>
-					<p>Kategoria: {{ game.category }}</p>
-					<p>Stan: {{ game.state }}</p>
-					<p>Dodatkowy opis: {{ game.description }}</p>
-				</div>
-				<div class="game-info-function-box">
-					<button class="btn btn-default" data-toggle="modal" attr.data-target="#edit-game-{{game._id}}">
-						<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-					</button>
-					<button class="btn btn-default" data-toggle="modal" attr.data-target="#remove-game-{{game._id}}">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					</button>
+		<hr class="style1">
+		<div class="games-panel-content">
+			<div class="single-game-box" *ngFor="let game of userGame">
+				<div class="single-box-content">
+					<div class="game-image">
+						<img src="http://localhost:8080/assets/uploads/{{ game.gameImage }}">
+					</div>
+					<div class="game-info">
+						<p class="title">{{ game.title }}</p>
+						<div class="game-info-buttons">
+							<button class="btn btn-default" 
+									data-toggle="modal" attr.data-target="#edit-game-{{game._id}}">
+								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Edytuj
+							</button>
+							<button class="btn btn-default btn-remove-game" 
+									data-toggle="modal" attr.data-target="#remove-game-{{game._id}}">
+								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Usuń
+							</button>
+						</div>
+						<p><strong>Kategoria: </strong>{{ game.category }}</p>
+						<p><strong>Stan: </strong>{{ game.state }}</p>
+						<p class="description">{{ game.description }}</p>
+					</div>
+					<div class="game-info-function-box">
 
-					<!-- Edit Game Modal -->
+						<!-- Edit Game Modal -->
 
-					<div class="modal fade" id="edit-game-{{game._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Edytuj grę</h4>
-								</div>
-								<div class="modal-body">
-									<div class="form-group">
-										<label>Tytuł: <input class="form-control" value="{{game.title}}" #userGameTitle /></label>
+						<div class="modal fade" id="edit-game-{{game._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Edytuj grę</h4>
 									</div>
-									<label>Zdjęcie:
-									<div class="game-img">
-										<img src="./assets/uploads/{{ game.gameImage }}">
-									</div>
-									<input type="file" name="photo" value="cdcd" ng2FileSelect [uploader]="uploader" #userGameGameImage (change)="onChange($event)" /></label>
-									<div class="form-group">
-										<label for="exampleSelect1">Kategoria</label>
-											<select class="form-control" value="{{game.category}}" id="exampleSelect1" #userGameCategory>
-											   	<option>Strategiczna</option>
-											   	<option>Logiczna</option>
-											    <option>Ekonomiczna</option>
-											    <option>Imprezowa</option>
-											    <option>Karciana</option>
-											    <option>Figurkowa</option>
-											    <option>Przygodowa</option>
-											    <option>Rodzinna</option>
-											    <option>Zręcznościowa</option>
+									<div class="modal-body">
+										<div class="form-group">
+											<label>Tytuł: <input class="form-control" value="{{game.title}}" #userGameTitle /></label>
+										</div>
+										<label>Zdjęcie:
+										<div class="game-img">
+											<img src="./assets/uploads/{{ game.gameImage }}">
+										</div>
+										<input type="file" name="photo" value="cdcd" ng2FileSelect [uploader]="uploader" #userGameGameImage (change)="onChange($event)" /></label>
+										<div class="form-group">
+											<label for="exampleSelect1">Kategoria</label>
+												<select class="form-control" value="{{game.category}}" id="exampleSelect1" #userGameCategory>
+												   	<option>Strategiczna</option>
+												   	<option>Logiczna</option>
+												    <option>Ekonomiczna</option>
+												    <option>Imprezowa</option>
+												    <option>Karciana</option>
+												    <option>Figurkowa</option>
+												    <option>Przygodowa</option>
+												    <option>Rodzinna</option>
+												    <option>Zręcznościowa</option>
+												</select>
+										</div>
+										<div class="form-group">
+											<label for="exampleSelect1">Stan</label>
+											<select class="form-control" value="{{game.state}}" id="exampleSelect1" #userGameState>
+												<option>Nowa</option>
+												<option>Używana</option>
 											</select>
+										</div>
+										<div class="form-group">
+											<label>Dodatkowy opis: <textarea class="form-control" value="{{game.description}}"#userGameDescription></textarea></label>
+										</div>
 									</div>
-									<div class="form-group">
-										<label for="exampleSelect1">Stan</label>
-										<select class="form-control" value="{{game.state}}" id="exampleSelect1" #userGameState>
-											<option>Nowa</option>
-											<option>Używana</option>
-										</select>
+									<div class="modal-footer">
+										<button class="btn btn-default" (click)="uploader.uploadAll(); editUserGame(game._id, userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameGameImage.value)" data-dismiss="modal">Akceptuj</button>
 									</div>
-									<div class="form-group">
-										<label>Dodatkowy opis: <textarea class="form-control" value="{{game.description}}"#userGameDescription></textarea></label>
-									</div>
-								</div>
-								<div class="modal-footer">
-									<button class="btn btn-default" (click)="uploader.uploadAll(); editUserGame(game._id, userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameGameImage.value)" data-dismiss="modal">Akceptuj</button>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<!-- Remove Game Modal -->
+						<!-- Remove Game Modal -->
 
-					<div class="modal fade" id="remove-game-{{game._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Potwierdzenie</h4>
-								</div>
-								<div class="modal-body">
-									<label>Czy na pewno chcesz usunąć grę ze swojego profilu?</label>
-								</div>
-								<div class="modal-footer">
-									<button class="btn btn-default" (click)="removeUserGame(game._id);" data-dismiss="modal">Potwierdź</button>
+						<div class="modal fade" id="remove-game-{{game._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Potwierdzenie</h4>
+									</div>
+									<div class="modal-body">
+										<label>Czy na pewno chcesz usunąć grę ze swojego profilu?</label>
+									</div>
+									<div class="modal-footer">
+										<button class="btn btn-default" (click)="removeUserGame(game._id);" data-dismiss="modal">Potwierdź</button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> 
 				</div>
 			</div>
 		</div>
