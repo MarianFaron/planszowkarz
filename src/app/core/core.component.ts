@@ -21,6 +21,7 @@ export class CoreComponent implements OnInit {
 
   ngOnInit() {
     this.getUserGame();
+    console.log(this.userGame);
   }
 
   getUserGame() {

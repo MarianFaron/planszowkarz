@@ -10,6 +10,7 @@ import { User } from './user';
 @Injectable()
 export class UsersService {
 
+  private usersUrl = 'http://localhost:8080/app/users';
   private userRegisterUrl = 'http://localhost:8080/app/users/register';
   private userLoginUrl = 'http://localhost:8080/app/users/login';
   private userLogoutUrl = 'http://localhost:8080/app/users/logout';
@@ -18,6 +19,16 @@ export class UsersService {
 
   constructor (private http: Http) {}
 
+  // get Users
+  getUsers(): Observable<User[]>{
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(this.usersUrl, options)
+                    .map((response: Response) => response.json().users)
+                    .catch(this.handleError);
+    }
+  
   forgotPassword(email: string) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers});

@@ -13,7 +13,11 @@ export class UsersComponent implements OnInit {
 
   errorMessage: string;
   public user: User;
+  public allUsers: any[];
   mode = 'Observable';
+  userlogin = '';
+  loginIsUsed:Boolean = false;
+  //userList = Array;
 
   model = {
       login: '',
@@ -24,7 +28,28 @@ export class UsersComponent implements OnInit {
 
   constructor(private userGameService: UsersService, private flashMessage:FlashMessagesService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getUsers();
+  }
+  
+  getUsers() {
+    this.userGameService.getUsers()
+                      .subscribe(allUsers => {this.allUsers = allUsers;},
+                                error => {this.errorMessage = <any>error;}
+                      );
+  }
+
+
+  usedLogin(event: any) {
+    for(var i=0; i<this.allUsers.length; i++){
+      if(event.target.value != this.allUsers[i].local.login) {
+        this.loginIsUsed = false;
+      }else{
+        this.loginIsUsed = true;
+        this.userlogin = event.target.value;
+      }
+    }
+  }
 
   forgotPassword(email: string) {
     this.userGameService.forgotPassword(email)
