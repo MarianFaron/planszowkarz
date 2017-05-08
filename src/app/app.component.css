@@ -27,3 +27,34 @@ router-outlet {
   color: #fff;
   border-top: 2px solid #fff;
 }
+
+.footer {
+  margin-top: 40px;
+  background: #f98d1a;
+  color: #fff;
+  height: 40px;
+  line-height: 40px;
+  vertical-align: middle;
+  font-size: 12px;
+}
+
+.footer ul {
+  list-style-type: none;
+  margin: 0;
+}
+
+.footer ul li {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.footer ul li a {
+  color: #fff;
+}
+
+.footer ul li a:hover,
+.footer ul li a:focus,
+.footer ul li a:active {
+  color: #fff;
+  text-decoration: underline;
+}

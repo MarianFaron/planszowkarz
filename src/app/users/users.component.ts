@@ -31,7 +31,7 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.getUsers();
   }
-  
+
   getUsers() {
     this.userGameService.getUsers()
                       .subscribe(allUsers => {this.allUsers = allUsers;},
@@ -64,7 +64,7 @@ export class UsersComponent implements OnInit {
                           user => {
                             console.log(this.user);
                             this.user;
-                            window.location.replace('/user-game');
+                            window.location.replace('/user-games');
                           },
                           error => this.errorMessage = <any>error);
   }
@@ -76,7 +76,7 @@ export class UsersComponent implements OnInit {
                           if(response.message) {
                             this.flashMessage.show(response.message.toString(), {cssClass: 'alert-danger', timeout: 3000});
                           } else if(response.user) {
-                             window.location.replace('/user-game');
+                             window.location.replace('/user-games');
                           }
                         })
                         .subscribe(user => this.user, error => this.errorMessage = <any>error);
