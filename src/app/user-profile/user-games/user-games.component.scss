@@ -1,9 +1,6 @@
 .games-main-panel{
 	margin: 0;
 	display: block;
-	background-color: #f8f8f8;
-	border-right: 5px solid #e7e7e7;
-	border-bottom: 5px solid #e7e7e7;
 	.games-info{
 		margin-bottom: 40px;
 		.games-panel-header {
@@ -14,7 +11,6 @@
 			display: block;
 			h5{
 				font-family: Roboto;
-				color: #184b58;
 				letter-spacing: -0.02em;
 				font-size: 26px;
 				line-height: 30px;
@@ -26,20 +22,7 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				button{
-					background-color: #f98d1a;
-					color: #FFF;
-					border-radius: 15px;
-					width: 150px;
-					padding: 3px;
-					font-size: 16px;
-					span{
-						margin-right: 5px;
-					}
-				}
-				button:hover{
-					opacity: 0.8;
-				}
+
 			}
 		}
 		hr.style1{

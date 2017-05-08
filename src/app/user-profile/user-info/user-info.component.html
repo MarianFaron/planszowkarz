@@ -1,4 +1,4 @@
-<div class="user-sidebar">
+<div class="user-sidebar inner">
 	<div class="other-info">
 		<img class="user-avatar" src="./assets/images/avatar.png" alt="user-avatar" />
 		<ul>
@@ -31,8 +31,10 @@
 				Ocena społeczności: 8,7/10
 			</li>
 		</ul>
-		<div>
-			<button class="btn right" data-toggle="modal" attr.data-target="#edit-user-{{userInfo?._id}}">Edytuj dane</button>
+		<div class="text-center ">
+			<button class="btn custom-button" data-toggle="modal" attr.data-target="#edit-user-{{userInfo?._id}}">
+				<span class="glyphicon glyphicon-cog"></span> Edytuj dane
+			</button>
 		</div>
 		<!-- Edit User Modal -->
 		<div class="modal fade" id="edit-user-{{userInfo?._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -65,7 +67,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button class="btn btn-default" (click)="editUserInfo(userInfo?._id, userLogin.value, userSurname.value, userDateBirth.value, userCity.value, userContactNumber.value)" data-dismiss="modal">Zatwierdź</button>
+						<button class="btn custom-button" (click)="editUserInfo(userInfo?._id, userLogin.value, userSurname.value, userDateBirth.value, userCity.value, userContactNumber.value)" data-dismiss="modal">Zatwierdź</button>
 					</div>
 				</div>
 			</div>

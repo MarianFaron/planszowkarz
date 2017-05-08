@@ -11,12 +11,12 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a routerLink="/main" routerLinkActive="active">Strona Główna</a></li>
-        <li><a routerLink="/main" routerLinkActive="active">Ranking Gier</a></li>
-        <li><a routerLink="/main" routerLinkActive="active">Katalog Gier</a></li>
-        <li><a *ngIf="currentUser == null" routerLink="/register" routerLinkActive="active">Rejestracja / Logowanie</a></li>
-        <li><a *ngIf="currentUser != null" routerLink="/user-games" routerLinkActive="active">Profil</a></li>
-        <li><a *ngIf="currentUser != null" (click)="logout()">Wyloguj</a>
+        <li><a routerLink="/main" routerLinkActive="active"><span class="glyphicon glyphicon-ok-sign"></span> Wymiana</a></li>
+        <li><a routerLink="/main" routerLinkActive="active"><span class="glyphicon glyphicon-star"></span> Ranking</a></li>
+        <li><a routerLink="/main" routerLinkActive="active"><span class="glyphicon glyphicon-list"></span> Katalog</a></li>
+        <li><a *ngIf="currentUser == null" routerLink="/register" routerLinkActive="active"><span class="glyphicon glyphicon-log-in"></span> Rejestracja / Logowanie</a></li>
+        <li><a *ngIf="currentUser != null" routerLink="/user-games" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+        <li><a *ngIf="currentUser != null" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> Wyloguj</a>
         </li>
       </ul>
     </div>

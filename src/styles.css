@@ -23,6 +23,19 @@ button:focus {
   box-shadow: none;
 }
 
+.form-group label {
+  width: 100%;
+}
+
+input.form-control,
+textarea.form-control {
+  width: 100%;
+}
+
+textarea.form-control {
+  min-height: 180px;
+}
+
 .custom-button {
   margin-top: 15px;
   color: white;
@@ -31,7 +44,9 @@ button:focus {
   border: none;
 }
 
-.custom-button:hover {
+.custom-button:hover,
+.custom-button:focus,
+.custom-button:active {
   color: white;
   background: #f98d1a;
   border: none;
@@ -42,4 +57,9 @@ button:focus {
   height: 1px;
   background: #f98d1a;
   background-image: linear-gradient(to right, #fdd0a1, #f98d1a, #fdd0a1);
+}
+
+.inner{
+    background: #f5f5f5;
+    box-shadow: 2px 2px 1px #d5d5d5;
 }
