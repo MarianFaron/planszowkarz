@@ -16,6 +16,7 @@ import { UserGamesComponent } from './user-profile/user-games/user-games.compone
 import { EqualValidator } from './users/equal-validator.directive';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { OtherUserComponent } from './other-user/other-user.component'
+import { MyDatePickerModule } from 'mydatepicker';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { OtherUserComponent } from './other-user/other-user.component'
     FormsModule,
     HttpModule,
     RoutingModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    MyDatePickerModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pl-PL" },AuthGuard],
   bootstrap: [AppComponent]

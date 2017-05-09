@@ -153,9 +153,14 @@ router.route('/verify')
             if (err) {
               throw err;
             } else {
-              return res.redirect('/main');
+              TempUser.remove({email: tempUser.email}, function() {
+                console.log("User was deleted");
+              });
+              return res.redirect('/register');
             }
           });
+
+
         });
       } else {
         console.log("email is not verified");
@@ -163,6 +168,7 @@ router.route('/verify')
     } else {
       console.log("Request is from unknown source");
     }
+
   });
 
 /* LOGIN */

@@ -3,6 +3,7 @@ import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '
 import { UserInfoService } from './user-info.service';
 import { UserInfo } from './user-info';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import {IMyOptions} from 'mydatepicker';
 
 @Component({
   selector: 'app-user-info',
@@ -10,13 +11,32 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./user-info.component.scss'],
   providers: [UserInfoService]
 })
+
+
 export class UserInfoComponent implements OnInit {
 
   errorMessage: string;
   status: string;
-  userInfo: UserInfo[];
+  userInfo: UserInfo;
+
+  currentDate = new Date();
 
   constructor(private http: Http, private userInfoService: UserInfoService, private flashMessage:FlashMessagesService) { }
+
+  private myDatePickerOptions: IMyOptions = {
+        dateFormat: 'dd-mm-yyyy',
+        showTodayBtn: false,
+        maxYear: this.currentDate.getFullYear()
+    };
+
+    model = {
+      login: '',
+      surname: '',
+      datepicker: { date: {year: 2000, month: 1, day: 1 }},
+      dateBirth: '',
+      city: '',
+      contactNumber: '',
+    }
 
   ngOnInit() {
     this.getUserInfo();
@@ -30,14 +50,23 @@ export class UserInfoComponent implements OnInit {
 
     this.userInfoService.getUser(userID)
                      .subscribe(
-                        userInfo => this.userInfo = userInfo,
+                        userInfo => {
+                          this.userInfo = userInfo;
+                          this.model.dateBirth = userInfo.dateBirth;
+                        },
                         error => this.errorMessage = <any>error);
   }
 
   //edit user information
 
-  editUserInfo(id: string, login: string, surName: string, dateBirth: string, city: string, contactNumber: string) {
-    this.userInfoService.updateUser(id, login, surName, dateBirth, city, contactNumber)
+  editUserInfo(id: string, login: string, surName: string, city: string, contactNumber: string) {
+
+    var d = this.model.datepicker.date.year;
+    var m =this.model.datepicker.date.month;
+    var y = this.model.datepicker.date.day;
+    var date = '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+
+    this.userInfoService.updateUser(id, login, surName, date, city, contactNumber)
                      .subscribe(
                         userInfo  => {
                           this.userInfo;

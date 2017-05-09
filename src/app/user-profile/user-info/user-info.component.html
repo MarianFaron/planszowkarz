@@ -4,7 +4,7 @@
 		<ul>
 			<li class="username">{{userInfo?.surName}}</li>
 			<li>
-				<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>Telefon {{userInfo?.contactNumber}}
+				<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>Telefon: {{userInfo?.contactNumber}}
 			</li>
 			<li>
 				<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
@@ -47,27 +47,56 @@
 					<div class="modal-body">
 						<div class="form-group">
 							<label>Login: </label>
-							<input class="form-control" value="{{userInfo?.local.login}}" #userLogin />
+							<input class="form-control" [ngModel]="model.login" required minlength="5" name="login" value="{{userInfo?.local.login}}" #userLogin="ngModel"/>
+							<div *ngIf="userLogin.errors && (userLogin.dirty || userLogin.touched)" class="alert alert-danger">
+								<div [hidden]="!userLogin.errors.required">
+									Login jest wymagany
+								</div>
+								<div [hidden]="!userLogin.errors.minlength">
+									Wpisz co najmniej 5 znaków
+								</div>
+							</div>
 						</div>
 						<div class="form-group">
 							<label>Imię: </label>
-							<input class="form-control" placeholder="podaj imię" value="{{userInfo?.surName}}" #userSurname />
+							<input class="form-control" [ngModel]="model.surname" minlength="3" name="surname" placeholder="podaj imię" value="{{userInfo?.surName}}" #userSurname="ngModel" />
+							<div *ngIf="userSurname.errors && (userSurname.dirty || userSurname.touched)" class="alert alert-danger">
+								<div [hidden]="!userSurname.errors.minlength">
+									Wpisz co najmniej 3 znaki
+								</div>
+							</div>
 						</div>
 						<div class="form-group">
 							<label>Data urodzenia: </label>
-							<input class="form-control" placeholder="rrrr-mm-dd" value="{{userInfo?.dateBirth}}" #userDateBirth />
+							<my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model.datepicker" required></my-date-picker>
 						</div>
 						<div class="form-group">
 							<label>Miasto: </label>
-							<input class="form-control" placeholder="podaj miasto" value="{{userInfo?.city}}" #userCity />
+							<input class="form-control" [ngModel]="model.city" minlength="3" name="city" placeholder="podaj miasto" value="{{userInfo?.city}}" #userCity="ngModel" />
+							<div *ngIf="userCity.errors && (userCity.dirty || userCity.touched)" class="alert alert-danger">
+								<div [hidden]="!userCity.errors.minlength">
+									Wpisz co najmniej 3 znaki
+								</div>
+							</div>
 						</div>
 						<div class="form-group">
 							<label>Numer telefonu: </label>
-							<input class="form-control" placeholder="666-888-999" value="{{userInfo?.contactNumber}}" #userContactNumber />
+							<input type="text" class="form-control" minlength="9" maxlength="9" placeholder="666-888-999" value="{{userInfo?.contactNumber}}" [ngModel]="model.contactNumber" pattern="^\d+$" name="contactNumber"  #userContactNumber="ngModel" />
+							<div *ngIf="userContactNumber.errors && (userContactNumber.dirty || userContactNumber.touched)" class="alert alert-danger">
+								<div [hidden]="!userContactNumber.errors.pattern">
+									Użyj tylko cyfr
+								</div>
+								<div [hidden]="!userContactNumber.errors.minlength">
+									Wpisz 9 cyfr
+								</div>
+								<div [hidden]="!userContactNumber.errors.maxlength">
+									Wpisz 9 cyfr
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button class="btn custom-button" (click)="editUserInfo(userInfo?._id, userLogin.value, userSurname.value, userDateBirth.value, userCity.value, userContactNumber.value)" data-dismiss="modal">Zatwierdź</button>
+						<button class="btn custom-button" (click)="editUserInfo(userInfo?._id, userLogin.value, userSurname.value, userCity.value, userContactNumber.value)" data-dismiss="modal">Zatwierdź</button>
 					</div>
 				</div>
 			</div>

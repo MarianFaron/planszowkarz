@@ -16,7 +16,7 @@ export class UserInfoService {
 	constructor (private http: Http) {}
 
 	// get information about one user
-	getUser(id: string): Observable<UserInfo[]> {
+	getUser(id: string): Observable<UserInfo> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
     	let options = new RequestOptions({ headers: headers });
 

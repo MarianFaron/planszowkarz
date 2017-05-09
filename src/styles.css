@@ -36,6 +36,10 @@ textarea.form-control {
   min-height: 180px;
 }
 
+.form-control {
+  margin-bottom: 10px;
+}
+
 .custom-button {
   margin-top: 15px;
   color: white;
@@ -62,4 +66,25 @@ textarea.form-control {
 .inner{
     background: #f5f5f5;
     box-shadow: 2px 2px 1px #d5d5d5;
+}
+
+/* DATEPICKER */
+
+.mydp .header {
+    background: #f98d1a!important;
+    color: #fff!important
+}
+
+.mydp .headerbtncell,
+.mydp .headerbtn, .mydp .headerlabelbtn, .mydp .yearchangebtn {
+  background: #f98d1a!important;
+  color: #fff!important;
+}
+
+.mydp .selectedday .datevalue, .mydp .selectedmonth .monthvalue, .mydp .selectedyear .yearvalue {
+  color: #fff!important;
+}
+
+.mydp .caltable, .mydp .daycell, .mydp .monthcell, .mydp .monthtable, .mydp .weekdaytitle, .mydp .yearcell, .mydp .yeartable {
+	color: #000!important;
 }
