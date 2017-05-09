@@ -2,19 +2,19 @@
 	<div class="other-info">
 		<img class="user-avatar" src="./assets/images/avatar.png" alt="user-avatar" />
 		<ul>
-			<li class="username">{{userInfo?.surName}}</li>
-			<li>
+			<li *ngIf="userInfo?.surName" class="username">{{userInfo?.surName}}</li>
+			<li *ngIf="userInfo?.contactNumber">
 				<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>Telefon: {{userInfo?.contactNumber}}
 			</li>
-			<li>
+			<li *ngIf="userInfo?.local.email">
 				<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-				Email: {{userInfo?.local.email}}
+				Email: <a href="mailto:{{userInfo?.local.email}}">{{userInfo?.local.email}}</a>
 			</li>
-			<li>
+			<li *ngIf="userInfo?.dateBirth">
 				<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 				Data urodzenia: {{userInfo?.dateBirth}}
 			</li>
-			<li class="usercity">
+			<li *ngIf="userInfo?.city" class="usercity">
 				<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
 				Miasto: {{userInfo?.city}}
 			</li>
