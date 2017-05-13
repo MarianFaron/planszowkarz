@@ -15,7 +15,7 @@
 							<div class="single-game-box" *ngFor="let game of userGame">
 								<div class="single-box-content">
 									<div class="game-image">
-										<img src="http://localhost:8080/assets/uploads/{{ game.gameImage }}">
+										<img src="http://localhost:8080/assets/uploads/covers/{{ game.gameImage }}">
 									</div>
 									<div class="game-info">
 										<p class="title">{{ game.title }}</p>
@@ -37,7 +37,7 @@
 			<div class="col-md-4">
 				<div class="user-sidebar inner">
 					<div class="other-info">
-				<img class="user-avatar" src="./assets/images/avatar.png" alt="user-avatar" />
+				<img class="user-avatar" src="http://localhost:8080/assets/uploads/avatars/default.png" alt="user-avatar" />
 				<ul>
 					<li class="username">{{userInfo?.surName}}</li>
 					<li *ngIf="userInfo?.contactNumber">

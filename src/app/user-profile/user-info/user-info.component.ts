@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import { UserInfoService } from './user-info.service';
 import { UserInfo } from './user-info';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { IMyOptions} from 'mydatepicker';
+import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+
+const URL = 'http://localhost:8080/app/avatarUpload';
 
 @Component({
   selector: 'app-user-info',
@@ -18,10 +21,13 @@ export class UserInfoComponent implements OnInit {
   errorMessage: string;
   status: string;
   userInfo: UserInfo;
+  avatarImgName: string;
 
   currentDate = new Date();
 
-  constructor(private http: Http, private userInfoService: UserInfoService, private flashMessage:FlashMessagesService) { }
+  public avatarUploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
+
+  constructor(private http: Http, private el: ElementRef, private userInfoService: UserInfoService, private flashMessage:FlashMessagesService) { }
 
   private myDatePickerOptions: IMyOptions = {
         dateFormat: 'dd-mm-yyyy',
@@ -39,7 +45,18 @@ export class UserInfoComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.getUserInfo();
+    this.getUserInfo();    
+    this.avatarUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+    this.avatarUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
+  }
+
+  file: File;
+  onChange(event: EventTarget) {
+    let eventObj: MSInputMethodContext = <MSInputMethodContext> event;
+    let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
+    let files: FileList = target.files;
+    this.file = files[0];
+    this.avatarImgName = this.file.name;
   }
 
   //get user information
