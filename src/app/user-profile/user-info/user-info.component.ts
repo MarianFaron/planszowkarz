@@ -76,14 +76,14 @@ export class UserInfoComponent implements OnInit {
 
   //edit user information
 
-  editUserInfo(id: string, login: string, surName: string, city: string, contactNumber: string) {
+  editUserInfo(id: string, login: string, surName: string, city: string, contactNumber: string, avatarImage: string) {
 
     var d = this.model.datepicker.date.year;
     var m =this.model.datepicker.date.month;
     var y = this.model.datepicker.date.day;
     var date = '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
 
-    this.userInfoService.updateUser(id, login, surName, date, city, contactNumber)
+    this.userInfoService.updateUser(id, login, surName, date, city, contactNumber, this.avatarImgName)
                      .subscribe(
                         userInfo  => {
                           this.userInfo;

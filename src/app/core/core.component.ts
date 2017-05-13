@@ -35,15 +35,15 @@ export class CoreComponent implements OnInit {
                                     this.userGame = userGame.reverse(),
                                     error => this.errorMessage = <any>error,
                                     this.userGameIdArray = userGame.map(obj  => obj.userID),
-                                    console.log("Pobieram UserID wszystkich najnowszych gier"),
-                                    console.log("Dodaję UserID wszystkich najnowszych gier do tablicy"),
+                                    // "Pobieram UserID wszystkich najnowszych gier"
+                                    // "Dodaję UserID wszystkich najnowszych gier do tablicy"
                                     this.changeIdToLogin(this.userGameIdArray);
                                 }
                           );
   }
 
   changeIdToLogin(array: string[]){
-      console.log("Zamieniam wszystkie UserID na loginy");
+      // "Zamieniam wszystkie UserID na loginy");
       for (let i of array){
           this.getUser(i);
       }
@@ -54,7 +54,7 @@ export class CoreComponent implements OnInit {
                               .subscribe(
                                   userInfo => {
                                       this.userInfo = userInfo,
-                                      console.log("Pobieram dane użytkownika gry o konkretnym UserID"),
+                                      // "Pobieram dane użytkownika gry o konkretnym UserID"),
                                       this.addLoginToArray(userInfo);
                                   },
                                   error => this.errorMessage = <any>error
@@ -62,8 +62,7 @@ export class CoreComponent implements OnInit {
   }
 
   addLoginToArray(userInfo: any){
-      console.log("Dodaję login użytkownika gry do tablicy");
-      this.userNameArray.push(userInfo.local.login);
-      console.log("login użytkownika " + userInfo.local.login);      
+      // "Dodaję login użytkownika gry do tablicy");
+      this.userNameArray.push(userInfo.local.login);      
   }
 }

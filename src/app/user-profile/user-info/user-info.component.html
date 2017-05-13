@@ -1,6 +1,6 @@
 <div class="user-sidebar inner">
 	<div class="other-info">
-		<img class="user-avatar" src="http://localhost:8080/assets/uploads/avatars/default.png" alt="user-avatar" />
+		<img *ngIf="userInfo?.avatarImage" class="user-avatar" src="http://localhost:8080/assets/uploads/avatars/{{userInfo.avatarImage}}" alt="user-avatar" />
 		<ul>
 			<li *ngIf="userInfo?.surName" class="username">{{userInfo?.surName}}</li>
 			<li *ngIf="userInfo?.contactNumber">
@@ -65,6 +65,10 @@
 									Wpisz co najmniej 3 znaki
 								</div>
 							</div>
+						</div>						
+						<div class="form-group">
+							<label>Avatar: </label>
+							<input type="file" name="photo" ng2FileSelect [uploader]="avatarUploader" #userAvatarImage (change)="onChange($event)" />
 						</div>
 						<div class="form-group">
 							<label>Data urodzenia: </label>
@@ -96,7 +100,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button class="btn custom-button" (click)="editUserInfo(userInfo?._id, userLogin.value, userSurname.value, userCity.value, userContactNumber.value)" data-dismiss="modal">Zatwierdź</button>
+						<button class="btn custom-button" (click)="avatarUploader.uploadAll(); editUserInfo(userInfo?._id, userLogin.value, userSurname.value, userCity.value, userContactNumber.value, userAvatarImage.value)" data-dismiss="modal">Zatwierdź</button>
 					</div>
 				</div>
 			</div>

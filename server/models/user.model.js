@@ -45,6 +45,9 @@ var User = new Schema({
     },
     city: {
         type: String
+    },
+    avatarImage: {
+        type: String,
     }
 }, {
   versionKey: false
