@@ -7,11 +7,13 @@ import 'rxjs/add/operator/map';
 import "rxjs/add/operator/do";
 
 import { UserGame } from './../user-profile/user-games/user-games';
+import { UserInfo } from './../user-profile/user-info/user-info';
 
 @Injectable()
 export class CoreService {
 
     private userGameUrl = 'http://localhost:8080/app/userGames';
+    private userInfoURL = 'http://localhost:8080/app/users';
 
     constructor (private http: Http) {}
 
@@ -20,6 +22,16 @@ export class CoreService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(this.userGameUrl, options)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+    }
+
+    // get information about one user
+    getUser(id: string): Observable<UserInfo> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.get(`${this.userInfoURL}/${id}`, options)
                     .map(this.extractData)
                     .catch(this.handleError);
     }

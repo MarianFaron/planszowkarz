@@ -3,7 +3,7 @@ import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '
 import { UserInfoService } from './user-info.service';
 import { UserInfo } from './user-info';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import {IMyOptions} from 'mydatepicker';
+import { IMyOptions} from 'mydatepicker';
 
 @Component({
   selector: 'app-user-info',
