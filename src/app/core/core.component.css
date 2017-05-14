@@ -67,3 +67,15 @@
     text-decoration: none;
     color: #000;
 }
+
+.inner a{
+    color: #333;
+    text-decoration: underline;
+}
+
+.inner a:active,
+.inner a:focus,
+.inner a:hover{
+    color: #f98d1a;
+    text-decoration: underline;
+}
