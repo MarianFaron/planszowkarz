@@ -93,12 +93,12 @@ export class UsersService {
 
   // Register user
 
-  register(login: string, email: string, password: string) {
+  register(login: string, email: string, password: string, avatarImage: string) {
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers});
 
-    return this.http.post(this.userRegisterUrl, {login, email, password}  , options)
+    return this.http.post(this.userRegisterUrl, {login, email, password, avatarImage}  , options)
                     .map((response: Response) => {
                       if(response.json().message) {
                         return {message: response.json().message};

@@ -17,7 +17,9 @@ export class UsersComponent implements OnInit {
   mode = 'Observable';
   userlogin = '';
   loginIsUsed:Boolean = false;
+  avatarImgName = "default.png"
   //userList = Array;
+
 
   model = {
       login: '',
@@ -96,9 +98,9 @@ export class UsersComponent implements OnInit {
 
   }
 
-  register(login: string, email: string, password: string) {
+  register(login: string, email: string, password: string, avatarImage: string) {
 
-    this.userGameService.register(login, email, password)
+    this.userGameService.register(login, email, password, this.avatarImgName)
                         .map((response) => {
                           if(response.message) {
                             this.flashMessage.show(response.message.toString(), {cssClass: 'alert-danger', timeout: 3000});
