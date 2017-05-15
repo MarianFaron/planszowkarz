@@ -44,11 +44,13 @@ export class UsersComponent implements OnInit {
 
   usedLogin(event: any) {
     for(var i=0; i<this.allUsers.length; i++){
-      if(event.target.value != this.allUsers[i].local.login) {
-        this.loginIsUsed = false;
-      }else{
-        this.loginIsUsed = true;
-        this.userlogin = event.target.value;
+      if(this.allUsers[i].local != undefined) {
+        if(event.target.value != this.allUsers[i].local.login) {
+          this.loginIsUsed = false;
+        }else{
+          this.loginIsUsed = true;
+          this.userlogin = event.target.value;
+        }
       }
     }
   }
