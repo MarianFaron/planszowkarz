@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-md-3 col-sm-6 col-xs-12 new-game-wrapper" 
 			*ngFor="let i=index; let game of userGame | slice:0:4">
-			<a class="game-card" routerLink="/game/{{ game._id }}">
+			<a routerLink="/game/{{ game._id }}" class="game-card">
 				<div class="inner">
 					<img src="http://localhost:8080/assets/uploads/covers/{{ game.gameImage }}" alt="{{game.title}}" class="img-responsive center-block">
 					<h3>{{ game.title }}</h3>

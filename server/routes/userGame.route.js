@@ -37,7 +37,7 @@ router.route('/userGames')
 
 router.route('/userGames/:id')
 	.get((req, res) => {
-		userGames.findById(req.params.id, (err, game) => {
+		userGame.findById(req.params.id, (err, game) => {
 			if(err){
 				return res.status(400).json({message: "Bad Requested"});
 			} else if(!game){

@@ -5,7 +5,7 @@ var rootUrl = 'localhost:8080';
 
 var storage_src = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../src/assets/uploads/avatars')
+    cb(null, './src/assets/uploads/avatars')
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
@@ -14,7 +14,7 @@ var storage_src = multer.diskStorage({
 
 var storage_dist = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../dist/assets/uploads/avatars')
+    cb(null, './dist/assets/uploads/avatars')
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
