@@ -3,13 +3,13 @@
     <h3>Najnowsze ogłoszenia</h3>
 		<hr class="main-hr">
 		<div class="row">
-			<div class="col-md-3 col-sm-6 col-xs-12 new-game-wrapper" 
+			<div class="col-md-3 col-sm-6 col-xs-12 new-game-wrapper"
 			*ngFor="let i=index; let game of userGame | slice:0:4">
 			<a class="game-card" routerLink="/game/{{ game._id }}">
 				<div class="inner">
 					<img src="http://localhost:8080/assets/uploads/covers/{{ game.gameImage }}" alt="{{game.title}}" class="img-responsive center-block">
 					<h3>{{ game.title }}</h3>
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> 
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 					<a routerLink="/user/{{ game.userID }}">Dodane przez: {{ userNameArray[i] }}</a><br>
 					<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lokalizacja: Poznań<br>
 					<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane {{ game.createdDate | date:'longDate' }}<br>

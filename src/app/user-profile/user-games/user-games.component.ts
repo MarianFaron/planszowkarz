@@ -46,10 +46,7 @@ export class UserGamesComponent implements OnInit {
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var userID = currentUser._id;
 
-    var currentDate = new Date();
-    var createdDate = currentDate.getFullYear().toString() + '-' + 
-               ('0' + (currentDate.getMonth()+1).toString()).slice(-2) + '-' +
-               ('0' + (currentDate.getDate()).toString()).slice(-2);
+    var createdDate = new Date().toString();
 
     if (!title || !description || !category || !state) { return; }
     this.userGameService.create(title, category, state, description, createdDate, userID, this.gameImgName)
@@ -68,7 +65,7 @@ export class UserGamesComponent implements OnInit {
   editUserGame(id: string, title: string, category: string, state: string, description: string, modifiedDate: string, gameImage: string) {
 
     var currentDate = new Date();
-    var modifiedDate = currentDate.getFullYear().toString() + '-' + 
+    var modifiedDate = currentDate.getFullYear().toString() + '-' +
                ('0' + (currentDate.getMonth()+1).toString()).slice(-2) + '-' +
                ('0' + (currentDate.getDate()).toString()).slice(-2);
 

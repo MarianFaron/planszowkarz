@@ -11,7 +11,7 @@ router.route('/userGames')
 			}else{
 				return res.status(200).json(games);
 			}
-		});
+		}).sort({createdDate: 1});
 	})
 	// post new game
 	.post((req,res) => {
