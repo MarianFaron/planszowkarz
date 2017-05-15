@@ -64,7 +64,7 @@ export class CoreComponent implements OnInit {
 
   addLoginToArray(userInfo: any){
       // "Dodaję login użytkownika gry do tablicy");
-      if(userInfo.local != null) {
+      if(userInfo.local.login != undefined) {
         this.userNameArray.push(userInfo.local.login);
       } else {
         this.userNameArray.push(userInfo.facebok.name);

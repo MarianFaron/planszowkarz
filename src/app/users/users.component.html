@@ -126,18 +126,10 @@
 							</div>
 						</div>
 						<button type="submit" class="btn custom-button" [disabled]="!loginForm.form.valid" (click)="login(loginUserEmail.value, loginUserPassword.value);">Zaloguj</button>
+						<a class="btn custom-button" style="background:#3b5998" href="http://localhost:8080/app/auth/facebook"><i class="fa fa-facebook-square"></i> Zaloguj przez Facebook'a</a>
 						<button type="button" class="btn forgot-button" data-toggle="modal" data-target="#forgot-password">Zapomniałem hasła</button>
 					</div>
 				</form>
-
-				<!-- FACEBOOK LOGIN -->
-				<h3>Zaloguj przez Facebooka</h3>
-				<hr class="main-hr">
-				<div class="inner">
-					<a class="btn custom-button" href="http://localhost:8080/app/auth/facebook">
-						<i class="fa fa-facebook-square"></i> Zaloguj przez Facebook'a
-					</a>
-				</div>
 			</div>
 		</div>
 	</div>

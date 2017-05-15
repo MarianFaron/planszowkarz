@@ -63,7 +63,6 @@ export class UserInfoComponent implements OnInit {
 
   getUserInfo() {
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(JSON.parse(localStorage.getItem('currentUser')));
     var userID = currentUser._id;
 
     this.userInfoService.getUser(userID)

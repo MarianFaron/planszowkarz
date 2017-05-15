@@ -39,7 +39,7 @@
 				<div class="user-sidebar inner">
 					<div class="other-info">
 				<img *ngIf="userInfo?.avatarImage" class="user-avatar" src="http://localhost:8080/assets/uploads/avatars/{{ userInfo?.avatarImage }}" alt="user-avatar" />
-				<ul>			
+				<ul>	
 					<li class="username">{{userInfo?.surName}}</li>
 					<li *ngIf="userInfo?.contactNumber">
 						<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>Telefon: {{userInfo?.contactNumber}}

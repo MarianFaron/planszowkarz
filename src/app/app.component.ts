@@ -18,9 +18,8 @@ export class AppComponent  {
   currentUser;
   errorMessage: string;
   user: User[];
-  userek: string;
-  userId: string;
   usersUrl = 'http://localhost:8080/users'
+
 private sub: any;
   constructor(private router: Router, private userGameService: UsersService, private appService: AppService, private authGuard: AuthGuard, private route: ActivatedRoute) {}
 
@@ -49,7 +48,6 @@ private sub: any;
     });
     if(localStorage.getItem('currentUser')) {
       this.currentUser = localStorage.getItem('currentUser');
-      console.log(this.currentUser._id);
     } else {
       this.currentUser = null;
     }
