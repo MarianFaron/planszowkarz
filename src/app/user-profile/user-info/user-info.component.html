@@ -1,14 +1,28 @@
 <div class="user-sidebar inner">
 	<div class="other-info">
-		<img *ngIf="userInfo?.avatarImage" class="user-avatar" src="http://localhost:8080/assets/uploads/avatars/{{userInfo.avatarImage}}" alt="user-avatar" />
 		<ul>
 			<li *ngIf="userInfo?.surName" class="username">{{userInfo?.surName}}</li>
+
+			<!-- FACEBOOK INFO  -->
+			<div *ngIf="userInfo?.facebook">
+					<li *ngIf="userInfo?.facebook.name" class="username">{{userInfo?.facebook.name}}</li>
+					<li *ngIf="userInfo?.facebook.email">
+						<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+						Email: <a href="mailto:{{userInfo?.facebook.email}}">{{userInfo?.facebook.email}}</a>
+					</li>
+			</div>
+
+			<!-- LOCAL INFO -->
+
+			<div *ngIf="userInfo?.local">
+					<li *ngIf="userInfo?.local.email">
+						<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+						Email: <a href="mailto:{{userInfo?.local.email}}">{{userInfo?.local.email}}</a>
+					</li>
+			</div>
+
 			<li *ngIf="userInfo?.contactNumber">
 				<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>Telefon: {{userInfo?.contactNumber}}
-			</li>
-			<li *ngIf="userInfo?.local.email">
-				<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-				Email: <a href="mailto:{{userInfo?.local.email}}">{{userInfo?.local.email}}</a>
 			</li>
 			<li *ngIf="userInfo?.dateBirth">
 				<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
@@ -30,7 +44,11 @@
 				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 				Ocena społeczności: 8,7/10
 			</li>
+
 		</ul>
+
+		<img *ngIf="userInfo?.avatarImage" class="user-avatar" src="http://localhost:8080/assets/uploads/avatars/{{userInfo.avatarImage}}" alt="user-avatar" />
+
 		<div class="text-center ">
 			<button class="btn custom-button" data-toggle="modal" attr.data-target="#edit-user-{{userInfo?._id}}">
 				<span class="glyphicon glyphicon-cog"></span> Edytuj dane
@@ -46,14 +64,16 @@
 					</div>
 					<div class="modal-body">
 						<div class="form-group">
-							<label>Login: </label>
-							<input class="form-control" [ngModel]="model.login" required minlength="5" name="login" value="{{userInfo?.local.login}}" #userLogin="ngModel"/>
-							<div *ngIf="userLogin.errors && (userLogin.dirty || userLogin.touched)" class="alert alert-danger">
-								<div [hidden]="!userLogin.errors.required">
-									Login jest wymagany
-								</div>
-								<div [hidden]="!userLogin.errors.minlength">
-									Wpisz co najmniej 5 znaków
+							<div *ngIf="userInfo?.local">
+								<label>Login: </label>
+								<input class="form-control" [ngModel]="model.login" required minlength="5" name="login" value="{{userInfo?.local.login}}" #userLogin="ngModel"/>
+								<div *ngIf="userLogin.errors && (userLogin.dirty || userLogin.touched)" class="alert alert-danger">
+									<div [hidden]="!userLogin.errors.required">
+										Login jest wymagany
+									</div>
+									<div [hidden]="!userLogin.errors.minlength">
+										Wpisz co najmniej 5 znaków
+									</div>
 								</div>
 							</div>
 						</div>
@@ -65,7 +85,7 @@
 									Wpisz co najmniej 3 znaki
 								</div>
 							</div>
-						</div>						
+						</div>
 						<div class="form-group">
 							<label>Avatar: </label>
 							<input type="file" name="photo" ng2FileSelect [uploader]="avatarUploader" #userAvatarImage (change)="onChange($event)" />

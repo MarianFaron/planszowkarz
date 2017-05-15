@@ -63,16 +63,12 @@ router.route('/forgot')
 router.route('/auth/facebook')
   .get(function(req, res, next) {
     passport.authenticate('facebook', {
-      scope: 'email'
+      scope: ['email']
     })(req, res, next);
   });
 
 router.route('/auth/facebook/callback')
   .get(function(req, res, next) {
-    // passport.authenticate('facebook', {
-    // 	successRedirect : '/user-game,
-    // 	failureRedirect : '/register',
-    // })(req, res, next);
     passport.authenticate('facebook', function(err, user, info) {
       if (err) {
         return next(err)
@@ -82,9 +78,7 @@ router.route('/auth/facebook/callback')
           message: info.message
         })
       }
-      res.json({
-        user: user
-      });
+      res.redirect('/main?userId='+user._id);
     })(req, res, next);
   });
 

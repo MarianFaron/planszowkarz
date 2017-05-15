@@ -2,14 +2,16 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h3>Przeglądasz profil użytkownika: <b>{{userInfo?.local.login}}</b></h3>
+				<h3>Przeglądasz profil użytkownika: <b>
+					<span *ngIf="userInfo?.local">{{userInfo?.local.login}}</span>
+					<span *ngIf="userInfo?.facebook">{{userInfo?.facebook.name}}</span></b></h3>
 				<hr class="main-hr">
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-8">
 				<div class="games-main-panel inner">
-					<div class="games-info">					
+					<div class="games-info">
 						<div class="games-panel-content">
 							<div class="single-game-box" *ngFor="let game of userGame">
 								<div class="single-box-content">
@@ -37,15 +39,23 @@
 				<div class="user-sidebar inner">
 					<div class="other-info">
 				<img *ngIf="userInfo?.avatarImage" class="user-avatar" src="http://localhost:8080/assets/uploads/avatars/{{ userInfo?.avatarImage }}" alt="user-avatar" />
-				<ul>
+				<ul>			
 					<li class="username">{{userInfo?.surName}}</li>
 					<li *ngIf="userInfo?.contactNumber">
 						<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>Telefon: {{userInfo?.contactNumber}}
 					</li>
-					<li *ngIf="userInfo?.local.email">
-						<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-						Email: <a href="mailto:{{userInfo?.local.email}}">{{userInfo?.local.email}}</a>
-					</li>
+					<div *ngIf="userInfo?.local">
+						<li *ngIf="userInfo?.local.email">
+							<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+							Email: <a href="mailto:{{userInfo?.local.email}}">{{userInfo?.local.email}}</a>
+						</li>
+					</div>
+					<div *ngIf="userInfo?.facebook">
+						<li *ngIf="userInfo?.facebook.email">
+							<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+							Email: <a href="mailto:{{userInfo?.facebook.email}}">{{userInfo?.facebook.email}}</a>
+						</li>
+					</div>
 					<li *ngIf="userInfo?.dateBirth">
 						<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 						Data urodzenia: {{userInfo?.dateBirth}}

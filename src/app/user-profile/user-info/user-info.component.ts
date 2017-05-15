@@ -45,7 +45,7 @@ export class UserInfoComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.getUserInfo();    
+    this.getUserInfo();
     this.avatarUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
     this.avatarUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
   }
@@ -63,6 +63,7 @@ export class UserInfoComponent implements OnInit {
 
   getUserInfo() {
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(JSON.parse(localStorage.getItem('currentUser')));
     var userID = currentUser._id;
 
     this.userInfoService.getUser(userID)

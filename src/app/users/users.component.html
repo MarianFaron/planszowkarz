@@ -128,29 +128,19 @@
 						<button type="submit" class="btn custom-button" [disabled]="!loginForm.form.valid" (click)="login(loginUserEmail.value, loginUserPassword.value);">Zaloguj</button>
 						<button type="button" class="btn forgot-button" data-toggle="modal" data-target="#forgot-password">Zapomniałem hasła</button>
 					</div>
-
-
-
 				</form>
 
 				<!-- FACEBOOK LOGIN -->
 				<h3>Zaloguj przez Facebooka</h3>
 				<hr class="main-hr">
 				<div class="inner">
-					<button class="btn custom-button" type="button"(click)="this.fbLogin()" name="button">Login with service</button>
-					<button class="btn custom-button" type="button" name="button">
-							<a href="http://localhost:8080/app/auth/facebook"><span class="fa fa-facebook"></span>Login without angular2</a>
-					</button>
+					<a class="btn custom-button" href="http://localhost:8080/app/auth/facebook">
+						<i class="fa fa-facebook-square"></i> Zaloguj przez Facebook'a
+					</a>
 				</div>
-
-
-
 			</div>
 		</div>
 	</div>
-
-
-
 
 </section>
 

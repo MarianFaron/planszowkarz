@@ -19,12 +19,12 @@ export class CoreComponent implements OnInit {
   userInfo: UserInfo;
   userGameIdArray: string[];
   userNameArray: string[] = [];
-  
-  constructor(private http: Http,  private CoreService: CoreService) { 
-    
+
+  constructor(private http: Http,  private CoreService: CoreService) {
+
   }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.getUserGame();
   }
 
@@ -61,8 +61,14 @@ export class CoreComponent implements OnInit {
                               );
   }
 
+
   addLoginToArray(userInfo: any){
       // "Dodaję login użytkownika gry do tablicy");
-      this.userNameArray.push(userInfo.local.login);      
+      if(userInfo.local != null) {
+        this.userNameArray.push(userInfo.local.login);
+      } else {
+        this.userNameArray.push(userInfo.facebok.name);
+      }
+
   }
 }
