@@ -17,19 +17,18 @@ export class GameDetailsComponent implements OnInit {
   status: string;
   gameDetails: GameDetails;
 
-  constructor( private http: Http, 
-               private gameDetailsService: GameDetailsService, 
+  constructor( private http: Http,
+               private gameDetailsService: GameDetailsService,
                private flashMessage:FlashMessagesService,
                private activeRoute: ActivatedRoute) {}
 
   ngOnInit() {
     let id = this.activeRoute.snapshot.params['_id'];
+    console.log(id);
 
     this.gameDetailsService.getGames(id)
-      .subscribe(gameDetails => {
-      					this.gameDetails = gameDetails,
-                 		error => this.errorMessage = <any>error;
-                 	}
+      .subscribe(gameDetails => { this.gameDetails = gameDetails;},
+                	error => {this.errorMessage = <any>error;}
                 );
   }
 }

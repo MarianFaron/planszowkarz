@@ -1,17 +1,16 @@
 import { Component, OnInit , ElementRef, Input} from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import { UserGame } from './user-games';
+import { AppService } from '../../app.service';
 import { UserGameService } from './user-games.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
-
-const URL = 'http://localhost:8080/app/coverUpload';
 
 @Component({
   selector: 'app-user-games',
   templateUrl: './user-games.component.html',
   styleUrls: ['./user-games.component.scss'],
-  providers: [UserGameService]
+  providers: [UserGameService, AppService]
 })
 
 export class UserGamesComponent implements OnInit {
@@ -21,9 +20,10 @@ export class UserGamesComponent implements OnInit {
   userGame: UserGame[];
   gameImgName: string;
 
-  public coverUploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
+  public URL = this.appService.getUrl('/app/coverUpload');
+  public coverUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
-  constructor (private http: Http, private el: ElementRef, private userGameService: UserGameService, private flashMessage:FlashMessagesService) {}
+  constructor (private http: Http, private el: ElementRef, private appService: AppService, private userGameService: UserGameService, private flashMessage:FlashMessagesService) {}
 
   ngOnInit() {
     this.getUserGame();

@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { User }              from './user';
 import { UsersService }       from './users.service';
+import { AppService }       from '../app.service';
 import { FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
-  providers: [UsersService]
+  providers: [AppService, UsersService]
 })
 export class UsersComponent implements OnInit {
 
@@ -16,10 +17,8 @@ export class UsersComponent implements OnInit {
   public allUsers: any[];
   mode = 'Observable';
   userlogin = '';
-  loginIsUsed:Boolean = false;
+  loginIsUsed: Boolean = false;
   avatarImgName = "default.png"
-  //userList = Array;
-
 
   model = {
       login: '',
@@ -28,7 +27,7 @@ export class UsersComponent implements OnInit {
       confirmPassword: ''
     };
 
-  constructor(private userGameService: UsersService, private flashMessage:FlashMessagesService) { }
+  constructor(private appService: AppService, private userGameService: UsersService, private flashMessage:FlashMessagesService) { }
 
   ngOnInit() {
     this.getUsers();
@@ -45,11 +44,12 @@ export class UsersComponent implements OnInit {
   usedLogin(event: any) {
     for(var i=0; i<this.allUsers.length; i++){
       if(this.allUsers[i].local != undefined) {
-        if(event.target.value != this.allUsers[i].local.login) {
-          this.loginIsUsed = false;
-        }else{
+        if(this.allUsers[i].local.login.toLowerCase() == event.target.value.toLowerCase()) {
           this.loginIsUsed = true;
           this.userlogin = event.target.value;
+          return;
+        } else {
+          this.loginIsUsed = false;
         }
       }
     }

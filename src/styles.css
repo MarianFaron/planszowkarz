@@ -46,6 +46,10 @@ textarea.form-control {
   margin-bottom: 10px;
 }
 
+.loading {
+  max-width: 150px;
+}
+
 .custom-button {
   margin-top: 15px;
   color: white;

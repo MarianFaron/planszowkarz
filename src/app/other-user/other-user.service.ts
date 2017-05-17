@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-
+import { AppService } from '../app.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -13,10 +13,10 @@ import { UserGame } from '../user-profile/user-games/user-games';
 @Injectable()
 export class OtherUserService {
 
-	private userInfoURL = 'http://localhost:8080/app/users';
-	private userGameUrl = 'http://localhost:8080/app/userGames';
+	private userInfoURL = this.appService.getUrl('/app/users');
+	private userGameUrl = this.appService.getUrl('/app/userGames');
 
-	constructor (private http: Http) {}
+	constructor (private http: Http, private appService: AppService) {}
 
 	// get information about one user
 	getUser(id: string): Observable<OtherUser[]> {
@@ -24,8 +24,8 @@ export class OtherUserService {
     	let options = new RequestOptions({ headers: headers });
 
     	return this.http.get(`${this.userInfoURL}/${id}`, options)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
 	}
 
 	getGames(id: string): Observable<UserGame[]>{
@@ -33,25 +33,8 @@ export class OtherUserService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(`${this.userInfoURL}/${id}/userGames`, options)
-                    .map(this.extractData)
-                    .catch(this.handleError);
-  } 
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
+  }
 
-	private extractData(res: Response) {
-	    let body = res.json();
-	    return body || { };
-	}
-
-	private handleError (error: Response | any) {
-	    let errMsg: string;
-	    if (error instanceof Response) {
-	      const body = error.json() || '';
-	      const err = body.error || JSON.stringify(body);
-	      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-	    } else {
-	      errMsg = error.message ? error.message : error.toString();
-	    }
-	    console.error(errMsg);
-	    return Observable.throw(errMsg);
-	}
 }

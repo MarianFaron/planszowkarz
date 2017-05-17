@@ -1,5 +1,7 @@
 <div class="user-sidebar inner">
 	<div class="other-info">
+
+		<img class="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" alt="user-avatar" />
 		<ul>
 			<li *ngIf="userInfo?.surName" class="username">{{userInfo?.surName}}</li>
 
@@ -44,10 +46,7 @@
 				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 				Ocena społeczności: 8,7/10
 			</li>
-
 		</ul>
-
-		<img *ngIf="userInfo?.avatarImage" class="user-avatar" src="http://localhost:8080/assets/uploads/avatars/{{userInfo.avatarImage}}" alt="user-avatar" />
 
 		<div class="text-center ">
 			<button class="btn custom-button" data-toggle="modal" attr.data-target="#edit-user-{{userInfo?._id}}">
@@ -64,7 +63,6 @@
 					</div>
 					<div class="modal-body">
 						<div class="form-group">
-							<div *ngIf="userInfo?.local">
 								<label>Login: </label>
 								<input class="form-control" [ngModel]="model.login" required minlength="5" name="login" value="{{userInfo?.local.login}}" #userLogin="ngModel"/>
 								<div *ngIf="userLogin.errors && (userLogin.dirty || userLogin.touched)" class="alert alert-danger">
@@ -75,7 +73,6 @@
 										Wpisz co najmniej 5 znaków
 									</div>
 								</div>
-							</div>
 						</div>
 						<div class="form-group">
 							<label>Imię: </label>

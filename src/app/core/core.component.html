@@ -7,7 +7,7 @@
 			*ngFor="let i=index; let game of userGame | slice:0:4">
 			<a routerLink="/game/{{ game._id }}" class="game-card">
 				<div class="inner">
-					<img src="http://localhost:8080/assets/uploads/covers/{{ game.gameImage }}" alt="{{game.title}}" class="img-responsive center-block">
+					<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.gameImage }}" alt="{{game.title}}" class="img-responsive center-block">
 					<h3>{{ game.title }}</h3>
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 					<a routerLink="/user/{{ game.userID }}">Dodane przez: {{ userNameArray[i] }}</a><br>
@@ -25,7 +25,7 @@
 					<hr class="main-hr">
 					<div class="inner">
 						<div class="rate-info">
-							<img src="http://localhost:8080/assets/uploads/covers/civilizationpl.jpg" alt="civilization" class="rate-img">
+							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
 							<div class="rate-text">
 								<h3>Civilization</h3>
 									<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
@@ -35,7 +35,7 @@
 						</div>
 						<hr class="rate-hr">
 						<div class="rate-info">
-							<img src="http://localhost:8080/assets/uploads/covers/wiedzmin.jpg" alt="wiedzmin" class="rate-img">
+							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}wiedzmin.jpg" alt="wiedzmin" class="rate-img">
 							<div class="rate-text">
 								<h3>Wiedźmin</h3>
 								<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
@@ -45,7 +45,7 @@
 						</div>
 						<hr class="rate-hr">
 						<div class="rate-info">
-							<img src="http://localhost:8080/assets/uploads/covers/civilizationpl.jpg" alt="civilization" class="rate-img">
+							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
 							<div class="rate-text">
 								<h3>Civilization</h3>
 								<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
@@ -61,7 +61,7 @@
 					<hr class="main-hr">
 					<div class="inner">
 						<div class="rate-info">
-							<img src="http://localhost:8080/assets/uploads/covers/civilizationpl.jpg" alt="civilization" class="rate-img">
+							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
 							<div class="rate-text">
 								<h3>Civilization</h3>
 									<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
@@ -71,7 +71,7 @@
 						</div>
 						<hr class="rate-hr">
 						<div class="rate-info">
-							<img src="http://localhost:8080/assets/uploads/covers/wiedzmin.jpg" alt="wiedzmin" class="rate-img">
+							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}wiedzmin.jpg" alt="wiedzmin" class="rate-img">
 							<div class="rate-text">
 								<h3>Wiedźmin</h3>
 								<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
@@ -81,7 +81,7 @@
 						</div>
 						<hr class="rate-hr">
 						<div class="rate-info">
-							<img src="http://localhost:8080/assets/uploads/covers/civilizationpl.jpg" alt="civilization" class="rate-img">
+							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
 							<div class="rate-text">
 								<h3>Civilization</h3>
 								<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
@@ -97,7 +97,7 @@
 					<hr class="main-hr">
 					<div class="inner">
 						<div class="rate-info">
-							<img src="http://localhost:8080/assets/uploads/covers/civilizationpl.jpg" alt="civilization" class="rate-img">
+							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
 							<div class="rate-text">
 								<h3>Civilization</h3>
 									<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
@@ -107,7 +107,7 @@
 						</div>
 						<hr class="rate-hr">
 						<div class="rate-info">
-							<img src="http://localhost:8080/assets/uploads/covers/wiedzmin.jpg" alt="wiedzmin" class="rate-img">
+							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}wiedzmin.jpg" alt="wiedzmin" class="rate-img">
 							<div class="rate-text">
 								<h3>Wiedźmin</h3>
 								<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
@@ -117,7 +117,7 @@
 						</div>
 						<hr class="rate-hr">
 						<div class="rate-info">
-							<img src="http://localhost:8080/assets/uploads/covers/civilizationpl.jpg" alt="civilization" class="rate-img">
+							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
 							<div class="rate-text">
 								<h3>Civilization</h3>
 								<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>

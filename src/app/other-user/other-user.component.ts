@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import { OtherUserService } from './other-user.service';
+import { AppService } from '../app.service';
 import { OtherUser } from './other-user';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ActivatedRoute } from '@angular/router';
@@ -11,7 +12,7 @@ import { UserGame } from '../user-profile/user-games/user-games';
   selector: 'app-other-user',
   templateUrl: './other-user.component.html',
   styleUrls: ['./other-user.component.scss'],
-  providers: [OtherUserService]
+  providers: [OtherUserService, AppService]
 })
 
 export class OtherUserComponent implements OnInit {
@@ -21,8 +22,9 @@ export class OtherUserComponent implements OnInit {
   userInfo: OtherUser[];
   userGame: UserGame[];
 
-  constructor( private http: Http, 
-               private otherUserService: OtherUserService, 
+  constructor( private http: Http,
+               private otherUserService: OtherUserService,
+               private appService: AppService,
                private flashMessage:FlashMessagesService,
                private activeRoute: ActivatedRoute) {}
 

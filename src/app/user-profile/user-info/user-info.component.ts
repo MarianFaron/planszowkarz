@@ -1,18 +1,18 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import { UserInfoService } from './user-info.service';
+import { AppService } from '../../app.service';
 import { UserInfo } from './user-info';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { IMyOptions} from 'mydatepicker';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
-const URL = 'http://localhost:8080/app/avatarUpload';
 
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.scss'],
-  providers: [UserInfoService]
+  providers: [UserInfoService, AppService]
 })
 
 
@@ -25,9 +25,10 @@ export class UserInfoComponent implements OnInit {
 
   currentDate = new Date();
 
-  public avatarUploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
+  public URL = this.appService.getUrl('/app/avatarUpload');
+  public avatarUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
-  constructor(private http: Http, private el: ElementRef, private userInfoService: UserInfoService, private flashMessage:FlashMessagesService) { }
+  constructor(private http: Http, private el: ElementRef, private appService: AppService, private userInfoService: UserInfoService, private flashMessage:FlashMessagesService) { }
 
   private myDatePickerOptions: IMyOptions = {
         dateFormat: 'dd-mm-yyyy',
@@ -41,7 +42,7 @@ export class UserInfoComponent implements OnInit {
       datepicker: { date: {year: 2000, month: 1, day: 1 }},
       dateBirth: '',
       city: '',
-      contactNumber: '',
+      contactNumber: ''
     }
 
   ngOnInit() {

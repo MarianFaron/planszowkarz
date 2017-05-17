@@ -2,15 +2,14 @@ import { Component } from '@angular/core';
 import { UsersService }       from './users/users.service';
 import { User }              from './users/user';
 import { AuthGuard }              from './guards/auth.guard';
-import { ActivatedRoute } from '@angular/router'
+import { Router, CanActivate, ActivatedRoute } from '@angular/router'
 import { AppService } from './app.service';
-import { Router, CanActivate } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [UsersService, AuthGuard,AppService]
+  providers: [UsersService, AuthGuard, AppService]
 })
 export class AppComponent  {
 
@@ -18,9 +17,9 @@ export class AppComponent  {
   currentUser;
   errorMessage: string;
   user: User[];
-  usersUrl = 'http://localhost:8080/users'
 
-private sub: any;
+  private sub: any;
+  
   constructor(private router: Router, private userGameService: UsersService, private appService: AppService, private authGuard: AuthGuard, private route: ActivatedRoute) {}
 
   logout() {

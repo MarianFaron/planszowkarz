@@ -13,7 +13,7 @@
 			<div class="single-game-box" *ngFor="let game of userGame">
 				<div class="single-box-content">
 					<div class="game-image">
-						<img src="http://localhost:8080/assets/uploads/covers/{{ game.gameImage }}">
+						<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.gameImage }}">
 					</div>
 					<div class="game-info">
 						<p class="title">{{ game.title }}</p>
@@ -48,7 +48,7 @@
 										</div>
 										<label>Zdjęcie:
 										<div class="game-img">
-											<img src="http://localhost:8080/assets/uploads/covers/{{ game.gameImage }}">
+											<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.gameImage }}">
 										</div>
 										<input type="file" name="photo" value="cdcd" ng2FileSelect [uploader]="coverUploader" #userGameGameImage (change)="onChange($event)" /></label>
 										<div class="form-group">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import { CoreService } from './core.service';
+import { AppService } from '../app.service';
 import { UserGame } from './../user-profile/user-games/user-games';
 import { UserInfo } from './../user-profile/user-info/user-info';
 import { UserGameService } from './../user-profile/user-games/user-games.service';
@@ -10,7 +11,7 @@ import { UserInfoService } from './../user-profile/user-info/user-info.service';
   selector: 'app-core',
   templateUrl: './core.component.html',
   styleUrls: ['./core.component.css'],
-  providers: [UserGameService, UserInfoService, CoreService]
+  providers: [UserGameService, UserInfoService, CoreService, AppService]
 })
 export class CoreComponent implements OnInit {
 
@@ -20,7 +21,7 @@ export class CoreComponent implements OnInit {
   userGameIdArray: string[];
   userNameArray: string[] = [];
 
-  constructor(private http: Http,  private CoreService: CoreService) {
+  constructor(private http: Http,  private CoreService: CoreService, private appService: AppService) {
 
   }
 

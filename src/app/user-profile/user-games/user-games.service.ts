@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-
+import { AppService } from '../../app.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -11,10 +11,10 @@ import { UserGame } from './user-games';
 @Injectable()
 export class UserGameService {
 
-  private userGameUrl = 'http://localhost:8080/app/userGames';
-  private userUrl = 'http://localhost:8080/app/users';
+  private userGameUrl = this.appService.getUrl('/app/userGames');
+  private userUrl = this.appService.getUrl('/app/users');
 
-  constructor (private http: Http) {}
+  constructor (private http: Http, private appService: AppService) {}
 
   // Create user game
 
@@ -24,8 +24,8 @@ export class UserGameService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.userGameUrl, { title, category, state, description, createdDate, userID, gameImage }, options)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
   }
 
   // Update user game
@@ -36,8 +36,8 @@ export class UserGameService {
       let options = new RequestOptions({ headers: headers });
 
       return this.http.patch(`${this.userGameUrl}/${id}`, {title, category, state, description, modifiedDate, gameImage}, options)
-                      .map(this.extractData)
-                      .catch(this.handleError);
+                      .map(this.appService.extractData)
+                      .catch(this.appService.handleError);
   }
 
   // Delete user game
@@ -47,8 +47,8 @@ export class UserGameService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.delete(`${this.userGameUrl}/${id}`, options)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
   }
 
   // Get user games
@@ -58,25 +58,8 @@ export class UserGameService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(`${this.userUrl}/${id}/userGames`, options)
-                    .map(this.extractData)
-                    .catch(this.handleError);
-  }  
-
-  private extractData(res: Response) {
-    let body = res.json();
-    return body || { };
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
   }
 
-  private handleError (error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
-  }
 }
