@@ -28,6 +28,47 @@ router-outlet {
   border-top: 2px solid #fff;
 }
 
+.navbar-collapse {
+  max-width: 600px;
+  display: inline-block;
+  float: right;
+}
+
+.navbar form {
+  max-width: 350px;
+  display: inline-block;
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  padding: 0 10px;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #fff;
+}
+.search-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #fff;
+   opacity:  1;
+}
+.search-input::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #fff;
+   opacity:  1;
+}
+.search-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #fff;
+}
+.search-input::-ms-input-placeholder { /* Microsoft Edge */
+   color:    #fff;
+}
+
 .footer {
   margin-top: 40px;
   background: #f98d1a;

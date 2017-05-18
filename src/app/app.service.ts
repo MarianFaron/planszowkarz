@@ -10,6 +10,7 @@ export class AppService {
 
   private rootUrl = 'http://localhost:8080';
   private usersUrl = this.getUrl('/app/users');
+  private searchUrl = this.getUrl('/app/search');
 
   constructor (private http: Http) {}
 
@@ -25,6 +26,15 @@ export class AppService {
                     .map((response: Response) => {
                       localStorage.setItem('currentUser', JSON.stringify(response.json()));
                     })
+                    .catch(this.handleError);
+  }
+
+  search(query: string) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.searchUrl, {query}, options)
+                    .map(this.extractData)
                     .catch(this.handleError);
   }
 

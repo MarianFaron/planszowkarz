@@ -2,6 +2,18 @@ var express = require('express');
 var router = express.Router();
 var userGame = require('../models/userGame.model');
 
+router.route('/search')
+  .post(function(req, res, next) {
+		userGame.find({title: {$regex :".*"+req.body.query+".*"}}, function(err,games) {
+			if(err){
+				return res.status(400).json({message: "Bad Requested"});
+			} else {
+        console.log(games);
+				return res.status(200).json(games);
+			}
+		}).sort({createdDate: 1});
+  })
+
 router.route('/userGames')
 	// get all games
 	.get((req,res) => {

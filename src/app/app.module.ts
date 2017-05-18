@@ -18,6 +18,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { OtherUserComponent } from './other-user/other-user.component'
 import { MyDatePickerModule } from 'mydatepicker';
 import { GameDetailsComponent } from './game-details/game-details.component';
+import { GamesListComponent } from './games-list/games-list.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { GameDetailsComponent } from './game-details/game-details.component';
     EqualValidator,
     NavBarComponent,
     OtherUserComponent,
-    GameDetailsComponent
+    GameDetailsComponent,
+    GamesListComponent
   ],
   imports: [
     BrowserModule,

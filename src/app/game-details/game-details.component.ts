@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import { GameDetails } from './game-details';
+import { AppService } from '../app.service';
 import { GameDetailsService } from './game-details.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ActivatedRoute } from '@angular/router';
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-game-details',
   templateUrl: './game-details.component.html',
   styleUrls: ['./game-details.component.scss'],
-  providers: [GameDetailsService]
+  providers: [GameDetailsService, AppService]
 })
 export class GameDetailsComponent implements OnInit {
 
@@ -19,16 +20,18 @@ export class GameDetailsComponent implements OnInit {
 
   constructor( private http: Http,
                private gameDetailsService: GameDetailsService,
+               private appService: AppService,
                private flashMessage:FlashMessagesService,
                private activeRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    let id = this.activeRoute.snapshot.params['_id'];
-    console.log(id);
 
-    this.gameDetailsService.getGames(id)
-      .subscribe(gameDetails => { this.gameDetails = gameDetails;},
-                	error => {this.errorMessage = <any>error;}
-                );
-  }
+    let id = this.activeRoute.snapshot.params['_id'];
+
+    this.gameDetailsService.getGame(id)
+                           .subscribe(
+                             gameDetails => this.gameDetails = gameDetails,
+                          	 error => this.errorMessage = <any>error
+                           );
+   }
 }

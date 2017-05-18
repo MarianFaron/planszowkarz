@@ -11,17 +11,18 @@ import { GameDetails } from './game-details';
 @Injectable()
 export class GameDetailsService {
 
-    private userGameUrl = this.appService.getUrl('/app/userGames');
-
     constructor (private http: Http, private appService: AppService) {}
 
-    getGames(id: string): Observable<GameDetails>{
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    private userGameUrl = this.appService.getUrl('/app/userGames');
 
-    return this.http.get(`${this.userGameUrl}/${id}`, options)
-                    .map(this.appService.extractData)
-                    .catch(this.appService.handleError);
+    getGame(id: string) {
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      // `${this.userGameUrl}/${id}`
+
+      return this.http.get('http://localhost:8080/app/userGames/591c99edc7757a101897a017', options)
+                      .map(this.appService.extractData)
+                      .catch(this.appService.handleError);
     }
 
 }

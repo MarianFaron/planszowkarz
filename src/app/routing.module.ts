@@ -7,6 +7,7 @@ import { UsersComponent }         from './users/users.component';
 import { UserProfileComponent }   from './user-profile/user-profile.component';
 import { OtherUserComponent }     from './other-user/other-user.component';
 import { GameDetailsComponent }   from './game-details/game-details.component'
+import { GamesListComponent }   from './games-list/games-list.component'
 
 
 import { AuthGuard } from './guards/auth.guard';
@@ -16,8 +17,10 @@ export const router: Routes = [
 	{ path: 'main', component: CoreComponent },
 	{ path: 'register', component: UsersComponent},
 	{ path: 'user-games', component: UserProfileComponent, canActivate: [AuthGuard]},
-	{ path: 'user/:_id', component: OtherUserComponent },
-	{ path: 'game/:_id', component: GameDetailsComponent }
+	{ path: 'users/:_id', component: OtherUserComponent },
+	{ path: 'games/:_id', component: GameDetailsComponent },
+	{ path: 'search-results', component: GamesListComponent },
+	{ path: 'games', component: GamesListComponent }
 ];
 
 @NgModule({

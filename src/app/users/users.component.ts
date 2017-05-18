@@ -66,7 +66,6 @@ export class UsersComponent implements OnInit {
     this.userGameService.fbLogin()
                         .subscribe(
                           user => {
-                            console.log(this.user);
                             this.user;
                             window.location.replace('/user-games');
                           },

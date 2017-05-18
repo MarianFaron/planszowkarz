@@ -2,23 +2,22 @@
 	<div class="container">
 		<div class="game-info">
 			<div class="game-title">
-				{{gameDetails}}
-				<h3>Nazwa gry: {{gameDetails.title}} </h3>
+				<h3>Nazwa gry: {{gameDetails?.title}} </h3>
 			</div>
 			<div class="games-panel-content">
 				<div class="single-game-box">
 					<div class="single-box-content">
 						<div class="game-image">
-							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{gameDetails.gameImage}}">
+							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{gameDetails?.gameImage}}">
 						</div>
 						<div class="game-info">
-							<p class="title">Właściciel:  {{ gameDetails.userID }} </p>
+							<p class="title">Właściciel:  {{ gameDetails?.userID }} </p>
 							<div class="game-info-buttons">
 								<button class="btn custom-button">Wymień się</button>
 							</div>
-							<p><strong>Kategoria: </strong>  {{ gameDetails.category }} </p>
-							<p><strong>Stan: </strong>  {{ gameDetails.state }} </p>
-							<p class="description">Opis:  {{ gameDetails.description }} </p>
+							<p><strong>Kategoria: </strong>  {{ gameDetails?.category }} </p>
+							<p><strong>Stan: </strong>  {{ gameDetails?.state }} </p>
+							<p class="description">Opis:  {{ gameDetails?.description }} </p>
 						</div>
 					</div>
 				</div>

@@ -1,0 +1,19 @@
+.games-list .inner {
+  margin-top: 15px;
+  padding: 15px;
+}
+
+.games-list .inner h3 {
+  margin-top: 0;
+}
+
+.new-game-wrapper a {
+  color: #333;
+}
+
+.inner a:active,
+.inner a:focus,
+.inner a:hover{
+    color: #f98d1a;
+    text-decoration: underline;
+}
