@@ -1,0 +1,80 @@
+@font-face {
+	font-family: 'stroke7pixeden';
+	src:url('../../assets/fonts/stroke7pixeden/stroke7pixeden.eot?u58ytb');
+	src:url('../../assets/fonts/stroke7pixeden/stroke7pixeden.eot?#iefixu58ytb') format('embedded-opentype'),
+		url('../../assets/fonts/stroke7pixeden/stroke7pixeden.woff?u58ytb') format('woff'),
+		url('../../assets/fonts/stroke7pixeden/stroke7pixeden.ttf?u58ytb') format('truetype'),
+		url('../../assets/fonts/stroke7pixeden/stroke7pixeden.svg?u58ytb#stroke7pixeden') format('svg');
+}
+
+.container{
+	font-size: 1.25em;
+	padding-right: 0px;
+	padding-left: 0px;
+	.col-md-8{
+		padding-left: 0px;
+		padding-right: 0px;
+		.tabs {
+		font-size: 1.25em;
+			nav{
+				margin-bottom: 0px;
+				ul {
+					display: flex;
+					margin: 0 auto;
+					padding: 0;
+					flex-flow: row wrap;
+					li {
+						display: block;
+						text-align: center;
+						-ms-flex: 1;
+						flex: 1;
+						border: 1px solid rgba(40,44,42,0.1);
+						a {
+							padding: 0.65em 0 0.5em;
+							background: rgba(40,44,42,0.05);
+							color: #74777b;
+							line-height: 1;
+							text-decoration: none;
+							display: block;
+							span {
+								text-transform: uppercase;
+								letter-spacing: 1px;
+								font-weight: 700;
+								font-size: 0.5em;
+								vertical-align: middle;
+							}
+						}
+						a:hover, a:focus {
+							color: rgb(249, 141, 26);
+						}
+						.icon::before {
+							display: block;
+							margin: 0;
+							font-size: 1.3em;
+							font-family: 'stroke7pixeden';
+							-webkit-backface-visibility: hidden;
+						}
+						.icon-joy::before {
+							content: "\e6a4";
+						}
+						.icon-config::before {
+							content: "\e666";
+						}
+						.icon-date::before {
+							content: "\e660";
+						}
+						.icon-display::before {
+							content: "\e65e";
+						}
+						.icon-upload::before {
+							content: "\e68a";
+						}
+					}
+					li:not(:last-child) {
+						border-right: none;
+					}
+				}
+			}
+		}
+	}
+}

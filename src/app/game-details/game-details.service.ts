@@ -20,7 +20,7 @@ export class GameDetailsService {
       let options = new RequestOptions({ headers: headers });
       // `${this.userGameUrl}/${id}`
 
-      return this.http.get('http://localhost:8080/app/userGames/591c99edc7757a101897a017', options)
+      return this.http.get(`${this.userGameUrl}/${id}`, options)
                       .map(this.appService.extractData)
                       .catch(this.appService.handleError);
     }

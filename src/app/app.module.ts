@@ -19,6 +19,7 @@ import { OtherUserComponent } from './other-user/other-user.component'
 import { MyDatePickerModule } from 'mydatepicker';
 import { GameDetailsComponent } from './game-details/game-details.component';
 import { GamesListComponent } from './games-list/games-list.component';
+import { UserNotificationsComponent } from './user-profile/user-notifications/user-notifications.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { GamesListComponent } from './games-list/games-list.component';
     NavBarComponent,
     OtherUserComponent,
     GameDetailsComponent,
-    GamesListComponent
+    GamesListComponent,
+    UserNotificationsComponent
   ],
   imports: [
     BrowserModule,
