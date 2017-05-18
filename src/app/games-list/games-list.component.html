@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="col-md-9 new-game-wrapper">
-        <div *ngFor="let i=index; let game of games | slice:0:4">
+        <div *ngFor="let game of pagedItems">
           <a routerLink="/games/{{ game._id }}" class="game-card">
             <div class="inner">
               <div class="row">
@@ -46,9 +46,25 @@
             </div>
           </a>
         </div>
-      </div>
-      <div class="pagination">
-
+        <div class="text-center">
+          <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(1)">&#60;&#60;</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(pager.currentPage - 1)">&#60;</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+              <a (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.currentPage + 1)">&#62;</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.totalPages)">&#62;&#62;</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

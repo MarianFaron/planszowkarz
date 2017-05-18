@@ -17,3 +17,9 @@
     color: #f98d1a;
     text-decoration: underline;
 }
+
+.pagination .active a {
+  background: #f98d1a;
+  color: #fff;
+  border: none;
+}
