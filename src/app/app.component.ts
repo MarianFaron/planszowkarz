@@ -22,6 +22,12 @@ export class AppComponent  {
   games: UserGame[];
   user: User[];
 
+  query = {
+    title: '',
+    category: null,
+    state: null
+  }
+
   private sub: any;
 
   constructor(private router: Router, private userGameService: UsersService, private appService: AppService, private authGuard: AuthGuard, private route: ActivatedRoute) {}
@@ -31,21 +37,20 @@ export class AppComponent  {
                         .subscribe(
                         user => this.user,
                         error => this.errorMessage = <any>error);
-
     localStorage.clear();
     window.location.reload();
   }
 
-  search(query: string) {
-    this.appService.search(query)
+  search(queryTitle: string) {
+    this.query.title = queryTitle;
+
+    this.appService.search(this.query)
                         .subscribe(
                           games => {
                             this.games = games;
-                                console.log(games);
                             localStorage.setItem('games', JSON.stringify(games));
-                            localStorage.setItem('query', query);
-                            this.router.navigate(['/search-results']);
-
+                            localStorage.setItem('query', JSON.stringify(this.query));
+                            window.location.href='/search-results?q='+this.query.title;
                           },
                           error => {
                             this.errorMessage = <any>error;

@@ -7,18 +7,40 @@
         <div class="inner">
           <h3>Kategorie</h3>
           <hr class="main-hr">
-          <div *ngFor="let category of categories">
-            <input type="checkbox" name="{{category}}" value="">
-            <label for="{{category}}">{{category}}</label>
+          <div class="game-categories">
+            <div *ngFor="let option of categoriesOptions">
+                <label>
+                    <input type="checkbox"
+                           name="options"
+                           value="{{option.value}}"
+                           [(ngModel)]="option.checked"/>
+                    {{option.name}}
+                </label>
+            </div>
+            <!-- <div *ngFor="let category of categories">
+              <input type="checkbox" name="{{category}}" value="">
+              <label for="{{category}}">{{category}}</label>
+            </div> -->
           </div>
           <h3>Stan</h3>
           <hr class="main-hr">
-          <div *ngFor="let state of states">
-            <input type="checkbox" name="{{state}}" value="">
-            <label for="{{state}}">{{state}}</label>
+          <div class="game-states">
+            <div *ngFor="let option of statesOptions">
+                <label>
+                    <input type="checkbox"
+                           name="options"
+                           value="{{option.value}}"
+                           [(ngModel)]="option.checked"/>
+                    {{option.name}}
+                </label>
+            </div>
+            <!-- <div *ngFor="let state of states">
+              <input type="checkbox" name="{{state}}" value="">
+              <label for="{{state}}">{{state}}</label>
+            </div> -->
           </div>
           <div class="text-center">
-            <button type="button" name="button" class="btn custom-button">
+            <button type="button" name="button" class="btn custom-button" (click)="updateOptions()">
               <i class="fa fa-save"></i>
               Zapisz
             </button>
