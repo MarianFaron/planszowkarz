@@ -14,16 +14,17 @@ router.route('/search')
 		}).sort({createdDate: 1});
   })
 
+
 router.route('/userGames')
 	// get all games
 	.get((req,res) => {
-		userGame.find((err,games) => {
+		userGame.find().sort({createdDate: 1}).populate({ path: 'userID', select: 'local.login city' }).exec((err,games) => {
 			if(err){
 				return res.status(400).json({message: "Bad Requested"});
 			}else{
 				return res.status(200).json(games);
 			}
-		}).sort({createdDate: 1});
+		});
 	})
 	// post new game
 	.post((req,res) => {
@@ -35,7 +36,7 @@ router.route('/userGames')
 			createdDate: req.body.createdDate,
 			modifiedDate: req.body.modifiedDate,
 			userID: req.body.userID,
-			gameImage: req.body.gameImage
+			Image: req.body.Image
 		});
 		// save the game
 		newGame.save((err) => {
@@ -49,7 +50,7 @@ router.route('/userGames')
 
 router.route('/userGames/:id')
 	.get((req, res) => {
-		userGame.findById(req.params.id, (err, game) => {
+		userGame.findById(req.params.id).populate({ path: 'userID', select: 'local.login city' }).exec((err, game) => {
 			if(err){
 				return res.status(400).json({message: "Bad Requested"});
 			} else if(!game){

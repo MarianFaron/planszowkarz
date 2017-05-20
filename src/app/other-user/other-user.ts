@@ -3,7 +3,7 @@ export class OtherUser {
     public id: number,
     public login: string,
     public email: string,
-    public surName: string,
+    public Name: string,
     public dateBirth: string,
     public city: string,
     public contactNumber: string

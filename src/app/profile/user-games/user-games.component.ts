@@ -41,7 +41,7 @@ export class UserGamesComponent implements OnInit {
   }
 
 
-  addUserGame(title: string, category: string, state: string, description: string,  gameImage: string) {
+  addUserGame(title: string, category: string, state: string, description: string,  Image: string) {
 
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var userID = currentUser._id;
@@ -62,7 +62,7 @@ export class UserGamesComponent implements OnInit {
   }
 
 
-  editUserGame(id: string, title: string, category: string, state: string, description: string, modifiedDate: string, gameImage: string) {
+  editUserGame(id: string, title: string, category: string, state: string, description: string, modifiedDate: string, Image: string) {
 
     var currentDate = new Date();
     var modifiedDate = currentDate.getFullYear().toString() + '-' +

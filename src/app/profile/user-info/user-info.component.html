@@ -3,7 +3,7 @@
 
 		<img class="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" alt="user-avatar" />
 		<ul>
-			<li *ngIf="userInfo?.surName" class="username">{{userInfo?.surName}}</li>
+			<li *ngIf="userInfo?.name" class="username">{{userInfo?.name}}</li>
 
 			<!-- FACEBOOK INFO  -->
 			<div *ngIf="userInfo?.facebook">
@@ -76,7 +76,7 @@
 						</div>
 						<div class="form-group">
 							<label>Imię: </label>
-							<input class="form-control" [ngModel]="model.surname" minlength="3" name="surname" placeholder="podaj imię" value="{{userInfo?.surName}}" #userSurname="ngModel" />
+							<input class="form-control" [ngModel]="model.name" minlength="3" name="surname" placeholder="podaj imię" value="{{userInfo?.name}}" #userSurname="ngModel" />
 							<div *ngIf="userSurname.errors && (userSurname.dirty || userSurname.touched)" class="alert alert-danger">
 								<div [hidden]="!userSurname.errors.minlength">
 									Wpisz co najmniej 3 znaki

@@ -5,27 +5,27 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RoutingModule } from './routing.module';
 import { AppComponent } from './app.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ProfileComponent } from './profile/profile.component';
 import { CoreComponent } from './core/core.component';
 import { FlashMessagesModule} from 'angular2-flash-messages';
 import { UsersComponent } from './users/users.component';
 import { AuthGuard } from './guards/auth.guard';
 import { FileSelectDirective } from 'ng2-file-upload';
-import { UserInfoComponent } from './user-profile/user-info/user-info.component';
-import { UserGamesComponent } from './user-profile/user-games/user-games.component';
+import { UserInfoComponent } from './profile/user-info/user-info.component';
+import { UserGamesComponent } from './profile/user-games/user-games.component';
 import { EqualValidator } from './users/equal-validator.directive';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { OtherUserComponent } from './other-user/other-user.component'
 import { MyDatePickerModule } from 'mydatepicker';
 import { GameDetailsComponent } from './game-details/game-details.component';
 import { GamesListComponent } from './games-list/games-list.component';
-import { UserNotificationsComponent } from './user-profile/user-notifications/user-notifications.component';
+import { UserNotificationsComponent } from './profile/user-notifications/user-notifications.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserProfileComponent,
+    ProfileComponent,
     CoreComponent,
     UsersComponent,
     FileSelectDirective,

@@ -6,8 +6,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import "rxjs/add/operator/do";
 
-import { UserGame } from './../user-profile/user-games/user-games';
-import { UserInfo } from './../user-profile/user-info/user-info';
+import { UserGame } from './../profile/user-games/user-games';
+import { UserInfo } from './../profile/user-info/user-info';
 
 @Injectable()
 export class CoreService {
@@ -25,15 +25,4 @@ export class CoreService {
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
     }
-
-    // get information about one user
-    getUser(id: string): Observable<UserInfo> {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this.http.get(`${this.userInfoURL}/${id}`, options)
-                    .map(this.appService.extractData)
-                    .catch(this.appService.handleError);
-    }
-
 }

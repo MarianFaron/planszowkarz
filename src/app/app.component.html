@@ -19,7 +19,7 @@
         <li><a routerLink="/main" routerLinkActive="active"><span class="glyphicon glyphicon-star"></span> Ranking</a></li>
         <li><a routerLink="/main" routerLinkActive="active"><span class="glyphicon glyphicon-list"></span> Katalog</a></li>
         <li><a *ngIf="currentUser == null" routerLink="/register" routerLinkActive="active"><span class="glyphicon glyphicon-log-in"></span> Rejestracja / Logowanie</a></li>
-        <li><a *ngIf="currentUser != null" routerLink="/user-games" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+        <li><a *ngIf="currentUser != null" routerLink="/profile" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
         <li><a *ngIf="currentUser != null" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> Wyloguj</a>
         </li>
       </ul>

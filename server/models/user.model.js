@@ -34,7 +34,7 @@ var User = new Schema({
             type: String
         }
     },
-    surName: {
+    name: {
         type: String
     },
     dateBirth: {

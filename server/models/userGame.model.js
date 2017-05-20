@@ -26,9 +26,10 @@ var userGame = new Schema({
             default: Date.now
         },
         userID: {
-            type: ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
         },
-        gameImage: {
+        Image: {
             type: String,
         }
 }, {

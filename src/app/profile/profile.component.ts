@@ -5,12 +5,12 @@ import { UserGamesComponent } from './user-games/user-games.component';
 const URL = 'http://localhost:8080/app/uploads';
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
 
-export class UserProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     

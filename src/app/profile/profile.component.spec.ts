@@ -3,22 +3,22 @@ import { HttpModule, Http, BaseRequestOptions, XHRBackend, Response, ResponseOpt
 import { MockBackend } from '@angular/http/testing';
 
 import { UserInfoComponent } from './user-info/user-info.component';
-import { UserProfileComponent } from './user-profile.component';
+import { ProfileComponent } from './profile.component';
 
 
 describe('UserProfileComponent', () => {
-  let component: UserProfileComponent;
-  let fixture: ComponentFixture<UserProfileComponent>;
+  let component: ProfileComponent;
+  let fixture: ComponentFixture<ProfileComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ HttpModule, UserInfoComponent ],
-      declarations: [ UserProfileComponent ]
+      declarations: [ ProfileComponent ]
     })
   }));
 
   beforeEach(async(() => {
-    component = TestBed.createComponent(UserProfileComponent).componentInstance;
+    component = TestBed.createComponent(ProfileComponent).componentInstance;
   }));
 });
 

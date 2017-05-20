@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 import { OtherUser } from './other-user';
-import { UserGame } from '../user-profile/user-games/user-games';
+import { UserGame } from '../profile/user-games/user-games';
 
 
 @Injectable()

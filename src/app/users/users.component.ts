@@ -67,7 +67,7 @@ export class UsersComponent implements OnInit {
                         .subscribe(
                           user => {
                             this.user;
-                            window.location.replace('/user-games');
+                            window.location.replace('/profile');
                           },
                           error => this.errorMessage = <any>error);
   }
@@ -79,7 +79,7 @@ export class UsersComponent implements OnInit {
                           if(response.message) {
                             this.flashMessage.show(response.message.toString(), {cssClass: 'alert-danger', timeout: 3000});
                           } else if(response.user) {
-                             window.location.replace('/user-games');
+                             window.location.replace('/profile');
                           }
                         })
                         .subscribe(user => this.user, error => this.errorMessage = <any>error);
