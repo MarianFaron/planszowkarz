@@ -4,11 +4,42 @@ var userGame = require('../models/userGame.model');
 
 router.route('/search')
   .post(function(req, res, next) {
-		userGame.find({title: {$regex :".*"+req.body.query+".*"}}, function(err,games) {
+
+    var queryTitle = req.body.query.title;
+
+    if(req.body.query.category != null) {
+      var queryCategory = req.body.query.category;
+    } else {
+      var queryCategory = [
+        "Strategiczna",
+        "Logiczna",
+        "Ekonomiczna",
+        "Imprezowa",
+        "Karciana",
+        "Figurkowa",
+        "Przygodowa",
+        "Rodzinna",
+        "Zręcznościowa"
+      ];
+    }
+
+    if(req.body.query.state != null) {
+      var queryState = req.body.query.state;
+    } else {
+      var queryState = ["Nowa", "Używana"];
+    }
+
+		userGame.find({
+      $and:
+        [
+          {title: {$regex :"^.*"+queryTitle+".*$", $options: '-i'}},
+          {state: {"$in": queryState}},
+          {category: {"$in": queryCategory}}
+        ]
+      }, function(err,games) {
 			if(err){
 				return res.status(400).json({message: "Bad Requested"});
 			} else {
-        console.log(games);
 				return res.status(200).json(games);
 			}
 		}).sort({createdDate: 1});

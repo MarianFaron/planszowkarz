@@ -29,7 +29,7 @@ export class AppService {
                     .catch(this.handleError);
   }
 
-  search(query: string) {
+  search(query: Object) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 

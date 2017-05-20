@@ -10,8 +10,8 @@
       <a class="navbar-brand" routerLink="/main" routerLinkActive="active">{{title}}</a>
     </div>
     <form action="/app/search" method="post">
-    	<input type="text" class="search-input" name="search" value="" #searchInput placeholder="Szukaj...">
-    	<button type="submit" class="custom-button" name="button" (click)="this.search(searchInput.value);searchInput.value=''"><i class="fa fa-search"></i></button>
+    	<input type="text" class="search-input" name="search" value="{{this.query.title}}" #searchInput placeholder="Szukaj...">
+    	<button type="submit" class="custom-button" name="button" (click)="this.search(searchInput.value)"><i class="fa fa-search"></i></button>
     </form>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
