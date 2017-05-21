@@ -6,6 +6,7 @@ import { UserGame } from './../profile/user-games/user-games';
 import { UserInfo } from './../profile/user-info/user-info';
 import { UserGameService } from './../profile/user-games/user-games.service';
 import { UserInfoService } from './../profile/user-info/user-info.service';
+import { FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-core',
@@ -21,12 +22,19 @@ export class CoreComponent implements OnInit {
   userGameIdArray: string[];
   userNameArray: string[] = [];
 
-  constructor(private http: Http,  private CoreService: CoreService, private appService: AppService) {
+  constructor(private http: Http,  private CoreService: CoreService, private appService: AppService, private flashMessage:FlashMessagesService) {
 
   }
 
   ngOnInit() {
     this.getUserGame();
+  }
+
+  start(game: string) {
+    this.appService.startTransaction(game)
+      .subscribe(response => {
+        this.flashMessage.show("Wysłano prośbę o wymianę.", {cssClass: 'alert-success', timeout: 3000});
+      });
   }
 
   getUserGame() {

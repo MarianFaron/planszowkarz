@@ -21,7 +21,6 @@ import { GameDetailsComponent } from './game-details/game-details.component';
 import { GamesListComponent } from './games-list/games-list.component';
 import { UserNotificationsComponent } from './profile/user-notifications/user-notifications.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

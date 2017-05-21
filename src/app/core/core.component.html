@@ -13,11 +13,15 @@
 					<a routerLink="/user-profile/{{ game.userID?._id }}">Dodane przez: {{ game.userID.local.login }}</a><br>
 					<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lokalizacja: {{ game.userID.city }}<br>
 					<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane {{ game.createdDate | date:'longDate' }}<br>
-					<div class="text-center"><button type="button" class="btn btn-default custom-button" disabled>Wymień się!</button></div>
-				</div>
-			</a>
-			</div>
-
+          			<div class="text-center">
+            			<button type="button"
+		                    class="btn btn-default custom-button"
+		                    (click)="this.start(game)">
+		                    Wymień się!
+            			</button>
+         			</div>
+        		</div>
+		  	</div>
 		</div>
 		<div class="row">
 			<div class="col-md-4 col-sm-12 rate-wrapper">

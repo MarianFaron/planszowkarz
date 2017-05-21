@@ -9,7 +9,6 @@ import { OtherUserComponent }     from './other-user/other-user.component';
 import { GameDetailsComponent }   from './game-details/game-details.component'
 import { GamesListComponent }   from './games-list/games-list.component'
 
-
 import { AuthGuard } from './guards/auth.guard';
 
 export const router: Routes = [
