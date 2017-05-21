@@ -1,6 +1,7 @@
 import { Component, OnInit , ElementRef, Input} from '@angular/core';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { UserGamesComponent } from './user-games/user-games.component';
+import { ActivatedRoute } from '@angular/router';
 
 const URL = 'http://localhost:8080/app/uploads';
 
@@ -12,7 +13,9 @@ const URL = 'http://localhost:8080/app/uploads';
 
 export class ProfileComponent implements OnInit {
 
-  ngOnInit() {
+	constructor(private route: ActivatedRoute){}
+	
+	ngOnInit() {
     
   }
 }
