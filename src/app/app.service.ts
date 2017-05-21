@@ -11,6 +11,7 @@ export class AppService {
   private rootUrl = 'http://localhost:8080';
   private usersUrl = this.getUrl('/app/users');
   private searchUrl = this.getUrl('/app/search');
+  private transactionsUrl = this.getUrl('/app/start');;
 
   constructor (private http: Http) {}
 
@@ -36,6 +37,19 @@ export class AppService {
     return this.http.post(this.searchUrl, {query}, options)
                     .map(this.extractData)
                     .catch(this.handleError);
+  }
+
+  startTransaction(game: string) {
+
+    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers});
+
+    return this.http.post(this.transactionsUrl, {currentUser, game}, options)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+
   }
 
   extractData(res: Response) {

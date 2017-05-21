@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { UsersService }       from './users/users.service';
-import { User }              from './users/user';
-
-import { AuthGuard }              from './guards/auth.guard';
+import { UsersService } from './users/users.service';
+import { User } from './users/user';
+import { AuthGuard } from './guards/auth.guard';
 import { Router, CanActivate, ActivatedRoute } from '@angular/router'
 import { AppService } from './app.service';
 
-import { UserGame }              from './user-profile/user-games/user-games';
+import { UserGame } from './profile/user-games/user-games';
 
 @Component({
   selector: 'app-root',
@@ -64,7 +63,7 @@ export class AppComponent  {
                             .subscribe(
                               user => {
                                 window.location.reload();
-                                this.router.navigate(['/user-games']);
+                                this.router.navigate(['/profile']);
                               },
                               error => this.errorMessage = <any>error);
       }

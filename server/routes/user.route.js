@@ -315,7 +315,7 @@ router.route('/users/:id/userGames')
       } else {
         return res.status(200).json(game);
       }
-    });
+    }).sort({createdDate: 1});
   });
 
 

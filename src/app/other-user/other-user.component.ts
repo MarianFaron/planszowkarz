@@ -5,7 +5,7 @@ import { AppService } from '../app.service';
 import { OtherUser } from './other-user';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ActivatedRoute } from '@angular/router';
-import { UserGame } from '../user-profile/user-games/user-games';
+import { UserGame } from '../profile/user-games/user-games';
 
 
 @Component({

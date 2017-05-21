@@ -8,10 +8,10 @@
 				<div class="single-game-box">
 					<div class="single-box-content">
 						<div class="game-image">
-							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{gameDetails?.gameImage}}">
+							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{gameDetails?.Image}}">
 						</div>
 						<div class="game-info">
-							<p class="title">Właściciel:  {{ gameDetails?.userID }} </p>
+							<p class="title">Właściciel:  {{ gameDetails?.userID.local.login }} </p>
 							<div class="game-info-buttons">
 								<button class="btn custom-button">Wymień się</button>
 							</div>

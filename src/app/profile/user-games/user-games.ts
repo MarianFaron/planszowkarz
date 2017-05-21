@@ -8,5 +8,5 @@ export class UserGame {
     public createdDate: Date,
     public modifiedDate: Date,
     public userID: string,
-    public gameImage: string) { }
+    public Image: string) { }
 }

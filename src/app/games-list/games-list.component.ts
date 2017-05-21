@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserGame } from '../user-profile/user-games/user-games';
+import { UserGame } from '../profile/user-games/user-games';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AppService } from '../app.service';
 import { PagerService } from '../pager.service';

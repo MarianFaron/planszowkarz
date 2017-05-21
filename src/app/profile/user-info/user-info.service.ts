@@ -27,11 +27,11 @@ export class UserInfoService {
 
 	// edit information about one user
 
-	updateUser(id: string, login: string, surName: string, dateBirth: string, city: string, contactNumber: string, avatarImage: string): Observable<UserInfo[]> {
+	updateUser(id: string, login: string, name: string, dateBirth: string, city: string, contactNumber: string, avatarImage: string): Observable<UserInfo[]> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
     	let options = new RequestOptions({ headers: headers });
 
-    	return this.http.patch(`${this.userInfoURL}/${id}`, {login, surName, dateBirth, city, contactNumber, avatarImage}, options)
+    	return this.http.patch(`${this.userInfoURL}/${id}`, {login, name, dateBirth, city, contactNumber, avatarImage}, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
 	}
