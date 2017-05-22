@@ -25,6 +25,7 @@ var userGameRoute = require('./routes/userGame.route.js');
 var coverUploadRoute = require('./routes/coverUpload.route.js');
 var avatarUploadRoute = require('./routes/avatarUpload.route.js');
 var transactionsRoute = require('./routes/transactions.route.js');
+var notificationsRoute = require('./routes/notifications.route.js');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://gamesapp:engineering@ds135800.mlab.com:35800/gamesapp');
@@ -60,6 +61,7 @@ app.use('/app', userGameRoute);
 app.use('/app', coverUploadRoute);
 app.use('/app', avatarUploadRoute);
 app.use('/app', transactionsRoute);
+app.use('/app', notificationsRoute);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
