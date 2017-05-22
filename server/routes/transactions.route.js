@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
 var User = require('../models/user.model');
+var Notification = require('../models/notification.model');
 
 /* NODE MAILER CONFIGURATION */
 
@@ -39,6 +40,19 @@ router.route('/start')
       }
 
       var message = "Użytkownik: <b>" + userName + "</b> poprosił cię o wymianę za grę: <b>" + gameTitle + "</b>. Przejdź do panelu na swoim koncie, aby mu odpowiedzieć.";
+
+      var notification = new Notification();
+
+      notification.content = message;
+      notification.userID = user._id;
+      notification.date = new Date();
+      notification.status = 'new';
+
+      notification.save(function(err) {
+        if (err)
+          throw err;
+      });
+
       mailOptions = {
         from: '"Planszówkarz" <planszowkarz@gmail.com>',
         to: recipient,

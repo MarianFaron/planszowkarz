@@ -5,28 +5,14 @@
 		</div>
 		<hr class="style1">
 		<div class="notifications-panel-content">
-			<div class="single-box">
-				<div class="box-content">
-					<p><strong>Rodzaj powiadomienia: </strong>Treść powiadomienia</p>
-					<p><strong>Data: </strong>2017-05-21</p>
-				</div>
-			</div>
-			<div class="single-box">
-				<div class="box-content">
-					<p><strong>Rodzaj powiadomienia: </strong>Treść powiadomienia</p>
-					<p><strong>Data: </strong>2017-05-21</p>
-				</div>
-			</div>
-			<div class="single-box">
-				<div class="box-content">
-					<p><strong>Rodzaj powiadomienia: </strong>Treść powiadomienia</p>
-					<p><strong>Data: </strong>2017-05-21</p>
-				</div>
-			</div>
-			<div class="single-box">
-				<div class="box-content">
-					<p><strong>Rodzaj powiadomienia: </strong>Treść powiadomienia</p>
-					<p><strong>Data: </strong>2017-05-21</p>
+			<div *ngIf="notifications">
+				<div *ngFor="let notification of notifications">
+					<div class="single-box" [ngClass]="{unread: notification.status =='new'}" (click)="this.changeStatus(notification._id)">
+						<div class="box-content">
+							<p><strong>Treść: </strong>{{notification.content}}</p>
+							<p><strong>Data: </strong>{{notification.sendDate|date: 'dd-MM-yyyy'}}</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

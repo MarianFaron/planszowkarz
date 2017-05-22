@@ -101,7 +101,10 @@ export class UserGamesComponent implements OnInit {
 
     this.userGameService.getGames(userID)
                       .subscribe(
-                        userGame => this.userGame = userGame.reverse(),
+                        userGame => {
+                          console.log(userGame);
+                          this.userGame = userGame.reverse();
+                        },
                         error => this.errorMessage = <any>error);
   }
 }
