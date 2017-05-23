@@ -10,7 +10,7 @@ import { UserGame } from './profile/user-games/user-games';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css', './app.component.scss'],
   providers: [UsersService, AuthGuard, AppService]
 })
 export class AppComponent  {

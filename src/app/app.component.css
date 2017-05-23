@@ -5,17 +5,19 @@ router-outlet {
 #footer {
   position: fixed;
   bottom: 0;
+
 }
 
 .navbar {
-  background: #f98d1a;
+  background: #444;
   border: none;
   position: absolute;
 }
 
 .navbar a {
   color: #fff;
-  border-top: 2px solid transparent;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
   -webkit-transition: all 200ms linear;
   -moz-transition: all 200ms linear;
   -ms-transition: all 200ms linear;
@@ -25,7 +27,13 @@ router-outlet {
 
 .navbar a:hover, .navbar a:focus, .navbar a:active {
   color: #fff;
-  border-top: 2px solid #fff;
+  border-bottom: 3px solid #f98d1a;
+}
+
+.navbar a.navbar-brand:hover,
+.navbar a.navbar-brand:focus,
+.navbar a.navbar-brand:active {
+    border-bottom: 3px solid transparent;
 }
 
 .navbar-collapse {
@@ -71,7 +79,7 @@ router-outlet {
 
 .footer {
   margin-top: 40px;
-  background: #f98d1a;
+  background: #444;
   color: #fff;
   height: 40px;
   line-height: 40px;

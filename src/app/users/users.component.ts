@@ -7,7 +7,7 @@ import { FlashMessagesService} from 'angular2-flash-messages';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css'],
+  styleUrls: ['./users.component.css', '../app.scss'],
   providers: [AppService, UsersService]
 })
 export class UsersComponent implements OnInit {

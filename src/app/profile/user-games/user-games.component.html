@@ -1,6 +1,6 @@
-<div class="games-main-panel inner">
+<div class="games-main-panel">
 	<div class="games-info">
-		<div class="games-panel-header">
+		<!-- <div class="games-panel-header">
 			<h5>Moje gry planszowe</h5>
 			<div class="button-add-new-game">
 				<button class="btn right custom-button" data-toggle="modal" data-target="#add-game">
@@ -8,10 +8,10 @@
 				</button>
 			</div>
 		</div>
-		<hr class="style1">
+		<hr class="style1"> -->
 		<div class="games-panel-content">
 			<div class="single-game-box" *ngFor="let game of userGame">
-				<div class="single-box-content">
+				<div class="single-box-content inner">
 					<div class="game-image">
 						<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
 					</div>

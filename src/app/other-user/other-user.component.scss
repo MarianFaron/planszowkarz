@@ -1,6 +1,5 @@
 .user-info-panel {
 	margin: 0;
-	background-color: #fff;
 	width: 100%;
 
 	a {
@@ -82,16 +81,13 @@ hr.style1 {
 	display: block;
 
 	.single-game-box {
-		padding-top: 20px;
-		padding-right: 3%;
-		padding-left: 3%;
-		padding-bottom: 20px;
 		width: 100%;
 		min-height: 130px;
 		display: table;
 
 		.single-box-content {
-			border-bottom: 2px solid #e7e7e7;
+			padding: 15px;
+			margin-bottom: 15px;
 			width: 100%;
 			display: inline-flex;
 

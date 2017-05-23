@@ -31,14 +31,11 @@
 		.games-panel-content{
 			display: block;
 			.single-game-box{
-				margin-top: 20px;
-				padding-right: 3%;
-				padding-left: 3%;
 				width: 100%;
 				min-height: 130px;
 				display: table;
 				.single-box-content{
-					border-bottom: 2px solid #e7e7e7;
+					padding: 15px;
 					width: 100%;
 					display: inline-flex;
 					.game-image{

@@ -8,60 +8,63 @@
 					<h3>Rejestracja</h3>
 					<hr class="main-hr">
 					<div class="inner">
+						<fieldset>
+							<div class="form-group">
+								<label>Login:</label>
+								<input type="text" class="form-control" required minlength="5" name="login" [ngModel]="model.login" #registerUserLogin="ngModel" (keyup)="usedLogin($event)">						
+								<div *ngIf="registerUserLogin.errors && (registerUserLogin.dirty || registerUserLogin.touched)" class="alert alert-danger">
+									<div [hidden]="!registerUserLogin.errors.required">
+										Login jest wymagany
+									</div>
+									<div [hidden]="!registerUserLogin.errors.minlength">
+										Wpisz co najmniej 5 znaków
+									</div>
+								</div>
+								<div *ngIf="this.loginIsUsed != false" class="alert alert-danger">
+									Login {{ userlogin }} jest używany
+								</div>
+							</div>
+							<div class="form-group">
+								<label>E-mail:</label>
+								<input type="text" class="form-control" name="email" [ngModel]="model.email" #registerUserEmail="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+								<div *ngIf="registerUserEmail.errors && (registerUserEmail.dirty || registerUserEmail.touched)" class="alert alert-danger">
+									<div [hidden]="!registerUserEmail.errors.required">
+										E-mail jest wymagany
+									</div>
+									<div [hidden]="!registerUserEmail.errors.pattern">
+										Wpisz poprawny adres e-mail (example@example.pl)
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Hasło:</label>
+								<input type="password" class="form-control" name="password" minlength="3" required [ngModel]="model.password" #registerUserPassword="ngModel" >
+								<div *ngIf="registerUserPassword.errors && (registerUserPassword.dirty || registerUserPassword.touched)" class="alert alert-danger">
+									<div [hidden]="!registerUserPassword.errors.required">
+										Hasło jest wymagane
+									</div>
+									<div [hidden]="!registerUserPassword.errors.minlength">
+										Wpisz co najmniej 3 znaki
+									</div>
+								</div>
+							</div>
 						<div class="form-group">
-							<label>Login:</label>
-							<input type="text" class="form-control" required minlength="5" name="login" [ngModel]="model.login" #registerUserLogin="ngModel" (keyup)="usedLogin($event)">
-							<div *ngIf="registerUserLogin.errors && (registerUserLogin.dirty || registerUserLogin.touched)" class="alert alert-danger">
-								<div [hidden]="!registerUserLogin.errors.required">
-									Login jest wymagany
+							<label>Potwierdź hasło:</label>
+							<input type="password" class="form-control" name="confirmPassword" minlength="3" validateEqual="password" required [ngModel]="model.confirmPassword" #registerUserConfirmPassword="ngModel" />
+							<div *ngIf="registerUserConfirmPassword.errors && (registerUserConfirmPassword.dirty || registerUserConfirmPassword.touched)" class="alert alert-danger">
+								<div [hidden]="!registerUserConfirmPassword.errors.required">
+									Potwierdzenie hasła jest wymagane
 								</div>
-								<div [hidden]="!registerUserLogin.errors.minlength">
-									Wpisz co najmniej 5 znaków
+								<div [hidden]="!registerUserConfirmPassword.errors.minlength">
+									Conajmniej 3 znaki
 								</div>
-							</div>
-							<div *ngIf="this.loginIsUsed != false" class="alert alert-danger">
-								Login {{ userlogin }} jest używany
-							</div>
-						</div>
-						<div class="form-group">
-							<label>E-mail:</label>
-							<input type="text" class="form-control" name="email" [ngModel]="model.email" #registerUserEmail="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
-							<div *ngIf="registerUserEmail.errors && (registerUserEmail.dirty || registerUserEmail.touched)" class="alert alert-danger">
-								<div [hidden]="!registerUserEmail.errors.required">
-									E-mail jest wymagany
-								</div>
-								<div [hidden]="!registerUserEmail.errors.pattern">
-									Wpisz poprawny adres e-mail (example@example.pl)
+								<div [hidden]="!registerUserConfirmPassword.errors">
+									Musi być takie samo jak hasło
 								</div>
 							</div>
 						</div>
-						<div class="form-group">
-							<label>Hasło:</label>
-							<input type="password" class="form-control" name="password" minlength="3" required [ngModel]="model.password" #registerUserPassword="ngModel" >
-							<div *ngIf="registerUserPassword.errors && (registerUserPassword.dirty || registerUserPassword.touched)" class="alert alert-danger">
-								<div [hidden]="!registerUserPassword.errors.required">
-									Hasło jest wymagane
-								</div>
-								<div [hidden]="!registerUserPassword.errors.minlength">
-									Wpisz co najmniej 3 znaki
-								</div>
-							</div>
-						</div>
-					<div class="form-group">
-						<label>Potwierdź hasło:</label>
-						<input type="password" class="form-control" name="confirmPassword" minlength="3" validateEqual="password" required [ngModel]="model.confirmPassword" #registerUserConfirmPassword="ngModel" />
-						<div *ngIf="registerUserConfirmPassword.errors && (registerUserConfirmPassword.dirty || registerUserConfirmPassword.touched)" class="alert alert-danger">
-							<div [hidden]="!registerUserConfirmPassword.errors.required">
-								Potwierdzenie hasła jest wymagane
-							</div>
-							<div [hidden]="!registerUserConfirmPassword.errors.minlength">
-								Conajmniej 3 znaki
-							</div>
-							<div [hidden]="!registerUserConfirmPassword.errors">
-								Musi być takie samo jak hasło
-							</div>
-						</div>
-					</div>
+						</fieldset>
+
 						<button type="submit" class="btn custom-button" [disabled]="!registerForm.form.valid" (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value);">Zarejestruj</button>
 					</div>
 				</form>

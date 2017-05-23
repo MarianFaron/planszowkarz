@@ -6,43 +6,39 @@
       <div class="col-md-3">
         <div class="inner">
           <h3>Kategorie</h3>
-          <hr class="main-hr">
           <div class="game-categories">
             <div *ngFor="let option of categoriesOptions">
+              <div class="checkbox">
                 <label>
                     <input type="checkbox"
                            name="options"
                            value="{{option.value}}"
                            [(ngModel)]="option.checked"/>
+                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                     {{option.name}}
                 </label>
+              </div>
             </div>
-            <!-- <div *ngFor="let category of categories">
-              <input type="checkbox" name="{{category}}" value="">
-              <label for="{{category}}">{{category}}</label>
-            </div> -->
           </div>
           <h3>Stan</h3>
-          <hr class="main-hr">
           <div class="game-states">
             <div *ngFor="let option of statesOptions">
+              <div class="checkbox">
                 <label>
                     <input type="checkbox"
                            name="options"
                            value="{{option.value}}"
                            [(ngModel)]="option.checked"/>
+                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                     {{option.name}}
                 </label>
+              </div>
             </div>
-            <!-- <div *ngFor="let state of states">
-              <input type="checkbox" name="{{state}}" value="">
-              <label for="{{state}}">{{state}}</label>
-            </div> -->
           </div>
           <div class="text-center">
             <button type="button" name="button" class="btn custom-button" (click)="updateOptions()">
               <i class="fa fa-save"></i>
-              Zapisz
+              Filtruj
             </button>
           </div>
         </div>
