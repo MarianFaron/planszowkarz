@@ -40,3 +40,15 @@
 		}
 	}
 }
+
+.pagination .active a {
+  background: #f98d1a;
+  color: #fff;
+  border: none;
+}
+.inner a:active,
+.inner a:focus,
+.inner a:hover{
+    color: #f98d1a;
+    text-decoration: underline;
+}

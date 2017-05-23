@@ -4,9 +4,9 @@
 			<h5>Powiadomienia</h5>
 		</div>
 		<hr class="style1"> -->
-		<div class="notifications-panel-content">
-			<div *ngIf="notifications">
-				<div *ngFor="let notification of notifications">
+		<div class="new-game-wrapper">
+			<div class="notifications-panel-content">
+				<div *ngFor="let notification of pagedItems">
 					<div class="single-box inner" [ngClass]="{unread: notification.status =='new'}" (click)="this.changeStatus(notification._id)">
 						<div class="box-content">
 							<p>
@@ -19,6 +19,25 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="text-center">
+				<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+					<li [ngClass]="{disabled:pager.currentPage === 1}">
+						<a (click)="setPage(1)">&#60;&#60;</a>
+					</li>
+					<li [ngClass]="{disabled:pager.currentPage === 1}">
+						<a (click)="setPage(pager.currentPage - 1)">&#60;</a>
+					</li>
+					<li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+						<a (click)="setPage(page)">{{page}}</a>
+					</li>
+					<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+						<a (click)="setPage(pager.currentPage + 1)">&#62;</a>
+					</li>
+					<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+						<a (click)="setPage(pager.totalPages)">&#62;&#62;</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
