@@ -1,5 +1,14 @@
-router-outlet {
-  margin-top: 30px;
+.messages {
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  bottom: 0;
+  left:0;
+  right:0;
+  margin: auto;
+  width: 25%;
+  height: 30%;
+  text-align: center;
 }
 
 #footer {
@@ -10,11 +19,13 @@ router-outlet {
 .navbar {
   background: #f98d1a;
   border: none;
-  position: absolute;
+  position: relative;
+  z-index: 98;
 }
 
 .navbar a {
   color: #fff;
+  cursor: pointer;
   border-top: 2px solid transparent;
   -webkit-transition: all 200ms linear;
   -moz-transition: all 200ms linear;
@@ -29,7 +40,7 @@ router-outlet {
 }
 
 .navbar-collapse {
-  max-width: 600px;
+  max-width: 700px;
   display: inline-block;
   float: right;
 }
@@ -52,21 +63,21 @@ router-outlet {
 }
 
 .search-input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    #fff;
+    color: #fff;
 }
 .search-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:    #fff;
-   opacity:  1;
+   color: #fff;
+   opacity: 1;
 }
 .search-input::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    #fff;
-   opacity:  1;
+   color: #fff;
+   opacity: 1;
 }
 .search-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:    #fff;
+   color: #fff;
 }
 .search-input::-ms-input-placeholder { /* Microsoft Edge */
-   color:    #fff;
+   color: #fff;
 }
 
 .footer {

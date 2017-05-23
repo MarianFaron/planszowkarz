@@ -48,7 +48,7 @@ export class UserGamesComponent implements OnInit {
 
     var createdDate = new Date().toString();
 
-    if (!title || !description || !category || !state) { return; }
+    if (!title || !category || !state) { return; }
     this.userGameService.create(title, category, state, description, createdDate, userID, this.gameImgName)
                      .subscribe(
                         userGame  => {
@@ -102,7 +102,6 @@ export class UserGamesComponent implements OnInit {
     this.userGameService.getGames(userID)
                       .subscribe(
                         userGame => {
-                          console.log(userGame);
                           this.userGame = userGame.reverse();
                         },
                         error => this.errorMessage = <any>error);
