@@ -13,17 +13,17 @@ import { UserGame } from '../profile/user-games/user-games';
 @Injectable()
 export class OtherUserService {
 
-	private userInfoURL = this.appService.getUrl('/app/users');
-	private userGameUrl = this.appService.getUrl('/app/userGames');
+	private userInfoURL = this.appService.getUrl('/app/users/login');
+    private userUrl = this.appService.getUrl('/app/users');
 
 	constructor (private http: Http, private appService: AppService) {}
 
 	// get information about one user
-	getUser(id: string): Observable<OtherUser[]> {
+	getUser(login: string): Observable<OtherUser[]> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
     	let options = new RequestOptions({ headers: headers });
 
-    	return this.http.get(`${this.userInfoURL}/${id}`, options)
+    	return this.http.get(`${this.userInfoURL}/${login}`, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
 	}
@@ -32,7 +32,7 @@ export class OtherUserService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.get(`${this.userInfoURL}/${id}/userGames`, options)
+    return this.http.get(`${this.userUrl}/${id}/userGames`, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
   }

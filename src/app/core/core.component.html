@@ -11,7 +11,7 @@
   						<h3>{{ game.title }}</h3>
             </a>
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						<a routerLink="/user-profile/{{ game.userID?._id }}"> Dodane przez: {{ game.userID.local.login }}</a><br>
+						<a routerLink="/user-profile/{{ game.userID.local.login }}"> Dodane przez: {{ game.userID.local.login }}</a><br>
 						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lokalizacja: {{ game.userID.city }}<br>
 						<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane {{ game.createdDate | date:'longDate' }}<br>
           				<div class="text-center">

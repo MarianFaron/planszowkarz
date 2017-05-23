@@ -21,6 +21,7 @@ export class OtherUserComponent implements OnInit {
   status: string;
   userInfo: OtherUser[];
   userGame: UserGame[];
+  userID: string;
 
   constructor( private http: Http,
                private otherUserService: OtherUserService,
@@ -28,15 +29,31 @@ export class OtherUserComponent implements OnInit {
                private flashMessage:FlashMessagesService,
                private activeRoute: ActivatedRoute) {}
 
-  ngOnInit() {
-    let id = this.activeRoute.snapshot.params['_id'];
-    this.otherUserService.getUser(id)
-      .subscribe(userInfo => {
-        this.userInfo = userInfo;
-      });
 
-    this.otherUserService.getGames(id)
-      .subscribe(userGame => this.userGame = userGame.reverse(),
-                 error => this.errorMessage = <any>error);
+  ngOnInit() {
+    let login = this.activeRoute.snapshot.params['login'];
+    this.getUserInfo(login); 
   }
+
+  getUserInfo(login: string) {
+    this.otherUserService.getUser(login)
+                     .subscribe(
+                        userInfo => {
+                          this.userInfo = userInfo;
+                          this.getUserID(userInfo);
+                        },
+                        error => this.errorMessage = <any>error);
+  }
+
+  getUserID(userInfo: any){
+    this.getUserGame(userInfo._id);
+  }
+
+  getUserGame(id: string) {
+    this.otherUserService.getGames(id)
+      .subscribe(
+                  userGame => this.userGame = userGame.reverse(),
+                  error => this.errorMessage = <any>error);
+  }
+
 }

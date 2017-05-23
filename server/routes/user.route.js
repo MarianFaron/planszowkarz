@@ -318,5 +318,23 @@ router.route('/users/:id/userGames')
     }).sort({createdDate: 1});
   });
 
+router.route('/users/login/:login')
+  .get((req, res) => {
+    var login = req.query.login;
+    User.findOne(login, (err, user) => {
+      if (err) {
+        return res.status(400).json({
+          message: "Bad Requested"
+        });
+      } else if (!user) {
+        return res.status(404).json({
+          message: "User not Found"
+        });
+      } else {
+        return res.status(200).json(user);
+      }
+    });
+  });
+
 
 module.exports = router;

@@ -25,7 +25,7 @@ export const router: Routes = [
       		{ path: 'notifications', component: UserNotificationsComponent }
       	]
 	},
-	{ path: 'user-profile/:_id', component: OtherUserComponent },
+	{ path: 'user-profile/:login', component: OtherUserComponent },
 	{ path: 'game/:_id', component: GameDetailsComponent },
 	{ path: 'search-results', component: GamesListComponent },
 	{ path: 'games', component: GamesListComponent }
