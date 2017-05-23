@@ -7,6 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
+  notificationsCount() {
+    if(localStorage.getItem('notificationsCount') != null) {
+      return localStorage.getItem('notificationsCount');
+    } else {
+      return null;
+    }
+
+  }
+
   constructor() { }
 
   ngOnInit() {

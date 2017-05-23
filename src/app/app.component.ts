@@ -17,6 +17,7 @@ export class AppComponent  {
 
   title = 'Planszówkarz';
   currentUser;
+  notificationsCount ='0';
   errorMessage: string;
   games: UserGame[];
   user: User[];
@@ -70,6 +71,12 @@ export class AppComponent  {
     });
     if(localStorage.getItem('currentUser')) {
       this.currentUser = localStorage.getItem('currentUser');
+      this.appService.getUnreadNotifications(JSON.parse(this.currentUser)._id).subscribe(
+        notifications => {
+          this.notificationsCount = localStorage.getItem('notificationsCount');
+          localStorage.setItem('notificationsCount', null);
+        }
+      );
     } else {
       this.currentUser = null;
     }
