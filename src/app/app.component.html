@@ -22,9 +22,9 @@
         <li><a *ngIf="currentUser == null" routerLink="/register" routerLinkActive="active"><span class="glyphicon glyphicon-log-in"></span> Rejestracja / Logowanie</a></li>
         <li><a *ngIf="currentUser != null" routerLink="/profile" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>
           Profil
-          <!-- <span *ngIf="this.notificationsCount != '0'" class="notifications-count">
+          <span *ngIf="this.notificationsCount != '0'" class="notifications-count">
             {{this.notificationsCount}}
-          </span> -->
+          </span>
         </a></li>
         <li><a *ngIf="currentUser != null" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> Wyloguj</a></li>
       </ul>

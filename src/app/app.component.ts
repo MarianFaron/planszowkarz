@@ -17,7 +17,7 @@ export class AppComponent  {
 
   title = 'Planszówkarz';
   currentUser;
-  notificationsCount: string;
+  notificationsCount ='0';
   errorMessage: string;
   games: UserGame[];
   user: User[];
@@ -58,7 +58,6 @@ export class AppComponent  {
   }
 
   ngOnInit() {
-  this.notificationsCount = '0';
     this.sub = this.route.queryParams.subscribe(params => {
       if(params['userId']) {
           this.appService.getUser(params['userId'])
