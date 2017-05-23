@@ -19,8 +19,6 @@ export class CoreComponent implements OnInit {
   errorMessage: string;
   userGame: UserGame[];
   userInfo: UserInfo;
-  userGameIdArray: string[];
-  userNameArray: string[] = [];
 
   constructor(private http: Http,  private CoreService: CoreService, private appService: AppService, private flashMessage:FlashMessagesService) {
 

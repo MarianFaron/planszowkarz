@@ -8,46 +8,45 @@
 					<h3>Rejestracja</h3>
 					<hr class="main-hr">
 					<div class="inner">
-						<fieldset>
-							<div class="form-group">
-								<label>Login:</label>
-								<input type="text" class="form-control" required minlength="5" name="login" [ngModel]="model.login" #registerUserLogin="ngModel" (keyup)="usedLogin($event)">						
-								<div *ngIf="registerUserLogin.errors && (registerUserLogin.dirty || registerUserLogin.touched)" class="alert alert-danger">
-									<div [hidden]="!registerUserLogin.errors.required">
-										Login jest wymagany
-									</div>
-									<div [hidden]="!registerUserLogin.errors.minlength">
-										Wpisz co najmniej 5 znaków
-									</div>
+						<div class="form-group">
+							<label>Login:</label>
+							<input type="text" class="form-control" required minlength="5" name="login" [ngModel]="model.login" #registerUserLogin="ngModel" (keyup)="usedLogin($event)">
+							<div *ngIf="registerUserLogin.errors && (registerUserLogin.dirty || registerUserLogin.touched)" class="alert alert-danger">
+								<div [hidden]="!registerUserLogin.errors.required">
+									Login jest wymagany
+								</div>
+								<div [hidden]="!registerUserLogin.errors.minlength">
+									Wpisz co najmniej 5 znaków
 								</div>
 								<div *ngIf="this.loginIsUsed != false" class="alert alert-danger">
 									Login {{ userlogin }} jest używany
 								</div>
 							</div>
-							<div class="form-group">
-								<label>E-mail:</label>
-								<input type="text" class="form-control" name="email" [ngModel]="model.email" #registerUserEmail="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
-								<div *ngIf="registerUserEmail.errors && (registerUserEmail.dirty || registerUserEmail.touched)" class="alert alert-danger">
-									<div [hidden]="!registerUserEmail.errors.required">
-										E-mail jest wymagany
-									</div>
-									<div [hidden]="!registerUserEmail.errors.pattern">
-										Wpisz poprawny adres e-mail (example@example.pl)
-									</div>
+						</div>
+						<div class="form-group">
+							<label>E-mail:</label>
+							<input type="text" class="form-control" name="email" [ngModel]="model.email" #registerUserEmail="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+							<div *ngIf="registerUserEmail.errors && (registerUserEmail.dirty || registerUserEmail.touched)" class="alert alert-danger">
+								<div [hidden]="!registerUserEmail.errors.required">
+									E-mail jest wymagany
+								</div>
+								<div [hidden]="!registerUserEmail.errors.pattern">
+									Wpisz poprawny adres e-mail (example@example.pl)
 								</div>
 							</div>
-							<div class="form-group">
-								<label>Hasło:</label>
-								<input type="password" class="form-control" name="password" minlength="3" required [ngModel]="model.password" #registerUserPassword="ngModel" >
-								<div *ngIf="registerUserPassword.errors && (registerUserPassword.dirty || registerUserPassword.touched)" class="alert alert-danger">
-									<div [hidden]="!registerUserPassword.errors.required">
-										Hasło jest wymagane
-									</div>
-									<div [hidden]="!registerUserPassword.errors.minlength">
-										Wpisz co najmniej 3 znaki
-									</div>
+						</div>
+						<div class="form-group">
+							<label>Hasło:</label>
+							<input type="password" class="form-control" name="password" minlength="3" required [ngModel]="model.password" #registerUserPassword="ngModel">
+							<div *ngIf="registerUserPassword.errors && (registerUserPassword.dirty || registerUserPassword.touched)" class="alert alert-danger">
+								<div [hidden]="!registerUserPassword.errors.required">
+									Hasło jest wymagane
+								</div>
+								<div [hidden]="!registerUserPassword.errors.minlength">
+									Wpisz co najmniej 3 znaki
 								</div>
 							</div>
+						</div>
 						<div class="form-group">
 							<label>Potwierdź hasło:</label>
 							<input type="password" class="form-control" name="confirmPassword" minlength="3" validateEqual="password" required [ngModel]="model.confirmPassword" #registerUserConfirmPassword="ngModel" />
@@ -63,7 +62,7 @@
 								</div>
 							</div>
 						</div>
-						</fieldset>
+
 
 						<button type="submit" class="btn custom-button" [disabled]="!registerForm.form.valid" (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value);">Zarejestruj</button>
 					</div>
@@ -109,16 +108,16 @@
 </section>
 
 <!-- Modal -->
-<div id="forgot-password" class="modal fade" role="dialog" >
-  <div class="modal-dialog">
+<div id="forgot-password" class="modal fade" role="dialog">
+	<div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Resetowanie hasła</h4>
-      </div>
-      <div class="modal-body">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Resetowanie hasła</h4>
+			</div>
+			<div class="modal-body">
 				<form class="" action="/app/users/forgot" method="post" #forgotPasswordForm="ngForm">
 					<div class="form-group">
 						<label for="email">Podaj adres e-mail:</label>
@@ -132,12 +131,12 @@
 							</div>
 						</div>
 					</div>
-					<button [disabled]="!forgotPasswordForm.form.valid"  (click)="this.forgotPassword(forgotPasswordEmail.value)" data-dismiss="modal" class="btn custom-button" type="button" name="button">Resetuj hasło</button>
+					<button [disabled]="!forgotPasswordForm.form.valid" (click)="this.forgotPassword(forgotPasswordEmail.value)" data-dismiss="modal" class="btn custom-button" type="button" name="button">Resetuj hasło</button>
 				</form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-      </div>
-    </div>
-  </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+			</div>
+		</div>
+	</div>
 </div>

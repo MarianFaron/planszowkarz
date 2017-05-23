@@ -7,7 +7,7 @@ import { FlashMessagesService} from 'angular2-flash-messages';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css', '../app.scss'],
+  styleUrls: ['./users.component.css', '../app.component.scss'],
   providers: [AppService, UsersService]
 })
 export class UsersComponent implements OnInit {
@@ -106,7 +106,7 @@ export class UsersComponent implements OnInit {
                           if(response.message) {
                             this.flashMessage.show(response.message.toString(), {cssClass: 'alert-danger', timeout: 3000});
                           } else if(response.user) {
-                            this.flashMessage.show("E-mail aktywacyjny został wysłany. Sprawdź swoją pocztę.", {cssClass: 'alert-success', timeout: 3000});
+                            this.flashMessage.show("E-mail aktywacyjny został wysłany.", {cssClass: 'alert-success', timeout: 3000});
                           }
                         })
                         .subscribe(user => this.user, error => this.errorMessage = <any>error);

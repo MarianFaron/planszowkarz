@@ -1,76 +1,137 @@
-#user-game{
+#other-user{
+	margin: 0;
 	padding: 0;
-	background-color: #FFF;
-	.container{
-		padding-left: 50px;	
-		.game-info{
-			padding-left: 25px;			
-		}
-		.games-panel-content {
-			display: block;
-			.single-game-box {
-				padding-top: 20px;
-				padding-right: 3%;
-				padding-left: 3%;
-				padding-bottom: 20px;
+	.other-user-box{
+		width: 100%;
+		.container{
+			.game-box{
+				padding: 15px;
 				width: 100%;
-				min-height: 130px;
-				display: table;
-				.single-box-content {
-					border-bottom: 2px solid #e7e7e7;
-					width: 100%;
-					display: inline-flex;
-					.game-image {
-						display: flex;
-						vertical-align: middle;
-						width: 120px;
-						height: 120px;
-						border: 1px solid #e7e7e7;
-						img {
-							background-position: top;
-							max-height: 95%;
-							max-width: 95%;
-							position: relative;
-							margin: auto;
-							display: block;
+				margin-top: 50px;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				.left-col{
+					float: left;
+					text-align: left;
+					max-width: 500px;
+					width: 500px;
+					.gallery-box{
+						border: 1px solid black;
+						width: 100%;
+						height: 400px; //auto
+						img{
+							width: 100%;
+							max-width: 100%;
 						}
 					}
-					.game-info {
-						margin-left: 30px;
-						width: calc(100% - 150px);
-						p.title {
-							letter-spacing: -0.02em;
-							font-size: 24px;
-							line-height: 30px;
-							display: inline-block;
+					.game-list-box{
+						padding: 50px 0px 0px 0px;
+						text-align: left;
+						p{
+							color: #777;
+							font-family: 'Hind', sans-serif;
+							font-size: 15px;
+							font-weight: normal;
+							line-height: 26px;
+							span{
+								color: #303133;
+								font-weight: 600;
+							}
 						}
-						p.description {
-							text-align: justify;
+					}
+				}
+				.game-info{
+					max-width: 340px;
+					margin-left: 54px;
+					p{
+						margin: 18px 0px 0px 0px;
+						color: #777;
+						font-family: 'Hind', sans-serif;
+						font-size: 15px;
+						font-weight: normal;
+						line-height: 26px;
+						text-align: justify;
+					}
+					.owner{
+						margin: 18px 0px 0px 0px;
+						span.detail-row{
+							display: table;
+							color: #777;
+							font-family: 'Hind', sans-serif;
+							font-size: 15px;
+							font-weight: normal;
+							line-height: 26px;
+							span.detail-label{
+								display: table-cell;
+								min-width: 150px;
+								color: #303133;
+								font-weight: 600;
+							}
 						}
-						.game-info-buttons {
-							float: right;
-							button {
-								margin-top: 0;
+					}
+					.exchange-button{
+						float: right;
+						button {
+							margin-top: 0;
+						}
+					}
+				}
+			}
+			.other-games-box{
+				width: 100%;
+				margin: 0px;
+				padding: 0px;
+				h1{
+					color: #303133;
+					font-family: 'Hind', sans-serif;
+					font-size: 24px;
+					font-weight: 600;
+					line-height: 30px;
+					margin: 0px;
+					text-align: center;
+				}
+				.games-box{
+					padding: 18px 0px 18px 0px;
+					display: flex;
+					justify-content: center;
+					flex-wrap: wrap;
+					flex-direction: row;
+					.single-game-box{
+						width: calc(25% - 20px);
+						justify-content: center;
+						padding-top: 18px;
+						padding-bottom: 18px;
+						text-align: center;
+						flex-wrap: wrap;
+						margin: 0 10px;
+						.game-content{
+							margin: 0 20px;
+							img{
+								width: 150px;
+								height: 150px;
+								border: 1px solid black;
+								margin-bottom: 20px;
+							}
+							span.detail-row{
+								display: table;
+								color: #777;
+								font-family: 'Hind', sans-serif;
+								font-size: 15px;
+								font-weight: normal;
+								line-height: 26px;
+								text-align: left;
+								span.detail-label{
+									display: table-cell;
+									min-width: 100px;
+									color: #303133;
+									font-weight: 600;
+								}
 							}
 						}
 					}
 				}
 			}
-		}
-	}
-}
-
-#other-game-detail{
-	padding: 0;
-	background-color: #FFF;
-	margin-top: 50px;
-	.container{
-		padding-left: 50px;		
-		.future-section{
-			margin-top: 20px;
-			border: 1px solid #f98d1a;
-			border-radius: 5px;
-			padding-left: 25px;
 		}
 	}
 }
