@@ -58,7 +58,7 @@ export class AppComponent  {
   }
 
   ngOnInit() {
-
+  this.notificationsCount = '0';
     this.sub = this.route.queryParams.subscribe(params => {
       if(params['userId']) {
           this.appService.getUser(params['userId'])
@@ -79,7 +79,6 @@ export class AppComponent  {
         }
       );
     } else {
-      this.notificationsCount = '0';
       this.currentUser = null;
     }
   }

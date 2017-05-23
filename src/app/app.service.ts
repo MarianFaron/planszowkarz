@@ -38,7 +38,7 @@ export class AppService {
 
     return this.http.get(url, options)
                     .map((response: Response) => {
-                      localStorage.setItem('notificationsCount', JSON.stringify(response.json().notificationsSize));
+                      localStorage.setItem('notificationsCount', JSON.stringify(response.json().notificationsCount));
                     })
                     .catch(this.handleError);
   }
