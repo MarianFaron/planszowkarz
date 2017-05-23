@@ -17,6 +17,7 @@ export class AppComponent  {
 
   title = 'Planszówkarz';
   currentUser;
+  notificationsCount: string;
   errorMessage: string;
   games: UserGame[];
   user: User[];
@@ -57,6 +58,7 @@ export class AppComponent  {
   }
 
   ngOnInit() {
+
     this.sub = this.route.queryParams.subscribe(params => {
       if(params['userId']) {
           this.appService.getUser(params['userId'])
@@ -70,7 +72,14 @@ export class AppComponent  {
     });
     if(localStorage.getItem('currentUser')) {
       this.currentUser = localStorage.getItem('currentUser');
+      this.appService.getUnreadNotifications(JSON.parse(this.currentUser)._id).subscribe(
+        notifications => {
+          this.notificationsCount = localStorage.getItem('notificationsCount');
+          localStorage.setItem('notificationsCount', null);
+        }
+      );
     } else {
+      this.notificationsCount = '0';
       this.currentUser = null;
     }
   }

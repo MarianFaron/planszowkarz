@@ -30,6 +30,19 @@ export class AppService {
                     .catch(this.handleError);
   }
 
+  getUnreadNotifications(userId: string) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    var url = this.getUrl('/app/'+userId+'/unread-notifications');
+
+    return this.http.get(url, options)
+                    .map((response: Response) => {
+                      localStorage.setItem('notificationsCount', JSON.stringify(response.json().notificationsSize));
+                    })
+                    .catch(this.handleError);
+  }
+
   search(query: Object) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });

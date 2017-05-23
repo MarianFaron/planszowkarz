@@ -16,6 +16,9 @@
 						</li>
 						<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
 							<a [routerLink]="['notifications']" class="icon icon-display">
+								<span *ngIf="this.notificationsCount() != null">
+									<i class="fa fa-exclamation"></i>
+								</span>
 								<span>Powiadomienia</span>
 							</a>
 						</li>

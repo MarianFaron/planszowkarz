@@ -21,6 +21,24 @@ router.route('/:userID/notifications')
     });
   })
 
+  router.route('/:userID/unread-notifications')
+    .get((req, res) => {
+      Notifications.find({
+        'userID': req.params.userID,
+        'status': 'new'
+      }, (err, notifications) => {
+        if (err) {
+          return res.status(400).json({
+            message: "Bad Requested"
+          });
+        } else {
+          return res.status(200).json({
+            notificationsCount: notifications.length
+          });
+        }
+      });
+    })
+
   router.route('/change-status/:id')
     .get((req, res) => {
       Notifications.findById(req.params.id, function(err, notification) {

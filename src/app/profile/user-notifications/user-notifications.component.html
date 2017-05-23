@@ -1,9 +1,5 @@
 <div class="notifications-main-panel">
 	<div class="notifications-info">
-		<!-- <div class="notifications-panel-header">
-			<h5>Powiadomienia</h5>
-		</div>
-		<hr class="style1"> -->
 		<div class="new-game-wrapper">
 			<div class="notifications-panel-content">
 				<div *ngFor="let notification of pagedItems">
@@ -16,6 +12,14 @@
 									</span> Treść:
 								</strong>{{notification.content}}</p>
 							<p><strong>Data: </strong>{{notification.sendDate|date: 'dd-MM-yyyy'}}</p>
+							<div class="notification-btns">
+								<button type="button" name="button" class="btn custom-button">
+									<i class="fa fa-check"></i> Akceptuj
+								</button>
+								<button type="button" name="button" class="btn">
+									<i class="fa fa-close"></i> Odrzuć
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
