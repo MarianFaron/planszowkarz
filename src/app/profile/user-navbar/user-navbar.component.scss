@@ -1,0 +1,79 @@
+@font-face {
+	font-family: 'Pe-icon-7-stroke';
+	src:url('../../assets/fonts/stroke7pixeden/stroke7pixeden.eot');
+	src:url('../../assets/fonts/stroke7pixeden/stroke7pixeden.eot?#iefixu58ytb') format('embedded-opentype'),
+		url('../../assets/fonts/stroke7pixeden/stroke7pixeden.woff') format('woff'),
+		url('../../assets/fonts/stroke7pixeden/stroke7pixeden.ttf') format('truetype'),
+		url('../../assets/fonts/stroke7pixeden/stroke7pixeden.svg') format('svg');
+}
+
+.container{
+	font-size: 1.25em;
+	padding-right: 0px;
+	padding-left: 0px;
+	.col-md-8{
+		.tabs {
+		font-size: 1.25em;
+		box-shadow: 2px 2px 1px #d5d5d5;
+			nav{
+				margin-bottom: 0px;
+				ul {
+					display: flex;
+					margin: 0 auto;
+					padding: 0;
+					flex-flow: row wrap;
+					li {
+						display: block;
+						text-align: center;
+						-ms-flex: 1;
+						flex: 1;
+						border: 1px solid rgba(40,44,42,0.1);
+						a {
+							padding: 0.65em 0 0.5em;
+							background: #fff;
+							color: #74777b;
+							line-height: 1;
+							text-decoration: none;
+							display: block;
+							span {
+								text-transform: uppercase;
+								letter-spacing: 1px;
+								font-weight: 700;
+								font-size: 0.5em;
+								vertical-align: middle;
+							}
+						}
+						a:hover, a:focus a:active {
+							color: rgb(249, 141, 26);
+						}
+						.icon::before {
+							display: block;
+							margin: 0;
+							font-size: 1.3em;
+							font-family: 'Pe-icon-7-stroke';
+							-webkit-backface-visibility: hidden;
+						}
+						.icon-joy::before {
+							content: "\e6a4";
+						}
+						.icon-config::before {
+							content: "\e666";
+						}
+						.icon-date::before {
+							content: "\e660";
+						}
+						.icon-display::before {
+							content: "\e65e";
+						}
+						.icon-upload::before {
+							content: "\e68a";
+						}
+					}
+					li:not(:last-child) {
+						border-right: none;
+					}
+				}
+			}
+		}
+	}
+}

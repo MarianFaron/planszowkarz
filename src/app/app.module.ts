@@ -14,12 +14,14 @@ import { FileSelectDirective } from 'ng2-file-upload';
 import { UserInfoComponent } from './profile/user-info/user-info.component';
 import { UserGamesComponent } from './profile/user-games/user-games.component';
 import { EqualValidator } from './users/equal-validator.directive';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { OtherUserComponent } from './other-user/other-user.component'
 import { MyDatePickerModule } from 'mydatepicker';
 import { GameDetailsComponent } from './game-details/game-details.component';
 import { GamesListComponent } from './games-list/games-list.component';
 import { UserNotificationsComponent } from './profile/user-notifications/user-notifications.component';
+import { UserConfigComponent } from './profile/user-config/user-config.component';
+import { UserNavbarComponent } from './profile/user-navbar/user-navbar.component';
+import { UserHistoryComponent } from './profile/user-history/user-history.component';
 
 @NgModule({
   declarations: [
@@ -31,11 +33,13 @@ import { UserNotificationsComponent } from './profile/user-notifications/user-no
     UserInfoComponent,
     UserGamesComponent,
     EqualValidator,
-    NavBarComponent,
     OtherUserComponent,
     GameDetailsComponent,
     GamesListComponent,
-    UserNotificationsComponent
+    UserNotificationsComponent,
+    UserConfigComponent,
+    UserNavbarComponent,
+    UserHistoryComponent
   ],
   imports: [
     BrowserModule,

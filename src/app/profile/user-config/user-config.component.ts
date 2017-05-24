@@ -1,22 +1,22 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
-import { UserInfoService } from './user-info.service';
+import { UserConfigService } from './user-config.service';
 import { AppService } from '../../app.service';
-import { UserInfo } from './user-info';
+import { UserInfo } from '../user-info/user-info';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { IMyOptions} from 'mydatepicker';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 
 @Component({
-  selector: 'app-user-info',
-  templateUrl: './user-info.component.html',
-  styleUrls: ['./user-info.component.scss'],
-  providers: [UserInfoService, AppService]
+  selector: 'app-user-config',
+  templateUrl: './user-config.component.html',
+  styleUrls: ['./user-config.component.css'],
+  providers: [UserConfigService, AppService]
 })
 
 
-export class UserInfoComponent implements OnInit {
+export class UserConfigComponent implements OnInit {
 
   errorMessage: string;
   status: string;
@@ -28,7 +28,11 @@ export class UserInfoComponent implements OnInit {
   public URL = this.appService.getUrl('/app/avatarUpload');
   public avatarUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
-  constructor(private http: Http, private el: ElementRef, private appService: AppService, private userInfoService: UserInfoService, private flashMessage:FlashMessagesService) { }
+  constructor(private http: Http,
+              private el: ElementRef,
+              private appService: AppService,
+              private userConfigService: UserConfigService,
+              private flashMessage:FlashMessagesService) { }
 
   private myDatePickerOptions: IMyOptions = {
         dateFormat: 'dd-mm-yyyy',
@@ -66,7 +70,7 @@ export class UserInfoComponent implements OnInit {
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var userID = currentUser._id;
 
-    this.userInfoService.getUser(userID)
+    this.userConfigService.getUser(userID)
                      .subscribe(
                         userInfo => {
                           this.userInfo = userInfo;
@@ -75,4 +79,24 @@ export class UserInfoComponent implements OnInit {
                         error => this.errorMessage = <any>error);
   }
 
+  //edit user information
+
+  editUserInfo(id: string, city: string, contactNumber: string, avatarImage: string, password: string) {
+
+    var d = this.model.datepicker.date.year;
+    var m =this.model.datepicker.date.month;
+    var y = this.model.datepicker.date.day;
+    var date = '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+
+    this.userConfigService.updateUser(id, date, city, contactNumber, this.avatarImgName, password)
+                     .subscribe(
+                        userInfo  => {
+                          this.userInfo;
+                          this.getUserInfo();
+                          this.flashMessage.show('Dane użytkownika zostały zmienione.', {cssClass: 'alert-success', timeout: 3000});
+                        },
+                        error =>  {
+                          this.errorMessage = <any>error
+                        });
+  }
 }

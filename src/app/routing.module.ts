@@ -10,7 +10,8 @@ import { GameDetailsComponent }   from './game-details/game-details.component';
 import { GamesListComponent }     from './games-list/games-list.component';
 import { UserGamesComponent }     from './profile/user-games/user-games.component';
 import { UserNotificationsComponent } from './profile/user-notifications/user-notifications.component';
-
+import { UserConfigComponent } from './profile/user-config/user-config.component';
+import { UserHistoryComponent } from './profile/user-history/user-history.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
@@ -22,7 +23,9 @@ export const router: Routes = [
 		children: [
       		{ path: '', redirectTo: 'games', pathMatch: 'full' },
       		{ path: 'games', component: UserGamesComponent },
-      		{ path: 'notifications', component: UserNotificationsComponent }
+      		{ path: 'notifications', component: UserNotificationsComponent },
+					{ path: 'history', component: UserHistoryComponent },
+					{ path: 'config', component: UserConfigComponent }
       	]
 	},
 	{ path: 'user-profile/:login', component: OtherUserComponent },
