@@ -12,26 +12,26 @@ import { UserInfo } from './user-info';
 export class UserInfoService {
 
 	private userInfoURL = this.appService.getUrl('/app/users');
+	private editUserUrl = this.appService.getUrl('/app/edit-user');
 
 	constructor (private http: Http, private appService: AppService) {}
 
 	// get information about one user
 	getUser(id: string): Observable<UserInfo> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
-    	let options = new RequestOptions({ headers: headers });
+    let options = new RequestOptions({ headers: headers });
 
-    	return this.http.get(`${this.userInfoURL}/${id}`, options)
+    return this.http.get(`${this.userInfoURL}/${id}`, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
 	}
 
 	// edit information about one user
-
-	updateUser(id: string, login: string, name: string, dateBirth: string, city: string, contactNumber: string, avatarImage: string): Observable<UserInfo[]> {
+	updateUser(id: string, dateBirth: string, city: string, contactNumber: string, avatarImage: string, password): Observable<UserInfo[]> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
-    	let options = new RequestOptions({ headers: headers });
+    let options = new RequestOptions({ headers: headers });
 
-    	return this.http.patch(`${this.userInfoURL}/${id}`, {login, name, dateBirth, city, contactNumber, avatarImage}, options)
+    return this.http.post(`${this.editUserUrl}/${id}`, {dateBirth, city, contactNumber, avatarImage, password}, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
 	}

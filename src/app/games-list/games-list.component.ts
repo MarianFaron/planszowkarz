@@ -4,7 +4,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AppService } from '../app.service';
 import { PagerService } from '../pager.service';
 import { CoreService } from '../core/core.service';
-import { Router, CanActivate, ActivatedRoute, Params } from '@angular/router'
+import { Router, CanActivate, ActivatedRoute, Params, NavigationExtras } from '@angular/router'
 
 @Component({
   selector: 'app-games-list',
@@ -55,8 +55,9 @@ export class GamesListComponent implements OnInit {
   states: string[];
   errorMessage: string;
   userGame: UserGame[];
+  private sub: any;
 
-  constructor(private appService: AppService, private coreService: CoreService, private router: Router, private activatedRoute: ActivatedRoute, private http: Http, private pagerService: PagerService) { }
+  constructor(private appService: AppService, private route: ActivatedRoute, private coreService: CoreService, private router: Router, private activatedRoute: ActivatedRoute, private http: Http, private pagerService: PagerService) { }
 
   ngOnInit() {
 
@@ -102,23 +103,29 @@ export class GamesListComponent implements OnInit {
                             var title = '', categories = '', states = '';
 
                             if(this.query.title != "") {
-                              title = 'q='+this.query.title;
+                              title = ''+this.query.title;
                             }
 
                             if(this.query.category.length > 0) {
-                              categories = '&c=';
                               for(var i = 0; i < this.query.category.length; i++) {
                                 (i == this.query.category.length-1) ? categories += this.query.category[i]: categories += this.query.category[i] + ','
                               }
                             }
 
                             if(this.query.state.length > 0) {
-                              states = '&s=';
                               for(var i = 0; i < this.query.state.length; i++) {
                                 (i == this.query.state.length-1) ? states += this.query.state[i]: states += this.query.state[i] + ','
                               }
                             }
-                            window.location.href='/search-results?' + title + categories + states;
+
+                            var query = {
+                              q: title,
+                              c: categories,
+                              s: states
+                            }
+
+                            this.router.navigate(['search-results'], {queryParams: query});
+
                           },
                           error => {
                             this.errorMessage = <any>error;
@@ -151,6 +158,12 @@ export class GamesListComponent implements OnInit {
   }
 
   getGames() {
+    this.sub = this.route.queryParams.subscribe(params => {
+      if(params['page']) {
+        console.log(params['page']);
+      }
+    });
+
     this.coreService.getGames()
                     .subscribe(
                         games => {
@@ -193,6 +206,7 @@ export class GamesListComponent implements OnInit {
   }
 
   setPage(page: number) {
+    this.router.navigate(['/games'], {queryParams: {page: page}});
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }

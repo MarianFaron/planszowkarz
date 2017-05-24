@@ -37,12 +37,12 @@ export class UserInfoComponent implements OnInit {
     };
 
     model = {
-      login: '',
-      name: '',
       datepicker: { date: {year: 2000, month: 1, day: 1 }},
       dateBirth: '',
       city: '',
-      contactNumber: ''
+      contactNumber: '',
+      password: '',
+      confirmPassword: ''
     }
 
   ngOnInit() {
@@ -77,14 +77,14 @@ export class UserInfoComponent implements OnInit {
 
   //edit user information
 
-  editUserInfo(id: string, login: string, name: string, city: string, contactNumber: string, avatarImage: string) {
+  editUserInfo(id: string, city: string, contactNumber: string, avatarImage: string, password: string) {
 
     var d = this.model.datepicker.date.year;
     var m =this.model.datepicker.date.month;
     var y = this.model.datepicker.date.day;
     var date = '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
 
-    this.userInfoService.updateUser(id, login, name, date, city, contactNumber, this.avatarImgName)
+    this.userInfoService.updateUser(id, date, city, contactNumber, this.avatarImgName, password)
                      .subscribe(
                         userInfo  => {
                           this.userInfo;

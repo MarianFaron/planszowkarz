@@ -50,7 +50,7 @@ export class AppComponent  {
                             this.games = games;
                             localStorage.setItem('games', JSON.stringify(games));
                             localStorage.setItem('query', JSON.stringify(this.query));
-                            window.location.href='/search-results?q='+this.query.title;
+                            this.router.navigate(['search-results'], {queryParams: this.query});
                           },
                           error => {
                             this.errorMessage = <any>error;

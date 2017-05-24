@@ -40,10 +40,11 @@ router.route('/start')
       }
 
       var message = "Użytkownik: <b>" + userName + "</b> poprosił cię o wymianę za grę: <b>" + gameTitle + "</b>. Przejdź do panelu na swoim koncie, aby mu odpowiedzieć.";
+      var notificationMessage = "Użytkownik: " + userName + " poprosił cię o wymianę za grę: " + gameTitle + ". Zaakceptuj lub odrzuć na jego prośbę.";
 
       var notification = new Notification();
 
-      notification.content = message;
+      notification.content = notificationMessage;
       notification.userID = user._id;
       notification.date = new Date();
       notification.status = 'new';

@@ -196,6 +196,39 @@ router.route('/users/logout')
 // DEFAULT ROUTES =====================
 // =====================================
 
+router.route('/edit-user/:id')
+  .post((req, res) => {
+    User.findById(req.params.id, (err, user) => {
+      if (err) {
+        return res.status(400).json({
+          message: "Bad Requested"
+        });
+      } else if (!user) {
+        return res.status(404).json({
+          message: "User not Found"
+        });
+      } else {
+
+          user.avatarImage = req.body.avatarImage;
+          user.dateBirth = req.body.dateBirth;
+          user.city = req.body.city;
+          user.contactNumber = req.body.contactNumber;
+
+          if(!user.facebook && req.body.password != '' && req.body.password.length >= 3) {
+            user.local.password = user.generateHash(req.body.password);
+          }
+
+          user.save(function(err) {
+            if (err)
+              throw err;
+          });
+
+        return res.status(200).json(user);
+      }
+    });
+  });
+
+
 router.route('/users')
   // get all users
   .get((req, res) => {
@@ -320,8 +353,11 @@ router.route('/users/:id/userGames')
 
 router.route('/users/login/:login')
   .get((req, res) => {
-    var login = req.query.login;
-    User.findOne(login, (err, user) => {
+    // console.log(req.params.login);
+    // var login = req.params.login;
+    User.findOne({
+      'local.login': req.params.login
+    }, (err, user) => {
       if (err) {
         return res.status(400).json({
           message: "Bad Requested"
@@ -331,6 +367,7 @@ router.route('/users/login/:login')
           message: "User not Found"
         });
       } else {
+        console.log(user);
         return res.status(200).json(user);
       }
     });
