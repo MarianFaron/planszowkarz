@@ -55,6 +55,9 @@ export class GamesListComponent implements OnInit {
   states: string[];
   errorMessage: string;
   userGame: UserGame[];
+  pageUrl = '/games';
+
+
   private sub: any;
 
   constructor(private appService: AppService, private route: ActivatedRoute, private coreService: CoreService, private router: Router, private activatedRoute: ActivatedRoute, private http: Http, private pagerService: PagerService) { }
@@ -75,17 +78,18 @@ export class GamesListComponent implements OnInit {
 
     this.updateCheckboxes();
 
-    if (localStorage.getItem('games') == 'null') {
+    if (!localStorage.getItem('games')) {
 
       this.router.navigate(['/games']);
       this.pageTitle = "Wymiana gier";
       this.getGames();
 
     } else {
-
+      this.pageUrl = '/search-results';
       this.queryTitle = JSON.parse(localStorage.getItem('query')).title;
       this.games = JSON.parse(localStorage.getItem('games'));
       this.setPageTitle();
+
       this.setPage(1);
       localStorage.setItem('games', null);
       localStorage.setItem('query', null);
@@ -206,7 +210,7 @@ export class GamesListComponent implements OnInit {
   }
 
   setPage(page: number) {
-    this.router.navigate(['/games'], {queryParams: {page: page}});
+    this.router.navigate([this.pageUrl], {queryParams: {page: page}});
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }

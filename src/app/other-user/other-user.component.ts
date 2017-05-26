@@ -32,7 +32,7 @@ export class OtherUserComponent implements OnInit {
 
   ngOnInit() {
     let login = this.activeRoute.snapshot.params['login'];
-    this.getUserInfo(login); 
+    this.getUserInfo(login);
   }
 
   getUserInfo(login: string) {
@@ -54,6 +54,13 @@ export class OtherUserComponent implements OnInit {
       .subscribe(
                   userGame => this.userGame = userGame.reverse(),
                   error => this.errorMessage = <any>error);
+  }
+
+  start(game: string) {
+    this.appService.startTransaction(game)
+      .subscribe(response => {
+        this.flashMessage.show("Wysłano prośbę o wymianę.", {cssClass: 'alert-success', timeout: 3000});
+      });
   }
 
 }

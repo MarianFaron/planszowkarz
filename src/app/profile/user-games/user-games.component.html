@@ -6,18 +6,24 @@
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dodaj
 					</button>
 				</div>
-			<!-- <h5>Moje gry planszowe</h5> -->
-
 		</div>
-		<!-- <hr class="style1"> -->
+		<div *ngIf="!userGame">
+			<div class="text-center">
+				<img src="../../assets/images/loading.gif" alt="" class="loading">
+			</div>
+		</div>
 		<div class="games-panel-content">
 			<div class="single-game-box" *ngFor="let game of userGame">
 				<div class="single-box-content inner">
 					<div class="game-image">
-						<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
+						<a routerLink="/games/{{ game._id }}">
+							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
+						</a>
 					</div>
 					<div class="game-info">
-						<p class="title">{{ game.title }}</p>
+						<a routerLink="/games/{{ game._id }}">
+							<p class="title">{{ game.title }}</p>
+						</a>
 						<div class="game-info-buttons">
 							<button class="btn btn-default"
 									data-toggle="modal" attr.data-target="#edit-game-{{game._id}}">

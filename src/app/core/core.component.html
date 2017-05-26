@@ -3,10 +3,15 @@
     <h3>Najnowsze ogłoszenia</h3>
 		<hr class="main-hr">
 		<div class="row">
+      <div *ngIf="!userGame">
+        <div class="text-center">
+          <img src="../../assets/images/loading.gif" alt="" class="loading">
+        </div>
+      </div>
 			<div class="col-md-3 col-sm-6 col-xs-12 new-game-wrapper" *ngFor="let game of userGame | slice:0:4">
 			 	<div class="game-card">
 					<div class="inner">
-            <a routerLink="/game/{{ game._id }}">
+            <a routerLink="/games/{{ game._id }}">
   						<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}" alt="{{game.title}}" class="img-responsive center-block">
   						<h3>{{ game.title }}</h3>
             </a>
@@ -14,7 +19,7 @@
 						<a routerLink="/user-profile/{{ game.userID.local.login }}"> Dodane przez: {{ game.userID.local.login }}</a><br>
 						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lokalizacja: {{ game.userID.city }}<br>
 						<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane {{ game.createdDate | date:'longDate' }}<br>
-          				<div class="text-center">
+          				<div *ngIf="this.appService.isLoggedIn()" class="text-center">
             				<button type="button" class="btn btn-default custom-button" (click)="this.start(game)">
 		                    	Wymień się!
             				</button>

@@ -29,7 +29,7 @@ export const router: Routes = [
       	]
 	},
 	{ path: 'user-profile/:login', component: OtherUserComponent },
-	{ path: 'game/:_id', component: GameDetailsComponent },
+	{ path: 'games/:_id', component: GameDetailsComponent },
 	{ path: 'search-results', component: GamesListComponent },
 	{ path: 'games', component: GamesListComponent }
 ];

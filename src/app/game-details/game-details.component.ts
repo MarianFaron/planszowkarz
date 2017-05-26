@@ -34,4 +34,11 @@ export class GameDetailsComponent implements OnInit {
                           	 error => this.errorMessage = <any>error
                            );
    }
+
+   start(game: string) {
+     this.appService.startTransaction(game)
+       .subscribe(response => {
+         this.flashMessage.show("Wysłano prośbę o wymianę.", {cssClass: 'alert-success', timeout: 3000});
+       });
+   }
 }

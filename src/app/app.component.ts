@@ -21,7 +21,6 @@ export class AppComponent  {
   errorMessage: string;
   games: UserGame[];
   user: User[];
-
   query = {
     title: '',
     category: null,

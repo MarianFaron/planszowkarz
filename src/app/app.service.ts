@@ -65,6 +65,14 @@ export class AppService {
 
   }
 
+  isLoggedIn() {
+    if(localStorage.getItem('currentUser')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   extractData(res: Response) {
     let body = res.json();
     return body || { };

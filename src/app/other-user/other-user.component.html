@@ -13,17 +13,26 @@
 				<div class="games-main-panel">
 					<div class="games-info">
 						<div class="games-panel-content ">
+							<div *ngIf="!userGame">
+			          <div class="text-center">
+			            <img src="../../assets/images/loading.gif" alt="" class="loading">
+			          </div>
+			        </div>
 							<div class="single-game-box" *ngFor="let game of userGame">
 								<div class="single-box-content inner">
-									<div class="game-image">
-										<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
-									</div>
+									<a routerLink="/games/{{ game._id }}">
+										<div class="game-image">
+											<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
+										</div>
+									</a>
 									<div class="game-info">
-										<p class="title">{{ game.title }}</p>
-										<div class="game-info-buttons">
-											<button class="btn custom-button">
-												Wymień się
-											</button>
+										<a routerLink="/games/{{ game._id }}">
+											<p class="title">{{ game.title }}</p>
+										</a>
+										<div class="game-info-buttons" *ngIf="this.appService.isLoggedIn()">
+											<button type="button" class="btn btn-default custom-button" (click)="this.start(game)">
+			                    	Wymień się!
+	            				</button>
 										</div>
 										<p><strong>Kategoria: </strong>{{ game.category }}</p>
 										<p><strong>Stan: </strong>{{ game.state }}</p>
@@ -38,6 +47,11 @@
 			<div class="col-md-4">
 				<div class="user-sidebar inner">
 					<div class="other-info">
+						<div *ngIf="!userInfo">
+							<div class="text-center">
+								<img src="../../assets/images/loading.gif" alt="" class="loading">
+							</div>
+						</div>
 				<img *ngIf="userInfo?.avatarImage" class="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{ userInfo?.avatarImage }}" alt="user-avatar" />
 				<ul>
 					<li class="username">{{userInfo?.name}}</li>

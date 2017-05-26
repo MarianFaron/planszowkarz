@@ -2,6 +2,11 @@
 	<div class="notifications-info">
 		<div class="new-game-wrapper">
 			<div class="notifications-panel-content">
+				<div *ngIf="!pagedItems">
+	        <div class="text-center">
+	          <img src="../../assets/images/loading.gif" alt="" class="loading">
+	        </div>
+	      </div>
 				<div *ngFor="let notification of pagedItems">
 					<div class="single-box inner" [ngClass]="{unread: notification.status =='new'}" (click)="this.changeStatus(notification._id)">
 						<div class="box-content">

@@ -68,6 +68,8 @@ router.route('/start')
         }
         console.log('Message %s sent: %s', info.messageId, info.response);
       });
+
+      res.json({message: "Wysłano prośbę o wymianę."});
     });
   });
 
