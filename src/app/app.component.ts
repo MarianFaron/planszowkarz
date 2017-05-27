@@ -4,8 +4,9 @@ import { User } from './users/user';
 import { AuthGuard } from './guards/auth.guard';
 import { Router, CanActivate, ActivatedRoute } from '@angular/router'
 import { AppService } from './app.service';
-
+import * as io from 'socket.io-client';
 import { UserGame } from './profile/user-games/user-games';
+import { FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +30,7 @@ export class AppComponent  {
 
   private sub: any;
 
-  constructor(private router: Router, private userGameService: UsersService, private appService: AppService, private authGuard: AuthGuard, private route: ActivatedRoute) {}
+  constructor(private flashMessage:FlashMessagesService, private router: Router, private userGameService: UsersService, private appService: AppService, private authGuard: AuthGuard, private route: ActivatedRoute) {  }
 
   logout() {
     this.userGameService.logout()
@@ -70,11 +71,8 @@ export class AppComponent  {
     });
     if(localStorage.getItem('currentUser')) {
       this.currentUser = localStorage.getItem('currentUser');
-      this.appService.getUnreadNotifications(JSON.parse(this.currentUser)._id).subscribe(
-        notifications => {
-          this.notificationsCount = localStorage.getItem('notificationsCount');
-          localStorage.setItem('notificationsCount', null);
-        }
+      this.appService.getUnreadNotifications(this.appService.getCurrentUser()._id).subscribe(
+        notifications => {this.notificationsCount = localStorage.getItem('notificationsCount');}
       );
     } else {
       this.currentUser = null;

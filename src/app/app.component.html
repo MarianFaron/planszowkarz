@@ -23,7 +23,7 @@
         <li><a *ngIf="currentUser != null" routerLink="/profile" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>
           Profil
           <span *ngIf="this.notificationsCount != '0'" class="notifications-count">
-            {{this.notificationsCount}}
+            {{this.appService.unread}}
           </span>
         </a></li>
         <li><a *ngIf="currentUser != null" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> Wyloguj</a></li>
@@ -40,6 +40,8 @@
     </div>
   </div>
 </div>
+
+<simple-notifications></simple-notifications>
 
 <div class="main">
   <router-outlet></router-outlet>

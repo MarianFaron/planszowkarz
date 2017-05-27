@@ -50,4 +50,31 @@ router.route('/:userID/notifications')
       });
     })
 
+  router.route('/notifications/:id')
+    .delete(function(req, res) {
+      Notifications.findById(req.params.id, (err, notification) => {
+        if (err) {
+          return res.status(400).json({
+            message: "Bad Requested"
+          });
+        } else if (!notification) {
+          return res.status(404).json({
+            message: "Notification not Found"
+          });
+        } else {
+          Notifications.remove({
+            _id: req.params.id
+          }, (err, notification) => {
+            if (err) {
+              return res.status(400).json({
+                message: "Bad Requested"
+              });
+            } else {
+              return res.status(204).end();
+            }
+          });
+        }
+      })
+    });
+
 module.exports = router;

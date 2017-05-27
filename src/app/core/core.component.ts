@@ -20,7 +20,6 @@ export class CoreComponent implements OnInit {
   errorMessage: string;
   userGame: UserGame[];
   userInfo: UserInfo;
-  loading: boolean = true;
 
   constructor(private http: Http, private router: Router, private CoreService: CoreService, private appService: AppService, private flashMessage:FlashMessagesService) {}
 
@@ -28,10 +27,11 @@ export class CoreComponent implements OnInit {
     this.getUserGame();
   }
 
-  start(game: string) {
-    this.appService.startTransaction(game)
+  start(game: string, userId: string) {
+    this.appService.startTransaction(game, userId)
       .subscribe(response => {
-        this.flashMessage.show("Wysłano prośbę o wymianę.", {cssClass: 'alert-success', timeout: 3000});
+        console.log(JSON.parse(localStorage.getItem('currentUser'))._id + " send");
+
       });
   }
 

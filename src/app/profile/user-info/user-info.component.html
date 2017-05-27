@@ -1,6 +1,7 @@
 <div class="user-sidebar inner">
 	<div class="other-info">
-		<img class="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" alt="user-avatar" />
+		<img *ngIf="!userInfo?.avatarImage" class="user-avatar" src="{{this.appService.getUrl('/assets/images/avatar.png')}}" alt="">
+		<img *ngIf="userInfo?.avatarImage" class="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" alt="user-avatar" />
 		<div *ngIf="!userInfo">
 			<div class="text-center">
 				<img src="../../assets/images/loading.gif" alt="" class="loading">

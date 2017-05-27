@@ -13,6 +13,45 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 const cors = require('cors');
 var nev = require('email-verification')(mongoose);
+var http = require('http');
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
+
+
+
+// SOCKETS
+
+var clients = [];
+
+io.set("origins", "*:*");
+
+io.on('connection', function (socket, data) {
+
+    if (socket.handshake.query.userId) {
+      var client = {
+        "socketId": socket.id,
+        "userId": socket.handshake.query.userId
+      }
+      clients.push(client);
+      // console.log(clients);
+
+      socket.on('sendNotification', function (data) {
+        clients.find(function (el) {
+          if(el.userId == data) {
+              io.to(el.socketId).emit('getNotification', data);;
+          }
+        });
+      });
+    }
+
+    socket.on('disconnect', function() {
+     var index = clients.indexOf(socket);
+     if (index != -1) {
+         clients.splice(index, 1);
+         console.info('Client gone (id=' + socket.id + ').');
+     }
+   });
+});
 
 // MODELS
 var userModel = require('./models/user.model');
@@ -37,7 +76,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
-
+app.use('/scripts', express.static(__dirname + '/node_modules/'));
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(session({ secret: 'secret' }));
@@ -49,7 +88,6 @@ app.use(flash());
 require('./config/passport')(passport);
 app.use('/', express.static(__dirname));
 app.use(cors());
-
 app.use(express.static(path.join(__dirname, '../dist')));
 
 app.get('/app', (req, res) => {
@@ -67,4 +105,5 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
-app.listen(port, () => console.log("Server running on: " + port));
+// app.listen(port, () => console.log("Server running on: " + port));
+server.listen(port, "127.0.0.1");
