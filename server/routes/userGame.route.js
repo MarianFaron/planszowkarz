@@ -29,7 +29,7 @@ router.route('/search')
       var queryState = ["Nowa", "Używana"];
     }
 
-		userGame.find({
+	userGame.find({
       $and:
         [
           {title: {$regex :"^.*"+queryTitle+".*$", $options: '-i'}},
@@ -43,18 +43,22 @@ router.route('/search')
 				return res.status(200).json(games);
 			}
 		}).sort({createdDate: 1});
-  })
+  });
 
 
 router.route('/userGames')
 	// get all games
 	.get((req,res) => {
-		userGame.find().sort({createdDate: 1}).populate({ path: 'userID', select: 'local.login city' }).exec((err,games) => {
-			if(err){
-				return res.status(400).json({message: "Bad Requested"});
-			}else{
-				return res.status(200).json(games);
-			}
+		userGame.find().sort({createdDate: 1})
+				.populate({ 
+					path: 'userID', 
+					select: 'local.login city' 
+				}).exec((err,games) => {
+					if(err){
+						return res.status(400).json({message: "Bad Requested"});
+					}else{
+						return res.status(200).json(games);
+				}
 		});
 	})
 	// post new game
@@ -81,14 +85,18 @@ router.route('/userGames')
 
 router.route('/userGames/:id')
 	.get((req, res) => {
-		userGame.findById(req.params.id).populate({ path: 'userID', select: 'local.login city' }).exec((err, game) => {
-			if(err){
-				return res.status(400).json({message: "Bad Requested"});
-			} else if(!game){
-				return res.status(404).json({message: "Game not Found"});
-			} else {
-				return res.status(200).json(game);
-			}
+		userGame.findById(req.params.id)
+				.populate({ 
+					path: 'userID', 
+					select: 'local.login city' 
+				}).exec((err, game) => {
+					if(err){
+						return res.status(400).json({message: "Bad Requested"});
+					} else if(!game){
+						return res.status(404).json({message: "Game not Found"});
+					} else {
+						return res.status(200).json(game);
+					}
 		});
 	})
 
@@ -114,6 +122,22 @@ router.route('/userGames/:id')
 				return res.status(204).end();
 			}
 		})
+	});
+
+router.route('/sliderGames')
+	// get all games
+	.get((req,res) => {
+		userGame.find().sort({createdDate: -1})
+				.populate({ 
+					path: 'userID', 
+					select: 'local.login city' 
+				}).limit(10).exec((err,games) => {
+					if(err){
+						return res.status(400).json({message: "Bad Requested"});
+					}else{
+						return res.status(200).json(games);
+					}
+		});
 	});
 
 module.exports = router;

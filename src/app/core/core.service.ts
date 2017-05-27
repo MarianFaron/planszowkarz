@@ -12,8 +12,7 @@ import { UserInfo } from './../profile/user-info/user-info';
 @Injectable()
 export class CoreService {
 
-    private userGameUrl = this.appService.getUrl('/app/userGames');
-    private userInfoURL = this.appService.getUrl('/app/users');
+    private sliderGames = this.appService.getUrl('/app/sliderGames');
 
     constructor (private http: Http, private appService: AppService) {}
 
@@ -21,7 +20,7 @@ export class CoreService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.get(this.userGameUrl, options)
+    return this.http.get(this.sliderGames, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
     }
