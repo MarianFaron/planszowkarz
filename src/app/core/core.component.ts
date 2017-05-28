@@ -37,11 +37,9 @@ export class CoreComponent implements OnInit {
 
   getUserGame() {
       this.CoreService.getGames()
-                          .subscribe(
-                                userGame => {
-                                    this.userGame = userGame.reverse(),
-                                    error => this.errorMessage = <any>error
-                                }
-                          );
+      .subscribe(userGame => {
+          this.userGame = userGame,
+          error => this.errorMessage = <any>error
+      });
   }
 }

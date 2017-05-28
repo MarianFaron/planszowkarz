@@ -18,10 +18,12 @@ var nev = require('email-verification')(mongoose);
 var userModel = require('./models/user.model');
 var tempUserModel = require('./models/tempUser.model');
 var userGameModel = require('./models/userGame.model');
+var exchangeModel = require('./models/exchange.model');
 
 // ROUTES
 var userRoute = require('./routes/user.route.js');
 var userGameRoute = require('./routes/userGame.route.js');
+var exchangeRoute = require('./routes/exchange.route.js');
 var coverUploadRoute = require('./routes/coverUpload.route.js');
 var avatarUploadRoute = require('./routes/avatarUpload.route.js');
 var transactionsRoute = require('./routes/transactions.route.js');
@@ -58,6 +60,7 @@ app.get('/app', (req, res) => {
 
 app.use('/app', userRoute);
 app.use('/app', userGameRoute);
+app.use('/app', exchangeRoute);
 app.use('/app', coverUploadRoute);
 app.use('/app', avatarUploadRoute);
 app.use('/app', transactionsRoute);
