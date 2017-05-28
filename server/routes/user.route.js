@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require('../models/user.model');
 var TempUser = require('../models/tempUser.model');
 var userGame = require('../models/userGame.model');
+var Exchange = require('../models/exchange.model');
 var passport = require('passport');
 var generator = require('generate-password');
 var nodemailer = require('nodemailer');

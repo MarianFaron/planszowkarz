@@ -19,9 +19,9 @@ export class UserConfigService {
 	// get information about one user
 	getUser(id: string): Observable<UserInfo> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    	let options = new RequestOptions({ headers: headers });
 
-    return this.http.get(`${this.userInfoURL}/${id}`, options)
+    	return this.http.get(`${this.userInfoURL}/${id}`, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
 	}
@@ -29,9 +29,9 @@ export class UserConfigService {
 	// edit information about one user
 	updateUser(id: string, dateBirth: string, city: string, contactNumber: string, avatarImage: string, password): Observable<UserInfo[]> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    	let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(`${this.editUserUrl}/${id}`, {dateBirth, city, contactNumber, avatarImage, password}, options)
+    	return this.http.post(`${this.editUserUrl}/${id}`, {dateBirth, city, contactNumber, avatarImage, password}, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
 	}

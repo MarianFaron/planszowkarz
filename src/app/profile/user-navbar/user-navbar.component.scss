@@ -46,6 +46,9 @@
 						a:hover, a:focus a:active {
 							color: rgb(249, 141, 26);
 						}
+						.active-link {
+							color: rgb(249, 141, 26);
+						}
 						.icon::before {
 							display: block;
 							margin: 0;

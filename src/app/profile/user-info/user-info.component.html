@@ -9,7 +9,7 @@
 		<ul>
 
 			<div class="user-info-box">
-				<li *ngIf="userInfo?.local" class="username">{{userInfo?.local.login}}</li>
+				<li *ngIf="userInfo?.local && !userInfo?.facebook" class="username">{{userInfo?.local.login}}</li>
 				<li *ngIf="userInfo?.facebook" class="username">{{userInfo?.facebook.name}}</li>
 
 				<!-- FACEBOOK INFO  -->
@@ -22,7 +22,7 @@
 
 				<!-- LOCAL INFO -->
 
-				<div *ngIf="userInfo?.local">
+				<div *ngIf="userInfo?.local && !userInfo?.facebook">
 						<li *ngIf="userInfo?.local.email">
 							<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
 							Email: <a href="mailto:{{userInfo?.local.email}}">{{userInfo?.local.email}}</a>

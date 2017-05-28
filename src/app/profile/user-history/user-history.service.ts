@@ -4,26 +4,24 @@ import { AppService } from '../../app.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
+import "rxjs/add/operator/do";
 
-import { UserInfo } from './user-info';
+import { UserHistory } from './user-history';
+
 
 @Injectable()
-export class UserInfoService {
+export class UserHistoryService {
 
-	private userInfoURL = this.appService.getUrl('/app/users');
-	private editUserUrl = this.appService.getUrl('/app/edit-user');
+  	private exchangeUrl = this.appService.getUrl('/app/exchanges');
 
-	constructor (private http: Http, private appService: AppService) {}
+  	constructor (private http: Http, private appService: AppService) {}
 
-	// get information about one user
-	getUser(id: string): Observable<UserInfo> {
+  	getHistoryExchanges(id: string): Observable<UserHistory> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
     	let options = new RequestOptions({ headers: headers });
 
-    	return this.http.get(`${this.userInfoURL}/${id}`, options)
+    	return this.http.get(`${this.exchangeUrl}/${id}`, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
 	}
-
 }
