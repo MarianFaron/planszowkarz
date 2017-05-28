@@ -16,12 +16,13 @@ export class UserHistoryService {
 
   	constructor (private http: Http, private appService: AppService) {}
 
-  	getHistoryExchanges(id: string): Observable<UserHistory> {
+  	getHistoryExchanges(id: string): Observable<UserHistory[]> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
     	let options = new RequestOptions({ headers: headers });
 
     	return this.http.get(`${this.exchangeUrl}/${id}`, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
+       
 	}
 }

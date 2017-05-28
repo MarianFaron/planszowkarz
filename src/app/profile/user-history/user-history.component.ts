@@ -7,7 +7,8 @@ import { UserHistoryService } from './user-history.service';
 @Component({
   selector: 'app-user-history',
   templateUrl: './user-history.component.html',
-  styleUrls: ['./user-history.component.css']
+  styleUrls: ['./user-history.component.css'],
+  providers: [UserHistoryService]
 })
 export class UserHistoryComponent implements OnInit {
 
@@ -28,7 +29,7 @@ export class UserHistoryComponent implements OnInit {
 	  this.userHistoryService.getHistoryExchanges(userID)
 	                    .subscribe(
 	                      userHistory => {
-	                        this.userHistory;
+	                        this.userHistory = userHistory;
 	                      },
 	                      error => this.errorMessage = <any>error);
 	}
