@@ -22,6 +22,7 @@ import { UserNotificationsComponent } from './profile/user-notifications/user-no
 import { UserConfigComponent } from './profile/user-config/user-config.component';
 import { UserNavbarComponent } from './profile/user-navbar/user-navbar.component';
 import { UserHistoryComponent } from './profile/user-history/user-history.component';
+import { UserHistoryFilterPipe } from './profile/user-history/user-history.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UserHistoryComponent } from './profile/user-history/user-history.compon
     UserNotificationsComponent,
     UserConfigComponent,
     UserNavbarComponent,
-    UserHistoryComponent
+    UserHistoryComponent,
+    UserHistoryFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,7 @@ import { UserHistoryComponent } from './profile/user-history/user-history.compon
     FlashMessagesModule,
     MyDatePickerModule
   ],
-  providers: [{ provide: LOCALE_ID, useValue: "pl-PL" },AuthGuard],
+  providers: [{ provide: LOCALE_ID, useValue: "pl-PL" }, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

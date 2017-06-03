@@ -6,3 +6,39 @@
   margin: 10px auto;
   padding: 15px;
 }
+
+.single-transaction-content p {
+	margin: 5px 0;
+	text-align: center;
+}
+
+.single-transaction-title p {
+	margin: 5px 0;
+}
+
+.single-transaction {
+	height: 90px;
+}
+
+#left {
+	float:left;
+	width:200px;
+}
+
+#left p {
+	text-align: left;
+}
+
+#right {
+	float:right;
+	width:200px;
+	text-align: right;
+}
+
+#right p {
+	text-align: right;
+}
+#center {
+	margin:0 auto;
+	width:200px;
+}

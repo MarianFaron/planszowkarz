@@ -1,23 +1,77 @@
 <div class="user-history">
-  <div class="single-transaction inner">
-    <div class="single-transaction-content">
+  <div class="inner">
+    <div class="single-transaction-title">
       <p>
-        24 maja 2017: Wymieniłeś się za grę <b>Gra</b> z użytkownikiem <b>Mateusz</b>. <a href="#">Zobacz szczegóły</a>
+        Zaakceptowane
       </p>
     </div>
   </div>
-  <div class="single-transaction inner">
-    <div class="single-transaction-content">
+  <div class="single-transaction inner" *ngFor="let history of userHistory | searchfilter: 'status' : 'accepted'">
+    <div id="left" class="single-transaction-content">
+      <p>Login: {{history?.users[0]?.local.login}}</p>
+      <div *ngFor="let game of history.games | searchfilter: 'userID' : history?.users[0]._id">
+        <p> Nazwa gry: {{game.title}}</p>
+      </div>
+    </div>
+    <div id="right" class="single-transaction-content">
+      <p>Login: {{history?.users[1]?.local.login}}</p>
+      <div *ngFor="let game of history.games | searchfilter: 'userID' : history?.users[1]._id">
+        <p> Nazwa gry: {{game.title}}</p>
+      </div>
+    </div>
+    <div id="center" class="single-transaction-content">
+      <p>Status</p>
+      <p>"{{history?.status}}"<p>
+    </div>
+  </div>
+  <div class="inner">
+    <div class="single-transaction-title">
       <p>
-        23 maja 2017: Wymieniłeś się za grę <b>Gra</b> z użytkownikiem <b>Mateusz</b>. <a href="#">Zobacz szczegóły</a>
+        Wysłane
       </p>
     </div>
   </div>
-  <div class="single-transaction inner">
-    <div class="single-transaction-content">
+  <div class="single-transaction inner" *ngFor="let history of userHistory | searchfilter: 'status' : 'pending'">
+    <div id="left" class="single-transaction-content">
+      <p>Login: {{history?.users[0].local.login}}</p>
+      <div *ngFor="let game of history.games | searchfilter: 'userID' : history?.users[0]._id">
+        <p> Nazwa gry: {{game.title}}</p>
+      </div>
+    </div>
+    <div id="right" class="single-transaction-content">
+      <p>Login: {{history?.users[1]?.local.login}}</p>
+      <div *ngFor="let game of history.games | searchfilter: 'userID' : history?.users[1]._id">
+        <p> Nazwa gry: {{game.title}}</p>
+      </div>
+    </div>
+    <div id="center" class="single-transaction-content">
+      <p>Status</p>
+      <p>"{{history?.status}}"<p>
+    </div>
+  </div>
+  <div class="inner">
+    <div class="single-transaction-title">
       <p>
-        22 maja 2017: Wymieniłeś się za grę <b>Gra</b> z {{userHistory}} użytkownikiem <b>Mateusz</b>. <a href="#">Zobacz szczegóły</a>
+        Odrzucone
       </p>
+    </div>
+  </div>
+  <div class="single-transaction inner" *ngFor="let history of userHistory | searchfilter: 'status' : 'rejected'">
+    <div id="left" class="single-transaction-content">
+      <p>Login: {{history?.users[0]?.local.login}}</p>
+      <div *ngFor="let game of history.games | searchfilter: 'userID' : history?.users[0]._id">
+        <p> Nazwa gry: {{game.title}}</p>
+      </div>
+    </div>
+    <div id="right" class="single-transaction-content">
+      <p>Login: {{history?.users[1]?.local.login}}</p>
+      <div *ngFor="let game of history.games | searchfilter: 'userID' : history?.users[1]._id">
+        <p> Nazwa gry: {{game.title}}</p>
+      </div>
+    </div>
+    <div id="center" class="single-transaction-content">
+      <p>Status</p>
+      <p>"{{history?.status}}"<p>
     </div>
   </div>
 </div>
