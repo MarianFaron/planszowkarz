@@ -29,7 +29,6 @@ import { UserHistoryComponent } from './profile/user-history/user-history.compon
     ProfileComponent,
     CoreComponent,
     UsersComponent,
-    FileSelectDirective,
     UserInfoComponent,
     UserGamesComponent,
     EqualValidator,
@@ -47,7 +46,8 @@ import { UserHistoryComponent } from './profile/user-history/user-history.compon
     HttpModule,
     RoutingModule,
     FlashMessagesModule,
-    MyDatePickerModule
+    MyDatePickerModule,
+    FileSelectDirective
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pl-PL" },AuthGuard],
   bootstrap: [AppComponent]
