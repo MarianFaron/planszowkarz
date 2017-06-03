@@ -63,7 +63,7 @@ describe('UserInfoService', () => {
 
   it('should get user data', async(inject([OtherUserService, XHRBackend], (userinfoservice, mockbackend) => {
     mockbackend.connections.subscribe((connection) => {
-        expect(connection.request.url).toEqual('http://localhost:8080/app/users/58f9f03cb4695b0250a6eb43');
+        expect(connection.request.url).toEqual('http://planszowkarz.herokuapp.com/app/users/58f9f03cb4695b0250a6eb43');
         expect(connection.request.method).toBe(RequestMethod.Get);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         connection.mockRespond(new Response(new ResponseOptions({
@@ -80,7 +80,7 @@ describe('UserInfoService', () => {
 
   it('should edit user data', async(inject([OtherUserService, XHRBackend], (userinfoservice, mockbackend) => {
     mockbackend.connections.subscribe((connection) => {
-        expect(connection.request.url).toEqual('http://localhost:8080/app/users/58f9f03cb4695b0250a6eb43');
+        expect(connection.request.url).toEqual('http://planszowkarz.herokuapp.com/app/users/58f9f03cb4695b0250a6eb43');
         expect(connection.request.method).toBe(RequestMethod.Patch);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         expect(connection.request.getBody()).toEqual(JSON.stringify(

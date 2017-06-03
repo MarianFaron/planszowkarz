@@ -86,7 +86,7 @@ describe('UserGameService', () => {
 
   it('should get user-game list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
     mockbackend.connections.subscribe((connection) => {
-        expect(connection.request.url).toEqual('http://localhost:8080/app/users/58e45c5c9030ea1928a33feaz/userGames');
+        expect(connection.request.url).toEqual('http://planszowkarz.herokuapp.com/app/users/58e45c5c9030ea1928a33feaz/userGames');
         expect(connection.request.method).toBe(RequestMethod.Get);
         connection.mockRespond(new Response(new ResponseOptions({
         body: [
@@ -110,7 +110,7 @@ describe('UserGameService', () => {
 
   it('should show error when we dont have id to get user-games', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
     mockbackend.connections.subscribe((connection) => {
-        expect(connection.request.url).toEqual('http://localhost:8080/app/users//userGames');
+        expect(connection.request.url).toEqual('http://planszowkarz.herokuapp.com/app/users//userGames');
         expect(connection.request.method).toBe(RequestMethod.Get);
         connection.mockRespond(new Response(new ResponseOptions(
           { body: {message: "User games not found"},
@@ -129,7 +129,7 @@ describe('UserGameService', () => {
 
   it('should add user-game to list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
-        expect(connection.request.url).toEqual('http://localhost:8080/app/userGames');
+        expect(connection.request.url).toEqual('http://planszowkarz.herokuapp.com/app/userGames');
         expect(connection.request.method).toBe(RequestMethod.Post);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         expect(connection.request.getBody()).toEqual(JSON.stringify(
@@ -160,7 +160,7 @@ describe('UserGameService', () => {
 
   it('should edit user-game on list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
       mockbackend.connections.subscribe(connection => {
-        expect(connection.request.url).toEqual('http://localhost:8080/app/userGames/58ebec8a16f8161d00f8e063');
+        expect(connection.request.url).toEqual('http://planszowkarz.herokuapp.com/app/userGames/58ebec8a16f8161d00f8e063');
         expect(connection.request.method).toBe(RequestMethod.Patch);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         expect(connection.request.getBody()).toEqual(JSON.stringify(
@@ -189,7 +189,7 @@ describe('UserGameService', () => {
 
   it('should delete user-game from list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
       mockbackend.connections.subscribe(connection => {
-        expect(connection.request.url).toEqual('http://localhost:8080/app/userGames/58ebec8a16f8161d00f8e063');
+        expect(connection.request.url).toEqual('http://planszowkarz.herokuapp.com/app/userGames/58ebec8a16f8161d00f8e063');
         expect(connection.request.method).toBe(RequestMethod.Delete);
         connection.mockRespond(new Response(new ResponseOptions(
           { body: {message: "User game deleted"},

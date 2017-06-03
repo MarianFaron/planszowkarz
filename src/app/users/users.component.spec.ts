@@ -39,7 +39,7 @@ describe('UsersService', () => {
 
   it('should send login request to server', async(inject([UsersService, XHRBackend], (usersservice, mockbackend) => {
     mockbackend.connections.subscribe((connection) => {
-        expect(connection.request.url).toEqual('http://localhost:8080/app/users/login');
+        expect(connection.request.url).toEqual('http://planszowkarz.herokuapp.com/app/users/login');
         expect(connection.request.method).toBe(RequestMethod.Post);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         expect(connection.request.getBody()).toEqual(JSON.stringify(
@@ -64,7 +64,7 @@ describe('UsersService', () => {
 
   it('should send register data to server', async(inject([UsersService, XHRBackend], (usersservice, mockbackend) => {
     mockbackend.connections.subscribe((connection) => {
-        expect(connection.request.url).toEqual('http://localhost:8080/app/users/register');
+        expect(connection.request.url).toEqual('http://planszowkarz.herokuapp.com/app/users/register');
         expect(connection.request.method).toBe(RequestMethod.Post);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         expect(connection.request.getBody()).toEqual(JSON.stringify(
@@ -88,7 +88,7 @@ describe('UsersService', () => {
 
   it('should delete user date and logout', async(inject([UsersService, XHRBackend], (usersservice, mockbackend) => {
     mockbackend.connections.subscribe((connection) => {
-        expect(connection.request.url).toEqual('http://localhost:8080/app/users/logout');
+        expect(connection.request.url).toEqual('http://planszowkarz.herokuapp.com/app/users/logout');
         expect(connection.request.method).toBe(RequestMethod.Post);
         connection.mockRespond(new Response(new ResponseOptions({
           body: {message: 'Successful logout user'}

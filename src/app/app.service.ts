@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AppService {
 
-  private rootUrl = 'http://localhost:8080';
+  private rootUrl = 'http://planszowkarz.herokuapp.com';
   private usersUrl = this.getUrl('/app/users');
   private searchUrl = this.getUrl('/app/search');
   private transactionsUrl = this.getUrl('/app/start');;
