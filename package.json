@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot -prod"
+    "heroku-prebuild": "npm install -g http-server",
+    "heroku-postbuild": "ng build --prod"
   },
   "engines": {
     "node": "6.10.3",
@@ -49,14 +50,15 @@
     "passport-local": "^0.1.6",
     "rxjs": "^5.1.0",
     "underscore": "^1.8.3",
-    "zone.js": "^0.8.4"
-  },
-  "devDependencies": {
+    "zone.js": "^0.8.4",
     "@angular/cli": "1.0.0",
     "@angular/compiler-cli": "^4.0.0",
     "angular-cli": "1.0.0-beta.28.3",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
+    "typescript": "~2.2.0"
+  },
+  "devDependencies": {    
     "codelyzer": "~2.0.0",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
@@ -69,7 +71,6 @@
     "morgan": "^1.8.1",
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
-    "tslint": "~4.5.0",
-    "typescript": "~2.2.0"
+    "tslint": "~4.5.0"    
   }
 }
