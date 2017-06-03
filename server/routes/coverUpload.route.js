@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
-var rootUrl = 'localhost:8080';
+var rootUrl = 'http://planszowkarz.herokuapp.com';
 
 var storage_src = multer.diskStorage({
   destination: function (req, file, cb) {
