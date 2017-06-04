@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import { UserInfoService } from './user-info.service';
 import { AppService } from '../../app.service';
@@ -22,13 +22,13 @@ export class UserInfoComponent implements OnInit {
   status: string;
   userInfo: UserInfo;
   avatarImgName: string;
-
   currentDate = new Date();
 
   public URL = this.appService.getUrl('/app/avatarUpload');
   public avatarUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
-  constructor(private http: Http, private el: ElementRef, private appService: AppService, private userInfoService: UserInfoService, private flashMessage:FlashMessagesService) { }
+  constructor(private http: Http, private appService: AppService, private userInfoService: UserInfoService, private flashMessage:FlashMessagesService) {
+}
 
   private myDatePickerOptions: IMyOptions = {
         dateFormat: 'dd-mm-yyyy',
@@ -58,7 +58,7 @@ export class UserInfoComponent implements OnInit {
     let files: FileList = target.files;
     this.file = files[0];
     this.avatarImgName = this.file.name;
-  }
+  }  
 
   //get user information
 

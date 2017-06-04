@@ -63,11 +63,10 @@ export class GamesListComponent implements OnInit {
   constructor(private appService: AppService, private route: ActivatedRoute, private coreService: CoreService, private router: Router, private activatedRoute: ActivatedRoute, private http: Http, private pagerService: PagerService) { }
 
   ngOnInit() {
-
     this.activatedRoute.queryParams.subscribe((params: Params) => {
-      (params['q']) ? this.queryTitle = params['q'] : this.queryTitle = '';
-      (params['c']) ? this.categories = params['c'].toString().split(',') : this.categories = null;
-      (params['s']) ? this.states = params['s'].toString().split(',') : this.states = null;
+      (params['title']) ? this.queryTitle = params['title'] : this.queryTitle = '';
+      (params['category']) ? this.categories = params['category'].toString().split(',') : this.categories = null;
+      (params['state']) ? this.states = params['state'].toString().split(',') : this.states = null;
     });
 
     this.query = {
@@ -78,7 +77,7 @@ export class GamesListComponent implements OnInit {
 
     this.updateCheckboxes();
 
-    if (!localStorage.getItem('games')) {
+    if (this.query.title == '' && this.query.category == null && this.query.state == null) {
 
       this.router.navigate(['/games']);
       this.pageTitle = "Wymiana gier";
@@ -89,20 +88,20 @@ export class GamesListComponent implements OnInit {
       this.queryTitle = JSON.parse(localStorage.getItem('query')).title;
       this.games = JSON.parse(localStorage.getItem('games'));
       this.setPageTitle();
-
       this.setPage(1);
       localStorage.setItem('games', null);
       localStorage.setItem('query', null);
     }
   }
 
-  search(query: Object) {
+  search(query: {title: string, category: string, state: string}) {
+    var localQuery = query;
     this.appService.search(query)
                         .subscribe(
                           games => {
-                            this.games = games;
                             localStorage.setItem('games', JSON.stringify(games));
-                            localStorage.setItem('query', JSON.stringify(query));
+                            var query = localQuery;
+                            localStorage.setItem('query', JSON.stringify(localQuery));
 
                             var title = '', categories = '', states = '';
 
@@ -123,11 +122,12 @@ export class GamesListComponent implements OnInit {
                             }
 
                             var query = {
-                              q: title,
-                              c: categories,
-                              s: states
+                              title: title,
+                              category: categories,
+                              state: states
                             }
-
+                            this.games = games;
+                            this.query = query;
                             this.router.navigate(['search-results'], {queryParams: query});
 
                           },
@@ -141,13 +141,13 @@ export class GamesListComponent implements OnInit {
     this.categories = [];
     this.states = [];
 
-    for(var i =0; i<this.categoriesOptions.length; i++) {
+    for(var i = 0; i<this.categoriesOptions.length; i++) {
       if(this.categoriesOptions[i].checked == true) {
         this.categories.push(this.categoriesOptions[i].value);
       }
     }
 
-    for(var i =0; i<this.statesOptions.length; i++) {
+    for(var i = 0; i<this.statesOptions.length; i++) {
       if(this.statesOptions[i].checked == true) {
         this.states.push(this.statesOptions[i].value);
       }
@@ -158,16 +158,11 @@ export class GamesListComponent implements OnInit {
       "category": this.categories,
       "state": this.states
     }
+    console.log(this.query);
     this.search(this.query);
   }
 
   getGames() {
-    this.sub = this.route.queryParams.subscribe(params => {
-      if(params['page']) {
-        console.log(params['page']);
-      }
-    });
-
     this.coreService.getGames()
                     .subscribe(
                         games => {
@@ -179,12 +174,12 @@ export class GamesListComponent implements OnInit {
   }
 
   setPageTitle() {
-    this.countGames = this.games.length;
-    if(this.queryTitle != "") {
-      this.pageTitle = this.countGames+ " Wyników wyszukiwania dla: " + this.queryTitle;
-    } else {
-      this.pageTitle = this.countGames+ " Wyników wyszukiwania";
-    }
+      this.countGames = this.games.length;
+      if(this.queryTitle != "") {
+        this.pageTitle = this.countGames+ " Wyników wyszukiwania dla: " + this.queryTitle;
+      } else {
+        this.pageTitle = this.countGames+ " Wyników wyszukiwania";
+      }
   }
 
   updateCheckboxes() {

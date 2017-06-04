@@ -54,7 +54,7 @@ export class UserGamesComponent implements OnInit {
                         userGame  => {
                           this.userGame;
                           this.getUserGame();
-                          this.flashMessage.show('Dodano nową grę.', {cssClass: 'alert-success', timeout: 3000});
+                          this.appService.showNotification('Powiadomienie', 'Dodano nową grę.', 'success');
                         },
                         error =>  {
                           this.errorMessage = <any>error
@@ -74,7 +74,7 @@ export class UserGamesComponent implements OnInit {
                         userGame => {
                           this.userGame;
                           this.getUserGame();
-                          this.flashMessage.show('Zapisano zmiany.', {cssClass: 'alert-success', timeout: 3000});
+                          this.appService.showNotification('Powiadomienie', 'Zapisano zmiany.', 'success');
                         },
                         error =>  {
                           this.errorMessage = <any>error
@@ -87,7 +87,7 @@ export class UserGamesComponent implements OnInit {
                         userGame  => {
                           this.userGame;
                           this.getUserGame();
-                          this.flashMessage.show('Gra została usunięta.', {cssClass: 'alert-success', timeout: 3000});
+                          this.appService.showNotification('Powiadomienie', 'Gra została usunięta.', 'success');
                         },
                         error => {
                           this.errorMessage = <any>error

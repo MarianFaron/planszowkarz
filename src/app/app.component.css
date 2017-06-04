@@ -55,6 +55,18 @@
   border-bottom: 3px solid #f98d1a;
 }
 
+.navbar-brand {
+  padding: 0;
+  margin-right: 20px;
+}
+
+.navbar-brand img {
+  max-width: 50px;
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px;
+}
+
 .navbar a.navbar-brand:hover,
 .navbar a.navbar-brand:focus,
 .navbar a.navbar-brand:active {

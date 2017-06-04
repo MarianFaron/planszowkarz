@@ -60,7 +60,7 @@ export class UserNotificationsComponent implements OnInit {
           this.notifications;
           this.getNotifications();
           this.appService.getUnreadNotifications(JSON.parse(localStorage.getItem('currentUser'))._id);
-          this.appService.showNotification('Powiadomienie', 'Usunięto Powiadomienie');
+          this.appService.showNotification('Powiadomienie', 'Usunięto Powiadomienie', 'success');
         },
         error => this.errorMessage = <any>error
       );

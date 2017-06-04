@@ -22,7 +22,7 @@ export class AppService {
   constructor (private http: Http, private flashMessage:FlashMessagesService, private notificationsService: NotificationsService) {
     if(this.isLoggedIn()) {
       this.getUnreadNotifications(this.getCurrentUser()._id);
-      this.socket = io('http://localhost:8080', {query: {userId: this.getCurrentUser()._id}});
+      this.socket = io(this.getUrl(''), {query: {userId: this.getCurrentUser()._id}});
       this.getNotification();
     }
   }
@@ -65,7 +65,7 @@ export class AppService {
 
     var currentUser = this.getCurrentUser();
     this.socket.emit('sendNotification', userId);
-    this.showNotification('Powiadomienie', userId + ' Wysłał prośbę o wymianę.');
+    this.showNotification('Powiadomienie', 'Wysłano prośbę o wymianę.', 'success');
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers});
@@ -79,7 +79,7 @@ export class AppService {
   getNotification() {
       this.socket.on('getNotification', function(data){
       this.unread++;
-      this.showNotification('Powiadomienie', data + ' Dostał nowe powiadomienie.');
+      this.showNotification('Powiadomienie', 'Masz nowe powiadomienie.', 'success');
     }.bind(this));
   }
 
@@ -103,16 +103,25 @@ export class AppService {
     }
   }
 
-  showNotification(title: string, content: string) {
-    this.notificationsService.success(title, content,
-              {
-                  showProgressBar: true,
-                  pauseOnHover: false,
-                  clickToClose: false,
-                  maxLength: 100,
-                  timeOut: 5000
-              }
-          );
+  showNotification(title: string, content: string, type: string) {
+    var options =   {
+          showProgressBar: false,
+          pauseOnHover: false,
+          clickToClose: false,
+          maxLength: 100,
+          timeOut: 5000
+      };
+
+    if(type == "success") {
+      this.notificationsService.success(title, content, options);
+    } else if (type == "info") {
+      this.notificationsService.info(title, content, options);
+    } else if (type == "danger") {
+      this.notificationsService.error(title, content, options);
+    } else if (type == "warning") {
+      this.notificationsService.warn(title, content, options);
+    }
+
   }
 
   extractData(res: Response) {
