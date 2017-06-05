@@ -3,6 +3,7 @@ import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '
 import { CoreService } from './core.service';
 import { AppService } from '../app.service';
 import { UserGame } from './../profile/user-games/user-games';
+import { UserInfo } from './../profile/user-info/user-info';
 import { UserGameService } from './../profile/user-games/user-games.service';
 import { UserInfoService } from './../profile/user-info/user-info.service';
 import { FlashMessagesService} from 'angular2-flash-messages';
