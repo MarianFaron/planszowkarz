@@ -1,77 +1,24 @@
+<div class="tabs">
+  <nav>
+    <ul>
+      <li>
+        <a routerLink='accepted' routerLinkActive ='active-link'>
+          <span>Zaakceptowane</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink='pending' routerLinkActive ='active-link'>  
+          <span>Wysłane</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink='rejected' routerLinkActive ='active-link'>
+          <span>Odrzucone</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
 <div class="user-history">
-  <div class="inner">
-    <div class="single-transaction-title">
-      <p>
-        Zaakceptowane
-      </p>
-    </div>
-  </div>
-  <div class="single-transaction inner" *ngFor="let history of userHistory | searchfilter: 'status' : 'accepted'">
-    <div id="left" class="single-transaction-content">
-      <p>Login: {{history?.users[0]?.local.login}}</p>
-      <div *ngFor="let game of history.games | searchfilter: 'userID' : history?.users[0]._id">
-        <p> Nazwa gry: {{game.title}}</p>
-      </div>
-    </div>
-    <div id="right" class="single-transaction-content">
-      <p>Login: {{history?.users[1]?.local.login}}</p>
-      <div *ngFor="let game of history.games | searchfilter: 'userID' : history?.users[1]._id">
-        <p> Nazwa gry: {{game.title}}</p>
-      </div>
-    </div>
-    <div id="center" class="single-transaction-content">
-      <p>Status</p>
-      <p>"{{history?.status}}"<p>
-    </div>
-  </div>
-  <div class="inner">
-    <div class="single-transaction-title">
-      <p>
-        Wysłane
-      </p>
-    </div>
-  </div>
-  <div class="single-transaction inner" *ngFor="let history of userHistory | searchfilter: 'status' : 'pending'">
-    <div id="left" class="single-transaction-content">
-      <p>Login: {{history?.users[0].local.login}}</p>
-      <div *ngFor="let game of history.games | searchfilter: 'userID' : history?.users[0]._id">
-        <p> Nazwa gry: {{game.title}}</p>
-      </div>
-    </div>
-    <div id="right" class="single-transaction-content">
-      <p>Login: {{history?.users[1]?.local.login}}</p>
-      <div *ngFor="let game of history.games | searchfilter: 'userID' : history?.users[1]._id">
-        <p> Nazwa gry: {{game.title}}</p>
-      </div>
-    </div>
-    <div id="center" class="single-transaction-content">
-      <p>Status</p>
-      <p>"{{history?.status}}"<p>
-    </div>
-  </div>
-  <div class="inner">
-    <div class="single-transaction-title">
-      <p>
-        Odrzucone
-      </p>
-    </div>
-  </div>
-  <div class="single-transaction inner" *ngFor="let history of userHistory | searchfilter: 'status' : 'rejected'">
-    <div id="left" class="single-transaction-content">
-      <p>Login: {{history?.users[0]?.local.login}}</p>
-      <div *ngFor="let game of history.games | searchfilter: 'userID' : history?.users[0]._id">
-        <p> Nazwa gry: {{game.title}}</p>
-      </div>
-    </div>
-    <div id="right" class="single-transaction-content">
-      <p>Login: {{history?.users[1]?.local.login}}</p>
-      <div *ngFor="let game of history.games | searchfilter: 'userID' : history?.users[1]._id">
-        <p> Nazwa gry: {{game.title}}</p>
-      </div>
-    </div>
-    <div id="center" class="single-transaction-content">
-      <p>Status</p>
-      <p>"{{history?.status}}"<p>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
 </div>

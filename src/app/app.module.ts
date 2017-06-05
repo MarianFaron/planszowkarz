@@ -23,6 +23,10 @@ import { UserConfigComponent } from './profile/user-config/user-config.component
 import { UserNavbarComponent } from './profile/user-navbar/user-navbar.component';
 import { UserHistoryComponent } from './profile/user-history/user-history.component';
 import { UserHistoryFilterPipe } from './profile/user-history/user-history.pipe';
+import { ExchangeComponent } from './exchange/exchange.component';
+import { UserHistoryAcceptedComponent } from './profile/user-history/user-history-accepted/user-history-accepted.component';
+import { UserHistoryPendingComponent } from './profile/user-history/user-history-pending/user-history-pending.component';
+import { UserHistoryRejectedComponent } from './profile/user-history/user-history-rejected/user-history-rejected.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { UserHistoryFilterPipe } from './profile/user-history/user-history.pipe'
     UserConfigComponent,
     UserNavbarComponent,
     UserHistoryComponent,
-    UserHistoryFilterPipe
+    UserHistoryFilterPipe,
+    ExchangeComponent,
+    UserHistoryAcceptedComponent,
+    UserHistoryPendingComponent,
+    UserHistoryRejectedComponent
   ],
   imports: [
     BrowserModule,

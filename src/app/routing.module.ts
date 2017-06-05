@@ -12,6 +12,9 @@ import { UserGamesComponent }     from './profile/user-games/user-games.componen
 import { UserNotificationsComponent } from './profile/user-notifications/user-notifications.component';
 import { UserConfigComponent } from './profile/user-config/user-config.component';
 import { UserHistoryComponent } from './profile/user-history/user-history.component';
+import { UserHistoryAcceptedComponent } from './profile/user-history/user-history-accepted/user-history-accepted.component';
+import { UserHistoryPendingComponent } from './profile/user-history/user-history-pending/user-history-pending.component';
+import { UserHistoryRejectedComponent } from './profile/user-history/user-history-rejected/user-history-rejected.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
@@ -24,8 +27,15 @@ export const router: Routes = [
       		{ path: '', redirectTo: 'games', pathMatch: 'full' },
       		{ path: 'games', component: UserGamesComponent },
       		{ path: 'notifications', component: UserNotificationsComponent },
-					{ path: 'history', component: UserHistoryComponent },
-					{ path: 'config', component: UserConfigComponent }
+			{ path: 'history', component: UserHistoryComponent,
+				children: [
+					{path: '', redirectTo: 'accepted', pathMatch: 'full'},
+					{path: 'accepted', component: UserHistoryAcceptedComponent},
+					{path: 'pending', component: UserHistoryPendingComponent},
+					{path: 'rejected', component: UserHistoryRejectedComponent}
+				]
+			},
+			{ path: 'config', component: UserConfigComponent }
       	]
 	},
 	{ path: 'user-profile/:login', component: OtherUserComponent },

@@ -42,3 +42,12 @@
 	margin:0 auto;
 	width:200px;
 }
+
+.single-transaction-content a{
+    color: #333;
+    text-decoration: none;
+}
+
+.single-transaction-content a:hover{
+    color: #f98d1a;
+}
