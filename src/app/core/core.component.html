@@ -3,11 +3,11 @@
     <h3>Najnowsze ogłoszenia</h3>
 		<hr class="main-hr">
 		<div class="row">
-      <div *ngIf="!userGame">
-        <div class="text-center">
-          <img src="../../assets/images/loading.gif" alt="" class="loading">
-        </div>
-      </div>
+	        <div *ngIf="!userGame">
+	          <div class="text-center">
+	            <img src="../../assets/images/loading.gif" alt="" class="loading">
+	          </div>
+	        </div>
 			<div class="col-md-3 col-sm-6 col-xs-12 new-game-wrapper" *ngFor="let game of userGame | slice:0:4">
 			 	<div class="game-card">
 					<div class="inner">
