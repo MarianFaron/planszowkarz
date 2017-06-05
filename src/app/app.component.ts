@@ -21,6 +21,15 @@ export class AppComponent  {
   errorMessage: string;
   games: UserGame[];
   user: User[];
+  public isCollapsed:boolean = true;
+ 
+  public collapsed(event:any):void {
+    console.log(event);
+  }
+ 
+  public expanded(event:any):void {
+    console.log(event);
+  }
   query = {
     title: '',
     category: null,

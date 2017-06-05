@@ -27,6 +27,7 @@ import { ExchangeComponent } from './exchange/exchange.component';
 import { UserHistoryAcceptedComponent } from './profile/user-history/user-history-accepted/user-history-accepted.component';
 import { UserHistoryPendingComponent } from './profile/user-history/user-history-pending/user-history-pending.component';
 import { UserHistoryRejectedComponent } from './profile/user-history/user-history-rejected/user-history-rejected.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { UserHistoryRejectedComponent } from './profile/user-history/user-histor
     HttpModule,
     RoutingModule,
     FlashMessagesModule,
-    MyDatePickerModule
+    MyDatePickerModule,
+    CollapseModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pl-PL" }, AuthGuard],
   bootstrap: [AppComponent]
