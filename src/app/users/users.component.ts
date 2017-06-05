@@ -58,7 +58,7 @@ export class UsersComponent implements OnInit {
   forgotPassword(email: string) {
     this.userGameService.forgotPassword(email)
                         .subscribe(response => {
-                          this.flashMessage.show("Wysłano nowe hasło.", {cssClass: 'alert-danger', timeout: 3000});
+                          this.appService.showNotification('Powiadomienie', 'Wysłano nowe hasło.', 'success');
                         });
   }
 
@@ -77,7 +77,7 @@ export class UsersComponent implements OnInit {
      this.userGameService.login(email, password)
                         .map((response) => {
                           if(response.message) {
-                            this.flashMessage.show(response.message.toString(), {cssClass: 'alert-danger', timeout: 3000});
+                            this.appService.showNotification('Powiadomienie', response.message.toString(), 'danger');
                           } else if(response.user) {
                              window.location.replace('/profile');
                           }
@@ -104,9 +104,9 @@ export class UsersComponent implements OnInit {
     this.userGameService.register(login, email, password, this.avatarImgName)
                         .map((response) => {
                           if(response.message) {
-                            this.flashMessage.show(response.message.toString(), {cssClass: 'alert-danger', timeout: 3000});
+                            this.appService.showNotification('Powiadomienie', response.message.toString(), 'danger');
                           } else if(response.user) {
-                            this.flashMessage.show("E-mail aktywacyjny został wysłany.", {cssClass: 'alert-success', timeout: 3000});
+                            this.appService.showNotification('Powiadomienie', "E-mail aktywacyjny został wysłany.", 'success');
                           }
                         })
                         .subscribe(user => this.user, error => this.errorMessage = <any>error);

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID } from '@angular/core'
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RoutingModule } from './routing.module';
@@ -28,6 +29,7 @@ import { UserHistoryAcceptedComponent } from './profile/user-history/user-histor
 import { UserHistoryPendingComponent } from './profile/user-history/user-history-pending/user-history-pending.component';
 import { UserHistoryRejectedComponent } from './profile/user-history/user-history-rejected/user-history-rejected.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     RoutingModule,
     FlashMessagesModule,
     MyDatePickerModule,
-    CollapseModule
+    CollapseModule,
+    BrowserAnimationsModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pl-PL" }, AuthGuard],
   bootstrap: [AppComponent]

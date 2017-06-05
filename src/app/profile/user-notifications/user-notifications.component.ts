@@ -30,7 +30,12 @@ export class UserNotificationsComponent implements OnInit {
 
   changeStatus(id: string) {
     this.userNotificationsService.changeStatus(id)
-      .subscribe(notifications => this.getNotifications());
+      .subscribe(notifications => {
+        this.notifications;
+        this.getNotifications();
+        this.appService.unread--;
+      },
+      error => this.errorMessage = <any>error);
   }
 
   getNotifications() {
@@ -45,7 +50,22 @@ export class UserNotificationsComponent implements OnInit {
         },
         error => this.errorMessage = <any>error
       );
+
   }
+
+  deleteNotification(id: string) {
+    this.userNotificationsService.deleteNotification(id)
+      .subscribe(
+        notification => {
+          this.notifications;
+          this.getNotifications();
+          this.appService.getUnreadNotifications(JSON.parse(localStorage.getItem('currentUser'))._id);
+          this.appService.showNotification('Powiadomienie', 'Usunięto Powiadomienie', 'success');
+        },
+        error => this.errorMessage = <any>error
+      );
+  }
+
 
   setPage(page: number) {
     this.router.navigate(['/profile/notifications'], {queryParams: {page: page}});

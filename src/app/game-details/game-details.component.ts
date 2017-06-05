@@ -35,8 +35,8 @@ export class GameDetailsComponent implements OnInit {
                            );
    }
 
-   start(game: string) {
-     this.appService.startTransaction(game)
+   start(game: string, userId: string) {
+     this.appService.startTransaction(game, userId)
        .subscribe(response => {
          this.flashMessage.show("Wysłano prośbę o wymianę.", {cssClass: 'alert-success', timeout: 3000});
        });

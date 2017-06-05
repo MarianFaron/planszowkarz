@@ -23,7 +23,7 @@
 						</div>
 						<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane {{ game.createdDate | date:'longDate' }}<br>
           				<div *ngIf="this.appService.isLoggedIn()" class="text-center">
-            				<button type="button" class="btn btn-default custom-button" (click)="this.start(game)">
+            				<button type="button" class="btn btn-default custom-button" (click)="this.start(game, game.userID._id)">
 		                    	Wymień się!
             				</button>
          				</div>
