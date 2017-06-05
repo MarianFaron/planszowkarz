@@ -123,6 +123,6 @@ app.get('*', (req, res) => {
 
 // app.listen(port, () => console.log("Server running on: " + port));
 
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 8080, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
