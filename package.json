@@ -2,12 +2,11 @@
   "name": "planszowkarz",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {
-    "postinstall": "npm run typings install",
+  "scripts": {            
+    "preinstall": "npm i typings -g",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "start": "ng serve --proxy-config proxy.config.json",
-    "typings": "typings",
     "ng": "ng",
     "build": "ng build && node server.js",
     "test": "ng test",
