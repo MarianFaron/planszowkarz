@@ -8,7 +8,7 @@
 	        </div>
 	      </div>
 				<div *ngFor="let notification of pagedItems">
-					<div class="single-box inner" [ngClass]="{unread: notification.status =='new'}" (click)="this.changeStatus(notification._id)">
+					<div class="single-box inner" [ngClass]="{unread: notification.status =='new'}" (click)="this.changeStatus(notification._id);notification.status = 'read'">
 						<div class="box-content">
 							<p>
 								<strong>
@@ -23,6 +23,9 @@
 								</button>
 								<button type="button" name="button" class="btn">
 									<i class="fa fa-close"></i> Odrzuć
+								</button>
+								<button type="button" name="button" class="btn" (click)="deleteNotification(notification._id)">
+									<i class="fa fa-trash"></i> Usuń
 								</button>
 							</div>
 						</div>

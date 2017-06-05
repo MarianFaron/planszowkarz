@@ -1,15 +1,15 @@
 <div class="user-sidebar inner">
 	<div class="other-info">
-		<img class="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" alt="user-avatar" />
+		<img *ngIf="!userInfo?.avatarImage" class="user-avatar" src="{{this.appService.getUrl('/assets/images/avatar.png')}}" alt="">
+		<img *ngIf="userInfo?.avatarImage" class="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" alt="user-avatar" />
 		<div *ngIf="!userInfo">
 			<div class="text-center">
 				<img src="../../assets/images/loading.gif" alt="" class="loading">
 			</div>
 		</div>
 		<ul>
-
 			<div class="user-info-box">
-				<li *ngIf="userInfo?.local" class="username">{{userInfo?.local.login}}</li>
+				<li *ngIf="userInfo?.local && !userInfo?.facebook" class="username">{{userInfo?.local.login}}</li>
 				<li *ngIf="userInfo?.facebook" class="username">{{userInfo?.facebook.name}}</li>
 
 				<!-- FACEBOOK INFO  -->
@@ -22,7 +22,7 @@
 
 				<!-- LOCAL INFO -->
 
-				<div *ngIf="userInfo?.local">
+				<div *ngIf="userInfo?.local && !userInfo?.facebook">
 						<li *ngIf="userInfo?.local.email">
 							<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
 							Email: <a href="mailto:{{userInfo?.local.email}}">{{userInfo?.local.email}}</a>
@@ -48,7 +48,7 @@
 				</li>
 				<li>
 					<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-					4 przeprowadzonych wymian
+					Przeprowadzonych wymian: 4
 				</li>
 				<li>
 					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>

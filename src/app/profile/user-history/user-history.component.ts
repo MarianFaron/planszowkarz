@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input} from '@angular/core';
+import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
+import { UserHistory } from './user-history';
+import { AppService } from '../../app.service';
+import { UserHistoryService } from './user-history.service';
 
 @Component({
   selector: 'app-user-history',
@@ -7,9 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserHistoryComponent implements OnInit {
 
-  constructor() { }
+	constructor() { }
 
-  ngOnInit() {
-  }
-
+	ngOnInit() {}
 }

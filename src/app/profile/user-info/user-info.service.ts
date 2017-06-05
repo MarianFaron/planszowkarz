@@ -19,9 +19,9 @@ export class UserInfoService {
 	// get information about one user
 	getUser(id: string): Observable<UserInfo> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    	let options = new RequestOptions({ headers: headers });
 
-    return this.http.get(`${this.userInfoURL}/${id}`, options)
+    	return this.http.get(`${this.userInfoURL}/${id}`, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
 	}

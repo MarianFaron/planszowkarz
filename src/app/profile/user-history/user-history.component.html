@@ -1,23 +1,12 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><a routerLink='accepted' routerLinkActive ='active-link'>Zaakceptowane</a></li>
+      <li><a routerLink='pending' routerLinkActive ='active-link'>Wysłane</a></li>
+      <li><a routerLink='rejected' routerLinkActive ='active-link'>Odrzucone</a></li>
+    </ul>
+  </div>
+</nav>
 <div class="user-history">
-  <div class="single-transaction inner">
-    <div class="single-transaction-content">
-      <p>
-        24 maja 2017: Wymieniłeś się za grę <b>Gra</b> z użytkownikiem <b>Mateusz</b>. <a href="#">Zobacz szczegóły</a>
-      </p>
-    </div>
-  </div>
-  <div class="single-transaction inner">
-    <div class="single-transaction-content">
-      <p>
-        23 maja 2017: Wymieniłeś się za grę <b>Gra</b> z użytkownikiem <b>Mateusz</b>. <a href="#">Zobacz szczegóły</a>
-      </p>
-    </div>
-  </div>
-  <div class="single-transaction inner">
-    <div class="single-transaction-content">
-      <p>
-        22 maja 2017: Wymieniłeś się za grę <b>Gra</b> z użytkownikiem <b>Mateusz</b>. <a href="#">Zobacz szczegóły</a>
-      </p>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
 </div>

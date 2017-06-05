@@ -62,6 +62,7 @@ textarea.form-control {
 }
 
 .loading {
+  margin-top: 40px;
   max-width: 30px;
 }
 

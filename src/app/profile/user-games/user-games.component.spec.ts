@@ -58,7 +58,7 @@ describe('UserGameComponent', () => {
         {"_id":"58ed3117f9bc3f1b08cabb47","title":"asdasda", "category":"Strategiczna", "state":"Nowa","description":"asdasdadas", "createdDate": "2017-05-04","userID":"58e45c5c9030ea1928a33feaz"}
   ];
 
-  /*it("get user game from service", async() => {
+  it("get user game from service", async() => {
     component.ngOnInit();
     expect(usergameservice.getGames("58f9f03cb4695b0250a6eb43")).toHaveBeenCalled();
     expect(component.userGame).toBe(game);
@@ -67,7 +67,7 @@ describe('UserGameComponent', () => {
   it('should take user data to service', async() => {
     expect(usergameservice.create("ccsdcsc123123333", "Strategiczna", "Nowa", "cscscs", "28-04-2017", "58e45c5c9030ea1928a33fea", "image1.jpg")).toHaveBeenCalled();
     expect(component.userGame).toBe(game[0]);
-  });*/
+  });
 });
 
 describe('UserGameService', () => {

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID } from '@angular/core'
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RoutingModule } from './routing.module';
@@ -22,6 +23,13 @@ import { UserNotificationsComponent } from './profile/user-notifications/user-no
 import { UserConfigComponent } from './profile/user-config/user-config.component';
 import { UserNavbarComponent } from './profile/user-navbar/user-navbar.component';
 import { UserHistoryComponent } from './profile/user-history/user-history.component';
+import { UserHistoryFilterPipe } from './profile/user-history/user-history.pipe';
+import { ExchangeComponent } from './exchange/exchange.component';
+import { UserHistoryAcceptedComponent } from './profile/user-history/user-history-accepted/user-history-accepted.component';
+import { UserHistoryPendingComponent } from './profile/user-history/user-history-pending/user-history-pending.component';
+import { UserHistoryRejectedComponent } from './profile/user-history/user-history-rejected/user-history-rejected.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 @NgModule({
   declarations: [
@@ -39,7 +47,12 @@ import { UserHistoryComponent } from './profile/user-history/user-history.compon
     UserNotificationsComponent,
     UserConfigComponent,
     UserNavbarComponent,
-    UserHistoryComponent
+    UserHistoryComponent,
+    UserHistoryFilterPipe,
+    ExchangeComponent,
+    UserHistoryAcceptedComponent,
+    UserHistoryPendingComponent,
+    UserHistoryRejectedComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +60,12 @@ import { UserHistoryComponent } from './profile/user-history/user-history.compon
     HttpModule,
     RoutingModule,
     FlashMessagesModule,
-    MyDatePickerModule
+    MyDatePickerModule,
+    CollapseModule,
+    BrowserAnimationsModule,
+    SimpleNotificationsModule.forRoot()
   ],
-  providers: [{ provide: LOCALE_ID, useValue: "pl-PL" },AuthGuard],
+  providers: [{ provide: LOCALE_ID, useValue: "pl-PL" }, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

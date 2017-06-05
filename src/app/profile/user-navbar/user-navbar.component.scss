@@ -43,7 +43,10 @@
 								vertical-align: middle;
 							}
 						}
-						a:hover, a:focus a:active {
+						a:hover, a:focus, a:active {
+							color: rgb(249, 141, 26);
+						}
+						.active-link {
 							color: rgb(249, 141, 26);
 						}
 						.icon::before {

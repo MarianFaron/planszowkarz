@@ -7,6 +7,10 @@ var Exchange = new Schema({
     	type: mongoose.Schema.Types.ObjectId,
       	ref: 'userGame'
     }],
+    users: [{
+    	type: mongoose.Schema.Types.ObjectId,
+      	ref: 'User'
+    }],
     status: {
     	type: String,
     	default: 'pending' 

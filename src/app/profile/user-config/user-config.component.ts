@@ -3,6 +3,7 @@ import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '
 import { UserConfigService } from './user-config.service';
 import { AppService } from '../../app.service';
 import { UserInfo } from '../user-info/user-info';
+import { UserInfoComponent } from '../user-info/user-info.component';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { IMyOptions} from 'mydatepicker';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
@@ -22,7 +23,6 @@ export class UserConfigComponent implements OnInit {
   status: string;
   userInfo: UserInfo;
   avatarImgName: string;
-
   currentDate = new Date();
 
   public URL = this.appService.getUrl('/app/avatarUpload');
@@ -67,12 +67,22 @@ export class UserConfigComponent implements OnInit {
   //get user information
 
   getUserInfo() {
+
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var userID = currentUser._id;
 
     this.userConfigService.getUser(userID)
                      .subscribe(
                         userInfo => {
+                          if(userInfo.dateBirth != null) {
+                            this.model.datepicker = {
+                              date: {
+                                year: parseInt(userInfo.dateBirth.substring(6,10)),
+                                month: parseInt(userInfo.dateBirth.substring(4,5)),
+                                day: parseInt(userInfo.dateBirth.substring(0,2))
+                              }
+                            };
+                          }
                           this.userInfo = userInfo;
                           this.model.dateBirth = userInfo.dateBirth;
                         },
@@ -93,7 +103,7 @@ export class UserConfigComponent implements OnInit {
                         userInfo  => {
                           this.userInfo;
                           this.getUserInfo();
-                          this.flashMessage.show('Dane użytkownika zostały zmienione.', {cssClass: 'alert-success', timeout: 3000});
+                          this.appService.showNotification('Powiadomienie', 'Dane użytkownika zostały zmienione.', 'success');
                         },
                         error =>  {
                           this.errorMessage = <any>error

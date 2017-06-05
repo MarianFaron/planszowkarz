@@ -1,19 +1,22 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" routerLink="/main" routerLinkActive="active">{{title}}</a>
+      <a class="navbar-brand" routerLink="/main" routerLinkActive="active">
+        <img src="../../assets/images/logo.png" alt="">
+        {{title}}
+      </a>
     </div>
     <form action="/app/search" method="post">
     	<input type="text" class="search-input" name="search" value="{{this.query.title}}" #searchInput placeholder="Szukaj...">
     	<button type="submit" class="custom-button" name="button" (click)="this.search(searchInput.value)"><i class="fa fa-search"></i></button>
     </form>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" [collapse]="isCollapsed">
       <ul class="nav navbar-nav navbar-right">
         <li><a routerLink="/main" routerLinkActive="active"><span class="glyphicon glyphicon-home"></span> Strona Główna</a></li>
         <li><a routerLink="/games" routerLinkActive="active"><span class="glyphicon glyphicon-ok-sign"></span> Wymiana</a></li>
@@ -23,7 +26,7 @@
         <li><a *ngIf="currentUser != null" routerLink="/profile" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>
           Profil
           <span *ngIf="this.notificationsCount != '0'" class="notifications-count">
-            {{this.notificationsCount}}
+            {{this.appService.unread}}
           </span>
         </a></li>
         <li><a *ngIf="currentUser != null" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> Wyloguj</a></li>
@@ -40,6 +43,8 @@
     </div>
   </div>
 </div>
+
+<simple-notifications></simple-notifications>
 
 <div class="main">
   <router-outlet></router-outlet>

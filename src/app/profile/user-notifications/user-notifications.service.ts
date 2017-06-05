@@ -35,4 +35,13 @@ export class UserNotificationsService {
                     .catch(this.appService.handleError);
   }
 
+  deleteNotification(id: string) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.delete(`${this.notificationsUrl}/${id}`, options)
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
+  }
+
 }

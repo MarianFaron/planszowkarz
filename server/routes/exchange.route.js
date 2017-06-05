@@ -7,10 +7,14 @@ router.route('/exchanges')
 	// get all games
 	.get((req,res) => {
 		Exchange.find().sort({createdDate: 1})
-				.populate({ path: 'games', 
-							select: 'title category state userID Image', 
-							populate: {
-								path: 'userID'} })
+				.populate([{ 
+								path: 'games', 
+							 	select: 'title category state userID Image' 
+						   },
+						   {
+								path: 'users',
+								select: 'local.login local.email'
+						   }])
 				.exec((err,exchanges) => {
 			if(err){
 				return res.status(400).json({message: "Bad Requested"});
@@ -23,6 +27,7 @@ router.route('/exchanges')
 	.post((req,res) => {
 		var exchange = new Exchange({
 			games: req.body.games,
+			users: req.body.users,
 			status: req.body.status,
 		});
 		// save the game
@@ -37,14 +42,23 @@ router.route('/exchanges')
 
 router.route('/exchanges/:id')
 	.get((req, res) => {
-		Exchange.findById(req.params.id).populate({ path: '', select: '' }).exec((err, exchange) => {
-			if(err){
-				return res.status(400).json({message: "Bad Requested"});
-			} else if(!exchange){
-				return res.status(404).json({message: "Exchange not Found"});
-			} else {
-				return res.status(200).json(exchange);
-			}
+		Exchange.find({users: req.params.id})
+				.populate([{ 
+								path: 'games', 
+							 	select: 'title category state userID Image' 
+						   },
+						   {
+								path: 'users',
+								select: 'local.login local.email'
+						   }])
+				.exec((err, exchange) => {
+					if(err){
+						return res.status(400).json({message: "Bad Requested"});
+					} else if(!exchange){
+						return res.status(404).json({message: "Exchange not Found"});
+					} else {
+						return res.status(200).json(exchange);
+					}
 		});
 	})
 
@@ -71,5 +85,6 @@ router.route('/exchanges/:id')
 			}
 		})
 	});
+
 
 module.exports = router;
