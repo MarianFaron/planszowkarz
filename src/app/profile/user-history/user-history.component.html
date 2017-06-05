@@ -1,24 +1,12 @@
-<div class="tabs">
-  <nav>
-    <ul>
-      <li>
-        <a routerLink='accepted' routerLinkActive ='active-link'>
-          <span>Zaakceptowane</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink='pending' routerLinkActive ='active-link'>  
-          <span>Wysłane</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink='rejected' routerLinkActive ='active-link'>
-          <span>Odrzucone</span>
-        </a>
-      </li>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><a routerLink='accepted' routerLinkActive ='active-link'>Zaakceptowane</a></li>
+      <li><a routerLink='pending' routerLinkActive ='active-link'>Wysłane</a></li>
+      <li><a routerLink='rejected' routerLinkActive ='active-link'>Odrzucone</a></li>
     </ul>
-  </nav>
-</div>
+  </div>
+</nav>
 <div class="user-history">
   <router-outlet></router-outlet>
 </div>
