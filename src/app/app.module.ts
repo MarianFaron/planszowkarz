@@ -30,6 +30,17 @@ import { UserHistoryPendingComponent } from './profile/user-history/user-history
 import { UserHistoryRejectedComponent } from './profile/user-history/user-history-rejected/user-history-rejected.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
+
+const SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 2,
+  autoplay: 5000,
+  grabCursor: true,
+  slidesPerGroup: 2
+};
 
 @NgModule({
   declarations: [
@@ -63,7 +74,8 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     MyDatePickerModule,
     CollapseModule,
     BrowserAnimationsModule,
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+    SwiperModule.forRoot(SWIPER_CONFIG)
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pl-PL" }, AuthGuard],
   bootstrap: [AppComponent]
