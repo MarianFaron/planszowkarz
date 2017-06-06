@@ -61,7 +61,11 @@
 	border-radius: 0;
 }
 
-.navbar-nav a:hover, .navbar-nav a:active {
+.navbar-nav span {
+	margin-right: 5px;
+}
+
+.navbar-nav a:hover, .navbar-nav a:focus, .navbar-nav a:active {
 	color: rgb(249, 141, 26);
 }
 

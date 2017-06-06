@@ -3,13 +3,17 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var Exchange = new Schema({
+    proposeGames: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'userGame'
+    }],
     games: [{
     	type: mongoose.Schema.Types.ObjectId,
-      	ref: 'userGame'
+      ref: 'userGame'
     }],
     users: [{
     	type: mongoose.Schema.Types.ObjectId,
-      	ref: 'User'
+      ref: 'User'
     }],
     status: {
     	type: String,

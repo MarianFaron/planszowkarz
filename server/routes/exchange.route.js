@@ -8,6 +8,10 @@ router.route('/exchanges')
 	.get((req,res) => {
 		Exchange.find().sort({createdDate: 1})
 				.populate([{ 
+								path: 'proposeGames', 
+							 	select: 'title category state userID Image' 
+						   },
+						   { 
 								path: 'games', 
 							 	select: 'title category state userID Image' 
 						   },
@@ -26,6 +30,7 @@ router.route('/exchanges')
 	// post new game
 	.post((req,res) => {
 		var exchange = new Exchange({
+			proposeGames: req.body.proposeGames,
 			games: req.body.games,
 			users: req.body.users,
 			status: req.body.status,
@@ -44,6 +49,10 @@ router.route('/exchanges/:id')
 	.get((req, res) => {
 		Exchange.find({users: req.params.id})
 				.populate([{ 
+								path: 'proposeGames', 
+							 	select: 'title category state userID Image' 
+						   },
+						   { 
 								path: 'games', 
 							 	select: 'title category state userID Image' 
 						   },

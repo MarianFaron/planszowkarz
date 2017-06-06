@@ -16,12 +16,12 @@
   							<h3>{{ game.title }}</h3>
             			</a>
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            <span *ngIf="game.userID.local">
-              <a routerLink="/user-profile/{{ game.userID.local.login }}"> Dodane przez: {{ game.userID.local.login }}</a><br>
-            </span>
-            <span *ngIf="game.userID.facebook">
-              <a routerLink="/user-profile/{{ game.userID.facebook.name }}"> Dodane przez: {{ game.userID.facebook.name }}</a><br>
-            </span>
+			            <span *ngIf="game.userID.local">
+			              <a routerLink="/user-profile/{{ game.userID.local.login }}"> Dodane przez: {{ game.userID.local.login }}</a><br>
+			            </span>
+			            <span *ngIf="game.userID.facebook">
+			              <a routerLink="/user-profile/{{ game.userID.facebook.name }}"> Dodane przez: {{ game.userID.facebook.name }}</a><br>
+			            </span>
 						<div *ngIf="game.userID.city">
 							<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lokalizacja: {{ game.userID.city }}
 							<br>
@@ -45,29 +45,28 @@
             				<h4 class="modal-title">Wymień się</h4>
             			</div>
             			<div class="modal-body">
-                    <p>Wybierz gry za które możesz się wymienić.
-                      <b>
-                        <span *ngIf="game.userID.local">{{game.userID.local.login}}</span>
-                        <span *ngIf="game.userID.facebook">{{game.userID.facebook.name}}</span>
-                      </b>
-                       wybierze jedną z nich na wymianę.
-                    </p>
-            				<div *ngFor="let option of options">
-                      <div class="checkbox">
-                        <label>
-                            <input type="checkbox"
-                                   name="options"
-                                   [(ngModel)]="option.checked"
-                                   value="{{option.value}}"/>
-                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                            {{option.name}}
-                        </label>
-                      </div>
-
-                    </div>
+		                    <p>Wybierz gry za które możesz się wymienić.
+		                      <b>
+		                        <span *ngIf="game.userID.local">{{game.userID.local.login}}</span>
+		                        <span *ngIf="game.userID.facebook">{{game.userID.facebook.name}}</span>
+		                      </b>
+		                       wybierze jedną z nich na wymianę.
+		                    </p>
+		            		<div *ngFor="let option of options">
+		                      <div class="checkbox">
+		                        <label>
+		                            <input type="checkbox"
+		                                   name="options"
+		                                   [(ngModel)]="option.checked"
+		                                   value="{{option.value}}"/>
+		                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+		                            {{option.name}}
+		                        </label>
+		                      </div>
+	                    	</div>
             			</div>
             			<div class="modal-footer">
-                    <button class="btn custom-button" type="button" name="button" (click)="this.start(game, game.userID._id)">Wyślij</button>
+                    	<button class="btn custom-button" type="button" name="button" (click)="this.start(game, game.userID._id)">Wyślij</button>
             		</div>
             	</div>
             </div>

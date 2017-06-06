@@ -30,7 +30,9 @@ export class CoreComponent implements OnInit {
   constructor(private http: Http, private router: Router, private CoreService: CoreService, private appService: AppService, private flashMessage:FlashMessagesService) {}
 
   ngOnInit() {
-    this.getCurrentUserGames();
+    if(localStorage.getItem('currentUser')) {
+      this.getCurrentUserGames();
+    }
     this.getUserGame();
   }
 
