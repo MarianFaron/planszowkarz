@@ -15,11 +15,14 @@
 .inner a:focus,
 .inner a:hover{
     color: #f98d1a;
-    text-decoration: underline;
 }
 
 .pagination .active a {
   background: #f98d1a;
   color: #fff;
   border: none;
+}
+.game-info-buttons {
+  text-align: right;
+  margin-right: 15px;
 }

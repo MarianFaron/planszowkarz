@@ -23,11 +23,11 @@ export class AppComponent  {
   games: UserGame[];
   user: User[];
   public isCollapsed:boolean = true;
- 
+
   public collapsed(event:any):void {
     console.log(event);
   }
- 
+
   public expanded(event:any):void {
     console.log(event);
   }
@@ -60,6 +60,7 @@ export class AppComponent  {
                             localStorage.setItem('games', JSON.stringify(games));
                             localStorage.setItem('query', JSON.stringify(this.query));
                             this.router.navigate(['search-results'], {queryParams: this.query});
+
                           },
                           error => {
                             this.errorMessage = <any>error;

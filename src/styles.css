@@ -93,6 +93,10 @@ textarea.form-control {
     box-shadow: 2px 2px 1px #d5d5d5;
 }
 
+.inner a:hover {
+  text-decoration: none;
+}
+
 /* DATEPICKER */
 
 .mydp .header {

@@ -57,41 +57,38 @@ export class GamesListComponent implements OnInit {
   userGame: UserGame[];
   pageUrl = '/games';
 
-
   private sub: any;
 
   constructor(private appService: AppService, private route: ActivatedRoute, private coreService: CoreService, private router: Router, private activatedRoute: ActivatedRoute, private http: Http, private pagerService: PagerService) { }
 
   ngOnInit() {
+
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       (params['title']) ? this.queryTitle = params['title'] : this.queryTitle = '';
       (params['category']) ? this.categories = params['category'].toString().split(',') : this.categories = null;
       (params['state']) ? this.states = params['state'].toString().split(',') : this.states = null;
+
+      this.query = {
+        title: this.queryTitle,
+        category: this.categories,
+        state: this.states
+      }
+
+      this.updateCheckboxes();
+
+      if (this.query.title == '' && this.query.category == null && this.query.state == null) {
+        this.router.navigate(['/games']);
+        this.pageTitle = "Wymiana gier";
+        this.getGames();
+      } else {
+        this.pageUrl = '/search-results';
+        this.queryTitle = this.query.title;
+        this.games = JSON.parse(localStorage.getItem('games'));
+        this.setPageTitle();
+        this.setPage(1);
+        this.router.navigate([this.pageUrl], {queryParams: this.query});
+      }
     });
-
-    this.query = {
-      "title": this.queryTitle,
-      "category": this.categories,
-      "state": this.states
-    }
-
-    this.updateCheckboxes();
-
-    if (this.query.title == '' && this.query.category == null && this.query.state == null) {
-
-      this.router.navigate(['/games']);
-      this.pageTitle = "Wymiana gier";
-      this.getGames();
-
-    } else {
-      this.pageUrl = '/search-results';
-      this.queryTitle = JSON.parse(localStorage.getItem('query')).title;
-      this.games = JSON.parse(localStorage.getItem('games'));
-      this.setPageTitle();
-      this.setPage(1);
-      localStorage.setItem('games', null);
-      localStorage.setItem('query', null);
-    }
   }
 
   search(query: {title: string, category: string, state: string}) {
@@ -99,8 +96,8 @@ export class GamesListComponent implements OnInit {
     this.appService.search(query)
                         .subscribe(
                           games => {
-                            localStorage.setItem('games', JSON.stringify(games));
                             var query = localQuery;
+                            localStorage.setItem('games', JSON.stringify(games));
                             localStorage.setItem('query', JSON.stringify(localQuery));
 
                             var title = '', categories = '', states = '';
@@ -126,15 +123,15 @@ export class GamesListComponent implements OnInit {
                               category: categories,
                               state: states
                             }
-                            this.games = games;
+                            this.games = games.reverse();
                             this.query = query;
                             this.router.navigate(['search-results'], {queryParams: query});
-
                           },
                           error => {
                             this.errorMessage = <any>error;
                           });
   }
+
 
   updateOptions() {
 
@@ -158,7 +155,6 @@ export class GamesListComponent implements OnInit {
       "category": this.categories,
       "state": this.states
     }
-    console.log(this.query);
     this.search(this.query);
   }
 
@@ -166,7 +162,7 @@ export class GamesListComponent implements OnInit {
     this.coreService.getGames()
                     .subscribe(
                         games => {
-                          this.games = games.reverse();
+                          this.games = games;
                           this.setPage(1);
                         },
                         error => this.errorMessage = <any>error
@@ -205,7 +201,6 @@ export class GamesListComponent implements OnInit {
   }
 
   setPage(page: number) {
-    this.router.navigate([this.pageUrl], {queryParams: {page: page}});
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }
