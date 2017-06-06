@@ -13,15 +13,25 @@ import { UserInfo } from './../profile/user-info/user-info';
 export class CoreService {
 
     private sliderGames = this.appService.getUrl('/app/sliderGames');
+    private userGamesUrl = this.appService.getUrl('/app/users');
 
     constructor (private http: Http, private appService: AppService) {}
 
-    getGames(): Observable<UserGame[]>{
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    getUserGames(id: string): Observable<UserGame[]>{
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
 
-    return this.http.get(this.sliderGames, options)
-                    .map(this.appService.extractData)
-                    .catch(this.appService.handleError);
+      return this.http.get(`${this.userGamesUrl}/${id}/userGames`, options)
+                      .map(this.appService.extractData)
+                      .catch(this.appService.handleError);
+    }
+
+    getGames(): Observable<UserGame[]>{
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+
+      return this.http.get(this.sliderGames, options)
+                      .map(this.appService.extractData)
+                      .catch(this.appService.handleError);
     }
 }

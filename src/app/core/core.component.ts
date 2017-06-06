@@ -3,7 +3,6 @@ import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '
 import { CoreService } from './core.service';
 import { AppService } from '../app.service';
 import { UserGame } from './../profile/user-games/user-games';
-import { UserInfo } from './../profile/user-info/user-info';
 import { UserGameService } from './../profile/user-games/user-games.service';
 import { UserInfoService } from './../profile/user-info/user-info.service';
 import { FlashMessagesService} from 'angular2-flash-messages';
@@ -19,28 +18,58 @@ export class CoreComponent implements OnInit {
 
   errorMessage: string;
   userGame: UserGame[];
-  userInfo: UserInfo;
+  currentUserGamesIds: Array<string>;
 
+  option = {
+    name: '',
+    value: '',
+    checked: false
+  };
+  options: Array<{name: string,value: string,checked: boolean}>;
 
   constructor(private http: Http, private router: Router, private CoreService: CoreService, private appService: AppService, private flashMessage:FlashMessagesService) {}
 
   ngOnInit() {
+    this.getCurrentUserGames();
     this.getUserGame();
   }
 
   start(game: string, userId: string) {
-    this.appService.startTransaction(game, userId)
+    this.currentUserGamesIds = [];
+    for(var i = 0; i<this.options.length; i++) {
+      if(this.options[i].checked == true) {
+        this.currentUserGamesIds.push(this.options[i].value);
+      }
+    }
+
+    this.appService.startTransaction(game, userId, this.currentUserGamesIds)
       .subscribe(response => {
         console.log(JSON.parse(localStorage.getItem('currentUser'))._id + " send");
 
       });
   }
 
+  getCurrentUserGames() {
+      var id = this.appService.getCurrentUser()._id;
+      this.CoreService.getUserGames(id)
+      .subscribe(userGames => {
+          this.options = [];
+
+          for (var i =0; i< userGames.length; i++) {
+            var option = {
+              name: userGames[i].title,
+              value: userGames[i].title,
+              checked: false
+            }
+            this.options.push(option);
+          }
+      }, error => this.errorMessage = <any>error);
+  }
+
   getUserGame() {
       this.CoreService.getGames()
       .subscribe(userGame => {
-          this.userGame = userGame,
-          error => this.errorMessage = <any>error
-      });
+          this.userGame = userGame
+      }, error => this.errorMessage = <any>error);
   }
 }

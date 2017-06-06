@@ -30,7 +30,7 @@
 											<p class="title">{{ game.title }}</p>
 										</a>
 										<div class="game-info-buttons" *ngIf="this.appService.isLoggedIn()">
-											<button type="button" class="btn btn-default custom-button" (click)="this.start(game, game.userID._id)">
+											<button type="button" class="btn btn-default custom-button" (click)="this.start(game, game.userID._id, gamesList)">
 			                    	Wymień się!
 	            				</button>
 										</div>

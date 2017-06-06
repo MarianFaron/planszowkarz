@@ -61,7 +61,7 @@ export class AppService {
                     .catch(this.handleError);
   }
 
-  startTransaction(game: string, userId: string) {
+  startTransaction(game: string, userId: string, gamesList: Array<string>) {
 
     var currentUser = this.getCurrentUser();
     this.socket.emit('sendNotification', userId);
@@ -70,7 +70,7 @@ export class AppService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers});
 
-    return this.http.post(this.transactionsUrl, {currentUser, game}, options)
+    return this.http.post(this.transactionsUrl, {currentUser, game, gamesList}, options)
                     .map(this.extractData)
                     .catch(this.handleError);
 
