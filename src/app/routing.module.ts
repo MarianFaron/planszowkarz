@@ -15,7 +15,8 @@ import { UserHistoryComponent } from './profile/user-history/user-history.compon
 import { UserHistoryAcceptedComponent } from './profile/user-history/user-history-accepted/user-history-accepted.component';
 import { UserHistoryPendingComponent } from './profile/user-history/user-history-pending/user-history-pending.component';
 import { UserHistoryRejectedComponent } from './profile/user-history/user-history-rejected/user-history-rejected.component';
-
+import { RatingComponent } from './rating/rating.component';
+import { CatalogComponent } from './catalog/catalog.component';
 import { AuthGuard } from './guards/auth.guard';
 
 export const router: Routes = [
@@ -41,7 +42,9 @@ export const router: Routes = [
 	{ path: 'user-profile/:login', component: OtherUserComponent },
 	{ path: 'games/:_id', component: GameDetailsComponent },
 	{ path: 'search-results', component: GamesListComponent },
-	{ path: 'games', component: GamesListComponent }
+	{ path: 'games', component: GamesListComponent },
+  { path: 'rating', component: RatingComponent },
+  { path: 'catalog', component: CatalogComponent }
 ];
 
 @NgModule({

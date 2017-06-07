@@ -57,6 +57,15 @@ export class GamesListComponent implements OnInit {
   userGame: UserGame[];
   pageUrl = '/games';
 
+  currentUserGamesIds: Array<string>;
+
+  option = {
+    name: '',
+    value: '',
+    checked: false
+  };
+  options: Array<{name: string,value: string,checked: boolean}>;
+
   private sub: any;
 
   constructor(private appService: AppService, private route: ActivatedRoute, private coreService: CoreService, private router: Router, private activatedRoute: ActivatedRoute, private http: Http, private pagerService: PagerService) { }
@@ -67,6 +76,10 @@ export class GamesListComponent implements OnInit {
       (params['title']) ? this.queryTitle = params['title'] : this.queryTitle = '';
       (params['category']) ? this.categories = params['category'].toString().split(',') : this.categories = null;
       (params['state']) ? this.states = params['state'].toString().split(',') : this.states = null;
+
+      if(localStorage.getItem('currentUser')) {
+        this.getCurrentUserGames();
+      }
 
       this.query = {
         title: this.queryTitle,
@@ -89,6 +102,22 @@ export class GamesListComponent implements OnInit {
         this.router.navigate([this.pageUrl], {queryParams: this.query});
       }
     });
+  }
+
+  searchTitle(queryTitle: string) {
+    this.query.title = queryTitle;
+
+    this.appService.search(this.query)
+                        .subscribe(
+                          games => {
+                            this.games = games;
+                            localStorage.setItem('games', JSON.stringify(games));
+                            localStorage.setItem('query', JSON.stringify(this.query));
+                            this.router.navigate(['search-results'], {queryParams: this.query});
+                          },
+                          error => {
+                            this.errorMessage = <any>error;
+                          });
   }
 
   search(query: {title: string, category: string, state: string}) {
@@ -201,11 +230,44 @@ export class GamesListComponent implements OnInit {
   }
 
   setPage(page: number) {
+    this.pager = this.pagerService.getPager(this.games.length, page);
+    this.pagedItems = this.games.slice(this.pager.startIndex, this.pager.endIndex + 1);
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }
-    this.pager = this.pagerService.getPager(this.games.length, page);
-    this.pagedItems = this.games.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
+
+  start(game: string, userId: string) {
+    this.currentUserGamesIds = [];
+    for(var i = 0; i<this.options.length; i++) {
+      if(this.options[i].checked == true) {
+        this.currentUserGamesIds.push(this.options[i].value);
+      }
+    }
+
+    this.appService.startTransaction(game, userId, this.currentUserGamesIds)
+      .subscribe(response => {
+        console.log(JSON.parse(localStorage.getItem('currentUser'))._id + " send");
+
+      });
+  }
+
+  getCurrentUserGames() {
+      var id = this.appService.getCurrentUser()._id;
+      this.coreService.getUserGames(id)
+      .subscribe(userGames => {
+          this.options = [];
+
+          for (var i =0; i< userGames.length; i++) {
+            var option = {
+              name: userGames[i].title,
+              value: userGames[i].title,
+              checked: false
+            }
+            this.options.push(option);
+          }
+      }, error => this.errorMessage = <any>error);
+  }
+
 
 }

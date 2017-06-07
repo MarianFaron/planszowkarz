@@ -62,9 +62,7 @@
 								</div>
 							</div>
 						</div>
-
-
-						<button type="submit" class="btn custom-button" [disabled]="!registerForm.form.valid" (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value);">Zarejestruj</button>
+						<button type="submit" class="btn custom-button" [disabled]="!registerForm.form.valid" (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value);registerUserLogin.value=''; registerUserEmail.value=''; registerUserPassword.value='';registerUserConfirmPassword.value=''">Zarejestruj</button>
 					</div>
 				</form>
 			</div>

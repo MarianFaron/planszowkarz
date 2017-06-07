@@ -50,22 +50,7 @@ export class AppComponent  {
     window.location.reload();
   }
 
-  search(queryTitle: string) {
-    this.query.title = queryTitle;
 
-    this.appService.search(this.query)
-                        .subscribe(
-                          games => {
-                            this.games = games;
-                            localStorage.setItem('games', JSON.stringify(games));
-                            localStorage.setItem('query', JSON.stringify(this.query));
-                            this.router.navigate(['search-results'], {queryParams: this.query});
-
-                          },
-                          error => {
-                            this.errorMessage = <any>error;
-                          });
-  }
 
   ngOnInit() {
     this.sub = this.route.queryParams.subscribe(params => {
@@ -79,7 +64,7 @@ export class AppComponent  {
                               error => this.errorMessage = <any>error);
       }
     });
-    if(localStorage.getItem('currentUser')) {
+    if(this.appService.isLoggedIn()) {
       this.currentUser = localStorage.getItem('currentUser');
       this.appService.getUnreadNotifications(this.appService.getCurrentUser()._id).subscribe(
         notifications => {this.notificationsCount = localStorage.getItem('notificationsCount');}

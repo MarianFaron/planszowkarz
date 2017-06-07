@@ -47,7 +47,6 @@ export class CoreComponent implements OnInit {
     this.appService.startTransaction(game, userId, this.currentUserGamesIds)
       .subscribe(response => {
         console.log(JSON.parse(localStorage.getItem('currentUser'))._id + " send");
-
       });
   }
 

@@ -30,6 +30,8 @@ import { UserHistoryPendingComponent } from './profile/user-history/user-history
 import { UserHistoryRejectedComponent } from './profile/user-history/user-history-rejected/user-history-rejected.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { RatingComponent } from './rating/rating.component';
+import { CatalogComponent } from './catalog/catalog.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     ExchangeComponent,
     UserHistoryAcceptedComponent,
     UserHistoryPendingComponent,
-    UserHistoryRejectedComponent
+    UserHistoryRejectedComponent,
+    RatingComponent,
+    CatalogComponent
   ],
   imports: [
     BrowserModule,

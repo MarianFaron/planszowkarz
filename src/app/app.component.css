@@ -50,9 +50,15 @@
   transition: all 200ms linear;
 }
 
-.navbar a:hover, .navbar a:focus, .navbar a:active {
+.navbar a:hover, .navbar a:focus, .navbar a:active,
+.navbar a.active {
   color: #fff;
   border-bottom: 3px solid #f98d1a;
+}
+
+.navbar-header a.active {
+  color: #fff;
+  border-bottom: 3px solid transparent;
 }
 
 .navbar-brand {
@@ -77,50 +83,6 @@
   max-width: 700px;
   display: inline-block;
   float: right;
-}
-
-.navbar form {
-  max-width: 350px;
-  margin-left: 20px;
-  display: inline-block;
-}
-
-.search-input {
-  border: none;
-  background: #fff;
-  border-bottom: 1px solid #fff;
-  color: #000;
-  padding: 0 10px;
-  height: 30px;
-}
-
-.navbar form .custom-button {
-  margin-top: 12px;
-  margin-left: -4px;
-  height: 30px;
-  width: 30px;
-}
-
-.search-input:focus {
-  outline: none;
-}
-
-.search-input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color: #666;
-}
-.search-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color: #666;
-   opacity: 1;
-}
-.search-input::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color: #666;
-   opacity: 1;
-}
-.search-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color: #666;
-}
-.search-input::-ms-input-placeholder { /* Microsoft Edge */
-   color: #666;
 }
 
 .footer {

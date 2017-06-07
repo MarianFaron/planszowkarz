@@ -8,24 +8,21 @@
 	        </div>
 	      </div>
 				<div *ngFor="let notification of pagedItems">
-					<div class="single-box inner" [ngClass]="{unread: notification.status =='new'}" (click)="this.changeStatus(notification._id);notification.status = 'read'">
+					<div class="single-box inner" [ngClass]="{unread: notification.status =='new'}" >
 						<div class="box-content">
-							<p>
+							<p (click)="this.changeStatus(notification._id);notification.status = 'read'">
 								<strong>
 									<span *ngIf="notification.status == 'new'">
 										<i class="fa fa-star" style="color: yellow"></i>
 									</span> Treść:
 								</strong>{{notification.content}}</p>
-							<p><strong>Data: </strong>{{notification.sendDate|date: 'dd-MM-yyyy'}}</p>
+							<p><strong>Data: </strong>{{notification.sendDate| date:'medium' }}</p>
 							<div class="notification-btns">
 								<button type="button" name="button" class="btn custom-button">
 									<i class="fa fa-check"></i> Akceptuj
 								</button>
-								<button type="button" name="button" class="btn">
+								<button type="button" name="button" class="btn" (click)="deleteNotification(notification._id, notification.status)">
 									<i class="fa fa-close"></i> Odrzuć
-								</button>
-								<button type="button" name="button" class="btn" (click)="deleteNotification(notification._id)">
-									<i class="fa fa-trash"></i> Usuń
 								</button>
 							</div>
 						</div>

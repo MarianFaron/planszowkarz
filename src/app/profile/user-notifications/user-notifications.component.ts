@@ -53,12 +53,13 @@ export class UserNotificationsComponent implements OnInit {
 
   }
 
-  deleteNotification(id: string) {
+  deleteNotification(id: string, status: string) {
     this.userNotificationsService.deleteNotification(id)
       .subscribe(
         notification => {
           this.notifications;
           this.getNotifications();
+          this.appService.deleteUnreadNotification();
           this.appService.getUnreadNotifications(JSON.parse(localStorage.getItem('currentUser'))._id);
           this.appService.showNotification('Powiadomienie', 'Usunięto Powiadomienie', 'success');
         },

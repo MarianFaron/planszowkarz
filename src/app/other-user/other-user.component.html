@@ -30,7 +30,7 @@
 											<p class="title">{{ game.title }}</p>
 										</a>
 										<div class="game-info-buttons" *ngIf="this.appService.isLoggedIn()">
-											<button type="button" class="btn btn-default custom-button" (click)="this.start(game, game.userID._id, gamesList)">
+											<button type="button" class="btn btn-default custom-button" data-toggle="modal" attr.data-target="#exchange-{{game._id}}" data-dismiss="modal">
 			                    	Wymień się!
 	            				</button>
 										</div>
@@ -39,6 +39,43 @@
 										<p class="description">{{ game.description }}</p>
 									</div>
 								</div>
+
+                                  <!-- Exchange Game Modal -->
+
+                                  <div class="modal fade" id="exchange-{{game._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                  	<div class="modal-dialog" role="document">
+                                  		<div class="modal-content">
+                                  			<div class="modal-header">
+                                  				<button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  				<h4 class="modal-title">Wymień się</h4>
+                                  			</div>
+                                  			<div class="modal-body">
+                      		                    <p>Wybierz gry za które możesz się wymienić.
+                      		                      <b>
+                      		                        <span *ngIf="game.userID.local">{{game.userID.local.login}}</span>
+                      		                        <span *ngIf="game.userID.facebook">{{game.userID.facebook.name}}</span>
+                      		                      </b>
+                      		                       wybierze jedną z nich na wymianę.
+                      		                    </p>
+                      		            		<div *ngFor="let option of options">
+                      		                      <div class="checkbox">
+                      		                        <label>
+                      		                            <input type="checkbox"
+                      		                                   name="options"
+                      		                                   [(ngModel)]="option.checked"
+                      		                                   value="{{option.value}}"/>
+                      		                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                      		                            {{option.name}}
+                      		                        </label>
+                      		                      </div>
+                      	                    	</div>
+                                  			</div>
+                                  			<div class="modal-footer">
+                                          	<button class="btn custom-button" type="button" name="button" (click)="this.start(game, game.userID._id)" data-dismiss="modal">Wyślij</button>
+                                  		</div>
+                                  	</div>
+                                  </div>
+                      		  	</div>
 							</div>
 						</div>
 					</div>
