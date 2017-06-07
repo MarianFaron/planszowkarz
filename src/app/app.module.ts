@@ -36,10 +36,14 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 const SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
-  slidesPerView: 2,
+  slidesPerView: 4,
   autoplay: 5000,
   grabCursor: true,
-  slidesPerGroup: 2
+  slidesPerGroup: 1,
+  nextButton: '.swiper-button-next',
+  prevButton: '.swiper-button-prev',
+  pagination: '.swiper-pagination',
+  paginationClickable: true,
 };
 
 @NgModule({
