@@ -1,205 +1,214 @@
 <section id="newGames" class="newestGames">
   <div class="container">
     <h3>Najnowsze ogłoszenia</h3>
-		<hr class="main-hr">
-		<div class="row">
-	        <div *ngIf="!userGame">
-	          <div class="text-center">
-	            <img src="../../assets/images/loading.gif" alt="" class="loading">
-	          </div>
-	        </div>
-          <div class="slider">
-            <div class="col-md-3 col-sm-6 col-xs-12 new-game-wrapper" *ngFor="let game of userGame | slice:0:4">
-      			 	<div class="game-card">
-      					<div class="inner">
-                  			<a routerLink="/games/{{ game._id }}">
-        							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}" alt="{{game.title}}" class="img-responsive center-block">
-        							<h3>{{ game.title }}</h3>
-                  			</a>
-      						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-      			            <span *ngIf="game.userID.local">
-      			              <a routerLink="/user-profile/{{ game.userID.local.login }}"> Dodane przez: {{ game.userID.local.login }}</a><br>
-      			            </span>
-      			            <span *ngIf="game.userID.facebook">
-      			              <a routerLink="/user-profile/{{ game.userID.facebook.name }}"> Dodane przez: {{ game.userID.facebook.name }}</a><br>
-      			            </span>
-      						<div *ngIf="game.userID.city">
-      							<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lokalizacja: {{ game.userID.city }}
-      							<br>
-      						</div>
-      						<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane {{ game.createdDate | date:'longDate' }}<br>
-                				<div *ngIf="this.appService.isLoggedIn()" class="text-center">
-                  				<button type="button" class="btn btn-default custom-button" data-toggle="modal" attr.data-target="#exchange-{{game._id}}" data-dismiss="modal" >
-      		                    	Wymień się!
-                  				</button>
-               				</div>
-              			</div>
-              		</div>
+    <hr class="main-hr">
+    <div class="row">
+      <div *ngIf="!userGame">
+        <div class="text-center">
+          <img src="../../assets/images/loading.gif" alt="" class="loading">
+        </div>
+      </div>
+      <!-- *ngFor="let game of userGame | slice:0:1" -->
+      <div class="col-xs-12" >
+        <swiper [config]="config">
+          <div class="new-game-wrapper" *ngFor="let game of userGame">
+            <div class="game-card">
+              <div class="inner">
+                <a routerLink="/games/{{ game._id }}">
+								<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}" alt="{{game.title}}" class="img-responsive center-block">
+								<h3>{{ game.title }}</h3>
+							</a>
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <span *ngIf="game.userID.local">
+							<a routerLink="/user-profile/{{ game.userID.local.login }}"> Dodane przez: {{ game.userID.local.login }}</a><br>
+							</span>
+                <span *ngIf="game.userID.facebook">
+							<a routerLink="/user-profile/{{ game.userID.facebook.name }}"> Dodane przez: {{ game.userID.facebook.name }}</a><br>
+							</span>
+                <div *ngIf="game.userID.city">
+                  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lokalizacja: {{ game.userID.city }}
+                  <br>
+                </div>
+                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane {{ game.createdDate | date:'longDate' }}<br>
+                <div *ngIf="this.appService.isLoggedIn()" class="text-center">
+                  <button type="button" class="btn btn-default custom-button" data-toggle="modal" attr.data-target="#exchange-{{game._id}}" data-dismiss="modal">
+									Wymień się!
+								</button>
+                </div>
+              </div>
 
-                  <!-- Exchange Game Modal -->
+            </div>
 
-                  <div class="modal fade" id="exchange-{{game._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                  	<div class="modal-dialog" role="document">
-                  		<div class="modal-content">
-                  			<div class="modal-header">
-                  				<button type="button" class="close" data-dismiss="modal">&times;</button>
-                  				<h4 class="modal-title">Wymień się</h4>
-                  			</div>
-                  			<div class="modal-body">
-      		                    <p>Wybierz gry za które możesz się wymienić.
-      		                      <b>
-      		                        <span *ngIf="game.userID.local">{{game.userID.local.login}}</span>
-      		                        <span *ngIf="game.userID.facebook">{{game.userID.facebook.name}}</span>
-      		                      </b>
-      		                       wybierze jedną z nich na wymianę.
-      		                    </p>
-      		            		<div *ngFor="let option of options">
-      		                      <div class="checkbox">
-      		                        <label>
-      		                            <input type="checkbox"
-      		                                   name="options"
-      		                                   [(ngModel)]="option.checked"
-      		                                   value="{{option.value}}"/>
-      		                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-      		                            {{option.name}}
-      		                        </label>
-      		                      </div>
-      	                    	</div>
-                  			</div>
-                  			<div class="modal-footer">
-                          	<button class="btn custom-button" type="button" name="button" (click)="this.start(game, game.userID._id)" data-dismiss="modal">Wyślij</button>
-                  		</div>
-                  	</div>
+            <!-- Exchange Game Modal -->
+
+            <div class="modal fade" id="exchange-{{game._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Wymień się</h4>
                   </div>
-      		  	</div>
-      		</div>
+                  <div class="modal-body">
+                    <p>Wybierz gry za które możesz się wymienić.
+                      <b>
+                            <span *ngIf="game.userID.local">{{game.userID.local.login}}</span>
+                            <span *ngIf="game.userID.facebook">{{game.userID.facebook.name}}</span>
+                          </b> wybierze jedną z nich na wymianę.
+                    </p>
+                    <div *ngFor="let option of options">
+                      <div class="checkbox">
+                        <label>
+                                <input type="checkbox"
+                                       name="options"
+                                       [(ngModel)]="option.checked"
+                                       value="{{option.value}}"/>
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                {{option.name}}
+                            </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn custom-button" type="button" name="button" (click)="this.start(game, game.userID._id)" data-dismiss="modal">Wyślij</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
           </div>
 
+        </swiper>
+
+
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-4 col-sm-12 rate-wrapper">
+        <h3>Najwyżej oceniane</h3>
+        <hr class="main-hr">
+        <div class="inner">
+          <div class="rate-info">
+            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
+            <div class="rate-text">
+              <h3>Civilization</h3>
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
+              <div class="text-left">
+                <button type="button" class="btn btn-default custom-button">Więcej</button>
+              </div>
+            </div>
+          </div>
+          <hr class="rate-hr">
+          <div class="rate-info">
+            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}wiedzmin.jpg" alt="wiedzmin" class="rate-img">
+            <div class="rate-text">
+              <h3>Wiedźmin</h3>
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 5 komentarzy
+              <div class="text-left">
+                <button type="button" class="btn btn-default custom-button">Więcej</button>
+              </div>
+            </div>
+          </div>
+          <hr class="rate-hr">
+          <div class="rate-info">
+            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
+            <div class="rate-text">
+              <h3>Civilization</h3>
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
+              <div class="text-left">
+                <button type="button" class="btn btn-default custom-button">Więcej</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-12 rate-wrapper">
+        <h3>Najczęściej komentowane</h3>
+        <hr class="main-hr">
+        <div class="inner">
+          <div class="rate-info">
+            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
+            <div class="rate-text">
+              <h3>Civilization</h3>
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
+              <div class="text-left">
+                <button type="button" class="btn btn-default custom-button">Więcej</button>
+              </div>
+            </div>
+          </div>
+          <hr class="rate-hr">
+          <div class="rate-info">
+            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}wiedzmin.jpg" alt="wiedzmin" class="rate-img">
+            <div class="rate-text">
+              <h3>Wiedźmin</h3>
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 5 komentarzy
+              <div class="text-left">
+                <button type="button" class="btn btn-default custom-button">Więcej</button>
+              </div>
+            </div>
+          </div>
+          <hr class="rate-hr">
+          <div class="rate-info">
+            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
+            <div class="rate-text">
+              <h3>Civilization</h3>
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
+              <div class="text-left">
+                <button type="button" class="btn btn-default custom-button">Więcej</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-12 rate-wrapper">
+        <h3>Najwyżej oceniane</h3>
+        <hr class="main-hr">
+        <div class="inner">
+          <div class="rate-info">
+            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
+            <div class="rate-text">
+              <h3>Civilization</h3>
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
+              <div class="text-left">
+                <button type="button" class="btn btn-default custom-button">Więcej</button>
+              </div>
+            </div>
+          </div>
+          <hr class="rate-hr">
+          <div class="rate-info">
+            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}wiedzmin.jpg" alt="wiedzmin" class="rate-img">
+            <div class="rate-text">
+              <h3>Wiedźmin</h3>
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 5 komentarzy
+              <div class="text-left">
+                <button type="button" class="btn btn-default custom-button">Więcej</button>
+              </div>
+            </div>
+          </div>
+          <hr class="rate-hr">
+          <div class="rate-info">
+            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
+            <div class="rate-text">
+              <h3>Civilization</h3>
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
+              <div class="text-left">
+                <button type="button" class="btn btn-default custom-button">Więcej</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-		<div class="row">
-			<div class="col-md-4 col-sm-12 rate-wrapper">
-				<h3>Najwyżej oceniane</h3>
-				<hr class="main-hr">
-				<div class="inner">
-					<div class="rate-info">
-						<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
-						<div class="rate-text">
-							<h3>Civilization</h3>
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
-							<div class="text-left">
-								<button type="button" class="btn btn-default custom-button">Więcej</button>
-							</div>
-						</div>
-					</div>
-					<hr class="rate-hr">
-					<div class="rate-info">
-						<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}wiedzmin.jpg" alt="wiedzmin" class="rate-img">
-						<div class="rate-text">
-							<h3>Wiedźmin</h3>
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 5 komentarzy
-							<div class="text-left">
-								<button type="button" class="btn btn-default custom-button">Więcej</button>
-							</div>
-						</div>
-					</div>
-					<hr class="rate-hr">
-					<div class="rate-info">
-						<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
-						<div class="rate-text">
-							<h3>Civilization</h3>
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
-							<div class="text-left">
-								<button type="button" class="btn btn-default custom-button">Więcej</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-12 rate-wrapper">
-				<h3>Najczęściej komentowane</h3>
-				<hr class="main-hr">
-				<div class="inner">
-					<div class="rate-info">
-						<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
-						<div class="rate-text">
-							<h3>Civilization</h3>
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
-							<div class="text-left">
-								<button type="button" class="btn btn-default custom-button">Więcej</button>
-							</div>
-						</div>
-					</div>
-					<hr class="rate-hr">
-					<div class="rate-info">
-						<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}wiedzmin.jpg" alt="wiedzmin" class="rate-img">
-						<div class="rate-text">
-							<h3>Wiedźmin</h3>
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 5 komentarzy
-							<div class="text-left">
-								<button type="button" class="btn btn-default custom-button">Więcej</button>
-							</div>
-						</div>
-					</div>
-					<hr class="rate-hr">
-					<div class="rate-info">
-						<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
-						<div class="rate-text">
-							<h3>Civilization</h3>
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
-							<div class="text-left">
-								<button type="button" class="btn btn-default custom-button">Więcej</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-12 rate-wrapper">
-				<h3>Najwyżej oceniane</h3>
-				<hr class="main-hr">
-				<div class="inner">
-					<div class="rate-info">
-						<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
-						<div class="rate-text">
-							<h3>Civilization</h3>
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
-							<div class="text-left">
-								<button type="button" class="btn btn-default custom-button">Więcej</button>
-							</div>
-						</div>
-					</div>
-					<hr class="rate-hr">
-					<div class="rate-info">
-						<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}wiedzmin.jpg" alt="wiedzmin" class="rate-img">
-						<div class="rate-text">
-							<h3>Wiedźmin</h3>
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 5 komentarzy
-							<div class="text-left">
-								<button type="button" class="btn btn-default custom-button">Więcej</button>
-							</div>
-						</div>
-					</div>
-					<hr class="rate-hr">
-					<div class="rate-info">
-						<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
-						<div class="rate-text">
-							<h3>Civilization</h3>
-							<span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
-							<div class="text-left">
-								<button type="button" class="btn btn-default custom-button">Więcej</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 </section>

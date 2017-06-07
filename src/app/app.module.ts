@@ -32,6 +32,21 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { RatingComponent } from './rating/rating.component';
 import { CatalogComponent } from './catalog/catalog.component';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
+
+const SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 4,
+  autoplay: 0,
+  grabCursor: true,
+  slidesPerGroup: 1,
+  nextButton: '.swiper-button-next',
+  prevButton: '.swiper-button-prev',
+  pagination: '.swiper-pagination',
+  paginationClickable: true,
+};
 
 @NgModule({
   declarations: [
@@ -67,7 +82,8 @@ import { CatalogComponent } from './catalog/catalog.component';
     MyDatePickerModule,
     CollapseModule,
     BrowserAnimationsModule,
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+    SwiperModule.forRoot(SWIPER_CONFIG)
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pl-PL" }, AuthGuard],
   bootstrap: [AppComponent]
