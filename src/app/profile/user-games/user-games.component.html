@@ -23,7 +23,9 @@
 					<div class="game-info">
 						<a routerLink="/games/{{ game._id }}">
 							<p class="title">{{ game.title }}</p>
-						</a>
+						</a>						
+						<p><strong>Kategoria: </strong>{{ game.category }}</p>
+						<p><strong>Stan: </strong>{{ game.state }}</p>
 						<div class="game-info-buttons">
 							<button class="btn btn-default"
 									data-toggle="modal" attr.data-target="#edit-game-{{game._id}}">
@@ -34,9 +36,6 @@
 								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Usuń
 							</button>
 						</div>
-						<p><strong>Kategoria: </strong>{{ game.category }}</p>
-						<p><strong>Stan: </strong>{{ game.state }}</p>
-						<p class="description">{{ game.description }}</p>
 					</div>
 					<div class="game-info-function-box">
 
