@@ -45,6 +45,10 @@
 				line-height: 22px;
 				padding-left: 3%;
 			}
+			li.username {
+				font-size: 20px;
+				margin-bottom: 15px;
+			}
 		}
 	}
 }
@@ -134,3 +138,18 @@ hr.style1 {
 		}
 	}
 }
+
+.user-info-box {
+	margin-bottom: 15px;
+}
+
+.col-md-4.col-md-push-8.user-info {
+	margin-bottom: 0px;
+}
+
+@media (max-width: 992px) {
+	.col-md-4.col-md-push-8.user-info {
+		margin-bottom: 15px;
+	}
+}
+

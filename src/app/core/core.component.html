@@ -31,7 +31,7 @@
                 </div>
                 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane {{ game.createdDate | date:'longDate' }}<br>
                 <div *ngIf="this.appService.isLoggedIn()" class="text-center">
-                  <button type="button" class="btn btn-default custom-button" data-toggle="modal" attr.data-target="#exchange-{{game._id}}" data-dismiss="modal">
+                  <button *ngIf="this.appService.getCurrentUser()._id != game.userID._id" type="button" class="btn btn-default custom-button" data-toggle="modal" attr.data-target="#exchange-{{game._id}}" data-dismiss="modal">
 									Wymień się!
 								</button>
                 </div>
@@ -51,9 +51,9 @@
                   <div class="modal-body">
                     <p>Wybierz gry za które możesz się wymienić.
                       <b>
-                            <span *ngIf="game.userID.local">{{game.userID.local.login}}</span>
-                            <span *ngIf="game.userID.facebook">{{game.userID.facebook.name}}</span>
-                          </b> wybierze jedną z nich na wymianę.
+                        <span *ngIf="game.userID.local">{{game.userID.local.login}}</span>
+                        <span *ngIf="game.userID.facebook">{{game.userID.facebook.name}}</span>
+                      </b> wybierze jedną z nich na wymianę.
                     </p>
                     <div *ngFor="let option of options">
                       <div class="checkbox">
@@ -74,17 +74,10 @@
                 </div>
               </div>
             </div>
-
-
           </div>
-
         </swiper>
-
-
       </div>
     </div>
-
-
     <div class="row">
       <div class="col-md-4 col-sm-12 rate-wrapper">
         <h3>Najwyżej oceniane</h3>

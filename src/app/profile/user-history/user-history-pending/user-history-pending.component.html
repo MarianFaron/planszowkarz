@@ -1,7 +1,8 @@
 <div class="single-transaction inner" *ngFor="let history of userHistory | searchfilter: 'status' : 'pending'">
     <div id="left" class="single-transaction-content">
       <a routerLink="/user-profile/{{ history?.users[0].local.login }}">
-        <p>Login: {{history?.users[0]?.local.login}}</p>
+        <p *ngIf="userInfo?.local && !userInfo?.facebook">Login: {{history?.users[0]?.local.login}}</p>
+        <p *ngIf="userInfo?.facebook">Login: {{history?.users[0]?.facebook.name}}</p>
       </a>
       <div *ngFor="let game of history.games | searchfilter: 'userID' : history?.users[0]._id">
         <p> Nazwa gry: {{game.title}}</p>
@@ -9,7 +10,8 @@
     </div>
     <div id="right" class="single-transaction-content">
       <a routerLink="/user-profile/{{ history?.users[1].local.login }}">
-        <p>Login: {{history?.users[1]?.local.login}}</p>
+        <p *ngIf="userInfo?.local && !userInfo?.facebook">Login: {{history?.users[1]?.local.login}}</p>
+        <p *ngIf="userInfo?.facebook">Login: {{history?.users[1]?.facebook.name}}</p>
       </a>
       <div *ngFor="let game of history.games | searchfilter: 'userID' : history?.users[1]._id">
         <p> Nazwa gry: {{game.title}}</p>
