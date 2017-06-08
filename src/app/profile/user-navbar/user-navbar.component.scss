@@ -35,12 +35,21 @@
 							line-height: 1;
 							text-decoration: none;
 							display: block;
+							height: 74px;
+							@media screen and (max-width: 580px){
+								display: flex;
+								justify-content: center;
+								align-items: center;
+							}
 							span {
 								text-transform: uppercase;
 								letter-spacing: 1px;
 								font-weight: 700;
 								font-size: 0.5em;
 								vertical-align: middle;
+								@media screen and (max-width: 580px){
+									display: none;
+								}
 							}
 						}
 						a:hover, a:focus, a:active {
@@ -76,6 +85,23 @@
 						border-right: none;
 					}
 				}
+			}
+		}
+	}
+	.mobile-tab-name{
+		display: none;
+		@media screen and (max-width: 580px){
+			height: 50px;
+			background-color: #FFF;
+			margin: 5px 0px 0px 0px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			h3{
+				margin: 0;
+				font-size: 18px;
+				color: #f98d1a;
+				text-decoration: underline;
 			}
 		}
 	}

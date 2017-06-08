@@ -13,12 +13,18 @@ export class UserNavbarComponent implements OnInit {
     } else {
       return null;
     }
+  }
+  
+  currentTab: string;
 
+  setCurrentTabName(name: string){
+    this.currentTab = name;
   }
 
   constructor() { }
 
   ngOnInit() {
+    this.currentTab = "Moje gry";
   }
 
 }
