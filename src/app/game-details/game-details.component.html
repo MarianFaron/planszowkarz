@@ -1,19 +1,18 @@
 <section id="other-user">
 	<div class="other-user-box">
-		<div class="container">
-			<div class="game-box inner">
+		<div class="container inner">
+			<div class="game-title">
+				<h1>{{ gameDetails?.title }}</h1>
+			</div>
+			<div class="game-box">
 				<div class="left-col">
 					<div class="gallery-box">
-						<p>slider zdjęć gry</p>
-					</div>
-					<div class="game-list-box">
-						<p><span>Lista gier, za które najchętniej wymieniłby się właściciel:</span> przykładowa gra przygodowa, przykładowa gra logiczna, przykładowa gra strategiczna
-						</p>
+						<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}
+						{{ gameDetails?.Image }}">
 					</div>
 				</div>
 				<div class="right-col">
 					<div class="game-info">
-						<h1>{{ gameDetails?.title }}</h1>
 						<p>{{ gameDetails?.description }}</p>
 						<hr>
 						<div class="owner">
@@ -22,8 +21,8 @@
 								<span class="detail-value">{{ gameDetails?.userID.local.login }}</span>
 							</span>
 							<span class="detail-row">
-								<span class="detail-label">{{ gameDetails?.category }}</span>
-								<span class="detail-value">Przygodowa</span>
+								<span class="detail-label">Kategoria</span>
+								<span class="detail-value">{{ gameDetails?.category }}</span>
 							</span>
 							<span class="detail-row">
 								<span class="detail-label">Stan</span>
@@ -33,15 +32,15 @@
 								<span class="detail-label">Data dodania</span>
 								<span class="detail-value">{{gameDetails?.createdDate | date:'longDate'}}</span>
 							</span>
-							</div>
-						<div class="exchange-button">
-							<button type="button" class="btn btn-default custom-button" (click)="this.start(gameDetails, gameDetails.userID._id, gamesList)">
-										Wymień się!
-							</button>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="exchange-button">
+				<button type="button" class="btn btn-default custom-button" (click)="this.start(gameDetails, gameDetails.userID._id, gamesList)">Wymień się!
+				</button>
+			</div>
+			<!--
 			<div class="other-games-box">
 				<h3>Podobne gry</h3>
 				<hr class="main-hr">
@@ -116,6 +115,7 @@
 					</div>
 				</div>
 			</div>
+			-->
 		</div>
 	</div>
 </section>

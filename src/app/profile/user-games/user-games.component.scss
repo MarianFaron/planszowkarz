@@ -50,17 +50,19 @@
 						width: 120px;
 						height: 120px;
 						border: 1px solid #e7e7e7;
+						display: flex;
+						justify-content: center;
+						align-items: center;
 						@media screen and (max-width: 400px){
 							display: block;
 							margin: 0 auto;
 						}
 						img{
 							background-position: top;
-							max-height: 95%;
-							max-width: 95%;
+							max-height: 116px;
+							max-width: 116px;
 							position: relative;
 							margin: auto;
-							display: block;
 						}
 					}
 					.game-info{
