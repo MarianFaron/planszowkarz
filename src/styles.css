@@ -72,6 +72,7 @@ textarea.form-control {
   font-weight: 500;
   background: #f98d1a;
   border: none;
+  min-width: 100px;
 }
 
 .custom-button:hover,
@@ -80,6 +81,19 @@ textarea.form-control {
   color: white;
   background: #f98d1a;
   border: none;
+}
+
+.btn-color{
+  color: #000;
+  background-color: #e7e7e7;
+  margin-top: 15px;
+  font-weight: 500;
+  border: none;
+  min-width: 100px;
+}
+
+.btn-color:hover{
+  background-color: #d8d8d8;
 }
 
 .main-hr {
