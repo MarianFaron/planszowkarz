@@ -80,9 +80,9 @@
 }
 
 .navbar-collapse {
-  max-width: 700px;
   display: inline-block;
-  text-align: center;
+  float: right;
+  /*text-align: center;*/
 }
 
 .footer {
@@ -127,6 +127,11 @@
         display: block;
     }
     
+    .navbar-collapse{
+      float: none;
+      text-align: center;
+    }
+
     .navbar-fixed-top {
         top: 0;
         border-width: 0 0 1px;
