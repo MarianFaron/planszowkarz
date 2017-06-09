@@ -5,19 +5,25 @@ import { AppService } from '../../../app.service';
 import { UserHistoryService } from '../user-history.service';
 
 @Component({
-  selector: 'app-user-history-pending',
-  templateUrl: './user-history-pending.component.html',
+  selector: 'app-user-history-sended',
+  templateUrl: './user-history-sended.component.html',
   styleUrls: ['../user-history.component.css'],
   providers: [UserHistoryService]
 })
-export class UserHistoryPendingComponent implements OnInit {
+export class UserHistorySendedComponent implements OnInit {
 
   	userHistory: UserHistory[];
 	errorMessage: string;
+	loggedUserID: string;
+	senderFilter: any;
 
-  	constructor(private http: Http, private appService: AppService, private userHistoryService: UserHistoryService) { }
+  	constructor(private http: Http, private appService: AppService, private userHistoryService: UserHistoryService) { 
+  		this.senderFilter = {sender: '59204a073642ea1ddcf685a0', status: 'pending'};
+  	}
 
   	ngOnInit() {
+  		var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+	  	var loggedUserID = currentUser._id;
   		this.getUserHistory();
   	}
 

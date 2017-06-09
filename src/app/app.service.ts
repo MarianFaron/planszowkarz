@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import * as io from 'socket.io-client';
-import { FlashMessagesService} from 'angular2-flash-messages';
 import { NotificationsService } from 'angular2-notifications';
 
 @Injectable()
@@ -19,7 +18,7 @@ export class AppService {
   public unread = 0;
   private socket = null;
 
-  constructor (private http: Http, private flashMessage:FlashMessagesService, private notificationsService: NotificationsService) {
+  constructor (private http: Http, private notificationsService: NotificationsService) {
     if(this.isLoggedIn()) {
       this.getUnreadNotifications(this.getCurrentUser()._id);
       this.socket = io(this.getUrl(''), {query: {userId: this.getCurrentUser()._id}});

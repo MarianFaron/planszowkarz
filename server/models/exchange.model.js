@@ -7,14 +7,18 @@ var Exchange = new Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'userGame'
     }],
-    games: [{
+    selectedGames: [{
     	type: mongoose.Schema.Types.ObjectId,
       ref: 'userGame'
     }],
-    users: [{
-    	type: mongoose.Schema.Types.ObjectId,
+    sender: {
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
-    }],
+    },
+    recipient: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
     status: {
     	type: String,
     	default: 'pending' 

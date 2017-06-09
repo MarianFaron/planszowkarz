@@ -3,7 +3,6 @@ import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '
 import { UserGame } from './user-games';
 import { AppService } from '../../app.service';
 import { UserGameService } from './user-games.service';
-import { FlashMessagesService } from 'angular2-flash-messages';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 @Component({
@@ -23,7 +22,7 @@ export class UserGamesComponent implements OnInit {
   public URL = this.appService.getUrl('/app/coverUpload');
   public coverUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
-  constructor (private http: Http, private el: ElementRef, private appService: AppService, private userGameService: UserGameService, private flashMessage:FlashMessagesService) {}
+  constructor (private http: Http, private el: ElementRef, private appService: AppService, private userGameService: UserGameService) {}
 
   ngOnInit() {
     this.getUserGame();

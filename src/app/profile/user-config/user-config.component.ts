@@ -4,7 +4,6 @@ import { UserConfigService } from './user-config.service';
 import { AppService } from '../../app.service';
 import { UserInfo } from '../user-info/user-info';
 import { UserInfoComponent } from '../user-info/user-info.component';
-import { FlashMessagesService } from 'angular2-flash-messages';
 import { IMyOptions} from 'mydatepicker';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
@@ -31,8 +30,7 @@ export class UserConfigComponent implements OnInit {
   constructor(private http: Http,
               private el: ElementRef,
               private appService: AppService,
-              private userConfigService: UserConfigService,
-              private flashMessage:FlashMessagesService) { }
+              private userConfigService: UserConfigService) { }
 
   private myDatePickerOptions: IMyOptions = {
         dateFormat: 'dd-mm-yyyy',

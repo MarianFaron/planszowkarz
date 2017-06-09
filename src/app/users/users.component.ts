@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User }              from './user';
 import { UsersService }       from './users.service';
 import { AppService }       from '../app.service';
-import { FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-users',
@@ -27,7 +26,7 @@ export class UsersComponent implements OnInit {
       confirmPassword: ''
     };
 
-  constructor(private appService: AppService, private userGameService: UsersService, private flashMessage:FlashMessagesService) { }
+  constructor(private appService: AppService, private userGameService: UsersService) { }
 
   ngOnInit() {
     this.getUsers();

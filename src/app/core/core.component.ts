@@ -5,7 +5,6 @@ import { AppService } from '../app.service';
 import { UserGame } from './../profile/user-games/user-games';
 import { UserGameService } from './../profile/user-games/user-games.service';
 import { UserInfoService } from './../profile/user-info/user-info.service';
-import { FlashMessagesService} from 'angular2-flash-messages';
 import { Router, CanActivate, ActivatedRoute } from '@angular/router'
 
 @Component({
@@ -27,7 +26,7 @@ export class CoreComponent implements OnInit {
   };
   options: Array<{name: string,value: string,checked: boolean}>;
 
-  constructor(private http: Http, private router: Router, private CoreService: CoreService, private appService: AppService, private flashMessage:FlashMessagesService) {}
+  constructor(private http: Http, private router: Router, private CoreService: CoreService, private appService: AppService) {}
 
   ngOnInit() {
     if(localStorage.getItem('currentUser')) {

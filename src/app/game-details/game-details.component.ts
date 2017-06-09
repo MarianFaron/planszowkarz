@@ -3,7 +3,6 @@ import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '
 import { GameDetails } from './game-details';
 import { AppService } from '../app.service';
 import { GameDetailsService } from './game-details.service';
-import { FlashMessagesService } from 'angular2-flash-messages';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -21,7 +20,6 @@ export class GameDetailsComponent implements OnInit {
   constructor( private http: Http,
                private gameDetailsService: GameDetailsService,
                private appService: AppService,
-               private flashMessage:FlashMessagesService,
                private activeRoute: ActivatedRoute) {}
 
   ngOnInit() {
@@ -38,7 +36,7 @@ export class GameDetailsComponent implements OnInit {
    start(game: string, userId: string) {
      this.appService.startTransaction(game, userId, [])
        .subscribe(response => {
-         this.flashMessage.show("Wysłano prośbę o wymianę.", {cssClass: 'alert-success', timeout: 3000});
+         this.appService.showNotification('Powiadomienie', 'Wysłano prośbę o wymiane.', 'success');
        });
    }
 }

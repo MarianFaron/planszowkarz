@@ -9,15 +9,19 @@ router.route('/exchanges')
 		Exchange.find().sort({createdDate: 1})
 				.populate([{ 
 								path: 'proposeGames', 
-							 	select: 'title category state userID Image' 
+							 	select: 'title category state userID' 
 						   },
 						   { 
-								path: 'games', 
-							 	select: 'title category state userID Image' 
+								path: 'selectedGames', 
+							 	select: 'title category state userID' 
 						   },
 						   {
-								path: 'users',
-								select: 'local.login local.email'
+								path: 'sender',
+								select: 'local.login local.email facebook'
+						   },
+						   {
+								path: 'recipient',
+								select: 'local.login local.email facebook'
 						   }])
 				.exec((err,exchanges) => {
 			if(err){
@@ -31,9 +35,10 @@ router.route('/exchanges')
 	.post((req,res) => {
 		var exchange = new Exchange({
 			proposeGames: req.body.proposeGames,
-			games: req.body.games,
-			users: req.body.users,
-			status: req.body.status,
+			selectedGames: req.body.selectedGames,
+			sender: req.body.sender,
+			recipient: req.body.recipient,
+			status: req.body.status
 		});
 		// save the game
 		exchange.save((err) => {
@@ -47,17 +52,21 @@ router.route('/exchanges')
 
 router.route('/exchanges/:id')
 	.get((req, res) => {
-		Exchange.find({users: req.params.id})
+		Exchange.find({$or: [{sender: req.params.id}, {recipient: req.params.id}]})
 				.populate([{ 
 								path: 'proposeGames', 
-							 	select: 'title category state userID Image' 
+							 	select: 'title category state userID' 
 						   },
 						   { 
-								path: 'games', 
-							 	select: 'title category state userID Image' 
+								path: 'selectedGames', 
+							 	select: 'title category state userID' 
 						   },
 						   {
-								path: 'users',
+								path: 'sender',
+								select: 'local.login local.email'
+						   },
+						   {
+								path: 'recipient',
 								select: 'local.login local.email'
 						   }])
 				.exec((err, exchange) => {

@@ -4,7 +4,6 @@ import { OtherUserService } from './other-user.service';
 import { AppService } from '../app.service';
 import { CoreService } from '../core/core.service';
 import { OtherUser } from './other-user';
-import { FlashMessagesService } from 'angular2-flash-messages';
 import { ActivatedRoute } from '@angular/router';
 import { UserGame } from '../profile/user-games/user-games';
 
@@ -37,7 +36,6 @@ export class OtherUserComponent implements OnInit {
                private otherUserService: OtherUserService,
                private appService: AppService,
                private coreService: CoreService,
-               private flashMessage:FlashMessagesService,
                private activeRoute: ActivatedRoute) {}
 
 
@@ -81,7 +79,7 @@ export class OtherUserComponent implements OnInit {
     this.appService.startTransaction(game, userId, this.currentUserGamesIds)
       .subscribe(response => {
         console.log(JSON.parse(localStorage.getItem('currentUser'))._id + " send");
-
+        
       });
   }
 
