@@ -143,6 +143,7 @@ router.route('/verify')
           newUser.local.login = tempUser.login;
           newUser.local.email = tempUser.email;
           newUser.local.password = tempUser.password;
+          newUser.avatarImage = tempUser.avatarImage;
 
           newUser.save(function(err) {
             if (err) {
@@ -255,7 +256,8 @@ router.route('/users')
       var newUser = new User({
         login: req.body.login,
         password: req.body.password,
-        email: req.body.email
+        email: req.body.email,
+        avatarImage: req.body.avatarImage
       });
       // save the user
       newUser.save((err) => {

@@ -17,13 +17,14 @@ export class UsersComponent implements OnInit {
   mode = 'Observable';
   userlogin = '';
   loginIsUsed: Boolean = false;
-  avatarImgName = "default.png"
+  
 
   model = {
       login: '',
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      avatarImage: 'default.png'
     };
 
   constructor(private appService: AppService, private userGameService: UsersService) { }
@@ -100,7 +101,7 @@ export class UsersComponent implements OnInit {
 
   register(login: string, email: string, password: string, avatarImage: string) {
 
-    this.userGameService.register(login, email, password, this.avatarImgName)
+    this.userGameService.register(login, email, password, avatarImage)
                         .map((response) => {
                           if(response.message) {
                             this.appService.showNotification('Powiadomienie', response.message.toString(), 'danger');

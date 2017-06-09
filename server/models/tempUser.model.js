@@ -17,6 +17,9 @@ var TempUser = new Schema({
       type: String,
       unique: false,
       require: true
+    },
+    avatarImage: {
+      type: String
     }
 }, {
     versionKey: false
