@@ -5,20 +5,16 @@
     line-height: 28px;
 }
 
+
 .new-game-wrapper .inner{
     background: #fff;
     box-shadow: 2px 2px 1px #d5d5d5;
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 20px;
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 100%;
-}
-
-.userTextOverflow{
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    max-width: 200px;
+    height: 400px;
 }
 
 .new-game-wrapper img{
@@ -112,4 +108,7 @@
 .game-card a:active h3{
   text-decoration: none;
   color: #f98d1a;
+}
+.swiper-button-next{
+    right: 0;
 }

@@ -40,13 +40,24 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 const SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 4,
-  autoplay: 0,
+  spaceBetween: 0,
   grabCursor: true,
-  slidesPerGroup: 1,
   nextButton: '.swiper-button-next',
   prevButton: '.swiper-button-prev',
-  pagination: '.swiper-pagination',
-  paginationClickable: true,
+  breakpoints: {
+    // when window width is <= 320px
+    600: {
+      slidesPerView: 1
+    },
+    // when window width is <= 480px
+    768: {
+      slidesPerView: 2
+    },
+    // when window width is <= 640px
+    992: {
+      slidesPerView: 3
+    }
+  }
 };
 
 @NgModule({

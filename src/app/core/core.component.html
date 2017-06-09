@@ -9,7 +9,7 @@
         </div>
       </div>
       <!-- *ngFor="let game of userGame | slice:0:1" -->
-      <div class="col-xs-12" >
+      <div class="col-xs-12" *ngFor="let game of userGame | slice:0:1">
         <swiper [config]="config">
           <div class="new-game-wrapper" *ngFor="let game of userGame">
             <div class="game-card">
@@ -68,6 +68,7 @@
                       </div>
                     </div>
                   </div>
+        
                   <div class="modal-footer">
                     <button class="btn custom-button" type="button" name="button" (click)="this.start(game, game.userID._id)" data-dismiss="modal">Wyślij</button>
                   </div>
@@ -75,7 +76,7 @@
               </div>
             </div>
           </div>
-        </swiper>
+          </swiper>
       </div>
     </div>
     <div class="row">
