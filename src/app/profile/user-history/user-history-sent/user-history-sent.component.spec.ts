@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserHistorySendedComponent } from './user-history-sended.component';
+import { UserHistorySentComponent } from './user-history-sent.component';
 
 describe('UserHistoryPendingComponent', () => {
-  let component: UserHistorySendedComponent;
-  let fixture: ComponentFixture<UserHistorySendedComponent>;
+  let component: UserHistorySentComponent;
+  let fixture: ComponentFixture<UserHistorySentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserHistorySendedComponent ]
+      declarations: [ UserHistorySentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserHistorySendedComponent);
+    fixture = TestBed.createComponent(UserHistorySentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

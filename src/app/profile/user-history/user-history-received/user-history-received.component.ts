@@ -26,7 +26,7 @@ export class UserHistoryReceivedComponent implements OnInit {
 	  var currentUser = JSON.parse(localStorage.getItem('currentUser'));
 	  var userID = currentUser._id;
 
-	  this.userHistoryService.getHistoryExchanges(userID)
+	  this.userHistoryService.getReceivedHistoryExchanges(userID)
 	                    .subscribe(
 	                      userHistory => {
 	                        this.userHistory = userHistory;

@@ -23,10 +23,9 @@ import { UserConfigComponent } from './profile/user-config/user-config.component
 import { UserNavbarComponent } from './profile/user-navbar/user-navbar.component';
 import { UserHistoryComponent } from './profile/user-history/user-history.component';
 import { UserHistoryFilterPipe } from './profile/user-history/user-history.pipe';
-import { UserHistorySendedFilterPipe } from './profile/user-history/user-history-sended/user-history-sended.pipe';
 import { ExchangeComponent } from './exchange/exchange.component';
 import { UserHistoryAcceptedComponent } from './profile/user-history/user-history-accepted/user-history-accepted.component';
-import { UserHistorySendedComponent } from './profile/user-history/user-history-sended/user-history-sended.component';
+import { UserHistorySentComponent } from './profile/user-history/user-history-sent/user-history-sent.component';
 import { UserHistoryRejectedComponent } from './profile/user-history/user-history-rejected/user-history-rejected.component';
 import { UserHistoryReceivedComponent } from './profile/user-history/user-history-received/user-history-received.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -65,10 +64,9 @@ const swiper_config:SwiperConfigInterface={
     UserNavbarComponent,
     UserHistoryComponent,
     UserHistoryFilterPipe,
-    UserHistorySendedFilterPipe,
     ExchangeComponent,
     UserHistoryAcceptedComponent,
-    UserHistorySendedComponent,
+    UserHistorySentComponent,
     UserHistoryRejectedComponent,
     RatingComponent,
     CatalogComponent,
