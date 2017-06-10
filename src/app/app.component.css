@@ -89,7 +89,7 @@
   margin-top: 40px;
   background: #444;
   color: #fff;
-  height: 40px;
+  min-height: 40px;
   line-height: 40px;
   vertical-align: middle;
   font-size: 12px;
@@ -98,6 +98,7 @@
 .footer ul {
   list-style-type: none;
   margin: 0;
+  text-align: right;
 }
 
 .footer ul li {
@@ -153,4 +154,18 @@
     .collapse.in{
         display:block !important;
     }
+}
+
+@media screen and (max-width: 992px){
+    .footer{
+      text-align: center;
+    }
+    .footer ul{
+      text-align: center;
+      padding-left: 0;
+    }
+    .footer ul li{
+      margin-left: 10px;
+    }
+
 }
