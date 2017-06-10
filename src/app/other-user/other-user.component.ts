@@ -6,13 +6,15 @@ import { CoreService } from '../core/core.service';
 import { OtherUser } from './other-user';
 import { ActivatedRoute } from '@angular/router';
 import { UserGame } from '../profile/user-games/user-games';
+import { ExchangeService } from './../exchange/exchange.service';
+import { Exchange } from './../exchange/exchange';
 
 
 @Component({
   selector: 'app-other-user',
   templateUrl: './other-user.component.html',
   styleUrls: ['./other-user.component.scss'],
-  providers: [OtherUserService, AppService, CoreService]
+  providers: [OtherUserService, AppService, CoreService, ExchangeService]
 })
 
 export class OtherUserComponent implements OnInit {
@@ -24,6 +26,12 @@ export class OtherUserComponent implements OnInit {
   userID: string;
   currentUserGamesIds: Array<string>;
 
+  // EXCHANGE
+  exchange: Exchange;
+  proposeGames = [];
+  selectedGames = [];
+
+
   option = {
     name: '',
     value: '',
@@ -32,11 +40,14 @@ export class OtherUserComponent implements OnInit {
   options: Array<{name: string,value: string,checked: boolean}>;
 
 
-  constructor( private http: Http,
-               private otherUserService: OtherUserService,
-               private appService: AppService,
-               private coreService: CoreService,
-               private activeRoute: ActivatedRoute) {}
+  constructor( 
+    private http: Http,
+    private otherUserService: OtherUserService,
+    private appService: AppService,
+    private coreService: CoreService,
+    private activeRoute: ActivatedRoute,
+    private exchangeService: ExchangeService
+  ) {}
 
 
   ngOnInit() {
@@ -100,4 +111,25 @@ export class OtherUserComponent implements OnInit {
       }, error => this.errorMessage = <any>error);
   }
 
+  registerExchange(recipientGame: string, recipient: string){
+      var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      var sender = currentUser._id;
+      this.selectedGames.push(recipientGame);
+
+      for(var i = 0; i<this.options.length; i++) {
+        if(this.options[i].checked == true) {
+          /* this.proposeGames.push(this.options[i].value)   // nazwy gier zaznaczone checkboxami    */ 
+        }
+      }
+      this.proposeGames.push('59235fdc02007736fcee6062');
+
+      this.exchangeService.saveExchange(this.proposeGames, this.selectedGames, sender, recipient)
+        .subscribe(exchange => {
+                this.exchange = exchange
+        }, error => this.errorMessage = <any>error); 
+          
+      //clear array 
+      this.selectedGames.length = 0; 
+      this.proposeGames.length = 0;  
+  } 
 }

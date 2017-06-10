@@ -37,8 +37,9 @@
 				</div>
 			</div>
 			<div class="exchange-button">
-				<button type="button" class="btn btn-default custom-button" (click)="this.start(gameDetails, gameDetails.userID._id, gamesList)">Wymień się!
-				</button>
+				<button type="button" class="btn btn-default custom-button" 
+				(click)="this.start(gameDetails, gameDetails.userID._id, gamesList); 
+				registerExchange(game._id, game.userID._id)">Wymień się!</button>
 			</div>
 			<!--
 			<div class="other-games-box">

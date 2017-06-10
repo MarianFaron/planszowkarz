@@ -4,13 +4,15 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AppService } from '../app.service';
 import { PagerService } from '../pager.service';
 import { CoreService } from '../core/core.service';
-import { Router, CanActivate, ActivatedRoute, Params, NavigationExtras } from '@angular/router'
+import { Router, CanActivate, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
+import { ExchangeService } from './../exchange/exchange.service';
+import { Exchange } from './../exchange/exchange';
 
 @Component({
   selector: 'app-games-list',
   templateUrl: './games-list.component.html',
   styleUrls: ['./games-list.component.css'],
-  providers: [AppService, CoreService, PagerService]
+  providers: [AppService, CoreService, PagerService, ExchangeService]
 })
 export class GamesListComponent implements OnInit {
 
@@ -57,7 +59,7 @@ export class GamesListComponent implements OnInit {
   userGame: UserGame[];
   pageUrl = '/games';
 
-  currentUserGamesIds: Array<string>;
+  currentUserGamesIds: Array<string>;  
 
   option = {
     name: '',
@@ -66,9 +68,23 @@ export class GamesListComponent implements OnInit {
   };
   options: Array<{name: string,value: string,checked: boolean}>;
 
+  // EXCHANGE
+  exchange: Exchange;
+  proposeGames = [];
+  selectedGames = [];
+
   private sub: any;
 
-  constructor(private appService: AppService, private route: ActivatedRoute, private coreService: CoreService, private router: Router, private activatedRoute: ActivatedRoute, private http: Http, private pagerService: PagerService) { }
+  constructor(
+    private appService: AppService, 
+    private route: ActivatedRoute, 
+    private coreService: CoreService, 
+    private router: Router, 
+    private activatedRoute: ActivatedRoute, 
+    private http: Http, 
+    private pagerService: PagerService,
+    private exchangeService: ExchangeService
+  ) { }
 
   ngOnInit() {
 
@@ -269,5 +285,26 @@ export class GamesListComponent implements OnInit {
       }, error => this.errorMessage = <any>error);
   }
 
+  registerExchange(recipientGame: string, recipient: string){
+      var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      var sender = currentUser._id;
+      this.selectedGames.push(recipientGame);
+
+      for(var i = 0; i<this.options.length; i++) {
+        if(this.options[i].checked == true) {
+          /* this.proposeGames.push(this.options[i].value)   // nazwy gier zaznaczone checkboxami    */ 
+        }
+      }
+      this.proposeGames.push('59235fdc02007736fcee6062');
+
+      this.exchangeService.saveExchange(this.proposeGames, this.selectedGames, sender, recipient)
+        .subscribe(exchange => {
+                this.exchange = exchange
+        }, error => this.errorMessage = <any>error); 
+          
+      //clear array 
+      this.selectedGames.length = 0; 
+      this.proposeGames.length = 0;  
+  } 
 
 }
