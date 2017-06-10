@@ -5,25 +5,20 @@ import { AppService } from '../../../app.service';
 import { UserHistoryService } from '../user-history.service';
 
 @Component({
-  selector: 'app-user-history-sended',
-  templateUrl: './user-history-sended.component.html',
+  selector: 'app-user-history-sent',
+  templateUrl: './user-history-sent.component.html',
   styleUrls: ['../user-history.component.css'],
   providers: [UserHistoryService]
 })
-export class UserHistorySendedComponent implements OnInit {
+export class UserHistorySentComponent implements OnInit {
 
   	userHistory: UserHistory[];
 	errorMessage: string;
-	loggedUserID: string;
-	senderFilter: any;
 
   	constructor(private http: Http, private appService: AppService, private userHistoryService: UserHistoryService) { 
-  		this.senderFilter = {sender: '59204a073642ea1ddcf685a0', status: 'pending'};
   	}
 
   	ngOnInit() {
-  		var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-	  	var loggedUserID = currentUser._id;
   		this.getUserHistory();
   	}
 
@@ -32,7 +27,7 @@ export class UserHistorySendedComponent implements OnInit {
 	  var currentUser = JSON.parse(localStorage.getItem('currentUser'));
 	  var userID = currentUser._id;
 
-	  this.userHistoryService.getHistoryExchanges(userID)
+	  this.userHistoryService.getSentHistoryExchanges(userID)
 	                    .subscribe(
 	                      userHistory => {
 	                        this.userHistory = userHistory;

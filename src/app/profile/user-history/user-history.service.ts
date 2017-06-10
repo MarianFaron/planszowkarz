@@ -25,4 +25,24 @@ export class UserHistoryService {
                     .catch(this.appService.handleError);
        
 	}
+
+	getSentHistoryExchanges(id: string): Observable<UserHistory[]> {
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+    	let options = new RequestOptions({ headers: headers });
+
+    	return this.http.get(`${this.exchangeUrl}/${id}/send`, options)
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
+       
+	}
+
+  getReceivedHistoryExchanges(id: string): Observable<UserHistory[]> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+
+      return this.http.get(`${this.exchangeUrl}/${id}/received`, options)
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
+       
+  }
 }

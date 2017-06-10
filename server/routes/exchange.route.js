@@ -104,5 +104,64 @@ router.route('/exchanges/:id')
 		})
 	});
 
+router.route('/exchanges/:id/send')
+	.get((req, res) => {
+		Exchange.find({ $and: [{sender: req.params.id}, {status: 'pending'}]})
+				.populate([{ 
+								path: 'proposeGames', 
+							 	select: 'title category state userID' 
+						   },
+						   { 
+								path: 'selectedGames', 
+							 	select: 'title category state userID' 
+						   },
+						   {
+								path: 'sender',
+								select: 'local.login local.email'
+						   },
+						   {
+								path: 'recipient',
+								select: 'local.login local.email'
+						   }])
+				.exec((err, exchange) => {
+					if(err){
+						return res.status(400).json({message: "Bad Requested"});
+					} else if(!exchange){
+						return res.status(404).json({message: "Exchange not Found"});
+					} else {
+						return res.status(200).json(exchange);
+					}
+		});
+	});
+
+router.route('/exchanges/:id/received')
+	.get((req, res) => {
+		Exchange.find({ $and: [{recipient: req.params.id}, {status: 'pending'}]})
+				.populate([{ 
+								path: 'proposeGames', 
+							 	select: 'title category state userID' 
+						   },
+						   { 
+								path: 'selectedGames', 
+							 	select: 'title category state userID' 
+						   },
+						   {
+								path: 'sender',
+								select: 'local.login local.email'
+						   },
+						   {
+								path: 'recipient',
+								select: 'local.login local.email'
+						   }])
+				.exec((err, exchange) => {
+					if(err){
+						return res.status(400).json({message: "Bad Requested"});
+					} else if(!exchange){
+						return res.status(404).json({message: "Exchange not Found"});
+					} else {
+						return res.status(200).json(exchange);
+					}
+		});
+	});
 
 module.exports = router;
