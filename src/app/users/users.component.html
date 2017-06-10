@@ -18,10 +18,10 @@
 								<div [hidden]="!registerUserLogin.errors.minlength">
 									Wpisz co najmniej 5 znaków
 								</div>
+							</div>
 								<div *ngIf="this.loginIsUsed != false" class="alert alert-danger">
 									Login {{ userlogin }} jest używany
 								</div>
-							</div>
 						</div>
 						<div class="form-group">
 							<label>E-mail:</label>
@@ -62,7 +62,7 @@
 								</div>
 							</div>
 						</div>
-						<button type="submit" class="btn custom-button" [disabled]="!registerForm.form.valid" (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value, 'default.png'); registerUserLogin.value=''; registerUserEmail.value=''; registerUserPassword.value='';registerUserConfirmPassword.value=''">Zarejestruj</button>
+						<button type="submit" class="btn custom-button" [disabled]="!registerForm.form.valid || this.loginIsUsed == true" (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value, 'default.png'); registerUserLogin.value=''; registerUserEmail.value=''; registerUserPassword.value='';registerUserConfirmPassword.value=''">Zarejestruj</button>
 					</div>
 				</form>
 			</div>

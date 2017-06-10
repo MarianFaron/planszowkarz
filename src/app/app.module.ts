@@ -37,28 +37,15 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 
-const SWIPER_CONFIG: SwiperConfigInterface = {
+const swiper_config:SwiperConfigInterface={
+  
   direction: 'horizontal',
   slidesPerView: 4,
   spaceBetween: 0,
   grabCursor: true,
   nextButton: '.swiper-button-next',
   prevButton: '.swiper-button-prev',
-  breakpoints: {
-    // when window width is <= 320px
-    600: {
-      slidesPerView: 1
-    },
-    // when window width is <= 480px
-    768: {
-      slidesPerView: 2
-    },
-    // when window width is <= 640px
-    992: {
-      slidesPerView: 3
-    }
-  }
-};
+}
 
 @NgModule({
   declarations: [
@@ -96,7 +83,7 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     CollapseModule,
     BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot(),
-    SwiperModule.forRoot(SWIPER_CONFIG)
+    SwiperModule.forRoot(swiper_config)
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pl-PL" }, AuthGuard],
   bootstrap: [AppComponent]
