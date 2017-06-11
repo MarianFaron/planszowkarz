@@ -41,7 +41,11 @@ export class UserInfoComponent implements OnInit {
       city: '',
       contactNumber: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      numberOfGames: 0,
+      numberOfExchanges: 0,
+      numberOfRatings: 0,
+      sumOfGrades: 0
     }
 
   ngOnInit() {

@@ -48,6 +48,22 @@ var User = new Schema({
     },
     avatarImage: {
         type: String,
+    },
+    numberOfGames: {
+        type: Number,
+        default: 0
+    },
+    numberOfExchanges: {
+        type: Number,
+        default: 0
+    },
+    numberOfRatings: {
+        type: Number,
+        default: 0
+    },
+    sumOfGrades: {
+        type: Number,
+        default: 0
     }
 }, {
   versionKey: false

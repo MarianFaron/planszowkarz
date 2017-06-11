@@ -7,19 +7,21 @@ import 'rxjs/add/operator/map';
 import "rxjs/add/operator/do";
 
 import { UserGame } from './user-games';
+import { UserInfo } from '../user-info/user-info';
 
 @Injectable()
 export class UserGameService {
 
   private userGameUrl = this.appService.getUrl('/app/userGames');
-  private userUrl = this.appService.getUrl('/app/users');
+  private userUrl = this.appService.getUrl('/app/users');  
+  private editUserUrl = this.appService.getUrl('/app/edit-user');
+  
 
   constructor (private http: Http, private appService: AppService) {}
 
+
   // Create user game
-
   create(title: string, category: string, state: string, description: string, createdDate: string, userID: string, Image: string): Observable<UserGame[]> {
-
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
@@ -29,19 +31,16 @@ export class UserGameService {
   }
 
   // Update user game
-
   update(id: string, title: string, category: string, state: string, description: string, modifiedDate: string, Image: string): Observable<UserGame[]> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
 
-      let headers = new Headers({ 'Content-Type': 'application/json' });
-      let options = new RequestOptions({ headers: headers });
-
-      return this.http.patch(`${this.userGameUrl}/${id}`, {title, category, state, description, modifiedDate, Image}, options)
-                      .map(this.appService.extractData)
-                      .catch(this.appService.handleError);
+    return this.http.patch(`${this.userGameUrl}/${id}`, {title, category, state, description, modifiedDate, Image}, options)
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
   }
 
   // Delete user game
-
   delete(id: string): Observable<UserGame[]> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -52,7 +51,6 @@ export class UserGameService {
   }
 
   // Get user games
-
   getGames(id: string): Observable<UserGame[]>{
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -62,4 +60,14 @@ export class UserGameService {
                     .catch(this.appService.handleError);
   }
 
+  // Upfate number of user games
+  updateUserNumberOfGames(id: string, numberOfGames: number): Observable<UserInfo[]> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    console.log("serwis + " + numberOfGames);
+
+    return this.http.post(`${this.editUserUrl}/${id}`, {numberOfGames}, options)
+                  .map(this.appService.extractData)
+                  .catch(this.appService.handleError);
+  }
 }

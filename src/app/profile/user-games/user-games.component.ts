@@ -3,13 +3,15 @@ import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '
 import { UserGame } from './user-games';
 import { AppService } from '../../app.service';
 import { UserGameService } from './user-games.service';
+import { UserConfigService } from './../user-config/user-config.service';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { UserInfo } from '../user-info/user-info';
 
 @Component({
   selector: 'app-user-games',
   templateUrl: './user-games.component.html',
   styleUrls: ['./user-games.component.scss'],
-  providers: [UserGameService, AppService]
+  providers: [UserGameService, AppService, UserConfigService]
 })
 
 export class UserGamesComponent implements OnInit {
@@ -17,14 +19,23 @@ export class UserGamesComponent implements OnInit {
   errorMessage: string;
   status: string;
   userGame: UserGame[];
-  gameImgName: string;
+  userInfo: UserInfo;
+  gameImgName: string;  
+  numberOfGames: number;
 
   public URL = this.appService.getUrl('/app/coverUpload');
   public coverUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
-  constructor (private http: Http, private el: ElementRef, private appService: AppService, private userGameService: UserGameService) {}
+  constructor (
+    private http: Http, 
+    private el: ElementRef, 
+    private appService: AppService, 
+    private userGameService: UserGameService,
+    private userConfigService: UserConfigService
+  ) {}
 
   ngOnInit() {
+    this.getUserInfo();
     this.getUserGame();
     this.coverUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
     this.coverUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
@@ -66,47 +77,79 @@ export class UserGamesComponent implements OnInit {
 
 
   editUserGame(id: string, title: string, category: string, state: string, description: string, modifiedDate: string, Image: string) {
-
     var currentDate = new Date();
     var modifiedDate = currentDate.getFullYear().toString() + '-' +
                ('0' + (currentDate.getMonth()+1).toString()).slice(-2) + '-' +
                ('0' + (currentDate.getDate()).toString()).slice(-2);
 
     this.userGameService.update(id, title, category, state, description, modifiedDate, this.gameImgName)
-                     .subscribe(
-                        userGame => {
-                          this.userGame;
-                          this.getUserGame();
-                          this.appService.showNotification('Powiadomienie', 'Zapisano zmiany.', 'success');
-                        },
-                        error =>  {
-                          this.errorMessage = <any>error
-                        });
+                        .subscribe(
+                            userGame => {
+                              this.userGame;
+                              this.getUserGame();
+                              this.appService.showNotification('Powiadomienie', 'Zapisano zmiany.', 'success');
+                            },
+                            error =>  {
+                              this.errorMessage = <any>error
+                            });
   }
 
   removeUserGame(id: string) {
     this.userGameService.delete(id)
-                     .subscribe(
-                        userGame  => {
-                          this.userGame;
-                          this.getUserGame();
-                          this.appService.showNotification('Powiadomienie', 'Gra została usunięta.', 'success');
-                        },
-                        error => {
-                          this.errorMessage = <any>error
-                        });
+                        .subscribe(
+                            userGame  => {
+                              this.userGame;
+                              this.getUserGame();
+                              this.appService.showNotification('Powiadomienie', 'Gra została usunięta.', 'success');
+                            },
+                            error => {
+                              this.errorMessage = <any>error
+                            });
   }
 
   getUserGame() {
-
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var userID = currentUser._id;
 
     this.userGameService.getGames(userID)
-                      .subscribe(
-                        userGame => {
-                          this.userGame = userGame.reverse();
-                        },
-                        error => this.errorMessage = <any>error);
+                        .subscribe(
+                            userGame => {
+                              this.userGame = userGame.reverse();
+                            },
+                            error => this.errorMessage = <any>error);
+    }
+
+  getUserInfo() {
+    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    var userID = currentUser._id;
+
+    this.userConfigService.getUser(userID)
+                          .subscribe(
+                              userInfo => {
+                                this.userInfo = userInfo;
+                                this.numberOfGames = userInfo.numberOfGames;
+                              },
+                              error => this.errorMessage = <any>error);
+  }
+
+  increaseNumberOfGames(id: string){
+    this.numberOfGames+=1;
+    this.editUserInfo(id);
+  }
+
+  decreaseNumberOfGames(id: string){
+    this.numberOfGames-=1;
+    this.editUserInfo(id);
+  }
+
+  editUserInfo(id: string) {
+    this.userGameService.updateUserNumberOfGames(id, this.numberOfGames)
+                        .subscribe(
+                            userInfo  => {
+                              this.userInfo;
+                            },
+                            error =>  {
+                              this.errorMessage = <any>error
+                            });
   }
 }
