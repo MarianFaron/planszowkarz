@@ -5,6 +5,9 @@
     line-height: 28px;
 }
 
+.fade.in {
+    background: rgba(0,0,0,0.6);
+}
 
 .new-game-wrapper .inner{
     background: #fff;
