@@ -42,6 +42,10 @@ export class UserGamesComponent implements OnInit {
 
   addUserGame(title: string, category: string, state: string, description: string,  Image: string) {
 
+    if(Image == ""){
+      this.gameImgName = "default.png";
+    }
+
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var userID = currentUser._id;
 
