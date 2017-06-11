@@ -14,11 +14,11 @@
     </div>
     <div class="collapse navbar-collapse" [collapse]="isCollapsed">
       <ul class="nav navbar-nav navbar-right">
-        <li><a routerLink="/games" routerLinkActive="active"><span class="glyphicon glyphicon-ok-sign"></span> Wymiana</a></li>
-        <li><a routerLink="/rating" routerLinkActive="active"><span class="glyphicon glyphicon-star"></span> Ranking</a></li>
-        <li><a routerLink="/catalog" routerLinkActive="active"><span class="glyphicon glyphicon-list"></span> Katalog</a></li>
-        <li><a *ngIf="currentUser == null" routerLink="/register" routerLinkActive="active"><span class="glyphicon glyphicon-log-in"></span> Rejestracja / Logowanie</a></li>
-        <li><a *ngIf="currentUser != null" routerLink="/profile" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>
+        <li><a routerLink="/games" routerLinkActive="active" (click)="isCollapsed = !isCollapsed"><span class="glyphicon glyphicon-ok-sign"></span> Wymiana</a></li>
+        <li><a routerLink="/rating" routerLinkActive="active" (click)="isCollapsed = !isCollapsed"><span class="glyphicon glyphicon-star"></span> Ranking</a></li>
+        <li><a routerLink="/catalog" routerLinkActive="active" (click)="isCollapsed = !isCollapsed"><span class="glyphicon glyphicon-list"></span> Katalog</a></li>
+        <li><a *ngIf="currentUser == null" routerLink="/register" routerLinkActive="active" (click)="isCollapsed = !isCollapsed"><span class="glyphicon glyphicon-log-in"></span> Rejestracja / Logowanie</a></li>
+        <li><a *ngIf="currentUser != null" routerLink="/profile" routerLinkActive="active" (click)="isCollapsed = !isCollapsed"><span class="glyphicon glyphicon-user"></span>
           Profil
           <span *ngIf="this.notificationsCount != '0'" class="notifications-count">
             {{this.appService.unread}}
