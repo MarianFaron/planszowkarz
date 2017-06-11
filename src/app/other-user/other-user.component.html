@@ -79,23 +79,24 @@
 			          			</div>
 			        		</div>
 							<div class="single-game-box" *ngFor="let game of userGame">
-								<div class="single-box-content inner">
-									<a routerLink="/games/{{ game._id }}">
-										<div class="game-image">
+								<div class="single-box-content inner">									
+									<div class="game-image">
+										<a routerLink="/games/{{ game._id }}">
 											<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
-										</div>
-									</a>
+										</a>
+									</div>
+									
 									<div class="game-info">
 										<a routerLink="/games/{{ game._id }}">
 											<p class="title">{{ game.title }}</p>
-										</a>
+										</a>										
+										<p><strong>Kategoria: </strong>{{ game.category }}</p>
+										<p><strong>Stan: </strong>{{ game.state }}</p>
 										<div class="game-info-buttons" *ngIf="this.appService.isLoggedIn()">
 											<button type="button" class="btn btn-default custom-button" data-toggle="modal" attr.data-target="#exchange-{{game._id}}" data-dismiss="modal">
 			                    			Wymień się!
 	            							</button>
 										</div>
-										<p><strong>Kategoria: </strong>{{ game.category }}</p>
-										<p><strong>Stan: </strong>{{ game.state }}</p>
 									</div>
 								</div>
 
@@ -131,7 +132,10 @@
                                   			</div>
                                   			<div class="modal-footer">
                                   			<button class="btn btn-color" data-dismiss="modal">Anuluj</button>
-                                          	<button class="btn custom-button" type="button" name="button" (click)="this.start(game, game.userID._id)" data-dismiss="modal">Wyślij</button>
+                                          	<button class="btn custom-button" type="button" name="button" 
+                                          	(click)="this.start(game, game.userID._id);
+                                          	registerExchange(game._id, game.userID._id)" 
+                                          	data-dismiss="modal">Wyślij</button>
                                   		</div>
                                   	</div>
                                   </div>

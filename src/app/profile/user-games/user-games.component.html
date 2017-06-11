@@ -158,9 +158,11 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-color" data-dismiss="modal">Anuluj</button>
-				<button class="btn custom-button" (click)="coverUploader.uploadAll(); addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameImage.value); userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameDescription.value=''; userGameImage.value='';" data-dismiss="modal"
-				[disabled]="!coverUploader.getNotUploadedItems().length">Akceptuj</button>
+				<button class="btn custom-button" (click)="coverUploader.uploadAll(); addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameImage.value); userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameDescription.value=''; userGameImage.value='';" data-dismiss="modal">Akceptuj</button>
 			</div>
 		</div>
 	</div>
 </div>
+
+
+<!-- [disabled]="!coverUploader.getNotUploadedItems().length">Akceptuj</button> -->
