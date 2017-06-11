@@ -169,3 +169,17 @@
     }
 
 }
+.swiper-button-next{
+    right: 0;
+    background-color: #678954;
+}
+
+.swiper-button-next, .swiper-button-prev{
+  height: 50px;
+  background-color: #678954;
+}
+
+#newGames > div > div:nth-child(3) > div > swiper > div > div.swiper-button-next{
+    right: 0;
+    background-color: #678954;
+}

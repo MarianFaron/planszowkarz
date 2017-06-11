@@ -1,4 +1,4 @@
-@import 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/css/swiper.min.css';
+
 
 .new-game-wrapper{
     padding: 0 15px 20px 15px;
@@ -112,6 +112,7 @@
   text-decoration: none;
   color: #f98d1a;
 }
-.swiper-button-next{
+#newGames > div > div:nth-child(3) > div > swiper > div > div.swiper-button-next{
     right: 0;
+    background-color: #678954;
 }
