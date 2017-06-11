@@ -81,3 +81,10 @@
 .active-link {
 	color: rgb(249, 141, 26);
 }
+
+div.gameTitle p{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
