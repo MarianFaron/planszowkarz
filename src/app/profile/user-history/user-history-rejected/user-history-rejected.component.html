@@ -1,24 +1,36 @@
 <div class="single-transaction inner" *ngFor="let history of userHistory | searchfilter: 'status' : 'rejected'">
     <div id="left" class="single-transaction-content">
-      <a routerLink="/user-profile/{{ history?.recipient.local.login }}">
-        <p>Login: {{history?.recipient?.local.login}}</p>
-        <p *ngIf="userInfo?.facebook">Login: {{history?.recipient?.facebook.name}}</p>
-      </a>
-      <div *ngFor="let game of history.selectedGames | searchfilter: 'userID' : history?.recipient._id">
+      <div *ngIf="history?.recipient.local && !history?.recipient.facebook">
+        <a routerLink="/user-profile/{{ history?.recipient.local.login }}">
+          <p>Login: {{history?.recipient.local.login}}</p>
+        </a>
+      </div>
+      <div *ngIf="history?.recipient.facebook">
+        <a routerLink="/user-profile/{{ history?.recipient.local.login }}">
+          <p>Login: {{history?.recipient.facebook.name}}</p>
+        </a>
+      </div>
+      <div class="gameTitle" *ngFor="let game of history.selectedGames | searchfilter: 'userID' : history?.recipient._id">
         <p> Nazwa gry: {{game.title}}</p>
       </div>
     </div>
     <div id="right" class="single-transaction-content">
-      <a routerLink="/user-profile/{{ history?.sender.local.login }}">
-        <p>Login: {{history?.sender?.local.login}}</p>
-        <p *ngIf="userInfo?.facebook">Login: {{history?.sender?.facebook.name}}</p>
-      </a>
-      <div *ngFor="let game of history.selectedGames | searchfilter: 'userID' : history?.sender._id">
+      <div *ngIf="history?.sender.local && !history?.sender.facebook">
+        <a routerLink="/user-profile/{{ history?.sender.local.login }}">
+          <p>Login: {{history?.sender.local.login}}</p>
+        </a>
+      </div>
+      <div *ngIf="history?.sender.facebook">
+        <a routerLink="/user-profile/{{ history?.sender.facebook.name }}">
+          <p>Login: {{history?.sender.facebook.name}}</p>
+        </a>
+      </div>
+      <div class="gameTitle" *ngFor="let game of history.selectedGames | searchfilter: 'userID' : history?.sender._id">
         <p> Nazwa gry: {{game.title}}</p>
       </div>
     </div>
     <div id="center" class="single-transaction-content">
-      <p>Status</p>
-      <p>"{{history?.status}}"<p>
+      <p>Status:</p>
+      <p *ngIf="history?.status == 'rejected'">Odrzucone<p>
     </div>
 </div>

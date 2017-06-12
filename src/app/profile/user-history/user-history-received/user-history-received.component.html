@@ -1,24 +1,36 @@
 <div class="single-transaction inner" *ngFor="let history of userHistory">
     <div id="left" class="single-transaction-content">
-      <a routerLink="/user-profile/{{ history?.recipient.local.login }}">
-        <p>Login: {{history?.recipient.local.login}}</p>
-        <p *ngIf="userInfo?.facebook">Login: {{history?.recipient.facebook.name}}</p>
-      </a>
+      <div *ngIf="history?.recipient.local && !history?.recipient.facebook">
+        <a routerLink="/user-profile/{{ history?.recipient.local.login }}">
+          <p>Login: {{history?.recipient.local.login}}</p>
+        </a>
+      </div>
+      <div *ngIf="history?.recipient.facebook">
+        <a routerLink="/user-profile/{{ history?.recipient.local.login }}">
+          <p>Login: {{history?.recipient.facebook.name}}</p>
+        </a>
+      </div>
       <div class="gameTitle" *ngFor="let gameSelect of history.selectedGames | searchfilter: 'userID' : history?.recipient._id">
         <p>Nazwa gry: {{gameSelect.title}}</p>
       </div>
     </div>
     <div id="right" class="single-transaction-content">
-      <a routerLink="/user-profile/{{ history?.sender.local.login }}">
-        <p>Login: {{history?.sender.local.login}}</p>
-        <p *ngIf="userInfo?.facebook">Login: {{history?.sender.facebook.name}}</p>
-      </a>
+      <div *ngIf="history?.sender.local && !history?.sender.facebook">
+        <a routerLink="/user-profile/{{ history?.sender.local.login }}">
+          <p>Login: {{history?.sender.local.login}}</p>
+        </a>
+      </div>
+      <div *ngIf="history?.sender.facebook">
+        <a routerLink="/user-profile/{{ history?.sender.facebook.name }}">
+          <p>Login: {{history?.sender.facebook.name}}</p>
+        </a>
+      </div>
       <div class="gameTitle" *ngFor="let gamePropose of history.proposeGames | searchfilter: 'userID' : history?.sender._id">
         <p>Nazwa gry: {{gamePropose.title}}</p>
       </div>
     </div>
     <div id="center" class="single-transaction-content">
-      <p>Status</p>
-      <p>"{{history?.status}}"<p>
+      <p>Status:</p>
+      <p *ngIf="history?.status == 'pending'">W trakcie<p>
     </div>
 </div>

@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'Pe-icon-7-stroke';
-	src:url('../../../assets/fonts/stroke7pixeden/stroke7pixeden.eot');
-	src:url('../../../assets/fonts/stroke7pixeden/stroke7pixeden.eot?#iefixu58ytb') format('embedded-opentype'),
-		url('../../../assets/fonts/stroke7pixeden/stroke7pixeden.woff') format('woff'),
-		url('../../../assets/fonts/stroke7pixeden/stroke7pixeden.ttf') format('truetype'),
-		url('../../../assets/fonts/stroke7pixeden/stroke7pixeden.svg') format('svg');
+	src:url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.eot');
+	src:url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.eot?#iefixu58ytb') format('embedded-opentype'),
+		url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.woff') format('woff'),
+		url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.ttf') format('truetype'),
+		url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.svg') format('svg');
 }
 
 .container{
@@ -66,7 +66,7 @@
 							-webkit-backface-visibility: hidden;
 						}
 						.icon-joy::before {
-							content: "\e6a4";
+							content: "\e617";
 						}
 						.icon-config::before {
 							content: "\e666";
@@ -79,6 +79,9 @@
 						}
 						.icon-upload::before {
 							content: "\e68a";
+						}
+						.icon-bell::before {
+							content: "\e677";
 						}
 					}
 					li:not(:last-child) {

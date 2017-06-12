@@ -143,4 +143,24 @@ router.route('/sliderGames')
 		});
 	});
 
+router.route('/paginationGames')
+	// get all games
+	.get((req,res) => {
+		var page = 2;
+		var limit = 10;
+		userGame.find().sort({createdDate: -1})
+				.skip((page-1)*(limit+1))
+    			.limit(limit)
+				.populate({
+					path: 'userID',
+					select: 'local.login facebook.name city'
+				}).exec((err,games) => {
+					if(err){
+						return res.status(400).json({message: "Bad Requested"});
+					}else{
+						return res.status(200).json(games);
+				}
+		});
+	});
+
 module.exports = router;

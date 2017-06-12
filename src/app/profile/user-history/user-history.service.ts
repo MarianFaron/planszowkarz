@@ -12,11 +12,11 @@ import { UserHistory } from './user-history';
 @Injectable()
 export class UserHistoryService {
 
-  	private exchangeUrl = this.appService.getUrl('/app/exchanges');
+  private exchangeUrl = this.appService.getUrl('/app/exchanges');
 
-  	constructor (private http: Http, private appService: AppService) {}
+  constructor (private http: Http, private appService: AppService) {}
 
-  	getHistoryExchanges(id: string): Observable<UserHistory[]> {
+  getHistoryExchanges(id: string): Observable<UserHistory[]> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
     	let options = new RequestOptions({ headers: headers });
 
