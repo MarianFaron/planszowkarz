@@ -4,8 +4,7 @@ var ObjectId = Schema.ObjectId;
 
 var Exchange = new Schema({
     proposeGames: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'userGame'
+      type: String
     }],
     selectedGames: [{
     	type: mongoose.Schema.Types.ObjectId,
@@ -22,6 +21,10 @@ var Exchange = new Schema({
     status: {
     	type: String,
     	default: 'pending' 
+    },
+    date: {
+      type: Date,
+      default: Date.now
     }
 }, {
   versionKey: false

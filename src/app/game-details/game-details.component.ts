@@ -67,19 +67,18 @@ export class GameDetailsComponent implements OnInit {
 
       for(var i = 0; i<this.options.length; i++) {
         if(this.options[i].checked == true) {
-          /* this.proposeGames.push(this.options[i].value)   // nazwy gier zaznaczone checkboxami    */
+          this.proposeGames.push(this.options[i].value);
         }
       }
-      this.proposeGames.push('59235fdc02007736fcee6062');
 
       this.exchangeService.saveExchange(this.proposeGames, this.selectedGames, sender, recipient)
         .subscribe(exchange => {
                 this.exchange = exchange
-        }, error => this.errorMessage = <any>error);
-
-      //clear array
-      this.selectedGames.length = 0;
-      this.proposeGames.length = 0;
+        }, error => this.errorMessage = <any>error); 
+          
+      //clear array 
+      this.selectedGames.length = 0; 
+      this.proposeGames.length = 0;  
   }
 
   start(game: string, userId: string) {

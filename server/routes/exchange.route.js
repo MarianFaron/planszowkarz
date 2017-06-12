@@ -38,7 +38,8 @@ router.route('/exchanges')
 			selectedGames: req.body.selectedGames,
 			sender: req.body.sender,
 			recipient: req.body.recipient,
-			status: req.body.status			
+			status: req.body.status,
+			date: new Date()
 		});
 		// save the game
 		exchange.save((err) => {
