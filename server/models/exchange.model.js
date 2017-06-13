@@ -6,10 +6,13 @@ var Exchange = new Schema({
     proposeGames: [{
       type: String
     }],
-    selectedGames: [{
+    recipientGame: {
     	type: mongoose.Schema.Types.ObjectId,
       ref: 'userGame'
-    }],
+    },
+    senderGame: {
+      type: String
+    },
     sender: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'

@@ -2,14 +2,11 @@ export class UserHistory {
   constructor(
      sender: string,
      recipient: string,
-     selectedGames: selectedGames[],
+     senderGame: string,
+     recipientGame: string,
      proposeGames: proposeGames[],
      status: string
   ) { }
-}
-
-export interface selectedGames {
-    selectedGames: string
 }
 
 export interface proposeGames {

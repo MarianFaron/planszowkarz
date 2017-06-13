@@ -15,11 +15,11 @@ export class ExchangeService {
 
     constructor (private http: Http, private appService: AppService) {}
 
-    saveExchange(proposeGames: string[], selectedGames: string[], sender: string, recipient: string){
+    saveExchange(proposeGames: string[], recipientGame: string, sender: string, recipient: string){
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
 
-      return this.http.post(this.exchangeUrl, {proposeGames, selectedGames, sender, recipient}, options)
+      return this.http.post(this.exchangeUrl, {proposeGames, recipientGame, sender, recipient}, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
     }

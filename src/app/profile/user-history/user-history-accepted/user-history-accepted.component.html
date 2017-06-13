@@ -10,8 +10,8 @@
           <p>Login: {{history?.recipient.facebook.name}}</p>
         </a>
       </div>
-      <div class="gameTitle" *ngFor="let game of history.selectedGames | searchfilter: 'userID' : history?.recipient._id">
-        <p> Nazwa gry: {{game.title}}</p>
+      <div class="gameTitle">
+        <p> Nazwa gry: {{history?.recipientGame}}</p>
       </div>
     </div>
     <div id="right" class="single-transaction-content">
@@ -25,8 +25,8 @@
           <p>Login: {{history?.sender.facebook.name}}</p>
         </a>
       </div>
-      <div class="gameTitle" *ngFor="let game of history.selectedGames | searchfilter: 'userID' : history?.sender._id">
-        <p> Nazwa gry: {{game.title}}</p>
+      <div class="gameTitle">
+        <p> Nazwa gry: {{history?.senderGame}}</p>
       </div>
     </div>
     <div id="center" class="single-transaction-content">

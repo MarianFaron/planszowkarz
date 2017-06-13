@@ -22,7 +22,6 @@ export class CoreComponent implements OnInit {
   exchange: Exchange;
   currentUserGamesIds: Array<string>;
   proposeGames = [];
-  selectedGames = [];
 
   option = {
     name: '',
@@ -84,10 +83,10 @@ export class CoreComponent implements OnInit {
       }, error => this.errorMessage = <any>error);
   }
 
-  registerExchange(recipientGame: string, recipient: string){
+  registerExchange(recipientGames: string, recipient: string){
       var currentUser = JSON.parse(localStorage.getItem('currentUser'));
       var sender = currentUser._id;
-      this.selectedGames.push(recipientGame);
+      var recipientGame = recipientGames;
 
       for(var i = 0; i<this.options.length; i++) {
         if(this.options[i].checked == true) {
@@ -95,13 +94,12 @@ export class CoreComponent implements OnInit {
         }
       }
 
-      this.exchangeService.saveExchange(this.proposeGames, this.selectedGames, sender, recipient)
+      this.exchangeService.saveExchange(this.proposeGames, recipientGame, sender, recipient)
         .subscribe(exchange => {
                 this.exchange = exchange
         }, error => this.errorMessage = <any>error); 
           
       //clear array 
-      this.selectedGames.length = 0; 
       this.proposeGames.length = 0;  
   } 
 }

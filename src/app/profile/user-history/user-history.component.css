@@ -1,3 +1,7 @@
+.single-transaction {
+	overflow: auto;
+}
+
 .user-history {
   margin-top: 15px;
 }

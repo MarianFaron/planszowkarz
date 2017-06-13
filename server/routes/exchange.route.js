@@ -6,13 +6,13 @@ var Exchange = require('../models/exchange.model');
 router.route('/exchanges')
 	// get all games
 	.get((req,res) => {
-		Exchange.find().sort({createdDate: 1})
+		Exchange.find().sort({date: -1})
 				.populate([{ 
-								path: 'proposeGames', 
+								path: 'recipientGame', 
 							 	select: 'title category state userID' 
 						   },
 						   { 
-								path: 'selectedGames', 
+								path: 'senderGame', 
 							 	select: 'title category state userID' 
 						   },
 						   {
@@ -35,7 +35,8 @@ router.route('/exchanges')
 	.post((req,res) => {
 		var exchange = new Exchange({
 			proposeGames: req.body.proposeGames,
-			selectedGames: req.body.selectedGames,
+			senderGame: req.body.senderGame,
+			recipientGame: req.body.recipientGame,
 			sender: req.body.sender,
 			recipient: req.body.recipient,
 			status: req.body.status,
@@ -54,8 +55,9 @@ router.route('/exchanges')
 router.route('/exchanges/:id')
 	.get((req, res) => {
 		Exchange.find({$or: [{sender: req.params.id}, {recipient: req.params.id}]})
+				.sort({date: -1})
 				.populate([{ 
-								path: 'proposeGames', 
+								path: 'recipientGame', 
 							 	select: 'title category state userID' 
 						   },
 						   { 
@@ -108,8 +110,9 @@ router.route('/exchanges/:id')
 router.route('/exchanges/:id/send')
 	.get((req, res) => {
 		Exchange.find({ $and: [{sender: req.params.id}, {status: 'pending'}]})
+				.sort({date: -1})
 				.populate([{ 
-								path: 'proposeGames', 
+								path: 'recipientGame', 
 							 	select: 'title category state userID' 
 						   },
 						   { 
@@ -138,8 +141,9 @@ router.route('/exchanges/:id/send')
 router.route('/exchanges/:id/received')
 	.get((req, res) => {
 		Exchange.find({ $and: [{recipient: req.params.id}, {status: 'pending'}]})
+				.sort({date: -1})
 				.populate([{ 
-								path: 'proposeGames', 
+								path: 'recipientGame', 
 							 	select: 'title category state userID' 
 						   },
 						   { 
