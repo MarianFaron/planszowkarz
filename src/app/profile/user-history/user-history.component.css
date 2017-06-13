@@ -20,9 +20,6 @@
 	margin: 5px 0;
 }
 
-.single-transaction {
-	height: 90px;
-}
 
 #left {
 	float:left;
@@ -92,3 +89,41 @@ div.gameTitle p{
 	overflow: hidden;
 }
 
+/* received */
+
+.senderBox{
+	display: flex;
+    justify-content: center;
+}
+.senderBox p{
+	margin-right: 5px;
+}
+
+.sender{
+	color: #f98d1a;
+}
+
+#info{
+	text-align: center;
+}
+
+.gameTitleBig p{
+	text-align: center;
+    color: #f98d1a;
+    font-size: 30px;
+}
+
+.stateBox{
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.gameState{
+	display: flex;
+    align-items: flex-end;
+}
+
+.gameState p{
+	margin: 0px 5px 0px 0px;
+}

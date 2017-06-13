@@ -14,6 +14,7 @@ export class UserHistoryReceivedComponent implements OnInit {
 
   	userHistory: UserHistory[];
 	errorMessage: string;
+	status: string;
 
   	constructor(private http: Http, private appService: AppService, private userHistoryService: UserHistoryService) { }
 
@@ -34,4 +35,15 @@ export class UserHistoryReceivedComponent implements OnInit {
 	                      error => this.errorMessage = <any>error);
 	}
 
+	discardExchange(id: string){
+		console.log("id game "+ id);
+		this.status = "rejected";
+		this.userHistoryService.saveDiscardExchane(id, this.status)
+								.subscribe(
+									userHistory => {
+	                        			this.userHistory = userHistory;
+	                        			this.getUserHistory();
+	                      			},
+	                      			error => this.errorMessage = <any>error);
+	}
 }
