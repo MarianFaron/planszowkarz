@@ -11,7 +11,7 @@
         </a>
       </div>
       <div class="gameTitle">
-        <p> Nazwa gry: {{history?.recipientGame}}</p>
+        <p> Nazwa gry: {{history?.recipientGame.title}}</p>
       </div>
     </div>
     <div id="right" class="single-transaction-content">
@@ -26,7 +26,8 @@
         </a>
       </div>
       <div class="gameTitle">
-        <p> Nazwa gry: {{history?.senderGame}}</p>
+        <p *ngIf="history?.senderGame"> Nazwa gry: {{history?.senderGame}}</p>
+        <p *ngIf="!history?.senderGame"> Nie wybrano gry</p>
       </div>
     </div>
     <div id="center" class="single-transaction-content">

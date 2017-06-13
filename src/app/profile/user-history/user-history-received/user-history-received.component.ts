@@ -41,7 +41,7 @@ export class UserHistoryReceivedComponent implements OnInit {
 		this.userHistoryService.saveDiscardExchane(id, this.status)
 								.subscribe(
 									userHistory => {
-	                        			this.userHistory = userHistory;
+	                        			this.userHistory;
 	                        			this.getUserHistory();
 	                      			},
 	                      			error => this.errorMessage = <any>error);
