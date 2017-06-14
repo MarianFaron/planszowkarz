@@ -23,9 +23,14 @@ router.route('/start')
 
     var game = req.body.game;
     var currentUser = req.body.currentUser;
+    var gamesList = req.body.gamesList;
     var gameTitle = game.title;
     var userName;
     var recipient;
+    var games = "";
+    for(var i = 0; i < gamesList.length; i++) {
+      games += gamesList[i] + ", ";
+    }
 
     (currentUser.facebook) ? userName = currentUser.facebook.name : userName = currentUser.local.login;
 
@@ -39,8 +44,8 @@ router.route('/start')
         recipient = user.facebook.email;
       }
 
-      var message = "Użytkownik: <b>" + userName + "</b> poprosił cię o wymianę za grę: <b>" + gameTitle + "</b>. Przejdź do panelu na swoim koncie, aby mu odpowiedzieć.";
-      var notificationMessage = "Użytkownik: " + userName + " poprosił cię o wymianę za grę: " + gameTitle + ". Zaakceptuj lub odrzuć na jego prośbę.";
+      var message = "Użytkownik: <b>" + userName + "</b> poprosił cię o wymianę za grę: <b>" + gameTitle + "</b>. W zamian proponuje jedną ze swoich gier: " + games + " przejdź do panelu na swoim koncie, aby mu odpowiedzieć.";
+      var notificationMessage = "Użytkownik: " + userName + " poprosił cię o wymianę za grę: " + gameTitle + " .W zamian proponuje jedną ze swoich gier: " + games + " zaakceptuj lub odrzuć na jego prośbę.";
 
       var notification = new Notification();
 

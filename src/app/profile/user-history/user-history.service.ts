@@ -12,12 +12,12 @@ import { UserHistory } from './user-history';
 @Injectable()
 export class UserHistoryService {
 
-  	private exchangeUrl = this.appService.getUrl('/app/exchanges');
+  private exchangeUrl = this.appService.getUrl('/app/exchanges');
 
-  	constructor (private http: Http, private appService: AppService) {}
+  constructor (private http: Http, private appService: AppService) {}
 
-  	getHistoryExchanges(id: string): Observable<UserHistory[]> {
-		let headers = new Headers({ 'Content-Type': 'application/json' });
+  getHistoryExchanges(id: string): Observable<UserHistory[]> {
+		  let headers = new Headers({ 'Content-Type': 'application/json' });
     	let options = new RequestOptions({ headers: headers });
 
     	return this.http.get(`${this.exchangeUrl}/${id}`, options)
@@ -25,4 +25,35 @@ export class UserHistoryService {
                     .catch(this.appService.handleError);
        
 	}
+
+	getSentHistoryExchanges(id: string): Observable<UserHistory[]> {
+		  let headers = new Headers({ 'Content-Type': 'application/json' });
+    	let options = new RequestOptions({ headers: headers });
+
+    	return this.http.get(`${this.exchangeUrl}/${id}/send`, options)
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
+       
+	}
+
+  getReceivedHistoryExchanges(id: string): Observable<UserHistory[]> {
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+
+      return this.http.get(`${this.exchangeUrl}/${id}/received`, options)
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
+       
+  }
+
+  saveDiscardExchane(id: string, status: string){    
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+
+      console.log("serwis " + status);
+
+      return this.http.patch(`${this.exchangeUrl}/${id}`, {status}, options)
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
+  }
 }

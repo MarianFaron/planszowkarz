@@ -6,6 +6,10 @@ export class OtherUser {
     public Name: string,
     public dateBirth: string,
     public city: string,
-    public contactNumber: string
+    public contactNumber: string,
+    public numberOfGames: number,
+    public numberOfExchanges: number,
+    public numberOfRatings: number,
+    public sumOfGrades: number
     ) { }
 }

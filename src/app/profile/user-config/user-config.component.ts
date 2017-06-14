@@ -4,7 +4,6 @@ import { UserConfigService } from './user-config.service';
 import { AppService } from '../../app.service';
 import { UserInfo } from '../user-info/user-info';
 import { UserInfoComponent } from '../user-info/user-info.component';
-import { FlashMessagesService } from 'angular2-flash-messages';
 import { IMyOptions} from 'mydatepicker';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
@@ -24,6 +23,7 @@ export class UserConfigComponent implements OnInit {
   userInfo: UserInfo;
   avatarImgName: string;
   currentDate = new Date();
+  numberOfGames: number;
 
   public URL = this.appService.getUrl('/app/avatarUpload');
   public avatarUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
@@ -31,8 +31,7 @@ export class UserConfigComponent implements OnInit {
   constructor(private http: Http,
               private el: ElementRef,
               private appService: AppService,
-              private userConfigService: UserConfigService,
-              private flashMessage:FlashMessagesService) { }
+              private userConfigService: UserConfigService) { }
 
   private myDatePickerOptions: IMyOptions = {
         dateFormat: 'dd-mm-yyyy',
@@ -46,7 +45,11 @@ export class UserConfigComponent implements OnInit {
       city: '',
       contactNumber: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      numberOfGames: 0,
+      numberOfExchanges: 0,
+      numberOfRatings: 0,
+      sumOfGrades: 0
     }
 
   ngOnInit() {
@@ -81,7 +84,8 @@ export class UserConfigComponent implements OnInit {
                                 month: parseInt(userInfo.dateBirth.substring(4,5)),
                                 day: parseInt(userInfo.dateBirth.substring(0,2))
                               }
-                            };
+                            },
+                            this.numberOfGames = userInfo.numberOfGames;
                           }
                           this.userInfo = userInfo;
                           this.model.dateBirth = userInfo.dateBirth;
@@ -98,7 +102,7 @@ export class UserConfigComponent implements OnInit {
     var y = this.model.datepicker.date.day;
     var date = '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
 
-    this.userConfigService.updateUser(id, date, city, contactNumber, this.avatarImgName, password)
+    this.userConfigService.updateUser(id, date, city, contactNumber, this.avatarImgName, password, this.numberOfGames)
                      .subscribe(
                         userInfo  => {
                           this.userInfo;

@@ -13,9 +13,11 @@ import { UserNotificationsComponent } from './profile/user-notifications/user-no
 import { UserConfigComponent } from './profile/user-config/user-config.component';
 import { UserHistoryComponent } from './profile/user-history/user-history.component';
 import { UserHistoryAcceptedComponent } from './profile/user-history/user-history-accepted/user-history-accepted.component';
-import { UserHistoryPendingComponent } from './profile/user-history/user-history-pending/user-history-pending.component';
+import { UserHistorySentComponent } from './profile/user-history/user-history-sent/user-history-sent.component';
+import { UserHistoryReceivedComponent } from './profile/user-history/user-history-received/user-history-received.component';
 import { UserHistoryRejectedComponent } from './profile/user-history/user-history-rejected/user-history-rejected.component';
-
+import { RatingComponent } from './rating/rating.component';
+import { CatalogComponent } from './catalog/catalog.component';
 import { AuthGuard } from './guards/auth.guard';
 
 export const router: Routes = [
@@ -31,7 +33,8 @@ export const router: Routes = [
 				children: [
 					{path: '', redirectTo: 'accepted', pathMatch: 'full'},
 					{path: 'accepted', component: UserHistoryAcceptedComponent},
-					{path: 'pending', component: UserHistoryPendingComponent},
+					{path: 'sended', component: UserHistorySentComponent},
+					{path: 'received', component: UserHistoryReceivedComponent},
 					{path: 'rejected', component: UserHistoryRejectedComponent}
 				]
 			},
@@ -41,7 +44,9 @@ export const router: Routes = [
 	{ path: 'user-profile/:login', component: OtherUserComponent },
 	{ path: 'games/:_id', component: GameDetailsComponent },
 	{ path: 'search-results', component: GamesListComponent },
-	{ path: 'games', component: GamesListComponent }
+	{ path: 'games', component: GamesListComponent },
+  	{ path: 'rating', component: RatingComponent },
+  	{ path: 'catalog', component: CatalogComponent }
 ];
 
 @NgModule({

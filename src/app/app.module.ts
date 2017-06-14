@@ -8,7 +8,6 @@ import { RoutingModule } from './routing.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CoreComponent } from './core/core.component';
-import { FlashMessagesModule} from 'angular2-flash-messages';
 import { UsersComponent } from './users/users.component';
 import { AuthGuard } from './guards/auth.guard';
 import { FileSelectDirective } from 'ng2-file-upload';
@@ -26,10 +25,43 @@ import { UserHistoryComponent } from './profile/user-history/user-history.compon
 import { UserHistoryFilterPipe } from './profile/user-history/user-history.pipe';
 import { ExchangeComponent } from './exchange/exchange.component';
 import { UserHistoryAcceptedComponent } from './profile/user-history/user-history-accepted/user-history-accepted.component';
-import { UserHistoryPendingComponent } from './profile/user-history/user-history-pending/user-history-pending.component';
+import { UserHistorySentComponent } from './profile/user-history/user-history-sent/user-history-sent.component';
 import { UserHistoryRejectedComponent } from './profile/user-history/user-history-rejected/user-history-rejected.component';
+import { UserHistoryReceivedComponent } from './profile/user-history/user-history-received/user-history-received.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { RatingComponent } from './rating/rating.component';
+import { CatalogComponent } from './catalog/catalog.component';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
+
+const swiper_config:SwiperConfigInterface={
+  
+  direction: 'horizontal',
+  slidesPerView: 4,
+  spaceBetween: 0,
+  grabCursor: true,
+  nextButton: '.swiper-button-next',
+  prevButton: '.swiper-button-prev'
+  // breakpoints: {
+  //   // when window width is <= 320px
+  //   320: {
+  //     slidesPerView: 1,
+  //     spaceBetween: 10
+  //   },
+  //   // when window width is <= 480px
+  //   480: {
+  //     slidesPerView: 2,
+  //     spaceBetween: 20
+  //   },
+  //   // when window width is <= 640px
+  //   640: {
+  //     slidesPerView: 3,
+  //     spaceBetween: 30
+  //   }
+  // }
+}
 
 @NgModule({
   declarations: [
@@ -51,19 +83,22 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     UserHistoryFilterPipe,
     ExchangeComponent,
     UserHistoryAcceptedComponent,
-    UserHistoryPendingComponent,
-    UserHistoryRejectedComponent
+    UserHistorySentComponent,
+    UserHistoryRejectedComponent,
+    RatingComponent,
+    CatalogComponent,
+    UserHistoryReceivedComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RoutingModule,
-    FlashMessagesModule,
     MyDatePickerModule,
     CollapseModule,
     BrowserAnimationsModule,
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+    SwiperModule.forRoot(swiper_config)
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pl-PL" }, AuthGuard],
   bootstrap: [AppComponent]

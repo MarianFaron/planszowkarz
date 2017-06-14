@@ -44,6 +44,7 @@ module.exports = function(passport) {
             newUser.local.login = profile.id;
             newUser.local.email = profile.id;
             newUser.local.password = profile.id;
+            newUser.local.avatarImage = profile.id;
 
             newUser.facebook.id = profile.id; // set the users facebook id
             newUser.facebook.token = token; // we will save the token that facebook provides to the user
@@ -114,6 +115,7 @@ module.exports = function(passport) {
             newUser.login = req.body.login;
             newUser.email = email;
             newUser.password = newUser.generateHash(password);
+            newUser.avatarImage = req.body.avatarImage;
 
             newUser.save(function(err) {
               if (err)

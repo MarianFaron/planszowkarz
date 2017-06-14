@@ -5,28 +5,36 @@
 				<nav>
 					<ul>
 						<li>
-							<a routerLink='games' routerLinkActive ='active-link' class="icon icon-joy">
+							<a routerLink='games' routerLinkActive ='active-link' class="icon icon-joy"
+							(click)="setCurrentTabName('Moje gry');">
 								<span>Moje gry</span>
 							</a>
 						</li>
 						<li >
-							<a routerLink='notifications' routerLinkActive ='active-link' class="icon icon-display">	
+							<a routerLink='notifications' routerLinkActive ='active-link' class="icon icon-bell" (click)="setCurrentTabName('Powiadomienia');">	
 								<span>Powiadomienia</span>
 							</a>
 						</li>
 						<li>
-							<a routerLink='history' routerLinkActive ='active-link' class="icon icon-date">
+							<a routerLink='history' routerLinkActive ='active-link' class="icon icon-date" 
+							(click)="setCurrentTabName('Historia wymiany');">
 								<span>Historia wymiany</span>
 							</a>
 						</li>
 						<li>
-							<a routerLink='config' routerLinkActive ='active-link' class="icon icon-config">
+							<a routerLink='config' routerLinkActive ='active-link' class="icon icon-config" 
+							(click)="setCurrentTabName('Ustawienia');">
 								<span>Ustawienia</span>
 							</a>
 						</li>
 					</ul>
 				</nav>
 			</div>
+		</div>		
+	</div>
+	<div class="row">
+		<div class="mobile-tab-name">
+			<h3>{{currentTab}}</h3>
 		</div>
 	</div>
 </div>

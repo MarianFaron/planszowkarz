@@ -50,9 +50,15 @@
   transition: all 200ms linear;
 }
 
-.navbar a:hover, .navbar a:focus, .navbar a:active {
+.navbar a:hover, .navbar a:focus, .navbar a:active,
+.navbar a.active {
   color: #fff;
   border-bottom: 3px solid #f98d1a;
+}
+
+.navbar-header a.active {
+  color: #fff;
+  border-bottom: 3px solid transparent;
 }
 
 .navbar-brand {
@@ -74,51 +80,16 @@
 }
 
 .navbar-collapse {
-  max-width: 700px;
   display: inline-block;
   float: right;
-}
-
-.navbar form {
-  max-width: 350px;
-  display: inline-block;
-}
-
-.search-input {
-  border: none;
-  background: transparent;
-  border-bottom: 1px solid #fff;
-  color: #fff;
-  padding: 0 10px;
-}
-
-.search-input:focus {
-  outline: none;
-}
-
-.search-input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color: #fff;
-}
-.search-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color: #fff;
-   opacity: 1;
-}
-.search-input::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color: #fff;
-   opacity: 1;
-}
-.search-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color: #fff;
-}
-.search-input::-ms-input-placeholder { /* Microsoft Edge */
-   color: #fff;
+  /*text-align: center;*/
 }
 
 .footer {
   margin-top: 40px;
   background: #444;
   color: #fff;
-  height: 40px;
+  min-height: 40px;
   line-height: 40px;
   vertical-align: middle;
   font-size: 12px;
@@ -127,6 +98,7 @@
 .footer ul {
   list-style-type: none;
   margin: 0;
+  text-align: right;
 }
 
 .footer ul li {
@@ -155,10 +127,12 @@
     .navbar-toggle {
         display: block;
     }
-    .navbar-collapse {
-        border-top: 1px solid transparent;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    
+    .navbar-collapse{
+      float: none;
+      text-align: center;
     }
+
     .navbar-fixed-top {
         top: 0;
         border-width: 0 0 1px;
@@ -180,4 +154,32 @@
     .collapse.in{
         display:block !important;
     }
+}
+
+@media screen and (max-width: 992px){
+    .footer{
+      text-align: center;
+    }
+    .footer ul{
+      text-align: center;
+      padding-left: 0;
+    }
+    .footer ul li{
+      margin-left: 10px;
+    }
+
+}
+.swiper-button-next{
+    right: 0;
+    background-color: #678954;
+}
+
+.swiper-button-next, .swiper-button-prev{
+  height: 50px;
+  background-color: #678954;
+}
+
+#newGames > div > div:nth-child(3) > div > swiper > div > div.swiper-button-next{
+    right: 0;
+    background-color: #678954;
 }

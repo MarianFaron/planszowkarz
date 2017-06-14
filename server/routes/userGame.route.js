@@ -42,7 +42,10 @@ router.route('/search')
 			} else {
 				return res.status(200).json(games);
 			}
-		}).sort({createdDate: 1});
+		}).sort({createdDate: 1}).populate({
+      path: 'userID',
+      select: 'local.login facebook.name city',
+    });
   });
 
 
@@ -50,9 +53,9 @@ router.route('/userGames')
 	// get all games
 	.get((req,res) => {
 		userGame.find().sort({createdDate: 1})
-				.populate({ 
-					path: 'userID', 
-					select: 'local.login city' 
+				.populate({
+					path: 'userID',
+					select: 'local.login facebook.name city'
 				}).exec((err,games) => {
 					if(err){
 						return res.status(400).json({message: "Bad Requested"});
@@ -86,9 +89,9 @@ router.route('/userGames')
 router.route('/userGames/:id')
 	.get((req, res) => {
 		userGame.findById(req.params.id)
-				.populate({ 
-					path: 'userID', 
-					select: 'local.login city' 
+				.populate({
+					path: 'userID',
+					select: 'local.login facebook.name city'
 				}).exec((err, game) => {
 					if(err){
 						return res.status(400).json({message: "Bad Requested"});
@@ -128,15 +131,35 @@ router.route('/sliderGames')
 	// get all games
 	.get((req,res) => {
 		userGame.find().sort({createdDate: -1})
-				.populate({ 
-					path: 'userID', 
-					select: 'local.login city' 
+				.populate({
+					path: 'userID',
+					select: 'local.login facebook.name city'
 				}).limit(10).exec((err,games) => {
 					if(err){
 						return res.status(400).json({message: "Bad Requested"});
 					}else{
 						return res.status(200).json(games);
 					}
+		});
+	});
+
+router.route('/paginationGames')
+	// get all games
+	.get((req,res) => {
+		var page = 2;
+		var limit = 10;
+		userGame.find().sort({createdDate: -1})
+				.skip((page-1)*(limit+1))
+    			.limit(limit)
+				.populate({
+					path: 'userID',
+					select: 'local.login facebook.name city'
+				}).exec((err,games) => {
+					if(err){
+						return res.status(400).json({message: "Bad Requested"});
+					}else{
+						return res.status(200).json(games);
+				}
 		});
 	});
 

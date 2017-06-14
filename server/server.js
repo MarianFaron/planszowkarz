@@ -17,28 +17,33 @@ var http = require('http');
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
-
-
 // SOCKETS
 
 var clients = [];
 
 io.set("origins", "*:*");
-
 io.on('connection', function (socket, data) {
 
     if (socket.handshake.query.userId) {
       var client = {
         "socketId": socket.id,
         "userId": socket.handshake.query.userId
+      };
+      var unique = true;
+      for(var i = 0; i < clients.length; i++) {
+        if(clients[i].userId == client.userId) {
+          unique = false;
+        }
       }
-      clients.push(client);
-      // console.log(clients);
+      if(unique == true) {
+        clients.push(client);
+      }
+      console.log(clients);
 
       socket.on('sendNotification', function (data) {
         clients.find(function (el) {
           if(el.userId == data) {
-              io.to(el.socketId).emit('getNotification', data);;
+              io.to(el.socketId).emit('getNotification', data);
           }
         });
       });

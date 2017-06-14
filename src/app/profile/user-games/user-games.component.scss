@@ -7,10 +7,9 @@
 			margin: 0;
 			margin-bottom: 10px;
 			padding-bottom: 15px;
-			padding-left: 3%;
-			padding-right: 3%;
 			height: 50px;
 			display: block;
+			padding-right: 20px;
 			h5{
 				letter-spacing: -0.02em;
 				font-size: 24px;
@@ -23,7 +22,6 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
-
 			}
 		}
 		hr.style1{
@@ -38,29 +36,55 @@
 				min-height: 130px;
 				display: table;
 				.single-box-content{
-					padding: 15px;
+					padding: 10px 20px 10px 20px;
 					width: 100%;
 					display: inline-flex;
+					@media screen and (max-width: 400px){
+						display: flex;
+						flex-direction: column;
+						text-align: center;
+					}
 					.game-image{
 						display: flex;
 						vertical-align: middle;
-						width: 120px;
+						width: 160px;
 						height: 120px;
 						border: 1px solid #e7e7e7;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						@media screen and (max-width: 400px){
+							display: block;
+							margin: 0 auto;
+						}
 						img{
 							background-position: top;
-							max-height: 95%;
-							max-width: 95%;
+							max-height: 116px;
+							max-width: 116px;
 							position: relative;
 							margin: auto;
-							display: block;
 						}
 					}
 					.game-info{
 						margin-left: 30px;
-						width: calc(100% - 150px);
+						width: calc(100% - 190px);
+						display: flex;
+						flex-direction: column;
+						flex-wrap: wrap;
+						@media screen and (max-width: 400px){
+							margin: 0;
+							width: 100%;
+						}
 						a {
 							color: #333;
+							display: flex;
+							align-items: center;
+							@media screen and (max-width: 400px){
+								min-height: auto;
+								justify-content: center;
+								margin-top: 20px;
+								margin-bottom: 20px;
+							}
 						}
 						a:hover,
 						a:focus,
@@ -73,16 +97,22 @@
 							line-height: 30px;
 							display: inline-block;
 						}
-						p.description{
-							text-align: justify;
+						p{
+							margin-bottom: 5px;
 						}
 						.game-info-buttons{
-							float: right;
+							display: flex;
+							justify-content: flex-end;
+							margin-top: 20px;
+							@media screen and (max-width: 400px){
+								justify-content: center;
+							}
 							button{
 								width: 80px;
 								background-color: #e7e7e7;
 								border-radius: 5px;
 								border:none;
+								margin-left: 5px;
 								span{
 									margin-right: 5px;
 								}

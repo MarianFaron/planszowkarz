@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User }              from './user';
 import { UsersService }       from './users.service';
 import { AppService }       from '../app.service';
-import { FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-users',
@@ -18,16 +17,17 @@ export class UsersComponent implements OnInit {
   mode = 'Observable';
   userlogin = '';
   loginIsUsed: Boolean = false;
-  avatarImgName = "default.png"
+  
 
   model = {
       login: '',
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      avatarImage: 'default.png'
     };
 
-  constructor(private appService: AppService, private userGameService: UsersService, private flashMessage:FlashMessagesService) { }
+  constructor(private appService: AppService, private userGameService: UsersService) { }
 
   ngOnInit() {
     this.getUsers();
@@ -101,7 +101,7 @@ export class UsersComponent implements OnInit {
 
   register(login: string, email: string, password: string, avatarImage: string) {
 
-    this.userGameService.register(login, email, password, this.avatarImgName)
+    this.userGameService.register(login, email, password, avatarImage)
                         .map((response) => {
                           if(response.message) {
                             this.appService.showNotification('Powiadomienie', response.message.toString(), 'danger');

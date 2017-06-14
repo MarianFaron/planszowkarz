@@ -1,3 +1,7 @@
+.single-transaction {
+	overflow: auto;
+}
+
 .user-history {
   margin-top: 15px;
 }
@@ -16,9 +20,6 @@
 	margin: 5px 0;
 }
 
-.single-transaction {
-	height: 90px;
-}
 
 #left {
 	float:left;
@@ -61,10 +62,68 @@
 	border-radius: 0;
 }
 
-.navbar-nav a:hover, .navbar-nav a:active {
+.navbar-nav {
+  width: 100%;
+}
+
+.navbar-nav li {
+  width: 24%;
+  text-align: center;
+}
+
+.navbar-nav span {
+	margin-right: 5px;
+}
+
+.navbar-nav a:hover, .navbar-nav a:focus, .navbar-nav a:active {
 	color: rgb(249, 141, 26);
 }
 
 .active-link {
 	color: rgb(249, 141, 26);
+}
+
+div.gameTitle p{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+/* received */
+
+.senderBox{
+	display: flex;
+    justify-content: center;
+}
+.senderBox p{
+	margin-right: 5px;
+}
+
+.sender{
+	color: #f98d1a;
+}
+
+#info{
+	text-align: center;
+}
+
+.gameTitleBig p{
+	text-align: center;
+    color: #f98d1a;
+    font-size: 30px;
+}
+
+.stateBox{
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.gameState{
+	display: flex;
+    align-items: flex-end;
+}
+
+.gameState p{
+	margin: 0px 5px 0px 0px;
 }

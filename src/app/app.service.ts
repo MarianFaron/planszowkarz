@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import * as io from 'socket.io-client';
-import { FlashMessagesService} from 'angular2-flash-messages';
 import { NotificationsService } from 'angular2-notifications';
 
 @Injectable()
@@ -19,7 +18,7 @@ export class AppService {
   public unread = 0;
   private socket = null;
 
-  constructor (private http: Http, private flashMessage:FlashMessagesService, private notificationsService: NotificationsService) {
+  constructor (private http: Http, private notificationsService: NotificationsService) {
     if(this.isLoggedIn()) {
       this.getUnreadNotifications(this.getCurrentUser()._id);
       this.socket = io(this.getUrl(''), {query: {userId: this.getCurrentUser()._id}});
@@ -52,6 +51,10 @@ export class AppService {
                     .catch(this.handleError);
   }
 
+  deleteUnreadNotification() {
+    this.unread--;
+  }
+
   search(query: Object) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -61,7 +64,7 @@ export class AppService {
                     .catch(this.handleError);
   }
 
-  startTransaction(game: string, userId: string) {
+  startTransaction(game: string, userId: string, gamesList: Array<string>) {
 
     var currentUser = this.getCurrentUser();
     this.socket.emit('sendNotification', userId);
@@ -70,7 +73,7 @@ export class AppService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers});
 
-    return this.http.post(this.transactionsUrl, {currentUser, game}, options)
+    return this.http.post(this.transactionsUrl, {currentUser, game, gamesList}, options)
                     .map(this.extractData)
                     .catch(this.handleError);
 

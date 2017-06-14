@@ -143,6 +143,8 @@ router.route('/verify')
           newUser.local.login = tempUser.login;
           newUser.local.email = tempUser.email;
           newUser.local.password = tempUser.password;
+          newUser.avatarImage = tempUser.avatarImage;
+
 
           newUser.save(function(err) {
             if (err) {
@@ -214,6 +216,10 @@ router.route('/edit-user/:id')
           user.dateBirth = req.body.dateBirth;
           user.city = req.body.city;
           user.contactNumber = req.body.contactNumber;
+          user.numberOfGames = req.body.numberOfGames;
+          user.numberOfExchanges = req.body.numberOfExchanges;
+          user.numberOfRatings = req.body.numberOfRatings;
+          user.sumOfGrades = req.body.sumOfGrades;
 
           if(!user.facebook && req.body.password != '' && req.body.password.length >= 3) {
             user.local.password = user.generateHash(req.body.password);
@@ -255,7 +261,8 @@ router.route('/users')
       var newUser = new User({
         login: req.body.login,
         password: req.body.password,
-        email: req.body.email
+        email: req.body.email,
+        avatarImage: req.body.avatarImage
       });
       // save the user
       newUser.save((err) => {

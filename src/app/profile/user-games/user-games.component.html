@@ -23,7 +23,9 @@
 					<div class="game-info">
 						<a routerLink="/games/{{ game._id }}">
 							<p class="title">{{ game.title }}</p>
-						</a>
+						</a>						
+						<p><strong>Kategoria: </strong>{{ game.category }}</p>
+						<p><strong>Stan: </strong>{{ game.state }}</p>
 						<div class="game-info-buttons">
 							<button class="btn btn-default"
 									data-toggle="modal" attr.data-target="#edit-game-{{game._id}}">
@@ -34,9 +36,6 @@
 								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Usuń
 							</button>
 						</div>
-						<p><strong>Kategoria: </strong>{{ game.category }}</p>
-						<p><strong>Stan: </strong>{{ game.state }}</p>
-						<p class="description">{{ game.description }}</p>
 					</div>
 					<div class="game-info-function-box">
 
@@ -84,6 +83,7 @@
 										</div>
 									</div>
 									<div class="modal-footer">
+										<button class="btn btn-color" data-dismiss="modal">Anuluj</button>
 										<button class="btn custom-button" (click)="coverUploader.uploadAll(); editUserGame(game._id, userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameImage.value)" data-dismiss="modal">Akceptuj</button>
 									</div>
 								</div>
@@ -103,7 +103,10 @@
 										<label>Czy na pewno chcesz usunąć grę ze swojego profilu?</label>
 									</div>
 									<div class="modal-footer">
-										<button class="btn custom-button" (click)="removeUserGame(game._id);" data-dismiss="modal">Potwierdź</button>
+										<button class="btn btn-color" data-dismiss="modal">Anuluj</button>
+										<button class="btn custom-button" 
+										(click)="removeUserGame(game._id);
+										decreaseNumberOfGames(userInfo?._id);" data-dismiss="modal">Potwierdź</button>
 									</div>
 								</div>
 							</div>
@@ -156,8 +159,12 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn custom-button" (click)="coverUploader.uploadAll(); addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameImage.value); userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameDescription.value=''; userGameImage.value='';" data-dismiss="modal"
-				[disabled]="!coverUploader.getNotUploadedItems().length">Akceptuj</button>
+				<button class="btn btn-color" data-dismiss="modal">Anuluj</button>
+				<button class="btn custom-button" 
+				(click)="coverUploader.uploadAll();
+				increaseNumberOfGames(userInfo?._id); 
+				addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameImage.value); 
+				userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameDescription.value=''; userGameImage.value='';" data-dismiss="modal">Akceptuj</button>
 			</div>
 		</div>
 	</div>

@@ -2,49 +2,17 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h3>Przeglądasz profil użytkownika: <b>
-					<span *ngIf="userInfo?.local && !userInfo?.facebook">{{userInfo?.local.login}}</span>
-					<span *ngIf="userInfo?.facebook">{{userInfo?.facebook.name}}</span></b></h3>
+				<h3>Przeglądasz profil użytkownika: 
+					<b>
+						<span *ngIf="userInfo?.local && !userInfo?.facebook">{{userInfo?.local.login}}</span>
+						<span *ngIf="userInfo?.facebook">{{userInfo?.facebook.name}}</span>
+					</b>
+				</h3>
 				<hr class="main-hr">
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-8">
-				<div class="games-main-panel">
-					<div class="games-info">
-						<div class="games-panel-content ">
-							<div *ngIf="!userGame">
-			          <div class="text-center">
-			            <img src="../../assets/images/loading.gif" alt="" class="loading">
-			          </div>
-			        </div>
-							<div class="single-game-box" *ngFor="let game of userGame">
-								<div class="single-box-content inner">
-									<a routerLink="/games/{{ game._id }}">
-										<div class="game-image">
-											<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
-										</div>
-									</a>
-									<div class="game-info">
-										<a routerLink="/games/{{ game._id }}">
-											<p class="title">{{ game.title }}</p>
-										</a>
-										<div class="game-info-buttons" *ngIf="this.appService.isLoggedIn()">
-											<button type="button" class="btn btn-default custom-button" (click)="this.start(game, game.userID._id)">
-			                    	Wymień się!
-	            				</button>
-										</div>
-										<p><strong>Kategoria: </strong>{{ game.category }}</p>
-										<p><strong>Stan: </strong>{{ game.state }}</p>
-										<p class="description">{{ game.description }}</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
+			<div class="col-md-4 col-md-push-8 user-info">
 				<div class="user-sidebar inner">
 					<div class="other-info">
 						<div *ngIf="!userInfo">
@@ -52,47 +20,130 @@
 								<img src="../../assets/images/loading.gif" alt="" class="loading">
 							</div>
 						</div>
-				<img *ngIf="userInfo?.avatarImage" class="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{ userInfo?.avatarImage }}" alt="user-avatar" />
-				<ul>
-					<li class="username">{{userInfo?.name}}</li>
-					<li *ngIf="userInfo?.contactNumber">
-						<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>Telefon: {{userInfo?.contactNumber}}
-					</li>
-					<div *ngIf="userInfo?.local && !userInfo?.facebook">
-						<li *ngIf="userInfo?.local.email">
-							<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-							Email: <a href="mailto:{{userInfo?.local.email}}">{{userInfo?.local.email}}</a>
-						</li>
+						<img *ngIf="userInfo?.avatarImage" class="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{ userInfo?.avatarImage }}" alt="user-avatar" />
+						<ul>
+							<div class="user-info-box">
+								<li class="username">
+									<span *ngIf="userInfo?.local && !userInfo?.facebook">{{userInfo?.local.login}}</span>
+									<span *ngIf="userInfo?.facebook">{{userInfo?.facebook.name}}</span>
+								</li>
+								<li *ngIf="userInfo?.contactNumber">
+									<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>Telefon: {{userInfo?.contactNumber}}
+								</li>
+								<div *ngIf="userInfo?.local && !userInfo?.facebook">
+									<li *ngIf="userInfo?.local.email">
+										<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+										Email: <a href="mailto:{{userInfo?.local.email}}">{{userInfo?.local.email}}</a>
+									</li>
+								</div>
+								<div *ngIf="userInfo?.facebook">
+									<li *ngIf="userInfo?.facebook.email">
+										<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+										Email: <a href="mailto:{{userInfo?.facebook.email}}">{{userInfo?.facebook.email}}</a>
+									</li>
+								</div>
+								<li *ngIf="userInfo?.dateBirth">
+									<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+									Data urodzenia: {{userInfo?.dateBirth}}
+								</li>
+								<li *ngIf="userInfo?.city" class="usercity">
+									<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+									Miasto: {{userInfo?.city}}
+								</li>
+							</div>
+							<div class="user-info-box">
+								<li>
+									<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+									Liczba gier na wymianę: {{userInfo?.numberOfGames}}
+								</li>
+								<li>
+									<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+									Liczba przeprowadzonych wymian: {{userInfo?.numberOfExchanges}}
+								</li>
+								<li>
+									<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+									Ocena społeczności: {{userInfo?.sumOfGrades}}
+								</li>
+							</div>
+						</ul>
 					</div>
-					<div *ngIf="userInfo?.facebook">
-						<li *ngIf="userInfo?.facebook.email">
-							<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-							Email: <a href="mailto:{{userInfo?.facebook.email}}">{{userInfo?.facebook.email}}</a>
-						</li>
-					</div>
-					<li *ngIf="userInfo?.dateBirth">
-						<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-						Data urodzenia: {{userInfo?.dateBirth}}
-					</li>
-					<li *ngIf="userInfo?.city" class="usercity">
-						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-						Miasto: {{userInfo?.city}}
-					</li>
-					<li>
-						<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-						Ilość gier na wymianę: 2
-					</li>
-					<li>
-						<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-						4 przeprowadzonych wymian
-					</li>
-					<li>
-						<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-						Ocena społeczności: 8,7/10
-					</li>
-				</ul>
+				</div>
 			</div>
-		</div>
+			<div class="col-md-8 col-md-pull-4">
+				<div class="games-main-panel">
+					<div class="games-info">
+						<div class="games-panel-content ">
+							<div *ngIf="!userGame">
+			          			<div class="text-center">
+			            			<img src="../../assets/images/loading.gif" alt="" class="loading">
+			          			</div>
+			        		</div>
+							<div class="single-game-box" *ngFor="let game of userGame">
+								<div class="single-box-content inner">									
+									<div class="game-image">
+										<a routerLink="/games/{{ game._id }}">
+											<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
+										</a>
+									</div>
+									
+									<div class="game-info">
+										<a routerLink="/games/{{ game._id }}">
+											<p class="title">{{ game.title }}</p>
+										</a>										
+										<p><strong>Kategoria: </strong>{{ game.category }}</p>
+										<p><strong>Stan: </strong>{{ game.state }}</p>
+										<div class="game-info-buttons" *ngIf="this.appService.isLoggedIn()">
+											<button type="button" class="btn btn-default custom-button" data-toggle="modal" attr.data-target="#exchange-{{game._id}}" data-dismiss="modal">
+			                    			Wymień się!
+	            							</button>
+										</div>
+									</div>
+								</div>
+
+                                  <!-- Exchange Game Modal -->
+
+                                  <div class="modal fade" id="exchange-{{game._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                  	<div class="modal-dialog" role="document">
+                                  		<div class="modal-content">
+                                  			<div class="modal-header">
+                                  				<button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  				<h4 class="modal-title">Wymień się</h4>
+                                  			</div>
+                                  			<div class="modal-body">
+                      		                    <p>Wybierz gry za które możesz się wymienić.
+                      		                      <b>
+                      		                        <span *ngIf="game.userID.local">{{game.userID.local.login}}</span>
+                      		                        <span *ngIf="game.userID.facebook">{{game.userID.facebook.name}}</span>
+                      		                      </b>
+                      		                       wybierze jedną z nich na wymianę.
+                      		                    </p>
+                      		            		<div *ngFor="let option of options">
+                      		                      <div class="checkbox">
+                      		                        <label>
+                      		                            <input type="checkbox"
+                      		                                   name="options"
+                      		                                   [(ngModel)]="option.checked"
+                      		                                   value="{{option.value}}"/>
+                      		                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                      		                            {{option.name}}
+                      		                        </label>
+                      		                      </div>
+                      	                    	</div>
+                                  			</div>
+                                  			<div class="modal-footer">
+                                  			<button class="btn btn-color" data-dismiss="modal">Anuluj</button>
+                                          	<button class="btn custom-button" type="button" name="button" 
+                                          	(click)="this.start(game, game.userID._id);
+                                          	registerExchange(game._id, game.userID._id)" 
+                                          	data-dismiss="modal">Wyślij</button>
+                                  		</div>
+                                  	</div>
+                                  </div>
+                      		  	</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

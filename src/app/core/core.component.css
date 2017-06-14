@@ -1,22 +1,23 @@
+
+
 .new-game-wrapper{
     padding: 0 15px 20px 15px;
     line-height: 28px;
 }
 
+.fade.in {
+    background: rgba(0,0,0,0.6);
+}
+
 .new-game-wrapper .inner{
     background: #fff;
     box-shadow: 2px 2px 1px #d5d5d5;
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 20px;
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 100%;
-}
-
-.userTextOverflow{
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    max-width: 200px;
+    height: 400px;
 }
 
 .new-game-wrapper img{
@@ -110,4 +111,8 @@
 .game-card a:active h3{
   text-decoration: none;
   color: #f98d1a;
+}
+#newGames > div > div:nth-child(3) > div > swiper > div > div.swiper-button-next{
+    right: 0;
+    background-color: #678954;
 }

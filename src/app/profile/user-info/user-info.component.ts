@@ -3,7 +3,6 @@ import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '
 import { UserInfoService } from './user-info.service';
 import { AppService } from '../../app.service';
 import { UserInfo } from './user-info';
-import { FlashMessagesService } from 'angular2-flash-messages';
 import { IMyOptions} from 'mydatepicker';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
@@ -27,7 +26,7 @@ export class UserInfoComponent implements OnInit {
   public URL = this.appService.getUrl('/app/avatarUpload');
   public avatarUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
-  constructor(private http: Http, private appService: AppService, private userInfoService: UserInfoService, private flashMessage:FlashMessagesService) {
+  constructor(private http: Http, private appService: AppService, private userInfoService: UserInfoService) {
 }
 
   private myDatePickerOptions: IMyOptions = {
@@ -42,7 +41,11 @@ export class UserInfoComponent implements OnInit {
       city: '',
       contactNumber: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      numberOfGames: 0,
+      numberOfExchanges: 0,
+      numberOfRatings: 0,
+      sumOfGrades: 0
     }
 
   ngOnInit() {

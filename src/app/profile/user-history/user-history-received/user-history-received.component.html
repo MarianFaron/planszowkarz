@@ -1,0 +1,48 @@
+<div class="single-transaction inner" *ngFor="let history of userHistory">
+    <div class="transaction-box">
+        <div class="senderBox" *ngIf="history?.sender.local && !history?.sender.facebook">
+            <p>Gracz</p>
+            <a class="sender" routerLink="/user-profile/{{ history?.sender.local.login }}">
+                <p>{{history?.sender.local.login}}</p>
+            </a>
+            <p>złożył Ci propozycję wymiany. Jest zainteresowany grą:</p>
+        </div>
+        <div class="senderBox" *ngIf="history?.sender.facebook">
+            <p>Gracz</p>
+            <a class="sender" routerLink="/user-profile/{{ history?.sender.facebook.name }}">
+                <p>{{history?.sender.facebook.name}}</p>
+            </a>
+            <p>złożył Ci propozycję wymiany. Jest zainteresowany grą: </p>
+        </div>
+        <div class="gameTitleBig">
+            <p>{{history?.recipientGame.title}}</p>
+        </div>
+        <p id="info">Jeśli jesteś zainteresowany wybierz jedną z proponowanych gier. </p>
+        <div class="modal-body">
+            <form>
+            <div *ngFor="let gamePropose of history.proposeGames">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="optradio">Option 1
+                        <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                        {{gamePropose}}
+                    </label>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer" style="display: flex; padding-bottom: 0;">
+            <div class="stateBox" *ngIf="history?.status== 'pending'">
+                <div class="gameState">
+                    <p>Status:</p>
+                    <p><strong>w trakcie</strong></p>
+                </div>
+                <div class="buttonsBox">
+                    <button class="btn btn-color" data-dismiss="modal"
+                    (click)="discardExchange(history._id);">Odrzuć</button>
+                    <button class="btn custom-button" data-dismiss="modal" name="button" type="button">Akceptuj</button>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>

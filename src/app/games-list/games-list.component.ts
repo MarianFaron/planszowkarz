@@ -4,13 +4,15 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AppService } from '../app.service';
 import { PagerService } from '../pager.service';
 import { CoreService } from '../core/core.service';
-import { Router, CanActivate, ActivatedRoute, Params, NavigationExtras } from '@angular/router'
+import { Router, CanActivate, ActivatedRoute, Params, NavigationExtras } from '@angular/router';
+import { ExchangeService } from './../exchange/exchange.service';
+import { Exchange } from './../exchange/exchange';
 
 @Component({
   selector: 'app-games-list',
   templateUrl: './games-list.component.html',
   styleUrls: ['./games-list.component.css'],
-  providers: [AppService, CoreService, PagerService]
+  providers: [AppService, CoreService, PagerService, ExchangeService]
 })
 export class GamesListComponent implements OnInit {
 
@@ -57,41 +59,80 @@ export class GamesListComponent implements OnInit {
   userGame: UserGame[];
   pageUrl = '/games';
 
+  currentUserGamesIds: Array<string>;  
+
+  option = {
+    name: '',
+    value: '',
+    checked: false
+  };
+  options: Array<{name: string,value: string,checked: boolean}>;
+
+  // EXCHANGE
+  exchange: Exchange;
+  proposeGames = [];
 
   private sub: any;
 
-  constructor(private appService: AppService, private route: ActivatedRoute, private coreService: CoreService, private router: Router, private activatedRoute: ActivatedRoute, private http: Http, private pagerService: PagerService) { }
+  constructor(
+    private appService: AppService, 
+    private route: ActivatedRoute, 
+    private coreService: CoreService, 
+    private router: Router, 
+    private activatedRoute: ActivatedRoute, 
+    private http: Http, 
+    private pagerService: PagerService,
+    private exchangeService: ExchangeService
+  ) { }
 
   ngOnInit() {
+
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       (params['title']) ? this.queryTitle = params['title'] : this.queryTitle = '';
       (params['category']) ? this.categories = params['category'].toString().split(',') : this.categories = null;
       (params['state']) ? this.states = params['state'].toString().split(',') : this.states = null;
+
+      if(localStorage.getItem('currentUser')) {
+        this.getCurrentUserGames();
+      }
+
+      this.query = {
+        title: this.queryTitle,
+        category: this.categories,
+        state: this.states
+      }
+
+      this.updateCheckboxes();
+
+      if (this.query.title == '' && this.query.category == null && this.query.state == null) {
+        this.router.navigate(['/games']);
+        this.pageTitle = "Wymiana gier";
+        this.getGames();
+      } else {
+        this.pageUrl = '/search-results';
+        this.queryTitle = this.query.title;
+        this.games = JSON.parse(localStorage.getItem('games'));
+        this.setPageTitle();
+        this.setPage(1);
+        this.router.navigate([this.pageUrl], {queryParams: this.query});
+      }
     });
+  }
 
-    this.query = {
-      "title": this.queryTitle,
-      "category": this.categories,
-      "state": this.states
-    }
+  searchTitle(queryTitle: string) {
+    this.query.title = queryTitle;
 
-    this.updateCheckboxes();
-
-    if (this.query.title == '' && this.query.category == null && this.query.state == null) {
-
-      this.router.navigate(['/games']);
-      this.pageTitle = "Wymiana gier";
-      this.getGames();
-
-    } else {
-      this.pageUrl = '/search-results';
-      this.queryTitle = JSON.parse(localStorage.getItem('query')).title;
-      this.games = JSON.parse(localStorage.getItem('games'));
-      this.setPageTitle();
-      this.setPage(1);
-      localStorage.setItem('games', null);
-      localStorage.setItem('query', null);
-    }
+    this.appService.search(this.query)
+                        .subscribe(
+                          games => {
+                            this.games = games;
+                            localStorage.setItem('games', JSON.stringify(games));
+                            localStorage.setItem('query', JSON.stringify(this.query));
+                            this.router.navigate(['search-results'], {queryParams: this.query});
+                          },
+                          error => {
+                            this.errorMessage = <any>error;
+                          });
   }
 
   search(query: {title: string, category: string, state: string}) {
@@ -99,8 +140,8 @@ export class GamesListComponent implements OnInit {
     this.appService.search(query)
                         .subscribe(
                           games => {
-                            localStorage.setItem('games', JSON.stringify(games));
                             var query = localQuery;
+                            localStorage.setItem('games', JSON.stringify(games));
                             localStorage.setItem('query', JSON.stringify(localQuery));
 
                             var title = '', categories = '', states = '';
@@ -126,15 +167,15 @@ export class GamesListComponent implements OnInit {
                               category: categories,
                               state: states
                             }
-                            this.games = games;
+                            this.games = games.reverse();
                             this.query = query;
                             this.router.navigate(['search-results'], {queryParams: query});
-
                           },
                           error => {
                             this.errorMessage = <any>error;
                           });
   }
+
 
   updateOptions() {
 
@@ -158,7 +199,6 @@ export class GamesListComponent implements OnInit {
       "category": this.categories,
       "state": this.states
     }
-    console.log(this.query);
     this.search(this.query);
   }
 
@@ -166,7 +206,7 @@ export class GamesListComponent implements OnInit {
     this.coreService.getGames()
                     .subscribe(
                         games => {
-                          this.games = games.reverse();
+                          this.games = games;
                           this.setPage(1);
                         },
                         error => this.errorMessage = <any>error
@@ -205,12 +245,63 @@ export class GamesListComponent implements OnInit {
   }
 
   setPage(page: number) {
-    this.router.navigate([this.pageUrl], {queryParams: {page: page}});
+    this.pager = this.pagerService.getPager(this.games.length, page);
+    this.pagedItems = this.games.slice(this.pager.startIndex, this.pager.endIndex + 1);
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }
-    this.pager = this.pagerService.getPager(this.games.length, page);
-    this.pagedItems = this.games.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  }
+
+  start(game: string, userId: string) {
+    this.currentUserGamesIds = [];
+    for(var i = 0; i<this.options.length; i++) {
+      if(this.options[i].checked == true) {
+        this.currentUserGamesIds.push(this.options[i].value);
+      }
+    }
+
+    this.appService.startTransaction(game, userId, this.currentUserGamesIds)
+      .subscribe(response => {
+        console.log(JSON.parse(localStorage.getItem('currentUser'))._id + " send");
+
+      });
+  }
+
+  getCurrentUserGames() {
+      var id = this.appService.getCurrentUser()._id;
+      this.coreService.getUserGames(id)
+      .subscribe(userGames => {
+          this.options = [];
+
+          for (var i =0; i< userGames.length; i++) {
+            var option = {
+              name: userGames[i].title,
+              value: userGames[i].title,
+              checked: false
+            }
+            this.options.push(option);
+          }
+      }, error => this.errorMessage = <any>error);
+  }
+
+  registerExchange(recipientGames: string, recipient: string){
+      var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      var sender = currentUser._id;
+      var recipientGame = recipientGames;
+
+      for(var i = 0; i<this.options.length; i++) {
+        if(this.options[i].checked == true) {
+          this.proposeGames.push(this.options[i].value);
+        }
+      }
+
+      this.exchangeService.saveExchange(this.proposeGames, recipientGame, sender, recipient)
+        .subscribe(exchange => {
+                this.exchange = exchange
+        }, error => this.errorMessage = <any>error); 
+          
+      //clear array 
+      this.proposeGames.length = 0;  
   }
 
 }
