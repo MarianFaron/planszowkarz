@@ -15,6 +15,7 @@ export class UserHistoryReceivedComponent implements OnInit {
   	userHistory: UserHistory[];
 	errorMessage: string;
 	status: string;
+	senderGame = "";
 
   	constructor(private http: Http, private appService: AppService, private userHistoryService: UserHistoryService) { }
 
@@ -45,5 +46,23 @@ export class UserHistoryReceivedComponent implements OnInit {
 	                        			this.getUserHistory();
 	                      			},
 	                      			error => this.errorMessage = <any>error);
+	}
+
+	acceptExchange(id: string){
+		if (this.senderGame == ""){
+			console.log("Wybierz grę!");
+			this.appService.showNotification('Powiadomienie', 'Wybierz grę', 'danger');
+		}
+		else{
+			console.log("Gra do wymiany: " + this.senderGame);
+			this.status = "accepted";
+			this.userHistoryService.saveAcceptExchange(id, this.senderGame, this.status)
+									.subscribe(
+										userHistory => {
+		                        			this.userHistory;
+		                        			this.getUserHistory();
+		                      			},
+		                      			error => this.errorMessage = <any>error);
+		}		
 	}
 }
