@@ -93,7 +93,7 @@
 										<p><strong>Kategoria: </strong>{{ game.category }}</p>
 										<p><strong>Stan: </strong>{{ game.state }}</p>
 										<div class="game-info-buttons" *ngIf="this.appService.isLoggedIn()">
-											<button type="button" class="btn btn-default custom-button" data-toggle="modal" attr.data-target="#exchange-{{game._id}}" data-dismiss="modal">
+											<button *ngIf="this.appService.getCurrentUser()._id != game.userID" type="button" class="btn btn-default custom-button" data-toggle="modal" attr.data-target="#exchange-{{game._id}}" data-dismiss="modal">
 			                    			Wymień się!
 	            							</button>
 										</div>
@@ -134,7 +134,7 @@
                                   			<button class="btn btn-color" data-dismiss="modal">Anuluj</button>
                                           	<button class="btn custom-button" type="button" name="button" 
                                           	(click)="this.start(game, game.userID._id);
-                                          	registerExchange(game._id, game.userID._id)" 
+                                          	registerExchange(game._id, game.userID)" 
                                           	data-dismiss="modal">Wyślij</button>
                                   		</div>
                                   	</div>

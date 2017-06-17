@@ -44,6 +44,10 @@ export class GameDetailsComponent implements OnInit {
 
   ngOnInit() {
 
+    if(localStorage.getItem('currentUser')) {
+       this.getCurrentUserGames();
+     }
+     
     let id = this.activeRoute.snapshot.params['_id'];
 
     this.gameDetailsService.getGame(id)
@@ -52,9 +56,7 @@ export class GameDetailsComponent implements OnInit {
                              error => this.errorMessage = <any>error
                            );
 
-     if(localStorage.getItem('currentUser')) {
-       this.getCurrentUserGames();
-     }
+     
    }
 
 
