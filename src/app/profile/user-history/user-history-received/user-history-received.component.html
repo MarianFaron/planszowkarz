@@ -23,7 +23,7 @@
             <div *ngFor="let gamePropose of history.proposeGames">
                 <div class="radio">
                     <label>
-                        <input type="radio" name="optradio">Option 1
+                        <input type="radio" name="options" (click)="senderGame = gamePropose;"/>
                         <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                         {{gamePropose}}
                     </label>
@@ -40,7 +40,8 @@
                 <div class="buttonsBox">
                     <button class="btn btn-color" data-dismiss="modal"
                     (click)="discardExchange(history._id);">Odrzuć</button>
-                    <button class="btn custom-button" data-dismiss="modal" name="button" type="button">Akceptuj</button>
+                    <button class="btn custom-button" data-dismiss="modal" name="button" type="button"
+                    (click)="acceptExchange(history._id);">Akceptuj</button>
                 </div>
             </div>  
         </div>

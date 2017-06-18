@@ -65,7 +65,7 @@ export class CoreComponent implements OnInit {
       .subscribe(userGames => {
           this.options = [];         
 
-          for (var i =0; i< userGames.length; i++) {
+          for (var i =0; i < userGames.length; i++) {
             var option = {
               name: userGames[i].title,
               value: userGames[i].title,

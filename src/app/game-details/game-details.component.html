@@ -37,9 +37,9 @@
 				</div>
 			</div>
 			<div class="exchange-button" *ngIf="this.appService.isLoggedIn()">
-        <button type="button" class="btn btn-default custom-button" data-toggle="modal" attr.data-target="#exchange-{{gameDetails?._id}}" data-dismiss="modal">
-              Wymień się!
-        </button>
+		        <button *ngIf="this.appService.getCurrentUser()._id != gameDetails?.userID._id" type="button" class="btn btn-default custom-button" data-toggle="modal" attr.data-target="#exchange-{{gameDetails?._id}}" data-dismiss="modal">
+		              Wymień się!
+		        </button>
 			</div>
 
       <!-- Exchange Game Modal -->
