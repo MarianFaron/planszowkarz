@@ -6,12 +6,12 @@
         </a>
       </div>
       <div *ngIf="history?.recipient.facebook">
-        <a routerLink="/user-profile/{{ history?.recipient.local.login }}">
+        <a routerLink="/user-profile/{{ history?.recipient.facebook.name }}">
           <p>Login: {{history?.recipient.facebook.name}}</p>
         </a>
       </div>
       <div class="gameTitle">
-        <p> Nazwa gry: {{history?.recipientGame}}</p>
+        <p> Nazwa gry: {{history?.recipientGame.title}}</p>
       </div>
     </div>
     <div id="right" class="single-transaction-content">
