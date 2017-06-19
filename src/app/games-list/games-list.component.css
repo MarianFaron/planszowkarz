@@ -95,3 +95,18 @@
   position: relative;
   margin: auto;
 }
+
+@media (max-width: 580px) {
+  .game-image {
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+
+  .game-info-buttons {
+    text-align: center;
+  }
+
+  .game {
+    text-align: center;
+  }
+}

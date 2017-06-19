@@ -22,3 +22,9 @@
   background: url("../../assets/images/icons/alert.png") no-repeat center right;
   background-color: #F44336;
   }
+
+  @media (max-width: 568px) {
+    .forgot-button {
+      float: none;
+    }
+  }

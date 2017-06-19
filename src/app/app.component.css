@@ -127,7 +127,7 @@
     .navbar-toggle {
         display: block;
     }
-    
+
     .navbar-collapse{
       float: none;
       text-align: center;
@@ -169,6 +169,30 @@
     }
 
 }
+
+@media (max-width: 768px) {
+
+  .navbar-toggle {
+    border: none;
+  }
+
+  .navbar-toggle:hover,
+  .navbar-toggle:focus ,
+  .navbar-toggle:active {
+    background: transparent;
+  }
+
+  .navbar-toggle .icon-bar {
+    background-color: #fff;
+  }
+
+  .navbar a:hover, .navbar a:focus, .navbar a:active,
+  .navbar a.active {
+    color: #f98d1a;
+    border-bottom: 3px solid transparent;
+  }
+}
+
 .swiper-button-next{
     right: 0;
     background-color: #678954;

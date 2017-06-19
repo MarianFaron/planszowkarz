@@ -55,7 +55,7 @@
         </div>
         <div *ngFor="let game of pagedItems">
 
-            <div class="inner">
+            <div class="inner game">
               <div class="row">
                 <div class="col-md-3">
                   <div class="game-image">
@@ -118,7 +118,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-color" data-dismiss="modal">Anuluj</button>
-                    <button class="btn custom-button" type="button" name="button" 
+                    <button class="btn custom-button" type="button" name="button"
                     (click)="this.start(game, game.userID._id); registerExchange(game._id, game.userID._id)" data-dismiss="modal">Wyślij</button>
               </div>
             </div>
