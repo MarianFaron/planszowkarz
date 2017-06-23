@@ -59,15 +59,4 @@ export class UserGameService {
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
   }
-
-  // Upfate number of user games
-  updateUserNumberOfGames(id: string, numberOfGames: number): Observable<UserInfo[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    console.log("serwis + " + numberOfGames);
-
-    return this.http.post(`${this.editUserUrl}/${id}`, {numberOfGames}, options)
-                  .map(this.appService.extractData)
-                  .catch(this.appService.handleError);
-  }
 }

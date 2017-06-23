@@ -84,11 +84,11 @@ export class UserConfigComponent implements OnInit {
                                 month: parseInt(userInfo.dateBirth.substring(4,5)),
                                 day: parseInt(userInfo.dateBirth.substring(0,2))
                               }
-                            },
-                            this.numberOfGames = userInfo.numberOfGames;
+                            }                            
                           }
                           this.userInfo = userInfo;
                           this.model.dateBirth = userInfo.dateBirth;
+                          this.numberOfGames = userInfo.numberOfGames;
                         },
                         error => this.errorMessage = <any>error);
   }

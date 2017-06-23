@@ -46,15 +46,14 @@ export class UserHistoryReceivedComponent implements OnInit {
 	                        			this.getUserHistory();
 	                      			},
 	                      			error => this.errorMessage = <any>error);
+		this.appService.showNotification('Powiadomienie', 'Wymiana została odrzucona', 'success');		
 	}
 
 	acceptExchange(id: string){
 		if (this.senderGame == ""){
-			console.log("Wybierz grę!");
 			this.appService.showNotification('Powiadomienie', 'Wybierz grę', 'danger');
 		}
 		else{
-			console.log("Gra do wymiany: " + this.senderGame);
 			this.status = "accepted";
 			this.userHistoryService.saveAcceptExchange(id, this.senderGame, this.status)
 									.subscribe(
@@ -63,6 +62,8 @@ export class UserHistoryReceivedComponent implements OnInit {
 		                        			this.getUserHistory();
 		                      			},
 		                      			error => this.errorMessage = <any>error);
-		}		
+			this.appService.showNotification('Powiadomienie', 'Wymiana została zaakceptowana', 'success');
+			this.senderGame = "";		
+		}
 	}
 }

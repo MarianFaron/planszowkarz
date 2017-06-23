@@ -143,10 +143,12 @@ export class UserGamesComponent implements OnInit {
   }
 
   editUserInfo(id: string) {
-    this.userGameService.updateUserNumberOfGames(id, this.numberOfGames)
+    var password = "";
+    this.userConfigService.updateUser(id, this.userInfo.dateBirth, this.userInfo.city, this.userInfo.contactNumber, this.userInfo.avatarImage, password, this.numberOfGames)
                         .subscribe(
                             userInfo  => {
                               this.userInfo;
+                              this.getUserInfo();
                             },
                             error =>  {
                               this.errorMessage = <any>error
