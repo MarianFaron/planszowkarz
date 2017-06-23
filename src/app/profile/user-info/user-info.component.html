@@ -1,7 +1,11 @@
 <div class="user-sidebar inner">
 	<div class="other-info">
-		<img *ngIf="!userInfo?.avatarImage" class="user-avatar" src="{{this.appService.getUrl('/assets/images/avatar.png')}}" alt="">
-		<img *ngIf="userInfo?.avatarImage" class="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" alt="user-avatar" />
+		<div *ngIf="userInfo">
+			<img *ngIf="!userInfo?.avatarImage" class="user-avatar" alt="facebook-avatar"
+			src="http://graph.facebook.com/{{userInfo?.facebook.id}}/picture?width=160&amp;height=160"/>
+			<img *ngIf="userInfo?.avatarImage" class="user-avatar" alt="user-avatar" 
+			src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" />
+		</div>
 		<div *ngIf="!userInfo">
 			<div class="text-center">
 				<img src="../../assets/images/loading.gif" alt="" class="loading">
