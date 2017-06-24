@@ -63,7 +63,7 @@ export class UserHistoryReceivedComponent implements OnInit {
 		                      			},
 		                      			error => this.errorMessage = <any>error);
 			this.appService.showNotification('Powiadomienie', 'Wymiana została zaakceptowana', 'success');
-			this.senderGame = "";		
+			this.senderGame = "";
 		}
 	}
 }

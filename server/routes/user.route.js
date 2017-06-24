@@ -212,10 +212,10 @@ router.route('/edit-user/:id')
         });
       } else {
 
-          user.avatarImage = req.body.avatarImage;
           user.dateBirth = req.body.dateBirth;
-          user.city = req.body.city;
+          user.city = req.body.city;          
           user.contactNumber = req.body.contactNumber;
+          user.avatarImage = req.body.avatarImage;
           user.numberOfGames = req.body.numberOfGames;
           user.numberOfExchanges = req.body.numberOfExchanges;
           user.numberOfRatings = req.body.numberOfRatings;

@@ -23,7 +23,6 @@ export class UserConfigComponent implements OnInit {
   userInfo: UserInfo;
   avatarImgName: string;
   currentDate = new Date();
-  numberOfGames: number;
 
   public URL = this.appService.getUrl('/app/avatarUpload');
   public avatarUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
@@ -88,7 +87,6 @@ export class UserConfigComponent implements OnInit {
                           }
                           this.userInfo = userInfo;
                           this.model.dateBirth = userInfo.dateBirth;
-                          this.numberOfGames = userInfo.numberOfGames;
                         },
                         error => this.errorMessage = <any>error);
   }
@@ -98,19 +96,22 @@ export class UserConfigComponent implements OnInit {
   editUserInfo(id: string, city: string, contactNumber: string, avatarImage: string, password: string) {
 
     var d = this.model.datepicker.date.year;
-    var m =this.model.datepicker.date.month;
+    var m = this.model.datepicker.date.month;
     var y = this.model.datepicker.date.day;
     var date = '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
 
-    this.userConfigService.updateUser(id, date, city, contactNumber, this.avatarImgName, password, this.numberOfGames)
-                     .subscribe(
-                        userInfo  => {
-                          this.userInfo;
-                          this.getUserInfo();
-                          this.appService.showNotification('Powiadomienie', 'Dane użytkownika zostały zmienione.', 'success');
-                        },
-                        error =>  {
-                          this.errorMessage = <any>error
-                        });
+    this.userConfigService.updateUser(id, date, city, contactNumber, this.avatarImgName, password, 
+                                      this.userInfo.numberOfGames, this.userInfo.numberOfExchanges,
+                                      this.userInfo.numberOfRatings, this.userInfo.sumOfGrades)
+                          .subscribe(
+                              userInfo  => {
+                                  this.userInfo;
+                                  this.getUserInfo();
+                                  this.appService.showNotification('Powiadomienie', 'Dane użytkownika zostały zmienione.', 'success');
+                              },
+                              error =>  {
+                                  this.errorMessage = <any>error
+                              }
+                           );
   }
 }
