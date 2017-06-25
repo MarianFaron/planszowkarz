@@ -1,0 +1,15 @@
+section#exchange{
+	position: relative;
+	.exchange-box{
+		background-image: url("http://localhost:8080/assets/images/exchange-background.jpg");
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		position: relative;
+		top: -20px;
+		height: calc(100vh - 90px);
+		min-height: 550px;
+		opacity: 0.25;
+		margin-bottom: -60px;
+	}
+}

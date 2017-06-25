@@ -18,6 +18,7 @@ import { UserHistoryReceivedComponent } from './profile/user-history/user-histor
 import { UserHistoryRejectedComponent } from './profile/user-history/user-history-rejected/user-history-rejected.component';
 import { RatingComponent } from './rating/rating.component';
 import { CatalogComponent } from './catalog/catalog.component';
+import { ExchangeComponent } from './exchange/exchange.component';
 import { AuthGuard } from './guards/auth.guard';
 
 export const router: Routes = [
@@ -46,7 +47,8 @@ export const router: Routes = [
 	{ path: 'search-results', component: GamesListComponent },
 	{ path: 'games', component: GamesListComponent },
   	{ path: 'rating', component: RatingComponent },
-  	{ path: 'catalog', component: CatalogComponent }
+  	{ path: 'catalog', component: CatalogComponent },
+  	{ path: 'exchange/:_id', component: ExchangeComponent}
 ];
 
 @NgModule({
