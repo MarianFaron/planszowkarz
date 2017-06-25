@@ -31,9 +31,11 @@
                 </div>
                 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dodane {{ game.createdDate | date:'longDate' }}<br>
                 <div *ngIf="this.appService.isLoggedIn()" class="text-center">
-                  <button *ngIf="this.appService.getCurrentUser()._id != game.userID._id" type="button" class="btn btn-default custom-button" data-toggle="modal" attr.data-target="#exchange-{{game._id}}" data-dismiss="modal">
+                  <!--<button *ngIf="this.appService.getCurrentUser()._id != game.userID._id" type="button" class="btn btn-default custom-button" data-toggle="modal" attr.data-target="#exchange-{{game._id}}" data-dismiss="modal">
 									Wymień się!
-								</button>
+								</button>-->
+                <button *ngIf="this.appService.getCurrentUser()._id != game.userID._id" 
+                routerLink="/exchange/{{ game._id }}" type="button" class="btn btn-default custom-button">Wymień się</button>
                 </div>
               </div>
             </div>

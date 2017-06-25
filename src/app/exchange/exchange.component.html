@@ -1,5 +1,21 @@
 <section id="exchange">
 	<div class="exchange-box">
-		<p> content </p>
+		<div class="exchange-background"></div>
+		<div class="exchange-content">
+			<p> odbiorca : {{ recipientGame?.userID.local.login }}</p>
+			<p> gra odbiorcy : {{recipientGame?._id}}</p>
+			<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ recipientGame?.Image }}" />
+			
+		    <p *ngIf="senderInfo?.local && !senderInfo?.facebook" 
+		    class="username"> nadawca: {{senderInfo?.local.login}}</p>
+			<p *ngIf="senderInfo?.facebook" 
+			class="username"> nadawca: {{senderInfo?.facebook.name}}</p>
+
+			<p> Gry nadawcy </p>
+			<div *ngFor="let game of senderGames">
+				<p> {{ game.title}} </p>
+
+	        </div>
+	    </div>
 	</div>
 </section>

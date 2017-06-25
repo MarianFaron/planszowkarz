@@ -7,11 +7,14 @@ import 'rxjs/add/operator/map';
 import "rxjs/add/operator/do";
 
 import { Exchange } from './exchange';
+import { UserGame } from './../profile/user-games/user-games';
 
 @Injectable()
 export class ExchangeService {
 
 	private exchangeUrl = this.appService.getUrl('/app/exchanges');
+	private userGameUrl = this.appService.getUrl('/app/userGames');	
+    private userGamesUrl = this.appService.getUrl('/app/users');
 
     constructor (private http: Http, private appService: AppService) {}
 
@@ -22,5 +25,24 @@ export class ExchangeService {
       return this.http.post(this.exchangeUrl, {proposeGames, recipientGame, sender, recipient}, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
+    }
+
+    getRecipientGame(id: string) {
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      // `${this.userGameUrl}/${id}`
+
+      return this.http.get(`${this.userGameUrl}/${id}`, options)
+                      .map(this.appService.extractData)
+                      .catch(this.appService.handleError);
+    }
+
+    getSenderGames(id: string): Observable<UserGame[]>{
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+
+      return this.http.get(`${this.userGamesUrl}/${id}/userGames`, options)
+                      .map(this.appService.extractData)
+                      .catch(this.appService.handleError);
     }
 }
