@@ -2,20 +2,73 @@
 	<div class="exchange-box">
 		<div class="exchange-background"></div>
 		<div class="exchange-content">
-			<p> odbiorca : {{ recipientGame?.userID.local.login }}</p>
-			<p> gra odbiorcy : {{recipientGame?._id}}</p>
+			<div class="container">
+				<div class="users-info">
+					<div *ngIf="senderInfo" class="recipient-box">
+						<div class="recipient">
+							<div *ngIf="senderInfo?.facebook">
+								<img class="user-avatar" alt="facebook-avatar"
+								src="http://graph.facebook.com/{{senderInfo?.facebook.id}}/picture?width=130&amp;height=130" />
+							</div>
+							<div *ngIf="!senderInfo?.facebook">
+								<img *ngIf="senderInfo?.avatarImage" class="user-avatar" alt="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{senderInfo?.avatarImage}}" />
+							</div>
+							<div class="recipient-info">
+								<p *ngIf="senderInfo?.facebook"> {{senderInfo?.facebook.name}}</p>
+								<p *ngIf="!senderInfo?.facebook"> {{senderInfo?.local.login}}</p>
+								<li>Liczba gier na wymianę: {{senderInfo?.numberOfGames}}</li>
+								<li>Liczba przeprowadzonych wymian: {{senderInfo?.numberOfExchanges}}</li>
+								<li>Ocena społeczności: {{senderInfo?.sumOfGrades}}</li>
+							</div>
+						</div>
+					</div>					
+					<div *ngIf="senderInfo" class="sender-box">
+						<div *ngIf="senderInfo?.facebook" class="sender">
+							<p>{{ senderInfo?.facebook.name}}</p>
+							<img class="user-avatar" alt="facebook-avatar"
+							src="http://graph.facebook.com/{{senderInfo?.facebook.id}}/picture?width=130&amp;height=130"/>							
+						</div>
+						<div *ngIf="!senderInfo?.facebook" class="sender">							
+							<p>{{ senderInfo?.local.login }}</p>
+							<img class="user-avatar" alt="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{senderInfo?.avatarImage}}" />
+						</div>
+					</div>
+				</div>
+				<div class="exchange">
+					<div class="exchange-panel">							
+						<div class="recipient-game">
+							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ recipientGame?.Image }}" />
+						</div>
+						<div class="exchange-arrows">
+							<img src="{{this.appService.getUrl('/assets/images/arrows.png')}}" />
+						</div>
+						<div class="drop-down-area">
+							<p> drop-down-area </p>
+						</div>
+					</div>
+					<div class="list-of-game">
+						<div class="list-box">
+							<h3>Lista Twoich gier</h3>
+							<div class="list-content">
+								<div *ngFor="let game of senderGames" class="games">
+									<li>{{ game.title}}</li>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<!-- 
 			<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ recipientGame?.Image }}" />
+			<p> gra odbiorcy : {{recipientGame?._id}}</p>
+			</div>
 			
-		    <p *ngIf="senderInfo?.local && !senderInfo?.facebook" 
-		    class="username"> nadawca: {{senderInfo?.local.login}}</p>
-			<p *ngIf="senderInfo?.facebook" 
-			class="username"> nadawca: {{senderInfo?.facebook.name}}</p>
+		   
 
 			<p> Gry nadawcy </p>
 			<div *ngFor="let game of senderGames">
 				<p> {{ game.title}} </p>
-
-	        </div>
-	    </div>
+-->
+	    	</div>
+	    </div> 
 	</div>
 </section>

@@ -11,12 +11,134 @@ section#exchange{
 			background-position: center center;
 			height: calc(100vh - 90px);
 			min-height: 550px;
-			opacity: 0.25;
+			opacity: 0.35;
 		}
 		.exchange-content{
 			position: absolute;
 			top: 0;
 			left: 0;
+			width: 100%;
+			.container{
+				.users-info{
+					margin-top: 20px;
+					padding: 5px;
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+					flex-wrap: wrap;
+					background-color: #F5F5F5;
+					opacity: 0.8;
+					border-radius: 10px;
+					.recipient{
+						display: flex;
+						align-items: flex-start;
+						img{
+							width: 130px;
+							height: 130px;
+							border-radius: 2px;
+							border: 4px solid #FFF;
+						}
+						.recipient-info{
+							margin-left: 10px;
+							p{
+								font-size: 20px;
+								font-family: 'Open Sans', sans-serif;
+								color: #333;
+							}
+							li{
+								list-style: none;
+								font-family: 'Open Sans', sans-serif;
+								color: #333;
+								font-size: 14px;
+							}
+						}						
+					}
+					.sender{
+						display: flex;
+						align-items: flex-start;
+						img{
+							width: 130px;
+							height: 130px;
+							border-radius: 2px;
+							border: 4px solid #FFF;
+						}
+						p{
+							margin-right: 10px;
+							font-size: 20px;
+							font-family: 'Open Sans', sans-serif;
+							color: #333;
+						}						
+					}
+				}
+				.exchange{
+					margin-top: 20px;
+					display: flex;
+					justify-content: space-between;
+					flex-direction: row;
+					flex-wrap: wrap;
+					.exchange-panel{
+						width: 60%;
+						padding: 5px;
+						background-color: #F5F5F5;
+						opacity: 0.8;
+						border-radius: 10px;
+						display: flex;
+						flex-direction: row;
+						justify-content: space-between;
+						flex-wrap: wrap;	
+						align-items: center;
+						.recipient-game{							
+							img{
+								width: 130px;
+								height: 130px;
+							}
+						}
+						.exchange-arrows{
+							img{
+								width: 100px;
+								height: 100px;
+							}
+						}
+						.drop-down-area{
+						}
+					}
+					.list-of-game{
+						width: 30%;
+						padding: 5px;
+						background-color: #F5F5F5;
+						opacity: 0.8;
+						border-radius: 10px;						
+						.list-box{
+							padding: 20px;
+							width: 100%;
+							h3{
+								padding: 0;
+								margin: 0px 0px 20px 0px;
+								text-align: center;								
+							}
+							.list-content{
+								//max-height: 275px;
+								.games{
+									padding-right: 20px;
+									padding-left: 20px;
+									li{
+										//background-color: #333;
+										background-color: #f98d1a;
+										color: #F5F5F5;
+										margin-top: 5px;
+										padding: 5px;
+										list-style: none;
+										text-align: center;
+										cursor: pointer;
+									}
+								}
+							}
+						}
+					}
+
+
+				}
+			}
 		}
 	}
 }
