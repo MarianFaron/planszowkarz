@@ -18,6 +18,7 @@ section#exchange{
 			top: 0;
 			left: 0;
 			width: 100%;
+			height: 100%;
 			.container{
 				.users-info{
 					margin-top: 20px;
@@ -51,7 +52,7 @@ section#exchange{
 								color: #333;
 								font-size: 14px;
 							}
-						}						
+						}
 					}
 					.sender{
 						display: flex;
@@ -67,7 +68,7 @@ section#exchange{
 							font-size: 20px;
 							font-family: 'Open Sans', sans-serif;
 							color: #333;
-						}						
+						}
 					}
 				}
 				.exchange{
@@ -76,30 +77,78 @@ section#exchange{
 					justify-content: space-between;
 					flex-direction: row;
 					flex-wrap: wrap;
+					min-height: 400px;
 					.exchange-panel{
 						width: 60%;
-						padding: 5px;
+						padding: 20px;
 						background-color: #F5F5F5;
 						opacity: 0.8;
 						border-radius: 10px;
 						display: flex;
-						flex-direction: row;
-						justify-content: space-between;
-						flex-wrap: wrap;	
-						align-items: center;
-						.recipient-game{							
-							img{
-								width: 130px;
-								height: 130px;
+						flex-direction: column;
+						.panel-header{
+							h3{
+								padding: 0;
+								margin: 0px 0px 20px 0px;
+								text-align: center;
 							}
 						}
-						.exchange-arrows{
-							img{
-								width: 100px;
-								height: 100px;
+						.panel-content{
+							display: flex;
+							flex-direction: row;
+							justify-content: space-between;
+							flex-wrap: wrap;
+							align-items: center;
+							height: 100%;
+							.recipient-game{
+								width: 40%;
+								display: flex;
+								justify-content: center;
+								img{
+									width: 100px;
+									height: 100px;
+								}
 							}
-						}
-						.drop-down-area{
+							.exchange-arrows{
+								width: 20%;
+								display: flex;
+								justify-content: center;
+								img{
+									width: 60px;
+									height: 60px;
+								}
+							}
+							.drop-down-area{
+								width: 40%;
+								display: flex;
+								justify-content: center;
+								.drop-down-container{
+									max-width: 200px;
+									display: flex;
+									flex-wrap: wrap;
+									.drop-down-element{
+										border: 1px solid #f98d1a;
+										margin-left: 5px;
+										margin-top: 5px;
+										width: 60px;
+										height: 60px;
+										border-radius: 10px;
+										display: flex;
+										justify-content: center;
+										align-items: center;
+										img{
+											height: 56px;
+											width: 56px;
+											border-radius: 10px;
+										}
+										p{
+											margin: 0;
+											font-size: 20px;
+											color: #f98d1a;
+										}
+									}
+								}
+							}
 						}
 					}
 					.list-of-game{
@@ -107,14 +156,14 @@ section#exchange{
 						padding: 5px;
 						background-color: #F5F5F5;
 						opacity: 0.8;
-						border-radius: 10px;						
+						border-radius: 10px;
 						.list-box{
 							padding: 20px;
 							width: 100%;
 							h3{
 								padding: 0;
 								margin: 0px 0px 20px 0px;
-								text-align: center;								
+								text-align: center;
 							}
 							.list-content{
 								//max-height: 275px;
@@ -135,8 +184,6 @@ section#exchange{
 							}
 						}
 					}
-
-
 				}
 			}
 		}

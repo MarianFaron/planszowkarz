@@ -21,29 +21,62 @@
 								<li>Ocena społeczności: {{senderInfo?.sumOfGrades}}</li>
 							</div>
 						</div>
-					</div>					
+					</div>
 					<div *ngIf="senderInfo" class="sender-box">
 						<div *ngIf="senderInfo?.facebook" class="sender">
 							<p>{{ senderInfo?.facebook.name}}</p>
 							<img class="user-avatar" alt="facebook-avatar"
-							src="http://graph.facebook.com/{{senderInfo?.facebook.id}}/picture?width=130&amp;height=130"/>							
+							src="http://graph.facebook.com/{{senderInfo?.facebook.id}}/picture?width=130&amp;height=130"/>
 						</div>
-						<div *ngIf="!senderInfo?.facebook" class="sender">							
+						<div *ngIf="!senderInfo?.facebook" class="sender">
 							<p>{{ senderInfo?.local.login }}</p>
 							<img class="user-avatar" alt="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{senderInfo?.avatarImage}}" />
 						</div>
 					</div>
 				</div>
 				<div class="exchange">
-					<div class="exchange-panel">							
-						<div class="recipient-game">
-							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ recipientGame?.Image }}" />
+					<div class="exchange-panel">
+						<div class="panel-header">
+							<h3>Panel wymiany</h3>
 						</div>
-						<div class="exchange-arrows">
-							<img src="{{this.appService.getUrl('/assets/images/arrows.png')}}" />
-						</div>
-						<div class="drop-down-area">
-							<p> drop-down-area </p>
+						<div class="panel-content">
+							<div class="recipient-game">
+								<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ recipientGame?.Image }}" />
+							</div>
+							<div class="exchange-arrows">
+								<img src="{{this.appService.getUrl('/assets/images/arrows.png')}}" />
+							</div>
+							<div class="drop-down-area">
+								<div class="drop-down-container">
+									<div class="drop-down-element">
+										<img src="{{this.appService.getUrl('/assets/uploads/covers/catannew.jpg')}}" />
+									</div>
+									<div class="drop-down-element">
+										<img src="{{this.appService.getUrl('/assets/uploads/covers/graotron.jpg')}}" />
+									</div>
+									<div class="drop-down-element">
+										<p>+</p>
+									</div>
+									<div class="drop-down-element">
+										<p>+</p>
+									</div>
+									<div class="drop-down-element">
+										<p>+</p>
+									</div>
+									<div class="drop-down-element">
+										<p>+</p>
+									</div>
+									<div class="drop-down-element">
+										<p>+</p>
+									</div>
+									<div class="drop-down-element">
+										<p>+</p>
+									</div>
+									<div class="drop-down-element">
+										<p>+</p>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="list-of-game">
