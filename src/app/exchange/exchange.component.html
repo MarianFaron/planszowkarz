@@ -54,8 +54,8 @@
 									<div *ngFor="let game of droppedGames" class="drag-drop-element">
 										<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.gameImage }}" />
 									</div>
-									<div class="drag-drop-element">
-										<p>{{ droppedGamesCounter }}</p>
+									<div *ngFor="let i of Arr(droppedGamesCounter).fill(1)"class="drag-drop-element">
+										<p>+</p>
 									</div>
 								</div>
 							</div>

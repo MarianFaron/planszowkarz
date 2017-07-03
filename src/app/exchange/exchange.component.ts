@@ -27,13 +27,14 @@ export class ExchangeComponent implements OnInit {
   senderGamesArray: Array<{title: string, gameImage: string}>;
 
   droppedGames = [];
-  droppedGamesCounter = 0;
+  droppedGamesCounter = 9;
+  Arr = Array; //Array type captured in a variable
 
   onGamesDrop(e: any) {
-    if(this.droppedGamesCounter < 9){
+    if(this.droppedGamesCounter > 0){
       this.droppedGames.push(e.dragData);
       this.removeItem(e.dragData, this.senderGamesArray);
-      this.droppedGamesCounter +=1;
+      this.droppedGamesCounter -=1;
     }    
   }
 
