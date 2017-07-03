@@ -34,6 +34,8 @@ import { RatingComponent } from './rating/rating.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { Component } from '@angular/core';
+import { Ng2DragDropModule } from "ng2-drag-drop";
 
 
 const swiper_config:SwiperConfigInterface={
@@ -98,7 +100,8 @@ const swiper_config:SwiperConfigInterface={
     CollapseModule,
     BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot(),
-    SwiperModule.forRoot(swiper_config)
+    SwiperModule.forRoot(swiper_config),
+    Ng2DragDropModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pl-PL" }, AuthGuard],
   bootstrap: [AppComponent]

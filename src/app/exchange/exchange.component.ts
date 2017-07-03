@@ -19,6 +19,31 @@ import { UserInfo } from './../profile/user-info/user-info';
 
 export class ExchangeComponent implements OnInit {
 
+  singleSenderGame = {
+    title: '',
+    gameImage: ''
+  };
+
+  senderGamesArray: Array<{title: string, gameImage: string}>;
+
+  droppedGames = [];
+  droppedGamesCounter = 0;
+
+  onGamesDrop(e: any) {
+    if(this.droppedGamesCounter < 9){
+      this.droppedGames.push(e.dragData);
+      this.removeItem(e.dragData, this.senderGamesArray);
+      this.droppedGamesCounter +=1;
+    }    
+  }
+
+  removeItem(item: any, list: Array<any>) {
+    let index = list.map(function (e) {
+      return e.title
+    }).indexOf(item.title);
+    list.splice(index, 1);
+  }
+
   errorMessage: string;
   status: string;
 
@@ -50,7 +75,15 @@ export class ExchangeComponent implements OnInit {
     this.exchangeService.getSenderGames(id)
                         .subscribe(
                             senderGames => {
-                            	this.senderGames = senderGames;
+                              this.senderGamesArray = [];
+
+                              for (var i =0; i < senderGames.length; i++) {
+                                var singleSenderGame = {
+                                  title: senderGames[i].title,
+                                  gameImage: senderGames[i].Image
+                                }
+                                this.senderGamesArray.push(singleSenderGame);
+                              }
                         	},
                         	error => this.errorMessage = <any>error);  
     this.getSenderUserInfo();  

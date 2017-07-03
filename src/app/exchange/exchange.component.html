@@ -46,34 +46,16 @@
 							<div class="exchange-arrows">
 								<img src="{{this.appService.getUrl('/assets/images/arrows.png')}}" />
 							</div>
-							<div class="drop-down-area">
-								<div class="drop-down-container">
-									<div class="drop-down-element">
-										<img src="{{this.appService.getUrl('/assets/uploads/covers/catannew.jpg')}}" />
+							<div class="drag-drop-area">
+								<div class="drag-drop-container" droppable 
+									[dragOverClass]="'drag-target-border-green'"
+									[dragHintClass]="'drag-hint'" 
+									(onDrop)="onGamesDrop($event)">
+									<div *ngFor="let game of droppedGames" class="drag-drop-element">
+										<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.gameImage }}" />
 									</div>
-									<div class="drop-down-element">
-										<img src="{{this.appService.getUrl('/assets/uploads/covers/graotron.jpg')}}" />
-									</div>
-									<div class="drop-down-element">
-										<p>+</p>
-									</div>
-									<div class="drop-down-element">
-										<p>+</p>
-									</div>
-									<div class="drop-down-element">
-										<p>+</p>
-									</div>
-									<div class="drop-down-element">
-										<p>+</p>
-									</div>
-									<div class="drop-down-element">
-										<p>+</p>
-									</div>
-									<div class="drop-down-element">
-										<p>+</p>
-									</div>
-									<div class="drop-down-element">
-										<p>+</p>
+									<div class="drag-drop-element">
+										<p>{{ droppedGamesCounter }}</p>
 									</div>
 								</div>
 							</div>
@@ -83,25 +65,24 @@
 						<div class="list-box">
 							<h3>Lista Twoich gier</h3>
 							<div class="list-content">
-								<div *ngFor="let game of senderGames" class="games">
-									<li>{{ game.title}}</li>
+								<div class="games">
+									<li [draggable] *ngFor="let game of senderGamesArray" 
+									[dragData]="game"> {{ game.title }} </li>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-<!-- 
+<!--
 			<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ recipientGame?.Image }}" />
 			<p> gra odbiorcy : {{recipientGame?._id}}</p>
-			</div>
-			
-		   
+			</div>	
 
 			<p> Gry nadawcy </p>
 			<div *ngFor="let game of senderGames">
 				<p> {{ game.title}} </p>
 -->
-	    	</div>
-	    </div> 
+			</div>
+		</div>
 	</div>
 </section>

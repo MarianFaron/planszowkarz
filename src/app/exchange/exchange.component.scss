@@ -118,15 +118,22 @@ section#exchange{
 									height: 60px;
 								}
 							}
-							.drop-down-area{
+							.drag-drop-area{
 								width: 40%;
 								display: flex;
 								justify-content: center;
-								.drop-down-container{
-									max-width: 200px;
+								.drag-hint {
+									border: #ffc100 dashed 2px;
+								}
+								.drag-target-border-green {
+									border: #3c763d dashed 2px;
+								}
+								.drag-drop-container{
+									padding: 20px;
+									max-width: 240px;
 									display: flex;
 									flex-wrap: wrap;
-									.drop-down-element{
+									.drag-drop-element{
 										border: 1px solid #f98d1a;
 										margin-left: 5px;
 										margin-top: 5px;
@@ -189,3 +196,6 @@ section#exchange{
 		}
 	}
 }
+
+
+    
