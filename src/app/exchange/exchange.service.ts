@@ -30,7 +30,6 @@ export class ExchangeService {
     getRecipientGame(id: string) {
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-      // `${this.userGameUrl}/${id}`
 
       return this.http.get(`${this.userGameUrl}/${id}`, options)
                       .map(this.appService.extractData)

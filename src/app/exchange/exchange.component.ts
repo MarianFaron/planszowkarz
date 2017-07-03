@@ -48,7 +48,6 @@ export class ExchangeComponent implements OnInit {
   errorMessage: string;
   status: string;
 
-  recipientID: string;
   recipientGame: UserGame; 
   recipientInfo: UserInfo;
   senderGames: UserGame[];
@@ -108,14 +107,13 @@ export class ExchangeComponent implements OnInit {
                         .subscribe(
                             recipientGame => {
                               this.recipientGame = recipientGame;
-                              this.recipientID = this.recipientGame.userID;
+                              this.getRecipientUserInfo(recipientGame.userID._id);
                             },
                             error => this.errorMessage = <any>error);
-    this.getRecipientUserInfo(this.recipientID);
   }
 
   // Pobierz dane odbiorcy
-  getRecipientUserInfo(id: string){    
+  getRecipientUserInfo(id: string){
     this.userInfoService.getUser(id)
                         .subscribe(
                             userInfo => {

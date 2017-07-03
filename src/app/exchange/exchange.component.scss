@@ -104,9 +104,21 @@ section#exchange{
 								width: 40%;
 								display: flex;
 								justify-content: center;
+								flex-direction: column;
+								text-align: center;
 								img{
 									width: 100px;
 									height: 100px;
+									margin: 20px auto;
+								}
+								h3{
+									font-size: 20px;
+									margin: 0;
+								}
+								h4{
+									font-size: 15px;
+									margin: 0;
+									line-height: 20px;
 								}
 							}
 							.exchange-arrows{

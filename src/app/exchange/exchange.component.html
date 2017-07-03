@@ -4,21 +4,21 @@
 		<div class="exchange-content">
 			<div class="container">
 				<div class="users-info">
-					<div *ngIf="senderInfo" class="recipient-box">
+					<div *ngIf="recipientInfo" class="recipient-box">
 						<div class="recipient">
-							<div *ngIf="senderInfo?.facebook">
+							<div *ngIf="recipientInfo?.facebook">
 								<img class="user-avatar" alt="facebook-avatar"
-								src="http://graph.facebook.com/{{senderInfo?.facebook.id}}/picture?width=130&amp;height=130" />
+								src="http://graph.facebook.com/{{recipientInfo?.facebook.id}}/picture?width=130&amp;height=130" />
 							</div>
-							<div *ngIf="!senderInfo?.facebook">
-								<img *ngIf="senderInfo?.avatarImage" class="user-avatar" alt="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{senderInfo?.avatarImage}}" />
+							<div *ngIf="!recipientInfo?.facebook">
+								<img *ngIf="recipientInfo?.avatarImage" class="user-avatar" alt="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{recipientInfo?.avatarImage}}" />
 							</div>
 							<div class="recipient-info">
-								<p *ngIf="senderInfo?.facebook"> {{senderInfo?.facebook.name}}</p>
-								<p *ngIf="!senderInfo?.facebook"> {{senderInfo?.local.login}}</p>
-								<li>Liczba gier na wymianę: {{senderInfo?.numberOfGames}}</li>
-								<li>Liczba przeprowadzonych wymian: {{senderInfo?.numberOfExchanges}}</li>
-								<li>Ocena społeczności: {{senderInfo?.sumOfGrades}}</li>
+								<p *ngIf="recipientInfo?.facebook"> {{recipientInfo?.facebook.name}}</p>
+								<p *ngIf="!recipientInfo?.facebook"> {{recipientInfo?.local.login}}</p>
+								<li>Liczba gier na wymianę: {{recipientInfo?.numberOfGames}}</li>
+								<li>Liczba przeprowadzonych wymian: {{recipientInfo?.numberOfExchanges}}</li>
+								<li>Ocena społeczności: {{recipientInfo?.sumOfGrades}}</li>
 							</div>
 						</div>
 					</div>
@@ -41,7 +41,10 @@
 						</div>
 						<div class="panel-content">
 							<div class="recipient-game">
+								<h3> {{ recipientGame?.title }} </h3>								
 								<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ recipientGame?.Image }}" />
+								<h4> Kategoria: {{ recipientGame?.category }} </h4>
+								<h4> Stan: {{ recipientGame?.state }} </h4>
 							</div>
 							<div class="exchange-arrows">
 								<img src="{{this.appService.getUrl('/assets/images/arrows.png')}}" />
