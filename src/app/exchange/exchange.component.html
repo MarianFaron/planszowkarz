@@ -56,10 +56,15 @@
 									(onDrop)="onGamesDrop($event)">
 									<div *ngFor="let game of droppedGames" class="drag-drop-element">
 										<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.gameImage }}" />
+										<span class="glyphicon glyphicon glyphicon glyphicon-remove" aria-hidden="true" 
+										(click)="removeFromDragAndDrop(game.title, game.gameImage)"></span>
 									</div>
 									<div *ngFor="let i of Arr(droppedGamesCounter).fill(1)"class="drag-drop-element">
 										<p>+</p>
 									</div>
+								</div>
+								<div class="drag-drop-info">
+									<p><span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>Przeciągnij gry, które chcesz zaproponować użytkownikowi.</p>
 								</div>
 							</div>
 						</div>

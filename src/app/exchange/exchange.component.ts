@@ -28,21 +28,33 @@ export class ExchangeComponent implements OnInit {
 
   droppedGames = [];
   droppedGamesCounter = 9;
-  Arr = Array; //Array type captured in a variable
+  Arr = Array;
 
   onGamesDrop(e: any) {
     if(this.droppedGamesCounter > 0){
       this.droppedGames.push(e.dragData);
-      this.removeItem(e.dragData, this.senderGamesArray);
+      this.addToDragAndDrop(e.dragData, this.senderGamesArray);
       this.droppedGamesCounter -=1;
     }    
   }
 
-  removeItem(item: any, list: Array<any>) {
+  addToDragAndDrop(item: any, list: Array<any>) {
     let index = list.map(function (e) {
       return e.title
     }).indexOf(item.title);
     list.splice(index, 1);
+  }
+
+  removeFromDragAndDrop(title: string, gameImage: string){
+    this.droppedGamesCounter +=1;
+    var singleSenderGame = {
+      title: title,
+      gameImage: gameImage
+    }
+    this.senderGamesArray.push(singleSenderGame); 
+    this.droppedGames = this.droppedGames.filter(singleSenderGame => singleSenderGame.title !== title);        
+    
+    
   }
 
   errorMessage: string;
