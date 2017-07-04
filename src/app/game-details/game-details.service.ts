@@ -11,18 +11,16 @@ import { GameDetails } from './game-details';
 @Injectable()
 export class GameDetailsService {
 
-    constructor (private http: Http, private appService: AppService) {}
+  constructor (private http: Http, private appService: AppService) {}
 
-    private userGameUrl = this.appService.getUrl('/app/userGames');
+  private userGameUrl = this.appService.getUrl('/app/userGames');
 
-    getGame(id: string) {
-      let headers = new Headers({ 'Content-Type': 'application/json' });
-      let options = new RequestOptions({ headers: headers });
-      // `${this.userGameUrl}/${id}`
+  getGame(id: string) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
 
-      return this.http.get(`${this.userGameUrl}/${id}`, options)
-                      .map(this.appService.extractData)
-                      .catch(this.appService.handleError);
-    }
-
+    return this.http.get(`${this.userGameUrl}/${id}`, options)
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
+  }
 }

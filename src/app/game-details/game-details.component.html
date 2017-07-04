@@ -37,52 +37,9 @@
 				</div>
 			</div>
 			<div class="exchange-button" *ngIf="this.appService.isLoggedIn()">
-		        <button *ngIf="this.appService.getCurrentUser()._id != gameDetails?.userID._id" type="button" class="btn btn-default custom-button" data-toggle="modal" attr.data-target="#exchange-{{gameDetails?._id}}" data-dismiss="modal">
-		              Wymień się!
-		        </button>
+		        <button *ngIf="this.appService.getCurrentUser()._id != gameDetails?.userID._id" 
+		        routerLink="/exchange/{{ gameDetails?._id }}" type="button" class="btn btn-default custom-button">Wymień się!</button>
 			</div>
-
-      <!-- Exchange Game Modal -->
-
-      <div class="modal fade" id="exchange-{{gameDetails?._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Wymień się</h4>
-            </div>
-            <div class="modal-body">
-                  <p>Wybierz gry za które możesz się wymienić.
-                    <b>
-                      <span *ngIf="gameDetails?.userID.local">{{gameDetails?.userID.local.login}}</span>
-                      <span *ngIf="gameDetails?.userID.facebook">{{gameDetails?.userID.facebook.name}}</span>
-                    </b>
-                     wybierze jedną z nich na wymianę.
-                  </p>
-              <div *ngFor="let option of options">
-                    <div class="checkbox">
-                      <label>
-                          <input type="checkbox"
-                                 name="options"
-                                 [(ngModel)]="option.checked"
-                                 value="{{option.value}}"/>
-                          <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                          {{option.name}}
-                      </label>
-                    </div>
-                  </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-color" data-dismiss="modal">Anuluj</button>
-                <button type="button" class="btn btn-default custom-button"
-        				(click)="this.start(gameDetails, gameDetails?.userID._id, gamesList);
-        				registerExchange(gameDetails?._id, gameDetails?.userID._id)" data-dismiss="modal">Wyślij</button>
-          </div>
-        </div>
-      </div>
-  </div>
-
-
 			<!--
 			<div class="other-games-box">
 				<h3>Podobne gry</h3>

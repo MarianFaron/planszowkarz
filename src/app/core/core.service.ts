@@ -7,7 +7,6 @@ import 'rxjs/add/operator/map';
 import "rxjs/add/operator/do";
 
 import { UserGame } from './../profile/user-games/user-games';
-import { UserInfo } from './../profile/user-info/user-info';
 
 @Injectable()
 export class CoreService {
@@ -33,5 +32,5 @@ export class CoreService {
       return this.http.get(this.sliderGames, options)
                       .map(this.appService.extractData)
                       .catch(this.appService.handleError);
-    }    
+    }
 }
