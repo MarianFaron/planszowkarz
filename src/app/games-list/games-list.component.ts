@@ -253,6 +253,7 @@ export class GamesListComponent implements OnInit {
   }
 
   start(game: string, userId: string) {
+
     this.currentUserGamesIds = [];
     for(var i = 0; i<this.options.length; i++) {
       if(this.options[i].checked == true) {

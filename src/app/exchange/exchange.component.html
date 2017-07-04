@@ -36,10 +36,10 @@
 				</div>
 				<div class="exchange">
 					<div class="exchange-panel">
-						<div class="panel-header">
+						<div class="drag-drop-panel-header">
 							<h3>Panel wymiany</h3>
 						</div>
-						<div class="panel-content">
+						<div class="drag-drop-panel-content">
 							<div class="recipient-game">
 								<h3> {{ recipientGame?.title }} </h3>								
 								<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ recipientGame?.Image }}" />
@@ -68,6 +68,10 @@
 								</div>
 							</div>
 						</div>
+						<div class="drag-drop-panel-footer">
+							<button class="btn" type="button" name="button"
+								(click)="saveExchange(recipientGame, recipientGame._id, recipientInfo._id, senderInfo._id)">Wyślij</button>
+						</div>
 					</div>
 					<div class="list-of-game">
 						<div class="list-box">
@@ -81,15 +85,6 @@
 						</div>
 					</div>
 				</div>
-<!--
-			<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ recipientGame?.Image }}" />
-			<p> gra odbiorcy : {{recipientGame?._id}}</p>
-			</div>	
-
-			<p> Gry nadawcy </p>
-			<div *ngFor="let game of senderGames">
-				<p> {{ game.title}} </p>
--->
 			</div>
 		</div>
 	</div>

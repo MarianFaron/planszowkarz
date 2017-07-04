@@ -86,7 +86,7 @@ section#exchange{
 						border-radius: 10px;
 						display: flex;
 						flex-direction: column;
-						.panel-header{
+						.drag-drop-panel-header{
 							h3{
 								padding: 0;
 								margin: 0px 0px 20px 0px;
@@ -97,7 +97,7 @@ section#exchange{
 								border-radius: 10px;								
 							}
 						}
-						.panel-content{
+						.drag-drop-panel-content{
 							display: flex;
 							flex-direction: row;
 							justify-content: space-between;
@@ -190,6 +190,26 @@ section#exchange{
 										}
 									}									
 								}
+							}
+						}
+						.drag-drop-panel-footer{
+							border: none;
+							padding: 20px 0px;
+							display: flex;
+							justify-content: center;
+							button{
+								margin: 0;
+								color: white;
+    							font-weight: 500;
+    							background: #f98d1a;
+    							border: none;
+    							min-width: 100px;
+    							display: flex;
+    							align-items: center;
+    							justify-content: center;
+    							text-align: center;
+    							border-radius: 10px;
+    							height: 36px;
 							}
 						}
 					}

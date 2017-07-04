@@ -26,18 +26,20 @@ export class ExchangeComponent implements OnInit {
 
   senderGamesArray: Array<{title: string, gameImage: string}>;
 
-  droppedGames = [];
+  droppedGames = []; // tablica gier wrzuconych do kontenera drag & drop
   droppedGamesCounter = 9;
-  Arr = Array;
+  Arr = Array; // tablica pustych elementów w kontenerze drag & drop
 
+  // Drag & drop gry
   onGamesDrop(e: any) {
     if(this.droppedGamesCounter > 0){
       this.droppedGames.push(e.dragData);
       this.addToDragAndDrop(e.dragData, this.senderGamesArray);
       this.droppedGamesCounter -=1;
-    }    
+    }
   }
 
+  // Wrzucenie gry do kontenera drag & drop
   addToDragAndDrop(item: any, list: Array<any>) {
     let index = list.map(function (e) {
       return e.title
@@ -45,22 +47,22 @@ export class ExchangeComponent implements OnInit {
     list.splice(index, 1);
   }
 
+  // Usunięcie gry z kontenera drag & drop
   removeFromDragAndDrop(title: string, gameImage: string){
     this.droppedGamesCounter +=1;
     var singleSenderGame = {
       title: title,
       gameImage: gameImage
     }
-    this.senderGamesArray.push(singleSenderGame); 
-    this.droppedGames = this.droppedGames.filter(singleSenderGame => singleSenderGame.title !== title);        
-    
-    
+    this.senderGamesArray.push(singleSenderGame);
+    this.droppedGames = this.droppedGames.filter(singleSenderGame => singleSenderGame.title !== title);
   }
 
   errorMessage: string;
   status: string;
+  exchange: Exchange;
 
-  recipientGame: UserGame; 
+  recipientGame: UserGame;
   recipientInfo: UserInfo;
   senderGames: UserGame[];
   senderInfo: UserInfo;
@@ -75,11 +77,10 @@ export class ExchangeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-  	if(localStorage.getItem('currentUser')) {
-      this.getSenderUserGames();      
+    if(localStorage.getItem('currentUser')) {
+      this.getSenderUserGames();
     }
-  	this.getRecipientUserGame();    
-  }
+    this.getRecipientUserGame();  }
 
   // Pobierz gry nadawcy
   getSenderUserGames() {
@@ -96,9 +97,9 @@ export class ExchangeComponent implements OnInit {
                                 }
                                 this.senderGamesArray.push(singleSenderGame);
                               }
-                        	},
-                        	error => this.errorMessage = <any>error);  
-    this.getSenderUserInfo();  
+                          },
+                          error => this.errorMessage = <any>error);
+    this.getSenderUserInfo();
   }
 
   // Pobierz dane nadawcy
@@ -107,9 +108,9 @@ export class ExchangeComponent implements OnInit {
     this.userInfoService.getUser(id)
                         .subscribe(
                             userInfo => {
-                          		this.senderInfo = userInfo;
-                        	},
-                        	error => this.errorMessage = <any>error);    
+                              this.senderInfo = userInfo;
+                          },
+                          error => this.errorMessage = <any>error);
   }
 
   // Pobierz grę odbiorcy
@@ -131,6 +132,30 @@ export class ExchangeComponent implements OnInit {
                             userInfo => {
                               this.recipientInfo = userInfo;
                           },
-                          error => this.errorMessage = <any>error);    
+                          error => this.errorMessage = <any>error);
+  }
+
+  // Proces wymiany
+  saveExchange(recipientGame: string, recipientGameId: string, recipient: string, sender: string){
+    if(this.droppedGames.length == 0){
+      this.appService.showNotification('Powiadomienie', 'Wybierz co najmniej jedną swoją grę', 'danger');
+    }
+    else{
+      var proposeGames = [];
+      for (var i =0; i < this.droppedGames.length; i++) {
+        proposeGames.push(this.droppedGames[i].title);
+      }
+      
+      // Rejestracja wymiany
+      this.exchangeService.saveExchange(proposeGames, recipientGameId, sender, recipient)
+                          .subscribe(
+                              exchange => {
+                                  this.exchange = exchange
+                              }, error => this.errorMessage = <any>error); 
+       
+      //Wysłanie powiadomienia
+      this.appService.startTransaction(recipientGame, recipient, proposeGames).subscribe();
+      proposeGames.length = 0; 
+    }
   }
 }
