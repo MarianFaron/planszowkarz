@@ -1,7 +1,15 @@
 <section id="exchange">
 	<div class="exchange-box">
 		<div class="exchange-background">
-			<div class="container">
+			<div class="loading-exchange-content"
+				*ngIf="!loadData(recipientInfo, senderInfo, recipientGame, senderGamesArray);">
+				<div class="loading-information">
+					<h2> Ładowanie danych </h2>
+					<img src="../../assets/images/loading.gif" alt="" class="loading">
+				</div>
+			</div>
+			<div class="container" 
+				*ngIf="loadData(recipientInfo, senderInfo, recipientGame, senderGamesArray);">
 				<div class="users-info">
 					<div *ngIf="recipientInfo" class="recipient-box">
 						<div class="recipient">

@@ -30,6 +30,14 @@ export class ExchangeComponent implements OnInit {
   droppedGamesCounter = 9;
   Arr = Array; // tablica pustych elementów w kontenerze drag & drop
 
+  // Wyświetl widok po załadowaniu wszystkich danych
+  loadData(recipientInfo, senderInfo, recipientGame, senderGamesArray){
+    if(recipientInfo && senderInfo && recipientGame && senderGamesArray){
+      return true;
+    }
+    return false;
+  }
+
   // Drag & drop gry
   onGamesDrop(e: any) {
     if(this.droppedGamesCounter > 0){
