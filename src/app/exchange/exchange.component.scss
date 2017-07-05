@@ -9,17 +9,20 @@ section#exchange{
 			background-size: cover;
 			background-repeat: no-repeat;
 			background-position: center center;
-			height: calc(100vh - 90px);
-			min-height: 550px;
-			opacity: 0.35;
-		}
-		.exchange-content{
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
+			min-height: calc(100vh - 90px);
+			padding-bottom: 20px;
 			.container{
+				@media only screen and (max-width: 1199px) {
+					width: 100%;
+				}
+				@media only screen and (max-width: 940px) {
+					padding-left: 20px;
+					padding-right: 20px;
+				}
+				@media only screen and (max-width: 340px) {
+					padding-left: 5px;
+					padding-right: 5px;
+				}
 				.users-info{
 					margin-top: 20px;
 					padding: 5px;
@@ -30,44 +33,85 @@ section#exchange{
 					background-color: #F5F5F5;
 					opacity: 0.8;
 					border-radius: 10px;
-					.recipient{
-						display: flex;
-						align-items: flex-start;
-						img{
-							width: 130px;
-							height: 130px;
-							border-radius: 2px;
-							border: 4px solid #FFF;
+					.recipient-box{
+						@media only screen and (max-width: 840px) {
+							width: 100%
 						}
-						.recipient-info{
-							margin-left: 10px;
-							p{
-								font-size: 20px;
-								font-family: 'Open Sans', sans-serif;
-								color: #333;
+						.recipient{
+							display: flex;
+							align-items: flex-start;
+							@media only screen and (max-width: 840px) {
+								width: 100%;
 							}
-							li{
-								list-style: none;
-								font-family: 'Open Sans', sans-serif;
-								color: #333;
-								font-size: 14px;
+							@media only screen and (max-width: 440px) {
+								align-items: center;
+							}
+							img{
+								width: 130px;
+								height: 130px;
+								border-radius: 2px;
+								border: 4px solid #FFF;
+								@media only screen and (max-width: 940px) {
+									width: 100px;
+									height: 100px;
+								}
+								@media only screen and (max-width: 440px) {
+									width: 70px;
+									height: 70px;
+								}
+							}
+							.recipient-info{
+								margin-left: 10px;
+								p{
+									font-size: 20px;
+									font-family: 'Open Sans', sans-serif;
+									color: #333;
+								}
+								li{
+									list-style: none;
+									font-family: 'Open Sans', sans-serif;
+									color: #333;
+									font-size: 14px;
+									@media only screen and (max-width: 440px) {
+										display: none;
+									}
+								}
 							}
 						}
 					}
-					.sender{
-						display: flex;
-						align-items: flex-start;
-						img{
-							width: 130px;
-							height: 130px;
-							border-radius: 2px;
-							border: 4px solid #FFF;
+					.sender-box{
+						@media only screen and (max-width: 840px) {
+							width: 100%;
+							display: flex;
+							justify-content: flex-end;
 						}
-						p{
-							margin-right: 10px;
-							font-size: 20px;
-							font-family: 'Open Sans', sans-serif;
-							color: #333;
+						.sender{
+							display: flex;
+							align-items: flex-start;
+							@media only screen and (max-width: 440px) {
+								align-items: center;
+							}
+							img{
+								width: 130px;
+								height: 130px;
+								border-radius: 2px;
+								border: 4px solid #FFF;
+								@media only screen and (max-width: 940px) {
+									width: 100px;
+									height: 100px;
+								}
+								@media only screen and (max-width: 440px) {
+									width: 70px;
+									height: 70px;
+								}
+							}
+							p{
+								margin-right: 10px;
+								font-size: 20px;
+								font-family: 'Open Sans', sans-serif;
+								color: #333;
+								text-align: right;
+							}
 						}
 					}
 				}
@@ -78,6 +122,9 @@ section#exchange{
 					flex-direction: row;
 					flex-wrap: wrap;
 					min-height: 400px;
+					@media only screen and (max-width: 940px) {
+						flex-direction: column-reverse;
+					}
 					.exchange-panel{
 						width: 60%;
 						padding: 20px;
@@ -86,6 +133,15 @@ section#exchange{
 						border-radius: 10px;
 						display: flex;
 						flex-direction: column;
+						@media only screen and (max-width: 1199px) {
+							width: 65%;
+						}
+						@media only screen and (max-width: 940px) {
+							width: 100%;
+						}
+						@media only screen and (max-width: 340px) {
+							padding: 20px 5px;
+						}
 						.drag-drop-panel-header{
 							h3{
 								padding: 0;
@@ -94,7 +150,7 @@ section#exchange{
 								line-height: 35px;
 								color: #FFF;
 								background-color: #000;
-								border-radius: 10px;								
+								border-radius: 10px;
 							}
 						}
 						.drag-drop-panel-content{
@@ -104,12 +160,18 @@ section#exchange{
 							flex-wrap: wrap;
 							align-items: center;
 							height: 100%;
+							@media only screen and (max-width: 640px) {
+								flex-direction: column-reverse
+							}
 							.recipient-game{
 								width: 40%;
 								display: flex;
 								justify-content: center;
 								flex-direction: column;
 								text-align: center;
+								@media only screen and (max-width: 640px) {
+									width: 100%;
+								}
 								img{
 									width: 100px;
 									height: 100px;
@@ -129,6 +191,14 @@ section#exchange{
 								width: 20%;
 								display: flex;
 								justify-content: center;
+								@media only screen and (max-width: 1040px) {
+									width: 15%;
+								}
+								@media only screen and (max-width: 640px) {
+									width: 100%;
+									margin-top: 20px;
+									margin-bottom: 20px;
+								}
 								img{
 									width: 60px;
 									height: 60px;
@@ -139,6 +209,13 @@ section#exchange{
 								display: flex;
 								justify-content: center;
 								flex-direction: column;
+								@media only screen and (max-width: 1040px) {
+									width: 45%;
+								}
+								@media only screen and (max-width: 640px) {
+									width: 100%;
+									flex-direction: column-reverse;
+								}
 								.drag-hint {
 									border: #ffc100 dashed 2px;
 								}
@@ -150,6 +227,13 @@ section#exchange{
 									max-width: 240px;
 									display: flex;
 									flex-wrap: wrap;
+									@media only screen and (max-width: 1040px) {
+										margin: 0 auto;
+									}
+									@media only screen and (max-width: 340px) {
+										padding: 20px 0px;
+										justify-content: center;
+									}
 									.drag-drop-element{
 										border: 1px solid #f98d1a;
 										margin-left: 5px;
@@ -171,7 +255,7 @@ section#exchange{
 											top: -5px;
 											right: -5px;
 											color: #FF0000;
-											cursor: pointer;											
+											cursor: pointer;
 										}
 										p{
 											margin: 0;
@@ -183,12 +267,14 @@ section#exchange{
 								.drag-drop-info{
 									p{
 										font-style: italic;
+										@media only screen and (max-width: 1040px) {
+											text-align: center;
+										}
 										span{
 											margin-right: 10px;
 											font-size: 20px;
-
 										}
-									}									
+									}
 								}
 							}
 						}
@@ -219,23 +305,41 @@ section#exchange{
 						background-color: #F5F5F5;
 						opacity: 0.8;
 						border-radius: 10px;
+						@media only screen and (max-width: 940px) {
+							width: 100%;
+							margin-bottom: 20px;
+						}
 						.list-box{
 							padding: 20px;
 							width: 100%;
 							min-height: 500px;
+							@media only screen and (max-width: 940px) {
+								min-height: auto;
+							}
+							@media only screen and (max-width: 340px) {
+								padding: 20px 0px;
+							}
 							h3{
 								padding: 0;
 								margin: 0px 0px 20px 0px;
-								text-align: center;								
+								text-align: center;
 								line-height: 35px;
 								color: #FFF;
 								background-color: #000;
 								border-radius: 10px;
 							}
-							.list-content{								
+							.list-content{
 								.games{
 									padding-right: 20px;
 									padding-left: 20px;
+									@media only screen and (max-width: 1199px) {
+										padding: 0;
+									}
+									@media only screen and (max-width: 940px) {
+										display: flex;
+										flex-wrap: wrap;
+										justify-content: center;
+									}
 									li{
 										background-color: #f98d1a;
 										color: #F5F5F5;
@@ -245,6 +349,11 @@ section#exchange{
 										text-align: center;
 										cursor: pointer;
 										border-radius: 10px;
+										max-width: 250px;
+										@media only screen and (max-width: 940px) {
+											margin: 0px 10px 10px 10px;
+											width: 250px;
+										}
 									}
 								}
 							}
@@ -255,6 +364,3 @@ section#exchange{
 		}
 	}
 }
-
-
-    

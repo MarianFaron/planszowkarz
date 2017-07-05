@@ -1,7 +1,6 @@
 <section id="exchange">
 	<div class="exchange-box">
-		<div class="exchange-background"></div>
-		<div class="exchange-content">
+		<div class="exchange-background">
 			<div class="container">
 				<div class="users-info">
 					<div *ngIf="recipientInfo" class="recipient-box">
@@ -41,7 +40,7 @@
 						</div>
 						<div class="drag-drop-panel-content">
 							<div class="recipient-game">
-								<h3> {{ recipientGame?.title }} </h3>								
+								<h3> {{ recipientGame?.title }} </h3>
 								<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ recipientGame?.Image }}" />
 								<h4> Kategoria: {{ recipientGame?.category }} </h4>
 								<h4> Stan: {{ recipientGame?.state }} </h4>
