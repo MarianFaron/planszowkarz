@@ -64,7 +64,7 @@
 									<div *ngFor="let game of droppedGames" class="drag-drop-element">
 										<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.gameImage }}" />
 										<span class="glyphicon glyphicon glyphicon glyphicon-remove" aria-hidden="true" 
-										(click)="removeFromDragAndDrop(game.title, game.gameImage)"></span>
+										(click)="removeFromDragAndDrop(game.id, game.title, game.gameImage)"></span>
 									</div>
 									<div *ngFor="let i of Arr(droppedGamesCounter).fill(1)"class="drag-drop-element">
 										<p>+</p>

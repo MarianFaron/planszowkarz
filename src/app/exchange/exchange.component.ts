@@ -20,11 +20,12 @@ import { UserInfo } from './../profile/user-info/user-info';
 export class ExchangeComponent implements OnInit {
 
   singleSenderGame = {
+    id: 0,
     title: '',
     gameImage: ''
   };
 
-  senderGamesArray: Array<{title: string, gameImage: string}>;
+  senderGamesArray: Array<{id: number, title: string, gameImage: string}>;
 
   droppedGames = []; // tablica gier wrzuconych do kontenera drag & drop
   droppedGamesCounter = 9;
@@ -50,20 +51,21 @@ export class ExchangeComponent implements OnInit {
   // Wrzucenie gry do kontenera drag & drop
   addToDragAndDrop(item: any, list: Array<any>) {
     let index = list.map(function (e) {
-      return e.title
-    }).indexOf(item.title);
+      return e.id
+    }).indexOf(item.id);
     list.splice(index, 1);
   }
 
   // Usunięcie gry z kontenera drag & drop
-  removeFromDragAndDrop(title: string, gameImage: string){
-    this.droppedGamesCounter +=1;
+  removeFromDragAndDrop(id: number, title: string, gameImage: string){    
     var singleSenderGame = {
+      id: id,
       title: title,
       gameImage: gameImage
     }
     this.senderGamesArray.push(singleSenderGame);
-    this.droppedGames = this.droppedGames.filter(singleSenderGame => singleSenderGame.title !== title);
+    this.droppedGames = this.droppedGames.filter(singleSenderGame => singleSenderGame.id !== id);
+    this.droppedGamesCounter +=1;
   }
 
   errorMessage: string;
@@ -100,6 +102,7 @@ export class ExchangeComponent implements OnInit {
 
                               for (var i =0; i < senderGames.length; i++) {
                                 var singleSenderGame = {
+                                  id: i,
                                   title: senderGames[i].title,
                                   gameImage: senderGames[i].Image
                                 }
