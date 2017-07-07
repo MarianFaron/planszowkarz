@@ -90,7 +90,8 @@ export class ExchangeComponent implements OnInit {
     if(localStorage.getItem('currentUser')) {
       this.getSenderUserGames();
     }
-    this.getRecipientUserGame();  }
+    this.getRecipientUserGame();  
+  }
 
   // Pobierz gry nadawcy
   getSenderUserGames() {

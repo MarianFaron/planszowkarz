@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../app.service';
 import { CoreService } from '../core/core.service';
 import { GameDetailsService } from './game-details.service';
-import { GameDetails } from './game-details';
+import { UserGame } from './../profile/user-games/user-games';
 
 @Component({
   selector: 'app-game-details',
@@ -16,7 +16,7 @@ export class GameDetailsComponent implements OnInit {
 
   errorMessage: string;
   status: string;
-  gameDetails: GameDetails;
+  userGame: UserGame;
 
   constructor(
     private http: Http,
@@ -31,7 +31,7 @@ export class GameDetailsComponent implements OnInit {
     let id = this.activeRoute.snapshot.params['_id'];
     this.gameDetailsService.getGame(id)
                            .subscribe(
-                             gameDetails => this.gameDetails = gameDetails,
+                             userGame => this.userGame = userGame,
                              error => this.errorMessage = <any>error
                            );
    }

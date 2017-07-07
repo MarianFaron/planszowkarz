@@ -1,9 +1,12 @@
 export class Exchange {
   constructor(
     public id: number,
-    public sender: string[],
-    public recipient: string[],
+    public recipientGame: string,
+    public sender: string,
+    public recipient: string,
+    public proposeGames: string[],
     public status: string,
-    public selectedGames: string,
-    public proposeGames: string){ }
+    public date: string,
+    public senderGame: string)
+    { }
 }
