@@ -2,24 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../app.service';
-import { CoreService } from '../core/core.service';
 import { OtherUserService } from './other-user.service';
-import { OtherUser } from './other-user';
+import { UserInfo } from '../profile/user-info/user-info';
 import { UserGame } from '../profile/user-games/user-games';
-
 
 @Component({
   selector: 'app-other-user',
   templateUrl: './other-user.component.html',
   styleUrls: ['./other-user.component.scss'],
-  providers: [OtherUserService, AppService, CoreService]
+  providers: [OtherUserService, AppService]
 })
 
 export class OtherUserComponent implements OnInit {
 
   errorMessage: string;
   status: string;
-  userInfo: OtherUser[];
+  userInfo: UserInfo;
   userGame: UserGame[];
   userID: string;
 
@@ -27,8 +25,7 @@ export class OtherUserComponent implements OnInit {
     private http: Http,    
     private activeRoute: ActivatedRoute,
     private otherUserService: OtherUserService,
-    private appService: AppService,
-    private coreService: CoreService
+    private appService: AppService
   ) {}
 
 
@@ -38,7 +35,7 @@ export class OtherUserComponent implements OnInit {
   }
 
   getUserInfo(login: string) {
-    this.otherUserService.getUser(login)
+    this.otherUserService.getUserInfo(login)
                      .subscribe(
                         userInfo => {
                           this.userInfo = userInfo;
@@ -48,11 +45,11 @@ export class OtherUserComponent implements OnInit {
   }
 
   getUserID(userInfo: any){
-    this.getUserGame(userInfo._id);
+    this.getUserGames(userInfo._id);
   }
 
-  getUserGame(id: string) {
-    this.otherUserService.getGames(id)
+  getUserGames(id: string) {
+    this.otherUserService.getUserGames(id)
       .subscribe(
                   userGame => this.userGame = userGame.reverse(),
                   error => this.errorMessage = <any>error);

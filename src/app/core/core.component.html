@@ -19,11 +19,11 @@
 								<h3>{{ game.title }}</h3>
 							</a>
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                <span *ngIf="game.userID.local">
+                <span *ngIf="!game.userID.facebook">
 							<a routerLink="/user-profile/{{ game.userID.local.login }}"> Dodane przez: {{ game.userID.local.login }}</a><br>
 							</span>
                 <span *ngIf="game.userID.facebook">
-							<a routerLink="/user-profile/{{ game.userID.facebook.name }}"> Dodane przez: {{ game.userID.facebook.name }}</a><br>
+							<a routerLink="/user-profile/{{ game.userID.local.login }}"> Dodane przez: {{ game.userID.facebook.name }}</a><br>
 							</span>
                 <div *ngIf="game.userID.city">
                   <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lokalizacja: {{ game.userID.city }}

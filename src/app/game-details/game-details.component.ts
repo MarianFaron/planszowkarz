@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../app.service';
-import { CoreService } from '../core/core.service';
 import { GameDetailsService } from './game-details.service';
 import { UserGame } from './../profile/user-games/user-games';
 
@@ -10,7 +9,7 @@ import { UserGame } from './../profile/user-games/user-games';
   selector: 'app-game-details',
   templateUrl: './game-details.component.html',
   styleUrls: ['./game-details.component.scss'],
-  providers: [GameDetailsService, AppService, CoreService]
+  providers: [GameDetailsService, AppService]
 })
 export class GameDetailsComponent implements OnInit {
 
@@ -22,8 +21,7 @@ export class GameDetailsComponent implements OnInit {
     private http: Http,
     private gameDetailsService: GameDetailsService,
     private appService: AppService,
-    private activeRoute: ActivatedRoute,
-    private coreService: CoreService
+    private activeRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {

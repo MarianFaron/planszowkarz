@@ -4,7 +4,7 @@
 			<div class="col-md-12">
 				<h3>Przeglądasz profil użytkownika: 
 					<b>
-						<span *ngIf="userInfo?.local && !userInfo?.facebook">{{userInfo?.local.login}}</span>
+						<span *ngIf="!userInfo?.facebook">{{userInfo?.local.login}}</span>
 						<span *ngIf="userInfo?.facebook">{{userInfo?.facebook.name}}</span>
 					</b>
 				</h3>

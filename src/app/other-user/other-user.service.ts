@@ -6,29 +6,28 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
-import { OtherUser } from './other-user';
-import { UserGame } from '../profile/user-games/user-games';
+import { UserInfo } from './../profile/user-info/user-info';
+import { UserGame } from './../profile/user-games/user-games';
 
 
 @Injectable()
 export class OtherUserService {
 
-	private userInfoURL = this.appService.getUrl('/app/users/login');
+    private userInfoURL = this.appService.getUrl('/app/users/login');
     private userUrl = this.appService.getUrl('/app/users');
 
-	constructor (private http: Http, private appService: AppService) {}
+    constructor (private http: Http, private appService: AppService) {}
 
-	// get information about one user
-	getUser(login: string): Observable<OtherUser[]> {
-		let headers = new Headers({ 'Content-Type': 'application/json' });
-    	let options = new RequestOptions({ headers: headers });
+    getUserInfo(login: string): Observable<UserInfo> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
 
-    	return this.http.get(`${this.userInfoURL}/${login}`, options)
+        return this.http.get(`${this.userInfoURL}/${login}`, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
-	}
+    }
 
-	getGames(id: string): Observable<UserGame[]>{
+    getUserGames(id: string): Observable<UserGame[]>{
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
