@@ -5,25 +5,45 @@
 	font-size: 1.0em;
 	box-shadow: 2px 2px 1px #d5d5d5;
 	border-radius: 0;
-	.navbar-nav {
-		width: 100%;
-		display: flex;
-		li {
-			width: 24%;
-			text-align: center;
-			@media (max-width: 580px){
-				width: 100%;
+	.container-fluid {
+		padding: 0;
+		.navbar-nav {
+			width: 100%;
+			display: flex;
+			margin: 8px 0px;
+			@media only screen and (max-width: 580px) {
+				flex-direction: column;
 			}
-			a.active-link {
-				color: rgb(249, 141, 26);
-			}
-			a:hover,
-			a:focus,
-			a:active {
-				color: rgb(249, 141, 26);
-			}
-			span {
-				margin-right: 5px;
+			li {
+				width: 25%;
+				text-align: center;
+				@media only screen and (max-width: 580px) {
+					width: 100%;
+				}
+				a.active-link {
+					color: rgb(249, 141, 26);					
+				}
+				a {
+					@media only screen and (max-width: 678px) {
+						display: flex;
+						justify-content: center;
+						flex-direction: column;
+					}
+					@media only screen and (max-width: 580px) {
+						flex-direction: row;
+					}
+				}
+				a:hover,
+				a:focus,
+				a:active {
+					color: rgb(249, 141, 26);
+				}
+				span {
+					margin-right: 5px;
+					@media only screen and (max-width: 678px) {
+						margin-bottom: 5px;
+					}
+				}
 			}
 		}
 	}
@@ -58,7 +78,7 @@
 		display: flex;
 		width: 100%;
 		justify-content: space-between;
-		@media (max-width: 580px){
+		@media only screen and (max-width: 580px) {
 			flex-direction: column;
 		}
 		.gameState {
@@ -89,7 +109,7 @@
 		p {
 			text-align: left;
 		}
-		gameTitle {
+		.gameTitle {
 			p {
 				white-space: nowrap;
 				text-overflow: ellipsis;
