@@ -9,7 +9,7 @@ import { UserGame } from './../profile/user-games/user-games';
 @Component({
   selector: 'app-core',
   templateUrl: './core.component.html',
-  styleUrls: ['./core.component.css'],
+  styleUrls: ['./core.component.scss'],
   providers: [AppService, CoreService, UserGameService,]
 })
 export class CoreComponent implements OnInit {
