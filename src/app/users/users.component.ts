@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { User }              from './user';
+import { User }              from './users';
 import { UsersService }       from './users.service';
 import { AppService }       from '../app.service';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css', '../app.component.scss'],
+  styleUrls: ['./users.component.scss', '../app.component.scss'],
   providers: [AppService, UsersService]
 })
 export class UsersComponent implements OnInit {

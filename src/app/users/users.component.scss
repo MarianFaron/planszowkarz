@@ -1,0 +1,28 @@
+.inner{
+  background: #fff;
+  box-shadow: 2px 2px 1px #d5d5d5;
+  padding: 20px;
+  .forgot-button {
+    background: transparent;
+    color: #f98d1a;
+    text-decoration: underline;
+    display: inline-block;
+    margin-top: 15px;
+    float: right;
+    @media (max-width: 568px) {
+      float: none;
+    }
+  }
+  .alert-danger{
+    border-radius: 0;
+    border: none;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    background: url("../../assets/images/icons/alert.png") no-repeat center right;
+    background-color: #F44336;
+  }
+}
+
+
+
