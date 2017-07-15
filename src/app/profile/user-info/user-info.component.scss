@@ -8,14 +8,12 @@
 			color: #333;
 			text-decoration: underline;
 		}
-
 		a:active,
 		a:focus,
 		a:hover {
 			color: #f98d1a;
 			text-decoration: underline;
 		}
-
 		.user-panel-header {
 			background-color: #f8f8f8;
 			border: 1px solid #e7e7e7;
@@ -25,13 +23,11 @@
 			line-height: 40px;
 			color: inherit;
 			margin: 0;
-
 			h5 {
 				font-size: 16px;
 				font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 			}
 		}
-
 		.user-avatar {
 			max-width: 250px;
 			max-height: 200px;
@@ -39,29 +35,24 @@
 			position: relative;
 			margin: 0 auto;
 		}
-
 		ul {
 			width: 100%;
 			margin-top: 20px;
 			padding: 0;
 			display: block;
-
 			li {
 				text-decoration: none;
 				list-style: none;
 				line-height: 22px;
 				padding-left: 3%;
-
 				span {
 					margin-right: 10px;
 				}
 			}
-
 			li.username {
 				font-size: 20px;
 				margin-bottom: 15px;
 			}
-
 			li.usercity {
 				margin-bottom: 15px;
 			}
@@ -82,6 +73,5 @@
   color: white;
   font-weight: 500;
   font-size: 16px;
-  // background: url("../../assets/images/icons/alert.png") no-repeat center right;
   background-color: #F44336;
-  }
+}

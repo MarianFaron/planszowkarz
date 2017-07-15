@@ -7,7 +7,7 @@ import { UserHistoryService } from '../user-history.service';
 @Component({
   selector: 'app-user-history-accepted',
   templateUrl: './user-history-accepted.component.html',
-  styleUrls: ['../user-history.component.css'],
+  styleUrls: ['../user-history.component.scss'],
   providers: [UserHistoryService]
 })
 export class UserHistoryAcceptedComponent implements OnInit {

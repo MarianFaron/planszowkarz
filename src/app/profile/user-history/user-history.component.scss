@@ -1,0 +1,119 @@
+.navbar-default {
+	margin-top: 15px;
+	background-color: #FFF;
+	font-weight: 700;
+	font-size: 1.0em;
+	box-shadow: 2px 2px 1px #d5d5d5;
+	border-radius: 0;
+	.navbar-nav {
+		width: 100%;
+		display: flex;
+		li {
+			width: 24%;
+			text-align: center;
+			@media (max-width: 580px){
+				width: 100%;
+			}
+			a.active-link {
+				color: rgb(249, 141, 26);
+			}
+			a:hover,
+			a:focus,
+			a:active {
+				color: rgb(249, 141, 26);
+			}
+			span {
+				margin-right: 5px;
+			}
+		}
+	}
+}
+
+.inner {
+	margin: 10px auto;
+	padding: 15px;
+}
+
+.single-transaction {
+	overflow: auto;
+	/* received */
+	.senderBox {
+		display: flex;
+		justify-content: center;
+		p {
+			margin-right: 5px;
+		}
+		.sender {
+			color: #f98d1a;
+		}
+	}
+	.gameTitleBig {
+		p {
+			text-align: center;
+			color: #f98d1a;
+			font-size: 30px;
+		}
+	}
+	.stateBox {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		@media (max-width: 580px){
+			flex-direction: column;
+		}
+		.gameState {
+			display: flex;
+			align-items: flex-end;
+			p{
+				margin: 0px 5px 0px 0px;
+			}
+		}
+	}
+	/* accepted, rejected, sent */
+	.single-transaction-content {
+		p {
+			margin: 5px 0;
+			text-align: center;
+		}
+		a {
+			color: #333;
+			text-decoration: none;
+		}
+		a:hover {
+			color: #f98d1a;
+		}
+	}
+	#left {
+		float:left;
+		width:200px;
+		p {
+			text-align: left;
+		}
+		gameTitle {
+			p {
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+		}
+	}
+	#center {
+		margin:0 auto;
+		width:200px;
+	}
+	#right {
+		float:right;
+		width:200px;
+		text-align: right;
+		p {
+			text-align: right;
+		}
+		.gameTitle {
+			p {
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+		}
+	}
+}
