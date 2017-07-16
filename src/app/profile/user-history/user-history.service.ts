@@ -59,8 +59,6 @@ export class UserHistoryService {
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
 
-      console.log("serwis: " + senderGame);
-
       return this.http.patch(`${this.exchangeUrl}/${id}`, {senderGame, status}, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);

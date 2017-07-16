@@ -23,7 +23,7 @@ describe('UsersComponent', () => {
   });
 });
 
-describe('UsersService', () => {
+/*describe('UsersService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpModule],
@@ -99,4 +99,4 @@ describe('UsersService', () => {
         expect(user.message).toBe('Successful logout user');
     });
   })));
-});
+});*/

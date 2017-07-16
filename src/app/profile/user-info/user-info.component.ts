@@ -77,5 +77,4 @@ export class UserInfoComponent implements OnInit {
                         },
                         error => this.errorMessage = <any>error);
   }
-
 }

@@ -69,6 +69,7 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "morgan": "^1.8.1",
+    "ng2-drag-drop": "^2.0.1",
     "ngx-swiper-wrapper": "^4.0.0",
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",

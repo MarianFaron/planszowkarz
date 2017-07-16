@@ -16,7 +16,7 @@ describe('GameDetailsComponent', () => {
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  /*beforeEach(() => {
     fixture = TestBed.createComponent(GameDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -24,5 +24,5 @@ describe('GameDetailsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
+  });*/
 });
