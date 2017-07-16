@@ -11,7 +11,7 @@ import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 @Component({
   selector: 'app-user-config',
   templateUrl: './user-config.component.html',
-  styleUrls: ['./user-config.component.css'],
+  styleUrls: ['./user-config.component.scss'],
   providers: [UserConfigService, AppService]
 })
 

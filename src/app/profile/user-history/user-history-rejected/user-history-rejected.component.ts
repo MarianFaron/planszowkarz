@@ -7,7 +7,7 @@ import { UserHistoryService } from '../user-history.service';
 @Component({
   selector: 'app-user-history-rejected',
   templateUrl: './user-history-rejected.component.html',
-  styleUrls: ['../user-history.component.css'],
+  styleUrls: ['../user-history.component.scss'],
   providers: [UserHistoryService]
 })
 

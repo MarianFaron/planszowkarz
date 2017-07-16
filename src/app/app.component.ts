@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UsersService } from './users/users.service';
-import { User } from './users/user';
+import { User } from './users/users';
 import { AuthGuard } from './guards/auth.guard';
 import { Router, CanActivate, ActivatedRoute } from '@angular/router'
 import { AppService } from './app.service';
