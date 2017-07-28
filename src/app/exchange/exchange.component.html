@@ -88,6 +88,17 @@
 									<li [draggable] *ngFor="let game of senderGamesArray" 
 									[dragData]="game"> {{ game.title }} </li>
 								</div>
+								<div class="mobile-games">
+									<div class="drag-drop-info">
+										<p><span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>Zaznacz gry, które chcesz zaproponować użytkownikowi.</p>
+									</div>
+									<div class="single-game" *ngFor="let game of senderGamesArray">
+										<div class="custom-checkbox" [draggable] [dragData]="game">
+											<input type="checkbox" id="{{ game.title }}">
+											<label for="{{ game.title }}"><span>{{ game.title }}</span></label>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

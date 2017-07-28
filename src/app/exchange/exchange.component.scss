@@ -289,6 +289,9 @@ section#exchange{
 									}
 								}
 								.drag-drop-info{
+									@media only screen and (max-width: 640px) {
+										display: none;
+									}
 									p{
 										font-style: italic;
 										@media only screen and (max-width: 1040px) {
@@ -366,6 +369,9 @@ section#exchange{
 										flex-wrap: wrap;
 										justify-content: center;
 									}
+									@media only screen and (max-width: 640px) {
+										display: none;
+									}
 									li{
 										background-color: #f98d1a;
 										color: #F5F5F5;
@@ -380,6 +386,40 @@ section#exchange{
 										@media only screen and (max-width: 940px) {
 											margin: 0px 10px 10px 10px;
 											width: 250px;
+										}
+									}
+								}
+								.mobile-games{
+									display: none;
+									@media only screen and (max-width: 640px) {
+										display: flex;
+										flex-direction: column;
+										justify-content: center;
+										max-width: 250px;
+										margin: 0 auto;
+										.single-game{
+											label{
+												margin-top: 12px;
+												span{
+													color: #000;
+													text-align: center;
+													cursor: pointer;
+													line-height: 20px;
+													border-radius: 10px;
+													max-width: 250px;
+													font-weight: 400;
+												}
+											}
+										}
+										.drag-drop-info{
+											p{
+												font-style: italic;
+												text-align: center;
+												span{
+													margin-right: 10px;
+													font-size: 20px;
+												}
+											}
 										}
 									}
 								}
