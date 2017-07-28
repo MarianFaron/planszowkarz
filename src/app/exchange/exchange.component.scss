@@ -167,6 +167,9 @@ section#exchange{
 							padding: 20px 5px;
 						}
 						.drag-drop-panel-header{
+							@media only screen and (max-width: 640px) {
+								display: none;
+							}
 							h3{
 								padding: 0;
 								margin: 0px 0px 20px 0px;
@@ -220,7 +223,6 @@ section#exchange{
 								}
 								@media only screen and (max-width: 640px) {
 									width: 100%;
-									margin-top: 20px;
 									margin-bottom: 20px;
 								}
 								img{
@@ -237,8 +239,7 @@ section#exchange{
 									width: 45%;
 								}
 								@media only screen and (max-width: 640px) {
-									width: 100%;
-									flex-direction: column-reverse;
+									display: none;
 								}
 								.drag-hint {
 									border: #ffc100 dashed 2px;

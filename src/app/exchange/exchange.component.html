@@ -77,7 +77,8 @@
 						</div>
 						<div class="drag-drop-panel-footer">
 							<button class="btn" type="button" name="button"
-								(click)="saveExchange(recipientGame, recipientGame._id, recipientInfo._id, senderInfo._id)">Wyślij</button>
+								(click)="saveExchange(recipientGame, recipientGame._id, recipientInfo._id, senderInfo._id)">Wyślij
+							</button>
 						</div>
 					</div>
 					<div class="list-of-game">
@@ -94,8 +95,10 @@
 									</div>
 									<div class="single-game" *ngFor="let game of senderGamesArray">
 										<div class="custom-checkbox" [draggable] [dragData]="game">
-											<input type="checkbox" id="{{ game.title }}">
-											<label for="{{ game.title }}"><span>{{ game.title }}</span></label>
+											<input type="checkbox" id="{{ game.id }}" [(ngModel)]="game.checked">
+											<label for="{{ game.id }}" 
+												(click)="checkboxOnClickEvent(game)">
+											<span>{{ game.title }}</span></label>
 										</div>
 									</div>
 								</div>

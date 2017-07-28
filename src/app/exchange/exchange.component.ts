@@ -22,7 +22,8 @@ export class ExchangeComponent implements OnInit {
   singleSenderGame = {
     id: 0,
     title: '',
-    gameImage: ''
+    gameImage: '',
+    checked: false // false - niezaznaczony, true - zaznaczony
   };
 
   senderGamesArray: Array<{id: number, title: string, gameImage: string}>;
@@ -57,7 +58,7 @@ export class ExchangeComponent implements OnInit {
   }
 
   // Usunięcie gry z kontenera drag & drop
-  removeFromDragAndDrop(id: number, title: string, gameImage: string){    
+  removeFromDragAndDrop(id: number, title: string, gameImage: string){
     var singleSenderGame = {
       id: id,
       title: title,
@@ -66,6 +67,46 @@ export class ExchangeComponent implements OnInit {
     this.senderGamesArray.push(singleSenderGame);
     this.droppedGames = this.droppedGames.filter(singleSenderGame => singleSenderGame.id !== id);
     this.droppedGamesCounter +=1;
+  }
+
+  // Zaznaczenie checkboxa - dodanie gry do proponowych gier
+  addGameToArray(id: number, title: string, gameImage: string, checked: boolean){
+    var singleSenderGame = {
+      id: id,
+      title: title,
+      gameImage: gameImage,
+      checked: checked
+    }
+    this.droppedGames.push(singleSenderGame);
+    this.droppedGamesCounter -=1;
+  }
+
+  // Odznaczenie checkboxa - usunięcie gry z proponowanych gier
+  removeGameFromArray(id: number, title: string, gameImage: string, checked: boolean){
+    var singleSenderGame = {
+      id: id,
+      title: title,
+      gameImage: gameImage,
+      checked: checked
+    }
+    this.droppedGames = this.droppedGames.filter(singleSenderGame => singleSenderGame.id !== id);
+    this.droppedGamesCounter +=1;
+  }
+
+  // Zdarzenie po kliknięciu checkboxa, proponowanie gier na wymianę, dodanie lub usunięcie
+  checkboxOnClickEvent(game){
+    if(game.checked == true){
+      this.removeGameFromArray(game.id, game.title, game.gameImage, game.checked);
+    }
+    else{
+      if(this.droppedGames.length < 9){
+        this.addGameToArray(game.id, game.title, game.gameImage, game.checked);
+      }
+      else{
+        game.checked = true;
+        this.appService.showNotification('Powiadomienie', 'Możesz zaproponować maksymalnie 9 gier', 'danger');
+      }
+    }
   }
 
   errorMessage: string;
@@ -105,7 +146,8 @@ export class ExchangeComponent implements OnInit {
                                 var singleSenderGame = {
                                   id: i,
                                   title: senderGames[i].title,
-                                  gameImage: senderGames[i].Image
+                                  gameImage: senderGames[i].Image,
+                                  checked: false
                                 }
                                 this.senderGamesArray.push(singleSenderGame);
                               }
@@ -149,6 +191,7 @@ export class ExchangeComponent implements OnInit {
 
   // Proces wymiany
   saveExchange(recipientGame: string, recipientGameId: string, recipient: string, sender: string){
+
     if(this.droppedGames.length == 0){
       this.appService.showNotification('Powiadomienie', 'Wybierz co najmniej jedną swoją grę', 'danger');
     }
