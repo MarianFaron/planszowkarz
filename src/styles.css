@@ -210,3 +210,46 @@ textarea.form-control {
   border-radius: 5px;
   opacity: 0.85;
 }
+
+/* Custom checkbox */
+.custom-checkbox input[type="checkbox"]{ 
+  display: none; 
+}
+
+.custom-checkbox input[type="checkbox"] + label{
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.custom-checkbox input[type="checkbox"] + label:last-child{ 
+  margin-bottom: 0; 
+}
+
+.custom-checkbox input[type="checkbox"] + label:before{
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f98d1a;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + label:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
