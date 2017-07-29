@@ -254,11 +254,11 @@ describe('UserHistoryService', () => {
         expect(connection.request.method).toBe(RequestMethod.Patch);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         connection.mockRespond(new Response(new ResponseOptions({
-          body: {}
+          body: { status: 204 }
         })));
       });
       userhistoryservice.saveDiscardExchane('594a5c96d42c9038c46b25b9').subscribe((response) => {
-
+        expect(response.status).toEqual(204)
       });
     })));
     it('Fail discard a request for exchange', async(inject([UserHistoryService, XHRBackend], (userhistoryservice, mockbackend) => {
@@ -284,11 +284,11 @@ describe('UserHistoryService', () => {
         expect(connection.request.method).toBe(RequestMethod.Patch);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         connection.mockRespond(new Response(new ResponseOptions({
-          body: {}
+          body: { status: 204 }
         })));
       });
       userhistoryservice.saveAcceptExchange('594a5c96d42c9038c46b25b9', 'rejected').subscribe((response) => {
-
+          expect(response.status).toEqual(204);
       });
     })));
     it('Fail accept a request for exchange', async(inject([UserHistoryService, XHRBackend], (userhistoryservice, mockbackend) => {
