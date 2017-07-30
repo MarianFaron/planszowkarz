@@ -13,7 +13,7 @@ describe('UserHistoryReceivedComponent', () => {
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  /*beforeEach(() => {
     fixture = TestBed.createComponent(UserHistoryReceivedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -29,5 +29,5 @@ describe('UserHistoryReceivedComponent', () => {
 
   it('should accept user request for exchange', () => {
     
-  });
+  });*/
 });
