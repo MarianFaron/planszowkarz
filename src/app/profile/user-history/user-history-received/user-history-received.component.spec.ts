@@ -13,13 +13,21 @@ describe('UserHistoryReceivedComponent', () => {
     .compileComponents();
   }));
 
-  /*beforeEach(() => {
+  beforeEach(() => {
     fixture = TestBed.createComponent(UserHistoryReceivedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });*/
+  it('should get user history received', () => {
+
+  });
+
+  it('should discard user request for exchange', () => {
+    
+  });
+
+  it('should accept user request for exchange', () => {
+    
+  });
 });

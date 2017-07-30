@@ -13,13 +13,9 @@ describe('UserHistoryRejectedComponent', () => {
     .compileComponents();
   }));
 
-  /*beforeEach(() => {
+  beforeEach(() => {
     fixture = TestBed.createComponent(UserHistoryRejectedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });*/
 });

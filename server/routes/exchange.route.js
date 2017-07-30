@@ -66,11 +66,11 @@ router.route('/exchanges/:id')
 						   },
 						   {
 								path: 'sender',
-								select: 'local.login local.email'
+								select: 'local.login local.email facebook.name facebook.email'
 						   },
 						   {
 								path: 'recipient',
-								select: 'local.login local.email'
+								select: 'local.login local.email facebook.name facebook.email'
 						   }])
 				.exec((err, exchange) => {
 					if(err){
@@ -121,11 +121,11 @@ router.route('/exchanges/:id/send')
 						   },
 						   {
 								path: 'sender',
-								select: 'local.login local.email'
+								select: 'local.login local.email facebook.email facebook.name'
 						   },
 						   {
 								path: 'recipient',
-								select: 'local.login local.email'
+								select: 'local.login local.email facebook.email facebook.name'
 						   }])
 				.exec((err, exchange) => {
 					if(err){
@@ -152,11 +152,11 @@ router.route('/exchanges/:id/received')
 						   },
 						   {
 								path: 'sender',
-								select: 'local.login local.email'
+								select: 'local.login local.email facebook.email facebook.name'
 						   },
 						   {
 								path: 'recipient',
-								select: 'local.login local.email'
+								select: 'local.login local.email facebook.email facebook.name'
 						   }])
 				.exec((err, exchange) => {
 					if(err){

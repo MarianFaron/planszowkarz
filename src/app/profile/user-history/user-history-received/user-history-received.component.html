@@ -1,6 +1,6 @@
 <div class="single-transaction inner" *ngFor="let history of userHistory">
     <div class="transaction-box">
-        <div class="senderBox" *ngIf="history?.sender.local && !history?.sender.facebook">
+        <div class="senderBox" *ngIf="!history?.sender.facebook">
             <p>Gracz</p>
             <a class="sender" routerLink="/user-profile/{{ history?.sender.local.login }}">
                 <p>{{history?.sender.local.login}}</p>

@@ -8,6 +8,11 @@ import { UserHistoryService } from './user-history.service';
 import { UserHistoryComponent } from './user-history.component';
 import { NotificationsService } from 'angular2-notifications';
 
+import { UserHistoryAcceptedComponent } from './user-history-accepted/user-history-accepted.component';
+import { UserHistorySentComponent } from './user-history-sent/user-history-sent.component';
+import { UserHistoryReceivedComponent } from './user-history-received/user-history-received.component';
+import { UserHistoryRejectedComponent } from './user-history-rejected/user-history-rejected.component';
+
 describe('UserHistoryComponent', () => {
   let component: UserHistoryComponent;
   let fixture: ComponentFixture<UserHistoryComponent>;
@@ -19,8 +24,20 @@ describe('UserHistoryComponent', () => {
           RouterTestingModule
                   .withRoutes([
                     {
-                        path: 'history',
-                        component: UserHistoryComponent
+                        path: 'accepted',
+                        component: UserHistoryAcceptedComponent
+                    },
+                    {
+                        path: 'sended',
+                        component: UserHistorySentComponent
+                    },
+                    {
+                        path: 'received',
+                        component: UserHistoryReceivedComponent
+                    },
+                    {
+                        path: 'rejected',
+                        component: UserHistoryRejectedComponent
                     }
                 ]), 
       ]
