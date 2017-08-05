@@ -108,10 +108,16 @@ export class UserConfigComponent implements OnInit {
     var m = this.model.datepicker.date.month;
     var y = this.model.datepicker.date.day;
     var date = '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+    
+    // Edycja danych bez zmiany avatara
+    if(avatarImage == ""){
+      this.avatarImgName = this.userInfo.avatarImage;
+    }
 
+    // Usunięcie avatara
     if(this.deleteImageStatus){
       avatarImage = "";
-      //usunięcie avatara
+      this.avatarImgName = "";
     }
 
     this.userConfigService.updateUser(id, date, city, contactNumber, this.avatarImgName, password, 
