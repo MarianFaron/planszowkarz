@@ -24,6 +24,9 @@ export class UserConfigComponent implements OnInit {
   avatarImgName: string;
   currentDate = new Date();
 
+  deleteImageStatus = false;
+  showAvatar = true;
+
   public URL = this.appService.getUrl('/app/avatarUpload');
   public avatarUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
@@ -66,6 +69,12 @@ export class UserConfigComponent implements OnInit {
     this.avatarImgName = this.file.name;
   }
 
+  // Usuń avatar
+  deleteImage(){
+    this.deleteImageStatus = true;
+    this.showAvatar = false;
+  }
+
   //get user information
 
   getUserInfo() {
@@ -99,6 +108,11 @@ export class UserConfigComponent implements OnInit {
     var m = this.model.datepicker.date.month;
     var y = this.model.datepicker.date.day;
     var date = '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+
+    if(this.deleteImageStatus){
+      avatarImage = "";
+      //usunięcie avatara
+    }
 
     this.userConfigService.updateUser(id, date, city, contactNumber, this.avatarImgName, password, 
                                       this.userInfo.numberOfGames, this.userInfo.numberOfExchanges,
