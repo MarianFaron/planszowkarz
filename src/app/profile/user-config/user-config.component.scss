@@ -114,7 +114,7 @@
       }
       input{
         max-width: 320px;
-        margin: 0 auto;
+        margin: 0 auto 10px 0;
       }
     }
     .save-changes{
@@ -141,10 +141,12 @@
   .alert-danger{
     border-radius: 0;
     border: none;
-    color: white;
-    font-weight: 500;
-    font-size: 16px;
-    background-color: #F44336;
+    color: #FF0000;
+    background-color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px;
+    margin: 0;
   }
 }
 

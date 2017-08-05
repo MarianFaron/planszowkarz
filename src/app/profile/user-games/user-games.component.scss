@@ -150,6 +150,18 @@
 			@media screen and (max-width: 500px){
 				width: 100%;
 			}
+			.form-group{
+				.alert-danger{
+					border-radius: 0;
+					border: none;
+					color: #FF0000;
+					background-color: #FFFFFF;
+					font-size: 13px;
+					font-weight: 600;
+					padding: 5px;
+					margin: 0;
+				}
+			}
 			input, select{
 				max-width: 320px;
 				@media screen and (max-width: 500px){

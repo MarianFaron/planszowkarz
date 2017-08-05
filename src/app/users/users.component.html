@@ -31,7 +31,7 @@
 									E-mail jest wymagany
 								</div>
 								<div [hidden]="!registerUserEmail.errors.pattern">
-									Wpisz poprawny adres e-mail (example@example.pl)
+									Wpisz poprawny adres e-mail
 								</div>
 							</div>
 						</div>
@@ -55,10 +55,10 @@
 									Potwierdzenie hasła jest wymagane
 								</div>
 								<div [hidden]="!registerUserConfirmPassword.errors.minlength">
-									Conajmniej 3 znaki
+									Wpisz co najmniej 3 znaki
 								</div>
 								<div [hidden]="!registerUserConfirmPassword.errors">
-									Musi być takie samo jak hasło
+									Podane hasła różnią się
 								</div>
 							</div>
 						</div>
@@ -81,7 +81,7 @@
 									E-mail jest wymagany
 								</div>
 								<div [hidden]="!loginUserEmail.errors.pattern">
-									Wpisz poprawny adres e-mail (example@example.pl)
+									Wpisz poprawny adres e-mail
 								</div>
 							</div>
 						</div>

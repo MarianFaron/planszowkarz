@@ -23,6 +23,12 @@ export class UserGamesComponent implements OnInit {
   gameImgName: string;  
   numberOfGames: number;
 
+  model = {
+    title: '',
+    category: '',
+    state: ''
+  }
+
   public URL = this.appService.getUrl('/app/coverUpload');
   public coverUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 

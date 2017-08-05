@@ -11,19 +11,11 @@
 					<label>Miasto</label>
 					<input class="form-control" name="city" placeholder="podaj miasto" minlength="3" 
 						value="{{userInfo?.city}}" #userCity />
-					<div *ngIf="userCity.errors && (userCity.dirty || userCity.touched)" class="alert alert-danger">
-						<div [hidden]="!userCity.errors.minlength"> Wpisz co najmniej 3 znaki </div>
-					</div>
 				</div>
 				<div class="form-group">
 					<label>Numer telefonu</label>
 					<input type="text" class="form-control" name="contactNumber" placeholder="123456789" 
-						minlength="9" maxlength="9"  value="{{userInfo?.contactNumber}}" pattern="^\d+$" #userContactNumber/>
-					<div *ngIf="userContactNumber.errors && (userContactNumber.dirty || userContactNumber.touched)" class="alert alert-danger">
-						<div [hidden]="!userContactNumber.errors.pattern"> Użyj tylko cyfr </div>
-						<div [hidden]="!userContactNumber.errors.minlength"> Wpisz 9 cyfr </div>
-						<div [hidden]="!userContactNumber.errors.maxlength"> Wpisz 9 cyfr </div>
-					</div>
+						minlength="9" maxlength="9" value="{{userInfo?.contactNumber}}" #userContactNumber/>
 				</div>
 			</div>
 			<div class="right-column">
