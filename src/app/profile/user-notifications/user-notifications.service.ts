@@ -43,5 +43,4 @@ export class UserNotificationsService {
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
   }
-
 }
