@@ -26,5 +26,4 @@ export class UserNavbarComponent implements OnInit {
   ngOnInit() {
     this.currentTab = "Moje gry";
   }
-
 }

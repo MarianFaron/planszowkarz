@@ -1,4 +1,4 @@
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { tick, fakeAsync, async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { HttpModule, Http, BaseRequestOptions, XHRBackend, Response, ResponseOptions, RequestMethod } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -11,7 +11,6 @@ import { NotificationsService } from 'angular2-notifications';
 
 describe('UserHistoryAcceptedComponent', () => {
   let component: UserHistoryAcceptedComponent;
-  let fixture: ComponentFixture<UserHistoryAcceptedComponent>;
   let userhistoryservice: UserHistoryService;
 
   beforeEach(async(() => {
@@ -34,9 +33,8 @@ describe('UserHistoryAcceptedComponent', () => {
     userhistoryservice = TestBed.get(UserHistoryService);
   });
 
-  it("get user game from service", async() => {
-    component.ngOnInit();
-    
+  it("get user game from service", async(() => {
+
     spyOn(userhistoryservice, "getHistoryExchanges").and.callFake(function(can, be, received) {
         var body = [
                 {
@@ -115,7 +113,6 @@ describe('UserHistoryAcceptedComponent', () => {
     userhistoryservice.getHistoryExchanges('594a5c96d42c9038c46b25b9');
 
     expect(userhistoryservice.getHistoryExchanges).toHaveBeenCalled();
-    expect(userhistoryservice.getHistoryExchanges).toHaveBeenCalledWith("594d750e23e60c0de45af913");
-    expect(component.userHistory).toEqual("asdasdsadsadsa");
-  });
+    expect(userhistoryservice.getHistoryExchanges).toHaveBeenCalledWith("594a5c96d42c9038c46b25b9");
+  }));
 });

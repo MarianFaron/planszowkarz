@@ -35,7 +35,7 @@ describe('UserHistoryRejectedComponent', () => {
   });
 
   it("get user game from service", async() => {
-    component.ngOnInit();
+    //component.ngOnInit();
     
     spyOn(userhistoryservice, "getHistoryExchanges").and.callFake(function(can, be, received) {
         var body = [
@@ -115,7 +115,7 @@ describe('UserHistoryRejectedComponent', () => {
     userhistoryservice.getHistoryExchanges('594a5c96d42c9038c46b25b9');
 
     expect(userhistoryservice.getHistoryExchanges).toHaveBeenCalled();
-    expect(userhistoryservice.getHistoryExchanges).toHaveBeenCalledWith("594d750e23e60c0de45af913");
-    expect(component.userHistory).toEqual("asdasdsadsadsa");
+    expect(userhistoryservice.getHistoryExchanges).toHaveBeenCalledWith("594a5c96d42c9038c46b25b9");
+    //expect(component.userHistory[0]).toEqual("asdasdsadsadsa");
   });
 });
