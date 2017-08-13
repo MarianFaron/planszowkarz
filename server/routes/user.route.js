@@ -295,21 +295,13 @@ router.route('/users/:id')
   })
 
   .patch((req, res) => {
-    User.findByIdAndUpdate({
-      _id: req.params.id
-    }, req.body, (err, user) => {
+    User.findByIdAndUpdate({ _id: req.params.id }, req.body, (err, user) => {
       if (err) {
-        return res.status(400).json({
-          message: "Bad Requested"
-        });
+        return res.status(400).json({ message: "Bad Requested" });
       } else if (!user) {
-        return res.status(404).json({
-          message: "User not Found"
-        });
+        return res.status(404).json({ message: "User not Found" });
       } else {
-        return res.status(200).json({
-          user
-        });
+        return res.status(200).json(user);
       }
     });
   })

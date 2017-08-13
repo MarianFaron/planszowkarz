@@ -95,6 +95,7 @@ describe('UserGameService', () => {
         const id = '594a5c96d42c9038c46b25b9';
         expect(connection.request.url).toEqual(usersUrl + id +'/userGames');
         expect(connection.request.method).toBe(RequestMethod.Get);
+        expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         connection.mockRespond(new Response(new ResponseOptions({
         body: [
                 {
@@ -150,6 +151,7 @@ describe('UserGameService', () => {
         const id = '594a5c96d42c9038c46b25b7';
         expect(connection.request.url).toEqual(usersUrl + id + '/userGames');
         expect(connection.request.method).toBe(RequestMethod.Get);
+        expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         connection.mockRespond(new Response(new ResponseOptions(
           { 
             body: {message: "User games not found"}
@@ -251,8 +253,8 @@ describe('UserGameService', () => {
             }, null, 2
         ));
         connection.mockRespond(new Response(new ResponseOptions(
-          { body: {message: "User game edited"},
-            status: 200
+          { 
+            body: {message: "User game edited"}
           }
         )));
       });
@@ -306,6 +308,7 @@ describe('UserGameService', () => {
         const id = '594a61a9d42c9038c46b25c4';
         expect(connection.request.url).toEqual(userGamesUrl + id);
         expect(connection.request.method).toBe(RequestMethod.Delete);
+        expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         connection.mockRespond(new Response(new ResponseOptions(
           { 
             body: {message: "User game deleted"}
@@ -325,6 +328,7 @@ describe('UserGameService', () => {
         const id = '594a61a9d42c9038c46b25c45';
         expect(connection.request.url).toEqual(userGamesUrl + id);
         expect(connection.request.method).toBe(RequestMethod.Delete);
+        expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         connection.mockRespond(new Response(new ResponseOptions(
           { 
             body: {message: "Error: User game not found"}
