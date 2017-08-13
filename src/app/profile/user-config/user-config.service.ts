@@ -36,5 +36,4 @@ export class UserConfigService {
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
 	}
-
 }
