@@ -94,3 +94,16 @@ input {
     right: 0;
     background-color: #678954;
 }
+
+.main-navbar{
+  @media screen and (max-width: 1200px){
+    display: flex;
+    justify-content: center;
+    li{
+      min-width: 120px;
+    }
+  }
+  @media screen and (max-width: 640px){
+    flex-direction: column;
+  }
+}
