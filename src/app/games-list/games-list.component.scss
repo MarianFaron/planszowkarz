@@ -25,11 +25,14 @@
         }
         .inner {          
           padding: 15px;
-          margin-bottom: 15px;
+          margin-bottom: 15px;          
           form {
             width: 100%;
             display: inline-block;
             border: 1px solid #b6b6b6;
+            @media screen and (max-width: 880px){
+              max-width: 270px;
+            }
             .search-input {
               border: none;
               background: #fff;
@@ -68,30 +71,76 @@
               min-width: 30px;
             }
           }
+          .column{
+            width: 100%;
+            @media screen and (max-width: 880px){
+              width: 50%;
+            }
+            @media screen and (max-width: 500px){
+              width: 100%;
+            }
+            h3 {
+              margin: 25px 0px 15px 25px;
+              @media screen and (max-width: 880px){
+                margin: 25px 25px 15px 25px;
+              }
+            }            
+            .game-categories,
+            .game-states{
+              margin-left: 25px;
+              @media screen and (max-width: 880px){
+                margin-right: 25px;
+              }
+              @media screen and (max-width: 500px){
+                margin: 0;
+              }
+              .checkbox{
+                span {
+                  border: 1px solid #f98d1a;
+                  height: 20px;
+                  width: 20px;
+                  margin-right: 15px;
+                }
+              }            
+            }
+            button{
+              min-width: 140px;
+            }
+          }
+          .left{
+            @media screen and (max-width: 880px){
+              display: flex;
+              flex-direction: column;
+              align-items: flex-end;
+            }
+            @media screen and (max-width: 500px){
+              align-items: center;
+            }
+          }
+          .right{
+            @media screen and (max-width: 880px){
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+            }
+            @media screen and (max-width: 500px){
+              align-items: center;
+            }   
+          }
           h2{
             font-size: 16px;
             text-transform: uppercase;
             color: #444;
             margin: 15px 0px;
             text-align: center;
+            @media screen and (max-width: 880px){
+              width: 100%;
+            }
           }
-          h3 {
-            margin: 25px 0px 15px 25px;
-          }
-          .game-categories,
-          .game-states{
-            margin-left: 25px;
-            .checkbox{
-              span {
-                border: 1px solid #f98d1a;
-                height: 20px;
-                width: 20px;
-                margin-right: 15px;
-              }
-            }            
-          }
-          button{
-            min-width: 140px;
+          .text-center{
+            @media screen and (max-width: 880px){
+              width: 100%;
+            }
           }
         }
         .inner:first-child{          
@@ -101,10 +150,20 @@
           flex-direction: column;
           min-height: 150px;
         }
+        .inner:last-child{
+          @media screen and (max-width: 880px){
+            display: flex;
+            flex-wrap: wrap;
+          }
+        }
       }
       .list-of-games{
         width: calc(100% - 315px);
         margin: 0px 0px 0px 15px;
+        @media screen and (max-width: 880px){
+          width: 100%;
+          margin: 0;
+        }
         .game-box{
           background-color: #FFF;
           box-shadow: 2px 2px 1px #d5d5d5;
@@ -124,7 +183,7 @@
             align-items: center;
             @media screen and (max-width: 580px){
               margin: 0 auto;
-              margin-bottom: 15px;
+              margin-bottom: 15px;              
             }
             img{
               background-position: top;
@@ -143,10 +202,25 @@
             @media screen and (max-width: 1064px){
               width: calc(100% - 160px);
             }
+            @media screen and (max-width: 880px){
+              width: calc(100% - 300px);
+            }
+            @media screen and (max-width: 720px){
+              width: calc(100% - 160px);
+            }
+            @media screen and (max-width: 580px){
+              width: 100%;
+              text-align: center;
+              padding: 0;
+              margin: 0 auto;
+            }
             .single-info{
               display: flex;
               justify-content: flex-start;
               align-items: center;
+              @media screen and (max-width: 580px){
+                margin: 0 auto 5px auto;
+              }
               p{
                 margin: 0;
               }
@@ -170,6 +244,12 @@
             justify-content: center;
             align-items: center;
             @media screen and (max-width: 1064px){
+              width: 100%;
+            }
+            @media screen and (max-width: 880px){
+              width: 140px;
+            }
+            @media screen and (max-width: 720px){
               width: 100%;
             }
             .game-info-buttons {

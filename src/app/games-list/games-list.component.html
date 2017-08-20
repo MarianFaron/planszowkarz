@@ -13,33 +13,37 @@
         </div>
         <div class="inner">
           <h2>Filtruj po kategorii i stanie</h2>
-          <h3>Kategorie</h3>
-          <div class="game-categories">
-            <div *ngFor="let option of categoriesOptions">
-              <div class="checkbox">
-                <label>
-                    <input type="checkbox"
-                           name="options"
-                           value="{{option.value}}"
-                           [(ngModel)]="option.checked"/>
-                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                    {{option.name}}
-                </label>
+          <div class="column left">
+            <h3>Kategorie</h3>
+            <div class="game-categories">
+              <div *ngFor="let option of categoriesOptions">
+                <div class="checkbox">
+                  <label>
+                      <input type="checkbox"
+                             name="options"
+                             value="{{option.value}}"
+                             [(ngModel)]="option.checked"/>
+                      <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                      {{option.name}}
+                  </label>
+                </div>
               </div>
             </div>
           </div>
-          <h3>Stan</h3>
-          <div class="game-states">
-            <div *ngFor="let option of statesOptions">
-              <div class="checkbox">
-                <label>
-                    <input type="checkbox"
-                           name="options"
-                           value="{{option.value}}"
-                           [(ngModel)]="option.checked"/>
-                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                    {{option.name}}
-                </label>
+          <div class="column right">
+            <h3>Stan</h3>
+            <div class="game-states">
+              <div *ngFor="let option of statesOptions">
+                <div class="checkbox">
+                  <label>
+                      <input type="checkbox"
+                             name="options"
+                             value="{{option.value}}"
+                             [(ngModel)]="option.checked"/>
+                      <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                      {{option.name}}
+                  </label>
+                </div>
               </div>
             </div>
           </div>
