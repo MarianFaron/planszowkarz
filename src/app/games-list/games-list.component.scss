@@ -23,9 +23,9 @@
         @media screen and (max-width: 880px){
           width: 100%;
         }
-        .inner {          
+        .inner {
           padding: 15px;
-          margin-bottom: 15px;          
+          margin-bottom: 15px;
           form {
             width: 100%;
             display: inline-block;
@@ -38,7 +38,7 @@
               background: #fff;
               border-bottom: 1px solid #fff;
               color: #000;
-              padding: 0px 0px 0px 10px;
+              padding: 0 0 0 10px;
               height: 30px;
               width: calc(100% - 30px);
             }
@@ -63,8 +63,7 @@
                color: #666;
             }
             .custom-button {
-              margin-top: 0;
-              margin-left: -4px;
+              margin: 0 0 0 -4px;
               height: 30px;
               width: 30px;
               float: right;
@@ -80,11 +79,11 @@
               width: 100%;
             }
             h3 {
-              margin: 25px 0px 15px 25px;
+              margin: 25px 0 15px 25px;
               @media screen and (max-width: 880px){
-                margin: 25px 25px 15px 25px;
+                margin: 25px 25px 15px;
               }
-            }            
+            }
             .game-categories,
             .game-states{
               margin-left: 25px;
@@ -94,14 +93,12 @@
               @media screen and (max-width: 500px){
                 margin: 0;
               }
-              .checkbox{
-                span {
-                  border: 1px solid #f98d1a;
-                  height: 20px;
-                  width: 20px;
-                  margin-right: 15px;
-                }
-              }            
+              span {
+                border: 1px solid #f98d1a;
+                height: 20px;
+                width: 20px;
+                margin-right: 15px;
+              }
             }
             button{
               min-width: 140px;
@@ -125,13 +122,13 @@
             }
             @media screen and (max-width: 500px){
               align-items: center;
-            }   
+            }
           }
           h2{
             font-size: 16px;
             text-transform: uppercase;
             color: #444;
-            margin: 15px 0px;
+            margin: 15px 0;
             text-align: center;
             @media screen and (max-width: 880px){
               width: 100%;
@@ -143,12 +140,15 @@
             }
           }
         }
-        .inner:first-child{          
+        .inner:first-child{
           display: flex;
           justify-content: center;
           align-items: center;
           flex-direction: column;
           min-height: 150px;
+          h2{
+            margin-top: 0;
+          }
         }
         .inner:last-child{
           @media screen and (max-width: 880px){
@@ -159,7 +159,7 @@
       }
       .list-of-games{
         width: calc(100% - 315px);
-        margin: 0px 0px 0px 15px;
+        margin: 0 0 0 15px;
         @media screen and (max-width: 880px){
           width: 100%;
           margin: 0;
@@ -178,12 +178,10 @@
             width: 160px;
             height: 120px;
             border: 1px solid #e7e7e7;
-            display: flex;
             justify-content: center;
             align-items: center;
             @media screen and (max-width: 580px){
-              margin: 0 auto;
-              margin-bottom: 15px;              
+              margin: 0 auto 15px;
             }
             img{
               background-position: top;
@@ -198,7 +196,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0px 20px;            
+            padding: 0 20px;
             @media screen and (max-width: 1064px){
               width: calc(100% - 160px);
             }
@@ -219,14 +217,14 @@
               justify-content: flex-start;
               align-items: center;
               @media screen and (max-width: 580px){
-                margin: 0 auto 5px auto;
+                margin: 0 auto 5px;
               }
               p{
                 margin: 0;
               }
               span{
                 margin-right: 15px;
-              }              
+              }
             }
             a {
               color: #333;
@@ -270,5 +268,3 @@
     }
   }
 }
-    
-    

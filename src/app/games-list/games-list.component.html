@@ -67,7 +67,7 @@
                   <a routerLink="/games/{{ game._id }}">
                     <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}" alt="{{game.title}}" class="img-responsive center-block">
                   </a>
-                </div>                
+                </div>
                 <div class="game-info">
                   <h3><a routerLink="/games/{{ game._id }}">{{ game.title }}</a></h3>
                   <div *ngIf="!game.userID.facebook" class="single-info">
