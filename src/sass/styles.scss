@@ -1,18 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
-
-
-/*
-  COLORS
-    black: #000;
-    white: #fff;
-    orange: #f98d1a;
-    gray: #f5f5f5;
-    darkGray: #333;
-*/
+@import 'mixins';
+@import 'colors';
 
 body {
   font-family: 'Open Sans', sans-serif;
-  color: #333;
+  color: $pl-dark-gray;
   background: #f5f5f5;
 }
 
@@ -25,23 +16,18 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #333;
+  color: $pl-dark-gray;
 }
 
 h3 {
-  font-size: 16px;
+  @include font-size(16);
+
   text-transform: uppercase;
-  color: #444;
+  color: $pl-mid-gray;
 }
 
 button:focus {
-  outline: none!important;
-}
-
-.form-control:focus {
-  outline: none!important;
-  border: 1px solid #f98d1a;
-  box-shadow: none;
+  outline: none !important;
 }
 
 .form-group label {
@@ -59,6 +45,12 @@ textarea.form-control {
 
 .form-control {
   margin-bottom: 10px;
+
+  &:focus {
+    outline: none !important;
+    border: 1px solid $pl-orange;
+    box-shadow: none;
+  }
 }
 
 .loading {
@@ -68,9 +60,9 @@ textarea.form-control {
 
 .custom-button {
   margin-top: 15px;
-  color: white;
+  color: $pl-white;
   font-weight: 500;
-  background: #f98d1a;
+  background: $pl-orange;
   border: none;
   min-width: 100px;
 }
@@ -78,58 +70,58 @@ textarea.form-control {
 .custom-button:hover,
 .custom-button:focus,
 .custom-button:active {
-  color: white;
-  background: #f98d1a;
+  color: $pl-white;
+  background: $pl-orange;
   border: none;
 }
 
 .btn-color{
-  color: #000;
-  background-color: #e7e7e7;
+  color: $pl-black;
+  background-color: $pl-light-gray;
   margin-top: 15px;
   font-weight: 500;
   border: none;
   min-width: 100px;
-}
 
-.btn-color:hover{
-  background-color: #d8d8d8;
+  &:hover {
+    background-color: $pl-gray;
+  }
 }
 
 .main-hr {
   border: 0;
   height: 1px;
-  background: #f98d1a;
+  background: $pl-orange;
 }
 
 .inner{
-    background: #fff;
-    box-shadow: 2px 2px 1px #d5d5d5;
-}
+    background: $pl-white;
+    box-shadow: 2px 2px 1px $pl-gray;
 
-.inner a:hover {
-  text-decoration: none;
+    a:hover {
+      text-decoration: none;
+    }
 }
 
 /* DATEPICKER */
 
 .mydp .header {
-    background: #f98d1a!important;
-    color: #fff!important
+    background: $pl-orange !important;
+    color: $pl-white !important
 }
 
 .mydp .headerbtncell,
 .mydp .headerbtn, .mydp .headerlabelbtn, .mydp .yearchangebtn {
-  background: #f98d1a!important;
-  color: #fff!important;
+  background: $pl-orange !important;
+  color: $pl-white !important;
 }
 
 .mydp .selectedday .datevalue, .mydp .selectedmonth .monthvalue, .mydp .selectedyear .yearvalue {
-  color: #fff!important;
+  color: $pl-white !important;
 }
 
 .mydp .caltable, .mydp .daycell, .mydp .monthcell, .mydp .monthtable, .mydp .weekdaytitle, .mydp .yearcell, .mydp .yeartable {
-	color: #333!important;
+  color: $pl-dark-gray !important;
 }
 
 .checkbox label,
@@ -146,10 +138,10 @@ textarea.form-control {
 
 .checkbox .cr,
 .radio .cr {
-    background: #fff;
+    background: $pl-white;
     position: relative;
     display: inline-block;
-    border: 1px solid #a9a9a9;
+    border: 1px solid $pl-mid-gray2;
     border-radius: .25em;
     width: 1.3em;
     height: 1.3em;
@@ -193,20 +185,22 @@ textarea.form-control {
 .radio label input[type="radio"]:disabled + .cr {
     opacity: .5;
 }
+
 .swiper-button-next{
     right: 0 !important;
-    background-color: #f98d1a;
-    background-image: url("./assets/images/icons/arrow-right.png")!important;
-    fill: white;
+    background-color: $pl-orange;
+    background-image: url("../assets/images/icons/arrow-right.png") !important;
+    fill: $pl-white;
 }
 
 .swiper-button-prev{
-  background-image: url("./assets/images/icons/arrow-left.png")!important;
+  background-image: url("../assets/images/icons/arrow-left.png") !important;
   left: 0 !important;
 }
+
 .swiper-button-next, .swiper-button-prev{
-  height: 55px!important;
-  background-color: #f98d1a;
+  height: 55px !important;
+  background-color: $pl-orange;
   border-radius: 5px;
   opacity: 0.85;
 }
