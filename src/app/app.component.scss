@@ -1,65 +1,43 @@
+@import '../sass/colors';
+@import '../sass/mixins';
 
-/**
- * Sivan[sun.sivan@gmail.com]
- * This pen is using Autoprefixer
- */
+.form-label {
+  .form-group {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
 
-// Main
-.form-label {.form-group {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-input {
-  display: block;
-  width: 100%;
-  height: 3em;
-  padding: 16px 18px;
-  border: 1px solid #ddd;
-  border-radius: 0;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1;
-  background:#fff;
-  color: #212121;
-  outline: 0;
-  appearance: none;
-  transition: all 0.2s ease-in-out;
-	margin: 10px auto;
-}
-.form-group {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-input {
-  display: block;
-  width: 100%;
-  height: 3em;
-  padding: 16px 18px;
-  border: 1px solid #ddd;
-  border-radius: 0;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1;
-  background:#fff;
-  color: #212121;
-  outline: 0;
-  appearance: none;
-  transition: all 0.2s ease-in-out;
-  margin: 10px auto;
-}
+  input {
+    @include font-size(16);
+
+    display: block;
+    width: 100%;
+    height: 3em;
+    padding: 16px 18px;
+    border: 1px solid $pl-light-gray2;
+    border-radius: 0;
+    font-weight: 400;
+    line-height: 1;
+    background: $pl-white;
+    color: $pl-dark-gray;
+    outline: 0;
+    appearance: none;
+    transition: all 0.2s ease-in-out;
+    margin: 10px auto;
+  }
 }
 
 .form-label {
   .form-group {
     position: relative;
   }
+
   label {
     position: absolute;
     top: 15px;
     left: 8px;
-    color: #909090;
+    color: $pl-mid-gray2;
     transform: translate3d(0, 0, 0);
     transition: all 0.2s ease-in-out;
 		padding: 0 10px;
@@ -67,43 +45,42 @@ input {
 }
 
 // Animation on <label>
-.form-css-label {
-  input {
-    &[data-empty="false"],
-    &:valid,
-    &:focus {
-      padding: 22px 18px 10px;
-    }
-    &:focus {
-      outline: 0;
-      background: rgba(255,255,255,1);
-    }
-    &[data-empty="false"] + label,
-    &:valid + label,
-    &:focus + label {
-      font-weight: 700;
-      font-size: 12px;
-			top: -2px;
-			background: #fff;
-			padding: 0 10px;
-      // transform: translate3d(0, -10px, 0);
-    }
+.form-css-label input {
+  &[data-empty="false"],
+  &:valid,
+  &:focus {
+    padding: 22px 18px 10px;
   }
-}
-#newGames > div > div:nth-child(3) > div > swiper > div > div.swiper-button-next{
-    right: 0;
-    background-color: #678954;
+
+  &:focus {
+    outline: 0;
+    background: rgba($pl-white, 1);
+  }
+
+  &[data-empty="false"] + label,
+  &:valid + label,
+  &:focus + label {
+    @include font-size(12);
+
+    font-weight: 700;
+		top: -2px;
+		background: $pl-white;
+		padding: 0 10px;
+    // transform: translate3d(0, -10px, 0);
+  }
 }
 
 .main-navbar{
-  @media screen and (max-width: 1200px){
+  @include respond-to(desktop) {
     display: flex;
     justify-content: center;
-    li{
+
+    li {
       min-width: 120px;
     }
   }
-  @media screen and (max-width: 640px){
+
+  @include respond-to(mobile) {
     flex-direction: column;
   }
 }
