@@ -12,7 +12,6 @@ import { UserInfo } from './user-info';
 export class UserInfoService {
 
 	private userInfoURL = this.appService.getUrl('/app/users');
-	private editUserUrl = this.appService.getUrl('/app/edit-user');
 
 	constructor (private http: Http, private appService: AppService) {}
 
@@ -25,5 +24,4 @@ export class UserInfoService {
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
 	}
-
 }
