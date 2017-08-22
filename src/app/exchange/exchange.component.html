@@ -76,8 +76,9 @@
 							</div>
 						</div>
 						<div class="drag-drop-panel-footer">
-							<button class="btn" type="button" name="button"
-								(click)="saveExchange(recipientGame, recipientGame._id, recipientInfo._id, senderInfo._id)">Wyślij</button>
+							<button *ngIf="!sent" class="btn" type="button" name="button"
+								(click)="saveExchange(recipientGame, recipientGame._id, recipientInfo._id, senderInfo._id)">Wyślij
+							</button>
 						</div>
 					</div>
 					<div class="list-of-game">
@@ -87,6 +88,19 @@
 								<div class="games">
 									<li [draggable] *ngFor="let game of senderGamesArray" 
 									[dragData]="game"> {{ game.title }} </li>
+								</div>
+								<div class="mobile-games">
+									<div class="drag-drop-info">
+										<p><span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>Zaznacz gry, które chcesz zaproponować użytkownikowi.</p>
+									</div>
+									<div class="single-game" *ngFor="let game of checkboxArray">
+										<div class="custom-checkbox" [draggable] [dragData]="game">
+											<input type="checkbox" id="{{ game.id }}" [(ngModel)]="game.checked">
+											<label for="{{ game.id }}" 
+												(click)="checkboxOnClickEvent(game)">
+											<span>{{ game.title }}</span></label>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>

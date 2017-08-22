@@ -134,3 +134,104 @@
 		}
 	}
 }
+
+/* Edit game */
+
+.modal-body{
+	.modal-top{
+		display: flex;
+		@media screen and (max-width: 500px){
+			flex-direction: column;
+		}
+		.left-column{
+			width: 50%;
+			display: flex;
+			flex-direction: column;
+			@media screen and (max-width: 500px){
+				width: 100%;
+			}
+			.form-group{
+				.alert-danger{
+					border-radius: 0;
+					border: none;
+					color: #FF0000;
+					background-color: #FFFFFF;
+					font-size: 13px;
+					font-weight: 600;
+					padding: 5px;
+					margin: 0;
+				}
+			}
+			input, select{
+				max-width: 320px;
+				@media screen and (max-width: 500px){
+					margin: 0 auto;
+				}
+			}
+		}
+		.right-column{
+			width: 50%;
+			display: flex;
+			flex-direction: column;
+			@media screen and (max-width: 500px){
+				width: 100%;
+			}
+			.edit-img-box{
+				display: flex;
+				flex-direction: column;
+				.center-image{
+					display: flex;
+					align-self: center;
+				}
+			}
+			.input-file{
+				#change-photo{
+					margin-top: 9px;
+				}
+				.center-button{
+					display: flex;
+					justify-content:center;
+					.inputfile {
+						width: 0.1px;
+						height: 0.1px;
+						opacity: 0;
+						overflow: hidden;
+						position: absolute;
+						z-index: -1;
+					}
+					.inputfile + label {
+						color: white;
+						font-weight: 500;
+						background: #f98d1a;
+						border: none;
+						min-width: 100px;
+						padding: 6px 12px;
+						font-size: 14px;
+						border-radius: 4px;
+						width: 160px;
+					}
+					.inputfile:focus + label,
+					.inputfile + label:hover {
+						text-shadow: 1px 1px 1px #000;
+						cursor: pointer;
+					}
+					i{
+						margin-right: 10px;
+					}
+				}
+			}
+		}
+	}
+	textarea{
+		max-width: 100%;
+		margin: 0 auto;
+		@media screen and (max-width: 500px){
+			width: 320px;
+		}
+	}
+}
+.form-group{
+	label{
+		text-align: center;
+	}
+}

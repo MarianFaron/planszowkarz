@@ -42,49 +42,73 @@
 						<!-- Edit Game Modal -->
 
 						<div class="modal fade" id="edit-game-{{game._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-							<div class="modal-dialog" role="document">
+							<div id="edit-modal" class="modal-dialog" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal">&times;</button>
 										<h4 class="modal-title">Edytuj grę</h4>
 									</div>
 									<div class="modal-body">
+										<div class="modal-top">
+											<div class="left-column">
+												<div class="form-group">
+													<label>Tytuł</label>
+													<input class="form-control" value="{{game.title}}" #userGameTitle />
+												</div>
+												<div class="form-group">
+													<label for="exampleSelect1">Kategoria</label>
+													<select id="exampleSelect1" class="form-control" 
+													value="{{game.category}}" #userGameCategory>
+													   	<option>Strategiczna</option>
+													   	<option>Logiczna</option>
+													    <option>Ekonomiczna</option>
+													    <option>Imprezowa</option>
+													    <option>Karciana</option>
+													    <option>Figurkowa</option>
+													    <option>Przygodowa</option>
+													    <option>Rodzinna</option>
+													    <option>Zręcznościowa</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label for="exampleSelect1">Stan</label>
+													<select id="exampleSelect1" class="form-control" 
+														value="{{game.state}}" #userGameState>
+														<option>Nowa</option>
+														<option>Używana</option>
+													</select>
+												</div>
+											</div>
+											<div class="right-column">
+												<div class="edit-img-box form-group">
+													<label>Zdjęcie</label>
+													<div class="game-image center-image">
+														<a routerLink="/games/{{ game._id }}">
+															<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
+														</a>
+													</div>
+												</div>
+												<div class="form-group input-file">
+													<label id="change-photo">Zmień zdjęcie</label>
+													<div class="center-button">
+														<input id="file" type="file" name="photo" class="inputfile"  
+														value="cdcd" ng2FileSelect 
+														[uploader]="coverUploader" #userGameImage (change)="onChange($event)" />
+														<label for="file"><i class="fa fa-download" aria-hidden="true"></i>Wybierz plik</label>
+													</div>
+												</div>
+											</div>
+										</div>										
+										
 										<div class="form-group">
-											<label>Tytuł: <input class="form-control" value="{{game.title}}" #userGameTitle /></label>
-										</div>
-										<label>Zdjęcie:
-										<div class="game-img">
-											<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
-										</div>
-										<input type="file" name="photo" value="cdcd" ng2FileSelect [uploader]="coverUploader" #userGameImage (change)="onChange($event)" /></label>
-										<div class="form-group">
-											<label for="exampleSelect1">Kategoria</label>
-												<select class="form-control" value="{{game.category}}" id="exampleSelect1" #userGameCategory>
-												   	<option>Strategiczna</option>
-												   	<option>Logiczna</option>
-												    <option>Ekonomiczna</option>
-												    <option>Imprezowa</option>
-												    <option>Karciana</option>
-												    <option>Figurkowa</option>
-												    <option>Przygodowa</option>
-												    <option>Rodzinna</option>
-												    <option>Zręcznościowa</option>
-												</select>
-										</div>
-										<div class="form-group">
-											<label for="exampleSelect1">Stan</label>
-											<select class="form-control" value="{{game.state}}" id="exampleSelect1" #userGameState>
-												<option>Nowa</option>
-												<option>Używana</option>
-											</select>
-										</div>
-										<div class="form-group">
-											<label>Dodatkowy opis: <textarea class="form-control" value="{{game.description}}"#userGameDescription></textarea></label>
+											<label>Dodatkowy opis</label>
+											<textarea class="form-control" value="{{game.description}}"#userGameDescription>
+											</textarea>
 										</div>
 									</div>
 									<div class="modal-footer">
 										<button class="btn btn-color" data-dismiss="modal">Anuluj</button>
-										<button class="btn custom-button" (click)="coverUploader.uploadAll(); editUserGame(game._id, userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameImage.value)" data-dismiss="modal">Akceptuj</button>
+										<button class="btn custom-button" (click)="coverUploader.uploadAll(); editUserGame(game._id, userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameImage.value)" data-dismiss="modal">Zapisz</button>
 									</div>
 								</div>
 							</div>
@@ -120,42 +144,62 @@
 
 <!-- Add Game Modal -->
 <div class="modal fade" id="add-game" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
+	<div class="add-modal modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title">Dodaj grę</h4>
 			</div>
 			<div class="modal-body">
-				<div class="form-group">
-					<label>Tytuł: <input class="form-control" #userGameTitle /></label>
+				<div class="modal-top">
+					<div class="left-column">
+						<div class="form-group">
+							<label>Tytuł</label>
+							<input class="form-control" required [ngModel]="model.title" #userGameTitle="ngModel" />
+							<div *ngIf="userGameTitle.errors && (userGameTitle.dirty || userGameTitle.touched)" 
+								class="alert alert-danger">
+								<div [hidden]="!userGameTitle.errors.required">
+									Tytuł jest wymagany
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="exampleSelect1">Kategoria</label>
+							<select class="form-control" id="exampleSelect1" #userGameCategory>
+								<option value="Strategiczna" selected>Strategiczna</option>
+								<option value="Logiczna">Logiczna</option>
+								<option value="Ekonomiczna">Ekonomiczna</option>
+								<option value="Imprezowa">Imprezowa</option>
+								<option value="Karciana">Karciana</option>
+								<option value="Figurkowa">Figurkowa</option>
+								<option value="Przygodowa">Przygodowa</option>
+								<option value="Rodzinna">Rodzinna</option>
+								<option value="Zręcznościowa">Zręcznościowa</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleSelect1">Stan</label>
+							<select class="form-control" id="exampleSelect1" #userGameState>
+								<option value="Nowa" selected>Nowa</option>
+								<option value="Używana">Używana</option>
+							</select>
+						</div>
+					</div>
+					<div class="right-column">
+						<div class="form-group input-file">
+							<label>Dodaj zdjęcie</label>
+							<div class="center-button">
+								<input id="add-file" type="file" name="photo" class="inputfile"  
+								value="cdcd" ng2FileSelect 
+								[uploader]="coverUploader" #userGameImage (change)="onChange($event)" />
+								<label for="add-file"><i class="fa fa-download" aria-hidden="true"></i>Wybierz plik</label>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="form-group">
-				    <label for="exampleSelect1">Kategoria</label>
-				    <select class="form-control" id="exampleSelect1" #userGameCategory>
-				      <option>Strategiczna</option>
-				      <option>Logiczna</option>
-				      <option>Ekonomiczna</option>
-				      <option>Imprezowa</option>
-				      <option>Karciana</option>
-				      <option>Figurkowa</option>
-				      <option>Przygodowa</option>
-				      <option>Rodzinna</option>
-				      <option>Zręcznościowa</option>
-				    </select>
-				</div>
-				<div class="form-group">
-					<label for="exampleSelect1">Stan</label>
-				    <select class="form-control" id="exampleSelect1" #userGameState>
-				      <option>Nowa</option>
-				      <option>Używana</option>
-				    </select>
-				</div>
-				<div class="form-group">
-					<label>Dodatkowy opis: <textarea class="form-control" #userGameDescription ></textarea></label>
-				</div>
-				<div class="form-control">
-					<input type="file" name="photo" ng2FileSelect [uploader]="coverUploader" #userGameImage (change)="onChange($event)" />
+					<label>Dodatkowy opis</label>
+					<textarea class="form-control" #userGameDescription ></textarea>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -164,7 +208,7 @@
 				(click)="coverUploader.uploadAll();
 				increaseNumberOfGames(userInfo?._id); 
 				addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameImage.value); 
-				userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameDescription.value=''; userGameImage.value='';" data-dismiss="modal">Akceptuj</button>
+				userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameDescription.value=''; userGameImage.value='';" data-dismiss="modal">Zapisz</button>
 			</div>
 		</div>
 	</div>
