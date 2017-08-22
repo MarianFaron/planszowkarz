@@ -26,27 +26,26 @@ export class UserInfoComponent implements OnInit {
   public URL = this.appService.getUrl('/app/avatarUpload');
   public avatarUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
-  constructor(private http: Http, private appService: AppService, private userInfoService: UserInfoService) {
-}
+  constructor(private http: Http, private appService: AppService, private userInfoService: UserInfoService) {}
 
   private myDatePickerOptions: IMyOptions = {
-        dateFormat: 'dd-mm-yyyy',
-        showTodayBtn: false,
-        maxYear: this.currentDate.getFullYear()
-    };
+    dateFormat: 'dd-mm-yyyy',
+    showTodayBtn: false,
+    maxYear: this.currentDate.getFullYear()
+  };
 
-    model = {
-      datepicker: { date: {year: 2000, month: 1, day: 1 }},
-      dateBirth: '',
-      city: '',
-      contactNumber: '',
-      password: '',
-      confirmPassword: '',
-      numberOfGames: 0,
-      numberOfExchanges: 0,
-      numberOfRatings: 0,
-      sumOfGrades: 0
-    }
+  model = {
+    datepicker: { date: {year: 2000, month: 1, day: 1 }},
+    dateBirth: '',
+    city: '',
+    contactNumber: '',
+    password: '',
+    confirmPassword: '',
+    numberOfGames: 0,
+    numberOfExchanges: 0,
+    numberOfRatings: 0,
+    sumOfGrades: 0
+  }
 
   ngOnInit() {
     this.getUserInfo();

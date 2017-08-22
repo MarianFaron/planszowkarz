@@ -18,7 +18,7 @@ describe('UserInfoComponent', () => {
     })
   }));
 
-  /*beforeEach(() => {
+  beforeEach(() => {
     component = TestBed.createComponent(UserInfoComponent).componentInstance;
     userInfoService = TestBed.get(UserInfoService);
     spyOn(userInfoService, "getUser").and.callFake(function(can, be, received) {
@@ -46,7 +46,7 @@ describe('UserInfoComponent', () => {
   });
 });*/
 
-/*describe('UserInfoService', () => {
+describe('UserInfoService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpModule],
@@ -104,5 +104,4 @@ describe('UserInfoComponent', () => {
       expect(user.message).toBe("Successfull edit user");
     });
   })));
-*/
 });
