@@ -22,6 +22,14 @@ export class GamesListComponent implements OnInit {
   // QUERY PARAMS
 
   queryTitle: string;
+  queryCategories: string[];
+  queryStates: string[];
+
+  query = {
+    title: "",
+    category: null,
+    state: null
+  };
 
   categoriesOptions = [
     {name: "Strategiczna", value: "Strategiczna", checked: false},
@@ -40,67 +48,46 @@ export class GamesListComponent implements OnInit {
     {name: "Używana", value: "Używana", checked: false}
   ]
 
-  query = {
-    title: "",
-    category: null,
-    state: null
-  };
-
   // GENERAL
 
   games: UserGame[];
-  countGames: number;
   pageTitle: string;
-  categories: string[];
-  states: string[];
   errorMessage: string;
   userGame: UserGame[];
-  pageUrl = '/games';
 
   private sub: any;
 
   constructor(
-    private appService: AppService, 
-    private route: ActivatedRoute, 
-    private coreService: CoreService, 
-    private router: Router, 
-    private activatedRoute: ActivatedRoute, 
-    private http: Http, 
+    private appService: AppService,
+    private route: ActivatedRoute,
+    private coreService: CoreService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private http: Http,
     private pagerService: PagerService,
   ) { }
 
   ngOnInit() {
 
-    this.activatedRoute.queryParams.subscribe((params: Params) => {
-      (params['title']) ? this.queryTitle = params['title'] : this.queryTitle = '';
-      (params['category']) ? this.categories = params['category'].toString().split(',') : this.categories = null;
-      (params['state']) ? this.states = params['state'].toString().split(',') : this.states = null;
+    this.queryCategories = [];
+    this.queryStates = [];
 
-      this.query = {
-        title: this.queryTitle,
-        category: this.categories,
-        state: this.states
-      }
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      (params['title']) ? this.query.title = params['title'] : this.query.title = '';
+      (params['category']) ? this.query.category = params['category'].toString().split(',') : this.query.category = null;
+      (params['state']) ? this.query.state = params['state'].toString().split(',') : this.query.state = null;
 
       this.updateCheckboxes();
+      this.checkPageMode();
 
-      if (this.query.title == '' && this.query.category == null && this.query.state == null) {
-        this.router.navigate(['/games']);
-        this.pageTitle = "Wymiana gier";
-        this.getGames();
-      } else {
-        this.pageUrl = '/search-results';
-        this.queryTitle = this.query.title;
-        this.games = JSON.parse(localStorage.getItem('games'));
-        this.setPageTitle();
-        this.setPage(1);
-        this.router.navigate([this.pageUrl], {queryParams: this.query});
-      }
     });
   }
 
-  searchTitle(queryTitle: string) {
-    this.query.title = queryTitle;
+  search() {
+
+    this.getCategoriesCheckboxesValues();
+    this.getStatesCheckboxesValues();
+    this.updateQueryValues();
 
     this.appService.search(this.query)
                         .subscribe(
@@ -113,73 +100,9 @@ export class GamesListComponent implements OnInit {
                           error => {
                             this.errorMessage = <any>error;
                           });
-  }
 
-  search(query: {title: string, category: string, state: string}) {
-    var localQuery = query;
-    this.appService.search(query)
-                        .subscribe(
-                          games => {
-                            var query = localQuery;
-                            localStorage.setItem('games', JSON.stringify(games));
-                            localStorage.setItem('query', JSON.stringify(localQuery));
+    this.resetQueryValues();
 
-                            var title = '', categories = '', states = '';
-
-                            if(this.query.title != "") {
-                              title = ''+this.query.title;
-                            }
-
-                            if(this.query.category.length > 0) {
-                              for(var i = 0; i < this.query.category.length; i++) {
-                                (i == this.query.category.length-1) ? categories += this.query.category[i]: categories += this.query.category[i] + ','
-                              }
-                            }
-
-                            if(this.query.state.length > 0) {
-                              for(var i = 0; i < this.query.state.length; i++) {
-                                (i == this.query.state.length-1) ? states += this.query.state[i]: states += this.query.state[i] + ','
-                              }
-                            }
-
-                            var query = {
-                              title: title,
-                              category: categories,
-                              state: states
-                            }
-                            this.games = games.reverse();
-                            this.query = query;
-                            this.router.navigate(['search-results'], {queryParams: query});
-                          },
-                          error => {
-                            this.errorMessage = <any>error;
-                          });
-  }
-
-
-  updateOptions() {
-
-    this.categories = [];
-    this.states = [];
-
-    for(var i = 0; i<this.categoriesOptions.length; i++) {
-      if(this.categoriesOptions[i].checked == true) {
-        this.categories.push(this.categoriesOptions[i].value);
-      }
-    }
-
-    for(var i = 0; i<this.statesOptions.length; i++) {
-      if(this.statesOptions[i].checked == true) {
-        this.states.push(this.statesOptions[i].value);
-      }
-    }
-
-    this.query = {
-      "title": this.queryTitle,
-      "category": this.categories,
-      "state": this.states
-    }
-    this.search(this.query);
   }
 
   getGames() {
@@ -193,30 +116,62 @@ export class GamesListComponent implements OnInit {
                     );
   }
 
-  setPageTitle() {
-      this.countGames = this.games.length;
-      if(this.queryTitle != "") {
-        this.pageTitle = this.countGames+ " Wyników wyszukiwania dla: " + this.queryTitle;
-      } else {
-        this.pageTitle = this.countGames+ " Wyników wyszukiwania";
+  resetQueryValues() {
+    this.queryCategories = [];
+    this.queryStates = [];
+    this.queryTitle = '';
+  }
+
+  updateQueryValues() {
+    (this.queryCategories.length == 0) ? this.query.category = null : this.query.category = this.queryCategories;
+    (this.queryStates.length == 0) ?  this.query.state = null : this.query.state = this.queryStates;
+    this.query.title = this.queryTitle;
+  }
+
+  checkPageMode() {
+    if (this.query.title == '' && this.query.category == null && this.query.state == null) {
+      this.router.navigate(['/games']);
+      this.pageTitle = "Wymiana gier";
+      this.getGames();
+    } else {
+      this.games = JSON.parse(localStorage.getItem('games'));
+      this.pageTitle = this.games.length + " Wyników wyszukiwania dla: ";
+      this.setPage(1);
+      this.router.navigate(['/search-results'], {queryParams: this.query});
+    }
+  }
+
+  getCategoriesCheckboxesValues() {
+    for(var i = 0; i<this.categoriesOptions.length; i++) {
+      if(this.categoriesOptions[i].checked == true) {
+        this.queryCategories.push(this.categoriesOptions[i].value);
       }
+    }
+  }
+
+  getStatesCheckboxesValues() {
+    for(var i = 0; i<this.statesOptions.length; i++) {
+      if(this.statesOptions[i].checked == true) {
+        this.queryStates.push(this.statesOptions[i].value);
+      }
+    }
   }
 
   updateCheckboxes() {
-    if(this.categories != null) {
-      for(var i = 0; i < this.categories.length; i++) {
+    if(this.queryCategories != null) {
+      for(var i = 0; i < this.queryCategories.length; i++) {
         for(var j = 0; j < this.categoriesOptions.length; j++) {
-          if(this.categories[i] == this.categoriesOptions[j].value) {
+          if(this.queryCategories[i] == this.categoriesOptions[j].value) {
             this.categoriesOptions[j].checked = true;
           }
         }
       }
     }
 
-    if(this.states != null) {
+    if(this.queryStates != null) {
       for(var i = 0; i < this.statesOptions.length; i++) {
         for(var j = 0; j < this.statesOptions.length; j++) {
-          if(this.states[i] == this.statesOptions[j].value) {
+          if(this.queryStates[i] == this.statesOptions[j].value) {
             this.statesOptions[j].checked = true;
           }
         }
