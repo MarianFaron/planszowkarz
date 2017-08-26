@@ -1,139 +1,168 @@
+@import '../../../sass/mixins';
+@import '../../../sass/colors';
+
+$custom-mobile-breakpoint: 580px;
+
 .navbar-default {
-	margin-top: 15px;
-	background-color: #FFF;
-	font-weight: 700;
-	font-size: 1.0em;
-	box-shadow: 2px 2px 1px #d5d5d5;
-	border-radius: 0;
-	.container-fluid {
-		padding: 0;
-		.navbar-nav {
-			width: 100%;
-			display: flex;
-			margin: 8px 0px;
-			@media only screen and (max-width: 580px) {
-				flex-direction: column;
-			}
-			li {
-				width: 25%;
-				text-align: center;
-				@media only screen and (max-width: 580px) {
-					width: 100%;
-				}
-				a.active-link {
-					color: rgb(249, 141, 26);					
-				}
-				a {
-					@media only screen and (max-width: 678px) {
-						display: flex;
-						justify-content: center;
-						flex-direction: column;
-					}
-					@media only screen and (max-width: 580px) {
-						flex-direction: row;
-					}
-				}
-				a:hover,
-				a:focus,
-				a:active {
-					color: rgb(249, 141, 26);
-				}
-				span {
-					margin-right: 5px;
-					@media only screen and (max-width: 678px) {
-						margin-bottom: 5px;
-					}
-				}
-			}
-		}
-	}
+  @include font-size(16);
+
+  margin-top: 15px;
+  background-color: $pl-white;
+  font-weight: 700;
+  box-shadow: 2px 2px 1px $pl-gray;
+  border-radius: 0;
+
+  .container-fluid {
+    padding: 0;
+
+    .navbar-nav {
+      width: 100%;
+      display: flex;
+      margin: 8px 0px;
+
+      @media only screen and (max-width: $custom-mobile-breakpoint) {
+        flex-direction: column;
+      }
+
+      li {
+        width: 25%;
+        text-align: center;
+
+        @media only screen and (max-width: $custom-mobile-breakpoint) {
+          width: 100%;
+        }
+
+        a.active-link {
+          color: $pl-orange;         
+        }
+
+        a {
+          @media only screen and (max-width: 678px) {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+          }
+
+          @media only screen and (max-width: $custom-mobile-breakpoint) {
+            flex-direction: row;
+          }
+        }
+
+        a:hover,
+        a:focus,
+        a:active {
+          color: $pl-orange;
+        }
+
+        span {
+          margin-right: 5px;
+
+          @media only screen and (max-width: 678px) {
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+  }
 }
 
 .inner {
-	margin: 10px auto;
-	padding: 15px;
+  margin: 10px auto;
+  padding: 15px;
 }
 
 .single-transaction {
-	overflow: auto;
-	/* received */
-	.senderBox {
-		display: flex;
-		justify-content: center;
-		p {
-			margin-right: 5px;
-		}
-		.sender {
-			color: #f98d1a;
-		}
-	}
-	.gameTitleBig {
-		p {
-			text-align: center;
-			color: #f98d1a;
-			font-size: 30px;
-		}
-	}
-	.stateBox {
-		display: flex;
-		width: 100%;
-		justify-content: space-between;
-		@media only screen and (max-width: 580px) {
-			flex-direction: column;
-		}
-		.gameState {
-			display: flex;
-			align-items: flex-end;
-			p{
-				margin: 0px 5px 0px 0px;
-			}
-		}
-	}
-	/* accepted, rejected, sent */
-	.single-transaction-content {
-		p {
-			margin: 5px 0;
-			text-align: center;
-		}
-		a {
-			color: #333;
-			text-decoration: none;
-		}
-		a:hover {
-			color: #f98d1a;
-		}
-	}
-	#left {
-		float:left;
-		width:200px;
-		p {
-			text-align: left;
-		}
-		.gameTitle {
-			p {
-				white-space: nowrap;
-				text-overflow: ellipsis;
-				overflow: hidden;
-			}
-		}
-	}
-	#center {
-		margin:0 auto;
-		width:200px;
-	}
-	#right {
-		float:right;
-		width:200px;
-		text-align: right;
-		p {
-			text-align: right;
-		}
-		.gameTitle {
-			p {
-				white-space: nowrap;
-				text-overflow: ellipsis;
-				overflow: hidden;
-			}
-		}
-	}
+  overflow: auto;
+
+  .senderBox {
+    display: flex;
+    justify-content: center;
+
+    p {
+      margin-right: 5px;
+    }
+
+    .sender {
+      color: $pl-orange;
+    }
+  }
+
+  .gameTitleBig p {
+    @include font-size(30);
+
+    text-align: center;
+    color: $pl-orange;
+  }
+
+  .stateBox {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    @media only screen and (max-width: $custom-mobile-breakpoint) {
+      flex-direction: column;
+    }
+
+    .gameState {
+      display: flex;
+      align-items: flex-end;
+
+      p {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  // accepted, rejected, sent
+  .single-transaction-content {
+    p {
+      margin: 5px 0;
+      text-align: center;
+    }
+
+    a {
+      color: $pl-dark-gray;
+      text-decoration: none;
+
+      &:hover {
+        color: $pl-orange;
+      }
+    }
+  }
+
+  #left {
+    float: left;
+    width: 200px;
+
+    p {
+      text-align: left;
+    }
+
+    .gameTitle p {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  #center {
+    margin: 0 auto;
+    width: 200px;
+  }
+
+  #right {
+    float: right;
+    width: 200px;
+    text-align: right;
+
+    p {
+      text-align: right;
+    }
+
+    .gameTitle p {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
 }

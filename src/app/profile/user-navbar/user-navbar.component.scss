@@ -1,115 +1,146 @@
+@import '../../../sass/mixins';
+@import '../../../sass/colors';
+
+$custom-mobile-breakpoint: 580px;
+
 @font-face {
-	font-family: 'Pe-icon-7-stroke';
-	src:url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.eot');
-	src:url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.eot?#iefixu58ytb') format('embedded-opentype'),
-		url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.woff') format('woff'),
-		url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.ttf') format('truetype'),
-		url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.svg') format('svg');
+  font-family: 'Pe-icon-7-stroke';
+  src:url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.eot');
+  src:url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.eot?#iefixu58ytb') format('embedded-opentype'),
+    url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.woff') format('woff'),
+    url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.ttf') format('truetype'),
+    url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.svg') format('svg');
 }
 
-.container{
-	font-size: 1.25em;
-	padding-right: 0px;
-	padding-left: 0px;
-	.col-md-8{
-		.tabs {
-		font-size: 1.25em;
-		box-shadow: 2px 2px 1px #d5d5d5;
-    @media screen and (max-width: 580px){
+.container {
+  @include font-size(20);
+
+  padding-right: 0;
+  padding-left: 0;
+
+  .col-md-8 .tabs {
+    @include font-size(20);
+
+    box-shadow: 2px 2px 1px $pl-gray;
+
+    @media screen and (max-width: $custom-mobile-breakpoint){
       box-shadow: none;
     }
-			nav{
-				margin-bottom: 0px;
-				ul {
-					display: flex;
-					margin: 0 auto;
-					padding: 0;
-					flex-flow: row wrap;
-					li {
-						display: block;
-						text-align: center;
-						-ms-flex: 1;
-						flex: 1;
-						border: 1px solid rgba(40,44,42,0.1);
-						a {
-							padding: 0.65em 0 0.5em;
-							background: #fff;
-							color: #74777b;
-							line-height: 1;
-							text-decoration: none;
-							display: block;
-							height: 74px;
-							@media screen and (max-width: 580px){
-								display: flex;
-								justify-content: center;
-								align-items: center;
-							}
-							span {
-								text-transform: uppercase;
-								letter-spacing: 1px;
-								font-weight: 700;
-								font-size: 0.5em;
-								vertical-align: middle;
-								@media screen and (max-width: 580px){
-									display: none;
-								}
-							}
-						}
-						a:hover, a:focus, a:active {
-							color: rgb(249, 141, 26);
-						}
-						.active-link {
-							color: rgb(249, 141, 26);
-						}
-						.icon::before {
-							display: block;
-							margin: 0;
-							font-size: 1.3em;
-							font-family: 'Pe-icon-7-stroke';
-							-webkit-backface-visibility: hidden;
-						}
-						.icon-joy::before {
-							content: "\e617";
-						}
-						.icon-config::before {
-							content: "\e666";
-						}
-						.icon-date::before {
-							content: "\e660";
-						}
-						.icon-display::before {
-							content: "\e65e";
-						}
-						.icon-upload::before {
-							content: "\e68a";
-						}
-						.icon-bell::before {
-							content: "\e677";
-						}
-					}
-					li:not(:last-child) {
-						border-right: none;
-					}
-				}
-			}
-		}
-	}
-	.mobile-tab-name{
-		display: none;
-		@media screen and (max-width: 580px){
-      margin-top: 0!important;
-			height: 50px;
-			background-color: #FFF;
-			margin: 5px 0px 0px 0px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			h3{
-				margin: 0;
-				font-size: 18px;
-				color: #f98d1a;
-				// text-decoration: underline;
-			}
-		}
-	}
+
+    nav {
+      margin-bottom: 0px;
+
+      ul {
+        display: flex;
+        margin: 0 auto;
+        padding: 0;
+        flex-flow: row wrap;
+
+        li {
+          display: block;
+          text-align: center;
+          -ms-flex: 1;
+          flex: 1;
+          border: 1px solid rgba($pl-dark-gray, 0.1);
+
+          a {
+            padding: 0.65em 0 0.5em;
+            background: $pl-white;
+            color: $pl-dark-gray2;
+            line-height: 1;
+            text-decoration: none;
+            display: block;
+            height: 74px;
+
+            @media screen and (max-width: $custom-mobile-breakpoint) {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+
+            span {
+              @include font-size(8);
+
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              font-weight: 700;
+              vertical-align: middle;
+
+              @media screen and (max-width: $custom-mobile-breakpoint) {
+                display: none;
+              }
+            }
+          }
+
+          a:hover, 
+          a:focus, 
+          a:active {
+            color: $pl-orange;
+          }
+
+          .active-link {
+            color: $pl-orange;
+          }
+
+          .icon::before {
+            @include font-size(21);
+
+            display: block;
+            margin: 0;
+            font-family: 'Pe-icon-7-stroke';
+            -webkit-backface-visibility: hidden;
+          }
+
+          .icon-joy::before {
+            content: "\e617";
+          }
+
+          .icon-config::before {
+            content: "\e666";
+          }
+
+          .icon-date::before {
+            content: "\e660";
+          }
+
+          .icon-display::before {
+            content: "\e65e";
+          }
+
+          .icon-upload::before {
+            content: "\e68a";
+          }
+
+          .icon-bell::before {
+            content: "\e677";
+          }
+        }
+
+        li:not(:last-child) {
+          border-right: none;
+        }
+      }
+    }
+  }
+
+  .mobile-tab-name {
+    display: none;
+
+    @media screen and (max-width: $custom-mobile-breakpoint){
+      margin-top: 0 !important;
+      height: 50px;
+      background-color: $pl-white;
+      margin: 5px 0 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      h3 {
+        @include font-size(18);
+
+        margin: 0;
+        color: $pl-orange;
+      }
+    }
+  }
 }

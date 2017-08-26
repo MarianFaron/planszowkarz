@@ -1,237 +1,278 @@
-.games-main-panel{
-	margin: 10px 0 0 0;
-	display: block;
-	.games-info{
-		margin-bottom: 40px;
-		.games-panel-header {
-			margin: 0;
-			margin-bottom: 10px;
-			padding-bottom: 15px;
-			height: 50px;
-			display: block;
-			padding-right: 20px;
-			h5{
-				letter-spacing: -0.02em;
-				font-size: 24px;
-				line-height: 30px;
-				display: inline-block;
-			}
-			.button-add-new-game{
-				float: right;
-				height: 100%;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-		}
-		hr.style1{
-			border-top: 1px solid #f98d1a;
-			margin: 5px 3% 5px 3%;
-		}
-		.games-panel-content{
-			display: block;
-			.single-game-box{
-				margin-bottom: 15px;
-				width: 100%;
-				min-height: 130px;
-				display: table;
-				.single-box-content{
-					padding: 10px 20px 10px 20px;
-					width: 100%;
-					display: inline-flex;
-					@media screen and (max-width: 400px){
-						display: flex;
-						flex-direction: column;
-						text-align: center;
-					}
-					.game-image{
-						display: flex;
-						vertical-align: middle;
-						width: 160px;
-						height: 120px;
-						border: 1px solid #e7e7e7;
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						@media screen and (max-width: 400px){
-							display: block;
-							margin: 0 auto;
-						}
-						img{
-							background-position: top;
-							max-height: 116px;
-							max-width: 116px;
-							position: relative;
-							margin: auto;
-						}
-					}
-					.game-info{
-						margin-left: 30px;
-						width: calc(100% - 190px);
-						display: flex;
-						flex-direction: column;
-						flex-wrap: wrap;
-						@media screen and (max-width: 400px){
-							margin: 0;
-							width: 100%;
-						}
-						a {
-							color: #333;
-							display: flex;
-							align-items: center;
-							@media screen and (max-width: 400px){
-								min-height: auto;
-								justify-content: center;
-								margin-top: 20px;
-								margin-bottom: 20px;
-							}
-						}
-						a:hover,
-						a:focus,
-						a:active, {
-							color:  #f98d1a;
-						}
-						p.title{
-							letter-spacing: -0.02em;
-							font-size: 24px;
-							line-height: 30px;
-							display: inline-block;
-						}
-						p{
-							margin-bottom: 5px;
-						}
-						.game-info-buttons{
-							display: flex;
-							justify-content: flex-end;
-							margin-top: 20px;
-							@media screen and (max-width: 400px){
-								justify-content: center;
-							}
-							button{
-								width: 80px;
-								background-color: #e7e7e7;
-								border-radius: 5px;
-								border:none;
-								margin-left: 5px;
-								span{
-									margin-right: 5px;
-								}
-							}
-							.btn-remove-game{
-								color: #FF0000;
-							}
-						}
-					}
-					.game-info-function-box{
-						.game-img{
-							img{
-								width: 120px;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+@import '../../../sass/mixins';
+@import '../../../sass/colors';
+
+.games-main-panel {
+  margin: 10px 0 0;
+  display: block;
+
+  .games-info {
+    margin-bottom: 40px;
+
+    .games-panel-header {
+      margin: 0;
+      margin-bottom: 10px;
+      padding: 0 20px 15px 0;
+      height: 50px;
+      display: block;
+
+      h5 {
+        @include font-size(24);
+
+        letter-spacing: -0.02em;
+        line-height: 30px;
+        display: inline-block;
+      }
+
+      .button-add-new-game{
+        float: right;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    hr.style1{
+      border-top: 1px solid $pl-orange;
+      margin: 5px 3%;
+    }
+
+    .games-panel-content {
+      display: block;
+
+      .single-game-box {
+        margin-bottom: 15px;
+        width: 100%;
+        min-height: 130px;
+        display: table;
+
+        .single-box-content {
+          padding: 10px 20px;
+          width: 100%;
+          display: inline-flex;
+
+          @media screen and (max-width: 400px) {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .game-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            vertical-align: middle;
+            width: 160px;
+            height: 120px;
+            border: 1px solid $pl-light-gray;
+
+            @media screen and (max-width: 400px){
+              display: block;
+              margin: 0 auto;
+            }
+
+            img {
+              background-position: top;
+              max-height: 116px;
+              max-width: 116px;
+              position: relative;
+              margin: auto;
+            }
+          }
+
+          .game-info {
+            margin-left: 30px;
+            width: calc(100% - 190px);
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+
+            @media screen and (max-width: 400px) {
+              margin: 0;
+              width: 100%;
+            }
+
+            a {
+              color: $pl-dark-gray;
+              display: flex;
+              align-items: center;
+
+              @media screen and (max-width: 400px) {
+                min-height: auto;
+                justify-content: center;
+                margin: 20px 0;
+              }
+            }
+
+            a:hover,
+            a:focus,
+            a:active {
+              color: $pl-orange;
+            }
+
+            p {
+              margin-bottom: 5px;
+
+              &.title {
+                @include font-size(24);
+
+                letter-spacing: -0.02em;
+                line-height: 30px;
+                display: inline-block;
+              }
+            }
+
+            .game-info-buttons {
+              display: flex;
+              justify-content: flex-end;
+              margin-top: 20px;
+
+              @media screen and (max-width: 400px) {
+                justify-content: center;
+              }
+
+              button {
+                width: 80px;
+                background-color: $pl-light-gray;
+                border-radius: 5px;
+                border: none;
+                margin-left: 5px;
+
+                span {
+                  margin-right: 5px;
+                }
+              }
+
+              .btn-remove-game {
+                color: $pl-red;
+              }
+            }
+          }
+
+          .game-info-function-box .game-img img {
+            width: 120px;
+          }
+        }
+      }
+    }
+  }
 }
 
 /* Edit game */
 
-.modal-body{
-	.modal-top{
-		display: flex;
-		@media screen and (max-width: 500px){
-			flex-direction: column;
-		}
-		.left-column{
-			width: 50%;
-			display: flex;
-			flex-direction: column;
-			@media screen and (max-width: 500px){
-				width: 100%;
-			}
-			.form-group{
-				.alert-danger{
-					border-radius: 0;
-					border: none;
-					color: #FF0000;
-					background-color: #FFFFFF;
-					font-size: 13px;
-					font-weight: 600;
-					padding: 5px;
-					margin: 0;
-				}
-			}
-			input, select{
-				max-width: 320px;
-				@media screen and (max-width: 500px){
-					margin: 0 auto;
-				}
-			}
-		}
-		.right-column{
-			width: 50%;
-			display: flex;
-			flex-direction: column;
-			@media screen and (max-width: 500px){
-				width: 100%;
-			}
-			.edit-img-box{
-				display: flex;
-				flex-direction: column;
-				.center-image{
-					display: flex;
-					align-self: center;
-				}
-			}
-			.input-file{
-				#change-photo{
-					margin-top: 9px;
-				}
-				.center-button{
-					display: flex;
-					justify-content:center;
-					.inputfile {
-						width: 0.1px;
-						height: 0.1px;
-						opacity: 0;
-						overflow: hidden;
-						position: absolute;
-						z-index: -1;
-					}
-					.inputfile + label {
-						color: white;
-						font-weight: 500;
-						background: #f98d1a;
-						border: none;
-						min-width: 100px;
-						padding: 6px 12px;
-						font-size: 14px;
-						border-radius: 4px;
-						width: 160px;
-					}
-					.inputfile:focus + label,
-					.inputfile + label:hover {
-						text-shadow: 1px 1px 1px #000;
-						cursor: pointer;
-					}
-					i{
-						margin-right: 10px;
-					}
-				}
-			}
-		}
-	}
-	textarea{
-		max-width: 100%;
-		margin: 0 auto;
-		@media screen and (max-width: 500px){
-			width: 320px;
-		}
-	}
+.modal-body {
+  .modal-top {
+    display: flex;
+
+    @media screen and (max-width: 500px) {
+      flex-direction: column;
+    }
+
+    .left-column {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+
+      @media screen and (max-width: 500px) {
+        width: 100%;
+      }
+
+      .form-group .alert-danger {
+        @include font-size(13);
+
+        border-radius: 0;
+        border: none;
+        color: $pl-red;
+        background-color: $pl-white;
+        font-weight: 600;
+        padding: 5px;
+        margin: 0;
+      }
+
+      input, 
+      select {
+        max-width: 320px;
+
+        @media screen and (max-width: 500px) {
+          margin: 0 auto;
+        }
+      }
+    }
+
+    .right-column {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+
+      @media screen and (max-width: 500px) {
+        width: 100%;
+      }
+
+      .edit-img-box {
+        display: flex;
+        flex-direction: column;
+
+        .center-image {
+          display: flex;
+          align-self: center;
+        }
+      }
+
+      .input-file {
+        #change-photo {
+          margin-top: 9px;
+        }
+
+        .center-button{
+          display: flex;
+          justify-content: center;
+
+          .inputfile {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+          }
+
+          .inputfile + label {
+            @include font-size(14);
+
+            color: $pl-white;
+            background: $pl-orange;
+            font-weight: 500;
+            border: none;
+            min-width: 100px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            width: 160px;
+          }
+
+          .inputfile:focus + label,
+          .inputfile + label:hover {
+            text-shadow: 1px 1px 1px $pl-black;
+            cursor: pointer;
+          }
+
+          i {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  textarea {
+    max-width: 100%;
+    margin: 0 auto;
+
+    @media screen and (max-width: 500px) {
+      width: 320px;
+    }
+  }
 }
-.form-group{
-	label{
-		text-align: center;
-	}
+
+.form-group label {
+  text-align: center;
 }

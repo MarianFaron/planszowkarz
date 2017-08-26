@@ -1,49 +1,62 @@
+@import '../../../sass/mixins';
+@import '../../../sass/colors';
+
 .inner {
   margin-top: 15px;
   padding: 15px 30px;
-  .config-content{
-    h3{
+
+  .config-content {
+    h3 {
+      @include font-size(25);
+
       text-align: center;
       text-transform: none;
-      font-size: 25px;
       font-weight: 400;
       margin-bottom: 40px;
     }
-    .config-top{
+
+    .config-top {
       display: flex;
-      @media screen and (max-width: 500px){
+
+      @media screen and (max-width: 500px) {
         flex-wrap: wrap;
       }
-      .left-column{
+
+      .left-column {
         width: 50%;
         display: flex;
         flex-direction: column;
+
         @media screen and (max-width: 500px){
           width: 320px;
           margin: 0 auto;
         }
       }
-      .right-column{
+
+      .right-column {
         width: 50%;
         display: flex;
         flex-direction: column;
+
         @media screen and (max-width: 500px){
           width: 100%;
         }
-        .game-image{
-          display: flex;
-          vertical-align: middle;
-          width: 160px;
-          height: 120px;
-          border: 1px solid #e7e7e7;
+
+        .game-image {
           display: flex;
           justify-content: center;
           align-items: center;
+          vertical-align: middle;
+          width: 160px;
+          height: 120px;
+          border: 1px solid $pl-light-gray;
+
           @media screen and (max-width: 400px){
             display: block;
             margin: 0 auto;
           }
-          img{
+
+          img {
             background-position: top;
             max-height: 116px;
             max-width: 116px;
@@ -51,86 +64,97 @@
             margin: auto;
           }
         }
-        .edit-img-box{
+
+        .edit-img-box {
           display: flex;
           flex-direction: column;
-          .center-image{
+
+          .center-image {
             display: flex;
             align-self: center;
             position: relative;
-            label{
+
+            label {
               width: 24px;
               height: 24px;
               cursor: pointer;
               position: absolute;
-              color: red;
-              background-color: white;
-              border: 2px solid red;
               top: 0;
               right: 0;
+              color: $pl-red;
+              background-color: $pl-white;
+              border: 2px solid $pl-red;
             }
           }
         }
-        .input-file{
-          .center-button{
-            display: flex;
-            justify-content:center;
-            .inputfile {
-              width: 0.1px;
-              height: 0.1px;
-              opacity: 0;
-              overflow: hidden;
-              position: absolute;
-              z-index: -1;
-            }
-            .inputfile + label {
-              margin-top: 7px;
-              color: white;
-              font-weight: 500;
-              background: #f98d1a;
-              border: none;
-              min-width: 100px;
-              padding: 6px 12px;
-              font-size: 14px;
-              border-radius: 4px;
-              width: 160px;
-            }
-            .inputfile:focus + label,
-            .inputfile + label:hover {
-              text-shadow: 1px 1px 1px #000;
-            }
-            i{
-              margin-right: 10px;
-            }
+
+        .input-file .center-button {
+          display: flex;
+          justify-content:center;
+
+          .inputfile {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+          }
+
+          .inputfile + label {
+            @include font-size(14);
+
+            color: $pl-white;
+            background: $pl-orange;
+            font-weight: 500;
+            border: none;
+            min-width: 100px;
+            padding: 6px 12px;
+            margin-top: 7px;
+            border-radius: 4px;
+            width: 160px;
+          }
+
+          .inputfile:focus + label,
+          .inputfile + label:hover {
+            text-shadow: 1px 1px 1px $pl-black;
+          }
+
+          i {
+            margin-right: 10px;
           }
         }
       }
     }
-    .config-change-password{
+
+    .config-change-password {
       width: 50%;
       margin: 0 auto;
-      @media screen and (max-width: 500px){
+
+      @media screen and (max-width: 500px) {
         width: 100%;
       }
-      input{
+
+      input {
         max-width: 320px;
         margin: 0 auto 10px 0;
       }
     }
-    .save-changes{
+
+    .save-changes {
       text-align: center;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      button:hover{
-        text-shadow: 1px 1px 1px #000;
+      margin: 20px 0;
+
+      button:hover {
+        text-shadow: 1px 1px 1px $pl-black;
       }
     }
   }
-  .form-group{
-    label{
-      text-align: center;
-    }
+
+  .form-group label {
+    text-align: center;
   }
+
   .user-avatar {
     max-width: 250px;
     max-height: 200px;
@@ -138,15 +162,16 @@
     position: relative;
     margin-bottom: 10px;
   }
-  .alert-danger{
+
+  .alert-danger {
+    @include font-size(13);
+
     border-radius: 0;
     border: none;
-    color: #FF0000;
-    background-color: #FFFFFF;
-    font-size: 13px;
+    color: $pl-red;
+    background-color: $pl-white;
     font-weight: 600;
     padding: 5px;
     margin: 0;
   }
 }
-

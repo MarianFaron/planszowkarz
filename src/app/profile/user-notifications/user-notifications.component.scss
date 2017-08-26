@@ -1,64 +1,79 @@
-.notifications-main-panel{
-	margin: 10px 0 0 0;
-	display: block;
-	.notifications-info{
-		margin-bottom: 40px;
-		.notifications-panel-header {
-			margin: 0;
-			padding-left: 3%;
-			padding-right: 3%;
-			height: 50px;
-			display: block;
-			h5{
-				letter-spacing: -0.02em;
-				font-size: 24px;
-				line-height: 30px;
-				display: inline-block;
-			}
-		}
-		hr.style1{
-			border-top: 1px solid #f98d1a;
-			margin: 5px 3% 5px 3%;
-		}
-		.notifications-panel-content{
-			display: block;
-			.single-box{
-				margin-bottom: 15px;
-				width: 100%;
-				display: table;
-				.box-content{
-					padding: 15px;
-					width: 100%;
-					display: flex;
-					flex-direction: column;
-					// margin-left: 30px;
-					.notification-btns {
-						text-align: right;
-						button {
-							margin-top: 0;
-						}
-					}
-				}
-			}
-			.unread {
-				font-weight: bold;
-			}
-		}
-	}
+@import '../../../sass/mixins';
+@import '../../../sass/colors';
+
+.notifications-main-panel {
+  margin: 10px 0 0;
+  display: block;
+
+  .notifications-info {
+    margin-bottom: 40px;
+
+    .notifications-panel-header {
+      margin: 0;
+      padding-left: 3%;
+      padding-right: 3%;
+      height: 50px;
+      display: block;
+
+      h5 {
+        @include font-size(24);
+
+        letter-spacing: -0.02em;
+        line-height: 30px;
+        display: inline-block;
+      }
+    }
+
+    hr.style1 {
+      border-top: 1px solid $pl-orange;
+      margin: 5px 3%;
+    }
+
+    .notifications-panel-content {
+      display: block;
+
+      .single-box {
+        margin-bottom: 15px;
+        width: 100%;
+        display: table;
+
+        .box-content {
+          padding: 15px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          // margin-left: 30px;
+
+          .notification-btns {
+            text-align: right;
+
+            button {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+
+      .unread {
+        font-weight: bold;
+      }
+    }
+  }
 }
 
 .pagination a {
-	color: #333;
+  color: $pl-dark-gray;
 }
 
 .pagination .active a {
-  background: #f98d1a;
-  color: #fff;
+  background: $pl-orange;
+  color: $pl-white;
   border: none;
 }
+
 .inner a:active,
 .inner a:focus,
-.inner a:hover{
-    color: #f98d1a;
+.inner a:hover {
+    color: $pl-orange;
     text-decoration: underline;
 }

@@ -1,14 +1,14 @@
-// Extra small screen / phone
-$mobile-breakpoint: 480px;
+// small-mobile device
+$small-mobile-breakpoint: 479px;
 
-// Small screen / tablet
-$tablet-breakpoint: 768px;
+// mobile device
+$mobile-breakpoint: 768px;
 
-// Medium screen / desktop
-$desktop-breakpoint: 992px;
+// tablet device
+$tablet-breakpoint: 992px;
 
-// Large screen / wide desktop
-$largeDesktop-breakpoint: 1200px;
+// desktop device
+$desktop-breakpoint: 1200px;
 
 // Font dize mixin
 
@@ -20,19 +20,33 @@ $largeDesktop-breakpoint: 1200px;
 // Breapoint mixin
 
 @mixin respond-to($media) {
-  @if $media == mobile {
-    @media (max-width: ($tablet-breakpoint - 1)) { @content }
+  @if $media == small-mobile {
+    @media only screen and(max-width: $small-mobile-breakpoint) { 
+      @content; 
+    }
+  }
+
+  @else if $media == mobile {
+    @media only screen and (max-width: ($mobile-breakpoint - 1)) { 
+      @content; 
+    }
   }
 
   @else if $media == tablet {
-    @media (min-width: $tablet-breakpoint) and (max-width: ($desktop-breakpoint - 1)) { @content }
+    @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
+      @content; 
+    }
   }
 
   @else if $media == desktop {
-    @media (min-width: $desktop-breakpoint) and (max-width: ($largeDesktop-breakpoint -1)) { @content }
+    @media only screen and (max-width: ($desktop-breakpoint -1)) { 
+      @content;
+    }
   }
 
   @else if $media == large-desktop {
-    @media (min-width: $largeDesktop-breakpoint) { @content }
+    @media only screen and (min-width: $desktop-breakpoint) {
+      @content;
+    }
   }
 }

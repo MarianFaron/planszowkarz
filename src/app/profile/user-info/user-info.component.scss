@@ -1,77 +1,86 @@
+@import '../../../sass/mixins';
+@import '../../../sass/colors';
+
 .user-sidebar {
-	margin: 0;
-	padding: 20px 3% 1px;
-	display: block;
-	.other-info {
-		margin-bottom: 40px;
-		a {
-			color: #333;
-			text-decoration: underline;
-		}
-		a:active,
-		a:focus,
-		a:hover {
-			color: #f98d1a;
-			text-decoration: underline;
-		}
-		.user-panel-header {
-			background-color: #f8f8f8;
-			border: 1px solid #e7e7e7;
-			padding: 5px 40px;
-			vertical-align: middle;
-			font-size: 16px;
-			line-height: 40px;
-			color: inherit;
-			margin: 0;
-			h5 {
-				font-size: 16px;
-				font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-			}
-		}
-		.user-avatar {
-			max-width: 250px;
-			max-height: 200px;
-			display: block;
-			position: relative;
-			margin: 0 auto;
-		}
-		ul {
-			width: 100%;
-			margin-top: 20px;
-			padding: 0;
-			display: block;
-			li {
-				text-decoration: none;
-				list-style: none;
-				line-height: 22px;
-				padding-left: 3%;
-				span {
-					margin-right: 10px;
-				}
-			}
-			li.username {
-				font-size: 20px;
-				margin-bottom: 15px;
-			}
-			li.usercity {
-				margin-bottom: 15px;
-			}
-		}
-	}
+  margin: 0;
+  padding: 20px 3% 1px;
+  display: block;
+
+  .other-info {
+    margin-bottom: 40px;
+
+    a {
+      color: $pl-dark-gray;
+      text-decoration: underline;
+    }
+
+    a:active,
+    a:focus,
+    a:hover {
+      color: $pl-orange;
+      text-decoration: underline;
+    }
+
+    .user-panel-header {
+      @include font-size(16);
+
+      background-color: $pl-light-gray3;
+      border: 1px solid $pl-light-gray;
+      padding: 5px 40px;
+      vertical-align: middle;
+      line-height: 40px;
+      color: inherit;
+      margin: 0;
+
+      h5 {
+        @include font-size(16);
+
+        font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+      }
+    }
+
+    .user-avatar {
+      max-width: 250px;
+      max-height: 200px;
+      display: block;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    ul {
+      width: 100%;
+      margin-top: 20px;
+      padding: 0;
+      display: block;
+
+      li {
+        text-decoration: none;
+        list-style: none;
+        line-height: 22px;
+        padding-left: 3%;
+
+        span {
+          margin-right: 10px;
+        }
+      }
+
+      li.username {
+        @include font-size(20);
+
+        margin-bottom: 15px;
+      }
+
+      li.usercity {
+        margin-bottom: 15px;
+      }
+    }
+  }
 }
 
 .hidden {
-	display: none;
+  display: none;
 }
 
 .user-info-box {
-	margin-bottom: 15px;
-}
-.alert-danger{
-  border-radius: 0;
-  border: none;
-  color: white;
-  font-weight: 500;
-  font-size: 16px;
-  background-color: #F44336;
+  margin-bottom: 15px;
 }
