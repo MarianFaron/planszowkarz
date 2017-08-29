@@ -85,9 +85,13 @@
 						<div class="list-box">
 							<h3>Lista Twoich gier</h3>
 							<div class="list-content">
-								<div class="games">
-									<li [draggable] *ngFor="let game of senderGamesArray" 
-									[dragData]="game"> {{ game.title }} </li>
+								<div id="custom-scrollbar" class="scrollbar">
+									<div id="custom-scrollbar" class="games">
+										<div class="list-center">
+											<li [draggable] *ngFor="let game of senderGamesArray" 
+											[dragData]="game"> {{ game.title }} </li>
+										</div>
+									</div>
 								</div>
 								<div class="mobile-games">
 									<div class="drag-drop-info">

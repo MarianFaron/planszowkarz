@@ -434,9 +434,11 @@ section#exchange {
               .list-content {
                 .games {
                   padding: 0;
+                  width: 100%;
                   max-height: 430px;
                   overflow-y: scroll;
                   overflow-x: hidden;
+                  background: transparent;
 
                   @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
                     display: flex;
@@ -448,21 +450,26 @@ section#exchange {
                     display: none;
                   }
 
-                  li {
-                    background-color: $pl-orange;
-                    color: $pl-light-gray4;
-                    margin: 5px auto 0;
-                    padding: 8px;
-                    list-style: none;
-                    text-align: center;
-                    cursor: pointer;
-                    border-radius: 10px;
+                  .list-center{
                     max-width: 250px;
-                    text-shadow: 1px 1px 1px $pl-black;
+                    margin: 0 auto;
 
-                    @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
-                      margin: 0 10px 10px;
-                      width: 250px;
+                      li {
+                      background-color: $pl-orange;
+                      color: $pl-light-gray4;
+                      margin: 5px;
+                      padding: 8px;
+                      list-style: none;
+                      text-align: center;
+                      cursor: pointer;
+                      border-radius: 10px;
+                      max-width: 250px;
+                      text-shadow: 1px 1px 1px $pl-black;
+
+                      @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
+                        margin: 0 10px 10px;
+                        width: 250px;
+                      }
                     }
                   }
                 }

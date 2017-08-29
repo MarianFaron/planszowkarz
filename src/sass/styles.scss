@@ -236,7 +236,7 @@ textarea.form-control {
   transition: all .12s, border-color .08s;
 }
 
-.custom-checkbox input[type="checkbox"]:checked + label:before {
+.custom-checkbox input[type="checkbox"]:checked + label:before{
   width: 10px;
   top: -5px;
   left: 5px;
@@ -246,4 +246,28 @@ textarea.form-control {
   border-left-color: transparent;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+
+// Custom scrollbar
+
+#custom-scrollbar::-webkit-scrollbar-track{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+#custom-scrollbar::-webkit-scrollbar{
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+#custom-scrollbar::-webkit-scrollbar-thumb{
+  background-color: #F90; 
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%,
+                        transparent 25%,
+                        transparent 50%,
+                        rgba(255, 255, 255, .2) 50%,
+                        rgba(255, 255, 255, .2) 75%,
+                        transparent 75%,
+                        transparent)
 }
