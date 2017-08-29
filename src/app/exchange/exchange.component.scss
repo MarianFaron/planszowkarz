@@ -46,16 +46,16 @@ section#exchange {
       }
       
       .container {
-        @media only screen and (max-width: ($desktop-breakpoint -1)) { 
+        @include respond-to(desktop) { 
           width: 100%;
         }
 
-        @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
+        @include respond-to(tablet) {  
           padding-left: 20px;
           padding-right: 20px;
         }
 
-        @media only screen and(max-width: $small-mobile-breakpoint) {
+        @include respond-to(small-mobile) { 
           padding-left: 5px;
           padding-right: 5px;
         }
@@ -71,7 +71,7 @@ section#exchange {
           opacity: 0.8;
 
           .recipient-box {
-            @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
+            @include respond-to(tablet) {  
               width: 100%
             }
 
@@ -79,11 +79,11 @@ section#exchange {
               display: flex;
               align-items: flex-start;
 
-              @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
+              @include respond-to(tablet) {  
                 width: 100%;
               }
 
-              @media only screen and(max-width: $small-mobile-breakpoint) {
+              @include respond-to(small-mobile) { 
                 align-items: center;
               }
 
@@ -93,12 +93,12 @@ section#exchange {
                 border-radius: 2px;
                 border: 4px solid $pl-white;
 
-                @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
+                @include respond-to(tablet) {  
                   width: 100px;
                   height: 100px;
                 }
 
-                @media only screen and(max-width: $small-mobile-breakpoint) {
+                @include respond-to(small-mobile) { 
                   width: 70px;
                   height: 70px;
                 }
@@ -121,7 +121,7 @@ section#exchange {
                   font-family: 'Open Sans', sans-serif;
                   color: $pl-dark-gray;
 
-                  @media only screen and(max-width: $small-mobile-breakpoint) {
+                  @include respond-to(small-mobile) { 
                     display: none;
                   }
                 }
@@ -130,7 +130,7 @@ section#exchange {
           }
 
           .sender-box {
-            @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
+            @include respond-to(tablet) {  
               width: 100%;
               display: flex;
               justify-content: flex-end;
@@ -140,7 +140,7 @@ section#exchange {
               display: flex;
               align-items: flex-start;
 
-              @media only screen and(max-width: $small-mobile-breakpoint) {
+              @include respond-to(small-mobile) { 
                 align-items: center;
               }
 
@@ -150,12 +150,12 @@ section#exchange {
                 border-radius: 2px;
                 border: 4px solid $pl-white;
 
-                @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
+                @include respond-to(tablet) {  
                   width: 100px;
                   height: 100px;
                 }
 
-                @media only screen and(max-width: $small-mobile-breakpoint) {
+                @include respond-to(small-mobile) { 
                   width: 70px;
                   height: 70px;
                 }
@@ -181,7 +181,7 @@ section#exchange {
           flex-wrap: wrap;
           min-height: 400px;
 
-          @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
+          @include respond-to(tablet) {  
             flex-direction: column-reverse;
           }
 
@@ -193,20 +193,20 @@ section#exchange {
             display: flex;
             flex-direction: column;
 
-            @media only screen and (max-width: ($desktop-breakpoint -1)) { 
+            @include respond-to(desktop) { 
               width: 65%;
             }
 
-            @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
+            @include respond-to(tablet) {  
               width: 100%;
             }
 
-            @media only screen and(max-width: $small-mobile-breakpoint) {
+            @include respond-to(small-mobile) { 
               padding: 20px 5px;
             }
 
             .drag-drop-panel-header {
-              @media only screen and (max-width: ($mobile-breakpoint - 1)) { 
+              @include respond-to(mobile) { 
                 display: none;
               }
 
@@ -228,7 +228,7 @@ section#exchange {
               align-items: center;
               height: 100%;
 
-              @media only screen and (max-width: ($mobile-breakpoint - 1)) { 
+              @include respond-to(mobile) { 
                 flex-direction: column-reverse
               }
 
@@ -239,7 +239,7 @@ section#exchange {
                 flex-direction: column;
                 text-align: center;
 
-                @media only screen and (max-width: ($mobile-breakpoint - 1)) { 
+                @include respond-to(mobile) { 
                   width: 100%;
                 }
 
@@ -268,11 +268,11 @@ section#exchange {
                 display: flex;
                 justify-content: center;
 
-                @media only screen and (max-width: ($desktop-breakpoint -1)) { 
+                @include respond-to(desktop) { 
                   width: 15%;
                 }
 
-                @media only screen and (max-width: ($mobile-breakpoint - 1)) {
+                @include respond-to(mobile) { 
                   width: 100%;
                   margin-bottom: 20px;
                 }
@@ -289,11 +289,11 @@ section#exchange {
                 justify-content: center;
                 flex-direction: column;
 
-                @media only screen and (max-width: ($desktop-breakpoint -1)) { 
+                @include respond-to(desktop) { 
                   width: 45%;
                 }
 
-                @media only screen and (max-width: ($mobile-breakpoint - 1)) { 
+                @include respond-to(mobile) { 
                   display: none;
                 }
 
@@ -312,12 +312,12 @@ section#exchange {
                   flex-wrap: wrap;
                   justify-content: center;
 
-                  @media only screen and (max-width: ($desktop-breakpoint -1)) { 
+                  @include respond-to(desktop) { 
                     padding: 20px;
                     margin: 0 auto;
                   }
 
-                  @media only screen and(max-width: $small-mobile-breakpoint) {
+                  @include respond-to(small-mobile) { 
                     padding: 20px 0px;
                   }
 
@@ -356,14 +356,14 @@ section#exchange {
                 }
 
                 .drag-drop-info {
-                  @media only screen and (max-width: ($mobile-breakpoint - 1)) { 
+                  @include respond-to(mobile) { 
                     display: none;
                   }
 
                   p {
                     font-style: italic;
 
-                    @media only screen and (max-width: ($desktop-breakpoint -1)) { 
+                    @include respond-to(desktop) { 
                       text-align: center;
                     }
 
@@ -405,7 +405,7 @@ section#exchange {
             padding: 0;
             background-color: $pl-light-gray4;
             opacity: 0.8;
-            @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
+            @include respond-to(tablet) {  
               width: 100%;
               margin-bottom: 20px 15px;
             }
@@ -414,11 +414,11 @@ section#exchange {
               width: 100%;
               min-height: 500px;
 
-              @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
+              @include respond-to(tablet) {  
                 min-height: auto;
               }
 
-              @media only screen and(max-width: $small-mobile-breakpoint) {
+              @include respond-to(small-mobile) { 
                 padding: 20px 0px;
               }
 
@@ -440,13 +440,13 @@ section#exchange {
                   overflow-x: hidden;
                   background: transparent;
 
-                  @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
+                  @include respond-to(tablet) {  
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: center;
                   }
 
-                  @media only screen and (max-width: ($mobile-breakpoint - 1)) { 
+                  @include respond-to(mobile) { 
                     display: none;
                   }
 
@@ -466,7 +466,7 @@ section#exchange {
                       max-width: 250px;
                       text-shadow: 1px 1px 1px $pl-black;
 
-                      @media only screen and (max-width: ($tablet-breakpoint - 1)) { 
+                      @include respond-to(tablet) {  
                         margin: 0 10px 10px;
                         width: 250px;
                       }
@@ -477,7 +477,7 @@ section#exchange {
                 .mobile-games {
                   display: none;
 
-                  @media only screen and (max-width: ($mobile-breakpoint - 1)) { 
+                  @include respond-to(mobile) { 
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
