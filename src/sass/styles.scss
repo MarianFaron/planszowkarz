@@ -271,3 +271,16 @@ textarea.form-control {
                         transparent 75%,
                         transparent)
 }
+
+// Pagination
+
+.pagination a {
+  color: $pl-dark-gray;
+}
+
+.pagination .active a,
+.pagination .active a:hover {
+  background: $pl-orange;
+  color: $pl-white;
+  border: none;
+}

@@ -6,21 +6,28 @@ import { UserGameService } from './user-games.service';
 import { UserConfigService } from './../user-config/user-config.service';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { UserInfo } from '../user-info/user-info';
+import { Router } from '@angular/router';
+import { PagerService } from '../../pager.service';
 
 @Component({
   selector: 'app-user-games',
   templateUrl: './user-games.component.html',
   styleUrls: ['./user-games.component.scss'],
-  providers: [UserGameService, AppService, UserConfigService]
+  providers: [UserGameService, AppService, UserConfigService, PagerService]
 })
 
 export class UserGamesComponent implements OnInit {
+
+  // PAGER
+
+  pager: any = {};
+  pagedItems: any[];
 
   errorMessage: string;
   status: string;
   userGame: UserGame[];
   userInfo: UserInfo;
-  gameImgName: string;  
+  gameImgName: string;
   numberOfGames: number;
 
   model = {
@@ -33,11 +40,13 @@ export class UserGamesComponent implements OnInit {
   public coverUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
   constructor (
-    private http: Http, 
-    private el: ElementRef, 
-    private appService: AppService, 
+    private http: Http,
+    private el: ElementRef,
+    private appService: AppService,
     private userGameService: UserGameService,
-    private userConfigService: UserConfigService
+    private userConfigService: UserConfigService,
+    private router: Router,
+    private pagerService: PagerService
   ) {}
 
   ngOnInit() {
@@ -121,6 +130,7 @@ export class UserGamesComponent implements OnInit {
                         .subscribe(
                             userGame => {
                               this.userGame = userGame.reverse();
+                              this.setPage(1);
                             },
                             error => this.errorMessage = <any>error);
     }
@@ -150,7 +160,7 @@ export class UserGamesComponent implements OnInit {
 
   editUserInfo(id: string) {
     var password = "";
-    this.userConfigService.updateUser(id, this.userInfo.dateBirth, this.userInfo.city, this.userInfo.contactNumber, this.userInfo.avatarImage, password, 
+    this.userConfigService.updateUser(id, this.userInfo.dateBirth, this.userInfo.city, this.userInfo.contactNumber, this.userInfo.avatarImage, password,
                                       this.numberOfGames, this.userInfo.numberOfExchanges, this.userInfo.numberOfRatings, this.userInfo.sumOfGrades)
                           .subscribe(
                                 userInfo  => {
@@ -161,5 +171,14 @@ export class UserGamesComponent implements OnInit {
                                     this.errorMessage = <any>error
                                 }
                           );
+  }
+
+  setPage(page: number) {
+    this.router.navigate(['/profile/games'], {queryParams: {page: page}});
+    if (page < 1 || page > this.pager.totalPages) {
+      return;
+    }
+    this.pager = this.pagerService.getPager(this.userGame.length, page);
+    this.pagedItems = this.userGame.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 }
