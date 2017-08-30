@@ -77,7 +77,7 @@ export class GamesListComponent implements OnInit {
       (params['category']) ? this.query.category = params['category'].toString().split(',') : this.query.category = null;
       (params['state']) ? this.query.state = params['state'].toString().split(',') : this.query.state = null;
 
-      this.updateCheckboxes();
+      // this.updateCheckboxes();
       this.checkPageMode();
 
     });
@@ -88,6 +88,8 @@ export class GamesListComponent implements OnInit {
     this.getCategoriesCheckboxesValues();
     this.getStatesCheckboxesValues();
     this.updateQueryValues();
+
+    console.log(this.query);
 
     this.appService.search(this.query)
                         .subscribe(
@@ -119,13 +121,13 @@ export class GamesListComponent implements OnInit {
   resetQueryValues() {
     this.queryCategories = [];
     this.queryStates = [];
-    this.queryTitle = '';
+    this.queryTitle = "";
   }
 
   updateQueryValues() {
     (this.queryCategories.length == 0) ? this.query.category = null : this.query.category = this.queryCategories;
     (this.queryStates.length == 0) ?  this.query.state = null : this.query.state = this.queryStates;
-    this.query.title = this.queryTitle;
+    (this.queryTitle == undefined) ? this.query.title = "" : this.query.title = this.queryTitle;
   }
 
   checkPageMode() {
