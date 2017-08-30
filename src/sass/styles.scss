@@ -186,19 +186,19 @@ textarea.form-control {
     opacity: .5;
 }
 
-.swiper-button-next{
+.next-arrow{
     right: 0 !important;
     background-color: $pl-orange;
     background-image: url("../assets/images/icons/arrow-right.png") !important;
     fill: $pl-white;
 }
 
-.swiper-button-prev{
+.prev-arrow{
   background-image: url("../assets/images/icons/arrow-left.png") !important;
   left: 0 !important;
 }
 
-.swiper-button-next, .swiper-button-prev{
+.next-arrow, .prev-arrow{
   height: 55px !important;
   background-color: $pl-orange;
   border-radius: 5px;
@@ -206,8 +206,8 @@ textarea.form-control {
 }
 
 /* Custom checkbox */
-.custom-checkbox input[type="checkbox"]{ 
-  display: none; 
+.custom-checkbox input[type="checkbox"]{
+  display: none;
 }
 
 .custom-checkbox input[type="checkbox"] + label{
@@ -218,8 +218,8 @@ textarea.form-control {
   cursor: pointer;
 }
 
-.custom-checkbox input[type="checkbox"] + label:last-child{ 
-  margin-bottom: 0; 
+.custom-checkbox input[type="checkbox"] + label:last-child{
+  margin-bottom: 0;
 }
 
 .custom-checkbox input[type="checkbox"] + label:before{
@@ -262,7 +262,7 @@ textarea.form-control {
 }
 
 #custom-scrollbar::-webkit-scrollbar-thumb{
-  background-color: #F90; 
+  background-color: #F90;
   background-image: -webkit-linear-gradient(45deg, rgba($pl-white, .2) 25%,
                         transparent 25%,
                         transparent 50%,

@@ -5,6 +5,7 @@ import { CoreService } from './core.service';
 import { AppService } from '../app.service';
 import { UserGameService } from './../profile/user-games/user-games.service';
 import { UserGame } from './../profile/user-games/user-games';
+import { SlickModule } from 'ngx-slick';
 
 @Component({
   selector: 'app-core',
@@ -16,11 +17,38 @@ export class CoreComponent implements OnInit {
 
   errorMessage: string;
   userGame: UserGame[];
+  slideConfig = {
+    "dots": false,
+    "nextArrow": false,
+    "prevArrow": false,
+    "autoplay": true,
+    "slidesToShow": 4,
+    "slidesToScroll": 1,
+    "responsive": [
+        {
+          "breakpoint": 1200,
+          "settings": {
+            "slidesToShow": 3,
+          }
+        },
+        {
+          "breakpoint": 992,
+          "settings": {
+            "slidesToShow": 2,
+          }
+        },
+        {
+          "breakpoint": 479,
+          "settings": {
+            "slidesToShow": 1,
+          }
+        }
+    ]};
 
   constructor(
-    private http: Http, 
-    private router: Router, 
-    private CoreService: CoreService, 
+    private http: Http,
+    private router: Router,
+    private CoreService: CoreService,
     private appService: AppService
   ) {}
 

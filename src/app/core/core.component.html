@@ -8,13 +8,13 @@
           <img src="../../assets/images/loading.gif" alt="" class="loading">
         </div>
       </div>
-      <div *ngFor="let game of userGame | slice:0:1">
-        <swiper [config]="config">
-          <div class="new-game-wrapper" *ngFor="let game of userGame">
+      <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let game of userGame" class="slide">
+          <div class="new-game-wrapper" >
             <div class="game-card">
               <div class="inner">
                 <a routerLink="/games/{{ game._id }}">
-                  <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}" 
+                  <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}"
                       alt="{{game.title}}" class="img-responsive" />
                   <h3>{{ game.title }}</h3>
                 </a>
@@ -37,15 +37,15 @@
                       Dodane {{ game.createdDate | date:'longDate' }}
                   </div>
                   <div *ngIf="this.appService.isLoggedIn()" class="text-center">
-                    <button *ngIf="this.appService.getCurrentUser()._id != game.userID._id" 
+                    <button *ngIf="this.appService.getCurrentUser()._id != game.userID._id"
                       routerLink="/exchange/{{ game._id }}" type="button" class="btn btn-default custom-button">Wymień się</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </swiper>
-      </div>
+        </div>
+      </ngx-slick>
     </div>
     <div class="row">
       <div class="col-md-4 col-sm-12 rate-wrapper">
