@@ -56,6 +56,7 @@ export class UserConfigComponent implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
+    this.checkFbUser();
     this.avatarUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
     this.avatarUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
   }
@@ -69,8 +70,17 @@ export class UserConfigComponent implements OnInit {
     this.avatarImgName = this.file.name;
   }
 
-  // Usuń avatar
-  deleteImage(){
+  checkFbUser() {
+    var user = JSON.parse(localStorage.getItem('currentUser'));
+    if(user.facebook) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // delete avatar
+  deleteImage() {
     this.deleteImageStatus = true;
     this.showAvatar = false;
   }
