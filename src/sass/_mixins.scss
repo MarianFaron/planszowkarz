@@ -21,7 +21,7 @@ $desktop-breakpoint: 1200px;
 
 @mixin respond-to($media) {
   @if $media == small-mobile {
-    @media only screen and(max-width: $small-mobile-breakpoint) { 
+    @media only screen and (max-width: $small-mobile-breakpoint) { 
       @content; 
     }
   }
@@ -39,7 +39,7 @@ $desktop-breakpoint: 1200px;
   }
 
   @else if $media == desktop {
-    @media only screen and (max-width: ($desktop-breakpoint -1)) { 
+    @media only screen and (max-width: ($desktop-breakpoint - 1)) { 
       @content;
     }
   }

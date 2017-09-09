@@ -36,6 +36,8 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Component } from '@angular/core';
 import { Ng2DragDropModule } from "ng2-drag-drop";
 import { SlickModule } from 'ngx-slick';
+import { ContactComponent } from './contact/contact.component';
+import { AboutProjectComponent } from './about-project/about-project.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { SlickModule } from 'ngx-slick';
     UserHistoryRejectedComponent,
     RatingComponent,
     CatalogComponent,
-    UserHistoryReceivedComponent
+    UserHistoryReceivedComponent,
+    ContactComponent,
+    AboutProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,7 @@ import { SlickModule } from 'ngx-slick';
     CollapseModule,
     BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot(),
-    Ng2DragDropModule.forRoot(),
+    Ng2DragDropModule,
     SlickModule.forRoot()
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pl-PL" }, AuthGuard],

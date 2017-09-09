@@ -19,6 +19,8 @@ import { UserHistoryRejectedComponent } from './profile/user-history/user-histor
 import { RatingComponent } from './rating/rating.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ExchangeComponent } from './exchange/exchange.component';
+import { ContactComponent } from './contact/contact.component';
+import { AboutProjectComponent } from './about-project/about-project.component';
 import { AuthGuard } from './guards/auth.guard';
 
 export const router: Routes = [
@@ -48,7 +50,9 @@ export const router: Routes = [
 	{ path: 'games', component: GamesListComponent },
   	{ path: 'rating', component: RatingComponent },
   	{ path: 'catalog', component: CatalogComponent },
-  	{ path: 'exchange/:_id', component: ExchangeComponent}
+  	{ path: 'exchange/:_id', component: ExchangeComponent},
+  	{ path: 'contact', component: ContactComponent },
+  	{ path: 'about-project', component: AboutProjectComponent }
 ];
 
 @NgModule({

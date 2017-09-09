@@ -50,7 +50,7 @@ $custom-mobile-breakpoint: 580px;
             line-height: 1;
             text-decoration: none;
             display: block;
-            height: 74px;
+            height: 84px;
 
             @media screen and (max-width: $custom-mobile-breakpoint) {
               display: flex;
@@ -59,7 +59,7 @@ $custom-mobile-breakpoint: 580px;
             }
 
             span {
-              @include font-size(8);
+              @include font-size(12);
 
               text-transform: uppercase;
               letter-spacing: 1px;
@@ -92,26 +92,38 @@ $custom-mobile-breakpoint: 580px;
           }
 
           .icon-joy::before {
+            @include font-size(30);
+
             content: "\e617";
           }
 
           .icon-config::before {
+            @include font-size(30);
+            
             content: "\e666";
           }
 
           .icon-date::before {
+            @include font-size(30);
+            
             content: "\e660";
           }
 
           .icon-display::before {
+            @include font-size(30);
+            
             content: "\e65e";
           }
 
           .icon-upload::before {
+            @include font-size(30);
+            
             content: "\e68a";
           }
 
           .icon-bell::before {
+            @include font-size(30);
+            
             content: "\e677";
           }
         }
