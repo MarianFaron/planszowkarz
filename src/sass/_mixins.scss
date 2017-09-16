@@ -50,3 +50,27 @@ $desktop-breakpoint: 1200px;
     }
   }
 }
+
+@mixin pet-icon-after($icon, $font-family: 'Pe-icon-7-stroke') {
+  &:after {
+    content: $icon;
+    font-family: $font-family;
+    font-weight: 700;
+    font-style: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    line-height: 1;
+  }
+}
+
+@mixin pet-icon-before($icon, $font-family: 'Pe-icon-7-stroke') {
+  &:before {
+    content: $icon;
+    font-family: $font-family;
+    font-weight: normal;
+    font-style: normal;
+    display: block;
+    text-decoration: inherit;
+    line-height: 1;
+  }
+}

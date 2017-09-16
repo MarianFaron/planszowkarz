@@ -1,16 +1,8 @@
 @import '../../../sass/mixins';
 @import '../../../sass/colors';
+@import '../../../sass/pet-7-stroke';
 
 $custom-mobile-breakpoint: 580px;
-
-@font-face {
-  font-family: 'Pe-icon-7-stroke';
-  src:url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.eot');
-  src:url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.eot?#iefixu58ytb') format('embedded-opentype'),
-    url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.woff') format('woff'),
-    url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.ttf') format('truetype'),
-    url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.svg') format('svg');
-}
 
 .container {
   @include font-size(20);
@@ -82,49 +74,25 @@ $custom-mobile-breakpoint: 580px;
             color: $pl-orange;
           }
 
-          .icon::before {
-            @include font-size(21);
-
-            display: block;
-            margin: 0;
-            font-family: 'Pe-icon-7-stroke';
-            -webkit-backface-visibility: hidden;
-          }
-
-          .icon-joy::before {
+          .icon {
             @include font-size(30);
+            padding: 14px 0 10px;
 
-            content: "\e617";
-          }
+            &-joy {
+              @include pet-icon-before($pl-icon-joy);
+            }
 
-          .icon-config::before {
-            @include font-size(30);
-            
-            content: "\e666";
-          }
+            &-bell {
+              @include pet-icon-before($pl-icon-bell);
+            }
 
-          .icon-date::before {
-            @include font-size(30);
-            
-            content: "\e660";
-          }
+            &-config {
+              @include pet-icon-before($pl-icon-config);
+            }
 
-          .icon-display::before {
-            @include font-size(30);
-            
-            content: "\e65e";
-          }
-
-          .icon-upload::before {
-            @include font-size(30);
-            
-            content: "\e68a";
-          }
-
-          .icon-bell::before {
-            @include font-size(30);
-            
-            content: "\e677";
+            &-date {
+              @include pet-icon-before($pl-icon-date);
+            }
           }
         }
 
