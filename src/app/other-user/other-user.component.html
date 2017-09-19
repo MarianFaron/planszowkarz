@@ -33,40 +33,40 @@
 									<span *ngIf="userInfo?.facebook">{{userInfo?.facebook.name}}</span>
 								</li>
 								<li *ngIf="userInfo?.contactNumber">
-									<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>Telefon: {{userInfo?.contactNumber}}
+									<span class="icon icon-phone" aria-hidden="true"></span>Telefon: {{userInfo?.contactNumber}}
 								</li>
 								<div *ngIf="userInfo?.local && !userInfo?.facebook">
 									<li *ngIf="userInfo?.local.email">
-										<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+										<span class="icon icon-mail" aria-hidden="true"></span>
 										Email: <a href="mailto:{{userInfo?.local.email}}">{{userInfo?.local.email}}</a>
 									</li>
 								</div>
 								<div *ngIf="userInfo?.facebook">
 									<li *ngIf="userInfo?.facebook.email">
-										<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+										<span class="icon icon-mail" aria-hidden="true"></span>
 										Email: <a href="mailto:{{userInfo?.facebook.email}}">{{userInfo?.facebook.email}}</a>
 									</li>
 								</div>
 								<li *ngIf="userInfo?.dateBirth">
-									<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+									<span class="icon icon-date" aria-hidden="true"></span>
 									Data urodzenia: {{userInfo?.dateBirth}}
 								</li>
 								<li *ngIf="userInfo?.city" class="usercity">
-									<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+									<span class="icon icon-marker" aria-hidden="true"></span>
 									Miasto: {{userInfo?.city}}
 								</li>
 							</div>
 							<div class="user-info-box">
 								<li>
-									<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+									<span class="icon icon-games" aria-hidden="true"></span>
 									Liczba gier na wymianę: {{userInfo?.numberOfGames}}
 								</li>
 								<li>
-									<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+									<span class="icon icon-change" aria-hidden="true"></span>
 									Liczba przeprowadzonych wymian: {{userInfo?.numberOfExchanges}}
 								</li>
 								<li>
-									<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+									<span class="icon icon-star" aria-hidden="true"></span>
 									Ocena społeczności: {{userInfo?.sumOfGrades}}
 								</li>
 							</div>

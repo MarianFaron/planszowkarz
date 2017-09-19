@@ -1,5 +1,6 @@
 @import '../../sass/mixins';
 @import '../../sass/colors';
+@import '../../sass/pet-7-stroke';
 
 .user-info-panel {
   margin: 0;
@@ -248,6 +249,40 @@ hr.style1 {
 
 .user-info-box {
   margin-bottom: 15px;
+
+  .icon {
+    @include font-size(20);
+    position: relative;
+    top: 4px;
+
+    &-phone {
+      @include pet-icon-after($pl-icon-phone);
+    }
+
+    &-marker {
+      @include pet-icon-after($pl-icon-marker);
+    }
+
+    &-date {
+      @include pet-icon-after($pl-icon-date);
+    }
+
+    &-mail {
+      @include pet-icon-after($pl-icon-mail);
+    }
+
+    &-games {
+      @include pet-icon-after($pl-icon-games);
+    }
+
+    &-change {
+      @include pet-icon-after($pl-icon-change);
+    }
+
+    &-star {
+      @include pet-icon-after($pl-icon-star);
+    }
+  }
 }
 
 .col-md-4.col-md-push-8.user-info {

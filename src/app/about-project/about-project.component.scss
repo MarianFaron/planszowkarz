@@ -1,5 +1,6 @@
 @import '../../sass/mixins';
 @import '../../sass/colors';
+@import '../../sass/pet-7-stroke';
 
 .about-project-content {
   width: 80%;
@@ -24,8 +25,7 @@
     .about-project-description {
       @include font-size(16);
 
-      width: 100%;
-      margin-top: 20px;
+      margin: 20px;
 
       @include respond-to(mobile) {
         @include font-size(15);

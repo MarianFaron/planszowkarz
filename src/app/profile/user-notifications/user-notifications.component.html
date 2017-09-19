@@ -3,28 +3,20 @@
 		<div class="new-game-wrapper">
 			<div class="notifications-panel-content">
 				<div *ngIf="!pagedItems">
-	        <div class="text-center">
-	          <img src="../../assets/images/loading.gif" alt="" class="loading">
-	        </div>
-	      </div>
+			        <div class="text-center">
+			          <img src="../../assets/images/loading.gif" alt="" class="loading">
+			        </div>
+			    </div>
 				<div *ngFor="let notification of pagedItems">
 					<div class="single-box inner" [ngClass]="{unread: notification.status =='new'}" >
 						<div class="box-content">
 							<p (click)="this.changeStatus(notification._id);notification.status = 'read'">
 								<strong>
 									<span *ngIf="notification.status == 'new'">
-										<i class="fa fa-star" style="color: yellow"></i>
+										<i class="fa fa-star"></i>
 									</span> Treść:
 								</strong>{{notification.content}}</p>
 							<p><strong>Data: </strong>{{notification.sendDate| date:'medium' }}</p>
-							<div class="notification-btns">
-								<button routerLink="/profile/history/received/" type="button" name="button" class="btn custom-button">
-									<i class="fa fa-check"></i> Przejdź do wymiany
-								</button>
-								<button type="button" name="button" class="btn" (click)="deleteNotification(notification._id, notification.status)">
-									<i class="fa fa-close"></i> Usuń powiadomienie
-								</button>
-							</div>
 						</div>
 					</div>
 				</div>

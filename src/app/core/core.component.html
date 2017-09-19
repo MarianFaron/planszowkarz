@@ -32,6 +32,10 @@
                     <span class="icon icon-marker" aria-hidden="true"></span>
                       Lokalizacja: {{ game.userID.city }}
                   </div>
+                  <div *ngIf="!game.userID.city">
+                    <span class="icon icon-marker" aria-hidden="true"></span>
+                      Lokalizacja: -
+                  </div>
                   <div *ngIf="game.createdDate">
                     <span class="icon icon-date" aria-hidden="true"></span>
                       Dodane {{ game.createdDate | date:'longDate' }}
