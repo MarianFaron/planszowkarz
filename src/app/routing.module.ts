@@ -1,14 +1,13 @@
-import { NgModule }               from '@angular/core';
-import { Routes, RouterModule }   from '@angular/router';
-
-import { CoreComponent }          from './core/core.component';
-import { AppComponent }           from './app.component';
-import { UsersComponent }         from './users/users.component';
-import { ProfileComponent }       from './profile/profile.component';
-import { OtherUserComponent }     from './other-user/other-user.component';
-import { GameDetailsComponent }   from './game-details/game-details.component';
-import { GamesListComponent }     from './games-list/games-list.component';
-import { UserGamesComponent }     from './profile/user-games/user-games.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { CoreComponent } from './core/core.component';
+import { AppComponent } from './app.component';
+import { UsersComponent } from './users/users.component';
+import { ProfileComponent } from './profile/profile.component';
+import { OtherUserComponent } from './other-user/other-user.component';
+import { GameDetailsComponent } from './game-details/game-details.component';
+import { GamesListComponent } from './games-list/games-list.component';
+import { UserGamesComponent } from './profile/user-games/user-games.component';
 import { UserNotificationsComponent } from './profile/user-notifications/user-notifications.component';
 import { UserConfigComponent } from './profile/user-config/user-config.component';
 import { UserHistoryComponent } from './profile/user-history/user-history.component';
