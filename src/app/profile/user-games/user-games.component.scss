@@ -1,5 +1,6 @@
 @import '../../../sass/mixins';
 @import '../../../sass/colors';
+@import '../../../sass/pet-7-stroke';
 
 .games-main-panel {
   margin: 10px 0 0;
@@ -23,12 +24,27 @@
         display: inline-block;
       }
 
-      .button-add-new-game{
+      .button-add-new-game {
         float: right;
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+
+        .custom-button {
+          padding: 0 12px 5px;
+        }
+
+        .icon {
+          @include font-size(21);
+
+          position: relative;
+          top: 4px;
+
+          &-add {
+            @include pet-icon-after($pl-icon-add);
+          }
+        }
       }
     }
 
@@ -223,7 +239,7 @@
           margin-top: 9px;
         }
 
-        .center-button{
+        .center-button {
           display: flex;
           justify-content: center;
 

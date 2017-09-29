@@ -1,5 +1,6 @@
 @import '../../sass/colors';
 @import '../../sass/mixins';
+@import '../../sass/pet-7-stroke';
 
 #newGames {
   .new-game-wrapper {
@@ -46,6 +47,24 @@
           max-width: 150px;
           max-height: 150px;
           margin: 0 auto;
+        }
+
+        .icon {
+          @include font-size(20);
+          position: relative;
+          top: 4px;
+
+          &-user {
+            @include pet-icon-after($pl-icon-user);
+          }
+
+          &-marker {
+            @include pet-icon-after($pl-icon-marker);
+          }
+
+          &-date {
+            @include pet-icon-after($pl-icon-date);
+          }
         }
       }
     }
@@ -95,6 +114,20 @@
           content: '';
           display: block;
           clear: both;
+        }
+
+        .icon {
+          @include font-size(18);
+          position: relative;
+          top: 2px;
+
+          &-comment {
+            @include pet-icon-after($pl-icon-comment);
+          }
+
+          &-star {
+            @include pet-icon-after($pl-icon-star);
+          }
         }
       }
 

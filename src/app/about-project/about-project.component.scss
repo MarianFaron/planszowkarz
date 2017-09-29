@@ -1,0 +1,39 @@
+@import '../../sass/mixins';
+@import '../../sass/colors';
+@import '../../sass/pet-7-stroke';
+
+.about-project-content {
+  width: 80%;
+  margin: 40px auto;
+
+  .about-project-header {
+    @include font-size(24);
+  }
+
+  .about-project-box {
+    background-color: $pl-white;
+    border-radius: 3px;
+    box-shadow: 0 3px 7px -3px rgba($pl-black, 0.3);
+    line-height: 1.45em;
+    padding: 10px 30px;
+    margin: 20px 0;
+
+    @include respond-to(small-mobile) {
+      padding: 10px 24px;
+    }
+
+    .about-project-description {
+      @include font-size(16);
+
+      margin: 20px;
+
+      @include respond-to(mobile) {
+        @include font-size(15);
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

@@ -83,23 +83,23 @@
                 <div class="game-info">
                   <h3><a routerLink="/games/{{ game._id }}">{{ game.title }}</a></h3>
                   <div *ngIf="!game.userID.facebook" class="single-info">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <span class="icon icon-user" aria-hidden="true"></span>
                     <a routerLink="/user-profile/{{ game.userID.local.login }}">
                       Dodane przez: {{ game.userID.local.login }}
                     </a>
                   </div>
                   <div *ngIf="game.userID.facebook" class="single-info">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <span class="icon icon-user" aria-hidden="true"></span>
                     <a routerLink="/user-profile/{{ game.userID.local.login }}">
                       Dodane przez: {{ game.userID.facebook.name }}
                     </a>
                   </div>
                   <div class="single-info">
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                    <span class="icon icon-marker" aria-hidden="true"></span>
                     <p>Lokalizacja: Poznań</p>
                   </div>
                   <div class="single-info">
-                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    <span class="icon icon-date" aria-hidden="true"></span>
                     <p> Dodane {{ game.createdDate | date:'longDate' }}</p>
                   </div>
                 </div>

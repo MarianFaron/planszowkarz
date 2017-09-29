@@ -1,5 +1,6 @@
 @import '../../sass/mixins';
 @import '../../sass/colors';
+@import '../../sass/pet-7-stroke';
 
 .games-list {
   margin-top: 15px;
@@ -282,7 +283,7 @@
               }
 
               span {
-                margin-right: 15px;
+                margin-right: 10px;
               }
             }
 
@@ -323,6 +324,24 @@
               @media (max-width: 580px) {
                 text-align: center;
               }
+            }
+          }
+
+          .icon {
+            @include font-size(19);
+            position: relative;
+            top: 2px;
+
+            &-user {
+              @include pet-icon-after($pl-icon-user);
+            }
+
+            &-marker {
+              @include pet-icon-after($pl-icon-marker);
+            }
+
+            &-date {
+              @include pet-icon-after($pl-icon-date);
             }
           }
         }

@@ -1,16 +1,8 @@
 @import '../../../sass/mixins';
 @import '../../../sass/colors';
+@import '../../../sass/pet-7-stroke';
 
 $custom-mobile-breakpoint: 580px;
-
-@font-face {
-  font-family: 'Pe-icon-7-stroke';
-  src:url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.eot');
-  src:url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.eot?#iefixu58ytb') format('embedded-opentype'),
-    url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.woff') format('woff'),
-    url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.ttf') format('truetype'),
-    url('../../../assets/fonts/stroke7pixeden/Pe-icon-7-stroke.svg') format('svg');
-}
 
 .container {
   @include font-size(20);
@@ -50,7 +42,7 @@ $custom-mobile-breakpoint: 580px;
             line-height: 1;
             text-decoration: none;
             display: block;
-            height: 74px;
+            height: 84px;
 
             @media screen and (max-width: $custom-mobile-breakpoint) {
               display: flex;
@@ -59,7 +51,7 @@ $custom-mobile-breakpoint: 580px;
             }
 
             span {
-              @include font-size(8);
+              @include font-size(12);
 
               text-transform: uppercase;
               letter-spacing: 1px;
@@ -82,37 +74,25 @@ $custom-mobile-breakpoint: 580px;
             color: $pl-orange;
           }
 
-          .icon::before {
-            @include font-size(21);
+          .icon {
+            @include font-size(30);
+            padding: 14px 0 10px;
 
-            display: block;
-            margin: 0;
-            font-family: 'Pe-icon-7-stroke';
-            -webkit-backface-visibility: hidden;
-          }
+            &-joy {
+              @include pet-icon-before($pl-icon-joy);
+            }
 
-          .icon-joy::before {
-            content: "\e617";
-          }
+            &-bell {
+              @include pet-icon-before($pl-icon-bell);
+            }
 
-          .icon-config::before {
-            content: "\e666";
-          }
+            &-config {
+              @include pet-icon-before($pl-icon-config);
+            }
 
-          .icon-date::before {
-            content: "\e660";
-          }
-
-          .icon-display::before {
-            content: "\e65e";
-          }
-
-          .icon-upload::before {
-            content: "\e68a";
-          }
-
-          .icon-bell::before {
-            content: "\e677";
+            &-date {
+              @include pet-icon-before($pl-icon-date);
+            }
           }
         }
 

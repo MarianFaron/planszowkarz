@@ -43,8 +43,8 @@
 				</div>
 			</div>
 		</div>
-		<h3>Zmień hasło</h3>
-		<div class="config-change-password">
+		<h3 *ngIf="checkFbUser()">Zmień hasło</h3>
+		<div *ngIf="checkFbUser()" class="config-change-password">
 			<div [ngClass]="{hidden: userInfo?.local == null}">
 				<div class="form-group">
 					<label>Hasło</label>
@@ -57,7 +57,7 @@
 				</div>
 				<div class="form-group">
 					<label>Potwierdź hasło</label>
-					<input type="password" class="form-control" name="confirmPassword" minlength="3" validateEqual="password" 		required [ngModel]="model.confirmPassword" #userConfirmPassword="ngModel" />
+					<input type="password" class="form-control" name="confirmPassword" minlength="3" validateEqual="password" required [ngModel]="model.confirmPassword" #userConfirmPassword="ngModel" />
 					<div class="alert alert-danger" *ngIf="userConfirmPassword.errors && (userConfirmPassword.dirty || userConfirmPassword.touched)" >
 						<div [hidden]="!userConfirmPassword.errors.required"> To pole jest wymagane </div>
 						<div [hidden]="!userConfirmPassword.errors.minlength"> Wpisz co najmniej 3 znaki </div>

@@ -19,7 +19,7 @@
                   <h3>{{ game.title }}</h3>
                 </a>
                 <div class="info-box">
-                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                  <span class="icon icon-user" aria-hidden="true"></span>
                   <span *ngIf="!game.userID.facebook">
                     <a routerLink="/user-profile/{{ game.userID.local.login }}">
                       {{ game.userID.local.login }}</a>
@@ -29,11 +29,15 @@
                       {{ game.userID.facebook.name }}</a>
                   </span>
                   <div *ngIf="game.userID.city">
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                    <span class="icon icon-marker" aria-hidden="true"></span>
                       Lokalizacja: {{ game.userID.city }}
                   </div>
+                  <div *ngIf="!game.userID.city">
+                    <span class="icon icon-marker" aria-hidden="true"></span>
+                      Lokalizacja: -
+                  </div>
                   <div *ngIf="game.createdDate">
-                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    <span class="icon icon-date" aria-hidden="true"></span>
                       Dodane {{ game.createdDate | date:'longDate' }}
                   </div>
                   <div *ngIf="this.appService.isLoggedIn()" class="text-center">
@@ -56,8 +60,8 @@
             <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
             <div class="rate-text">
               <h3>Civilization</h3>
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
+              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
+              <span class="icon icon-comment" aria-hidden="true"></span> 10 komentarzy
               <div class="text-left">
                 <button type="button" class="btn btn-default custom-button">Więcej</button>
               </div>
@@ -68,8 +72,8 @@
             <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}wiedzmin.jpg" alt="wiedzmin" class="rate-img">
             <div class="rate-text">
               <h3>Wiedźmin</h3>
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
-              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 5 komentarzy
+              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
+              <span class="icon icon-comment" aria-hidden="true"></span> 5 komentarzy
               <div class="text-left">
                 <button type="button" class="btn btn-default custom-button">Więcej</button>
               </div>
@@ -80,8 +84,8 @@
             <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
             <div class="rate-text">
               <h3>Civilization</h3>
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
+              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
+              <span class="icon icon-comment" aria-hidden="true"></span> 10 komentarzy
               <div class="text-left">
                 <button type="button" class="btn btn-default custom-button">Więcej</button>
               </div>
@@ -97,8 +101,8 @@
             <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
             <div class="rate-text">
               <h3>Civilization</h3>
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
+              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
+              <span class="icon icon-comment" aria-hidden="true"></span> 10 komentarzy
               <div class="text-left">
                 <button type="button" class="btn btn-default custom-button">Więcej</button>
               </div>
@@ -109,8 +113,8 @@
             <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}wiedzmin.jpg" alt="wiedzmin" class="rate-img">
             <div class="rate-text">
               <h3>Wiedźmin</h3>
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
-              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 5 komentarzy
+              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
+              <span class="icon icon-comment" aria-hidden="true"></span> 5 komentarzy
               <div class="text-left">
                 <button type="button" class="btn btn-default custom-button">Więcej</button>
               </div>
@@ -121,8 +125,8 @@
             <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
             <div class="rate-text">
               <h3>Civilization</h3>
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
+              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
+              <span class="icon icon-comment" aria-hidden="true"></span> 10 komentarzy
               <div class="text-left">
                 <button type="button" class="btn btn-default custom-button">Więcej</button>
               </div>
@@ -138,8 +142,8 @@
             <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
             <div class="rate-text">
               <h3>Civilization</h3>
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
+              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
+              <span class="icon icon-comment" aria-hidden="true"></span> 10 komentarzy
               <div class="text-left">
                 <button type="button" class="btn btn-default custom-button">Więcej</button>
               </div>
@@ -150,8 +154,8 @@
             <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}wiedzmin.jpg" alt="wiedzmin" class="rate-img">
             <div class="rate-text">
               <h3>Wiedźmin</h3>
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
-              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 5 komentarzy
+              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
+              <span class="icon icon-comment" aria-hidden="true"></span> 5 komentarzy
               <div class="text-left">
                 <button type="button" class="btn btn-default custom-button">Więcej</button>
               </div>
@@ -162,8 +166,8 @@
             <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
             <div class="rate-text">
               <h3>Civilization</h3>
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 10 komentarzy
+              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
+              <span class="icon icon-comment" aria-hidden="true"></span> 10 komentarzy
               <div class="text-left">
                 <button type="button" class="btn btn-default custom-button">Więcej</button>
               </div>

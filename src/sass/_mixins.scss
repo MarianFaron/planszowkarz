@@ -21,7 +21,7 @@ $desktop-breakpoint: 1200px;
 
 @mixin respond-to($media) {
   @if $media == small-mobile {
-    @media only screen and(max-width: $small-mobile-breakpoint) { 
+    @media only screen and (max-width: $small-mobile-breakpoint) { 
       @content; 
     }
   }
@@ -39,7 +39,7 @@ $desktop-breakpoint: 1200px;
   }
 
   @else if $media == desktop {
-    @media only screen and (max-width: ($desktop-breakpoint -1)) { 
+    @media only screen and (max-width: ($desktop-breakpoint - 1)) { 
       @content;
     }
   }
@@ -48,5 +48,29 @@ $desktop-breakpoint: 1200px;
     @media only screen and (min-width: $desktop-breakpoint) {
       @content;
     }
+  }
+}
+
+@mixin pet-icon-after($icon, $font-family: 'Pe-icon-7-stroke') {
+  &:after {
+    content: $icon;
+    font-family: $font-family;
+    font-weight: 700;
+    font-style: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    line-height: 1;
+  }
+}
+
+@mixin pet-icon-before($icon, $font-family: 'Pe-icon-7-stroke') {
+  &:before {
+    content: $icon;
+    font-family: $font-family;
+    font-weight: normal;
+    font-style: normal;
+    display: block;
+    text-decoration: inherit;
+    line-height: 1;
   }
 }
