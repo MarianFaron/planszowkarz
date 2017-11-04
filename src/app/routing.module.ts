@@ -21,6 +21,7 @@ import { ExchangeComponent } from './exchange/exchange.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutProjectComponent } from './about-project/about-project.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ChatComponent } from './chat/chat.component';
 
 export const router: Routes = [
 	{ path: '', redirectTo: '/main', pathMatch:'full'},
@@ -31,27 +32,28 @@ export const router: Routes = [
       		{ path: '', redirectTo: 'games', pathMatch: 'full' },
       		{ path: 'games', component: UserGamesComponent },
       		{ path: 'notifications', component: UserNotificationsComponent },
-			{ path: 'history', component: UserHistoryComponent,
-				children: [
-					{path: '', redirectTo: 'accepted', pathMatch: 'full'},
-					{path: 'accepted', component: UserHistoryAcceptedComponent},
-					{path: 'sended', component: UserHistorySentComponent},
-					{path: 'received', component: UserHistoryReceivedComponent},
-					{path: 'rejected', component: UserHistoryRejectedComponent}
-				]
-			},
-			{ path: 'config', component: UserConfigComponent }
-      	]
+					{ path: 'history', component: UserHistoryComponent,
+						children: [
+							{path: '', redirectTo: 'accepted', pathMatch: 'full'},
+							{path: 'accepted', component: UserHistoryAcceptedComponent},
+							{path: 'sended', component: UserHistorySentComponent},
+							{path: 'received', component: UserHistoryReceivedComponent},
+							{path: 'rejected', component: UserHistoryRejectedComponent}
+						]
+					},
+					{ path: 'config', component: UserConfigComponent }
+		    ]
 	},
 	{ path: 'user-profile/:login', component: OtherUserComponent },
 	{ path: 'games/:_id', component: GameDetailsComponent },
 	{ path: 'search-results', component: GamesListComponent },
 	{ path: 'games', component: GamesListComponent },
-  	{ path: 'rating', component: RatingComponent },
-  	{ path: 'catalog', component: CatalogComponent },
-  	{ path: 'exchange/:_id', component: ExchangeComponent},
-  	{ path: 'contact', component: ContactComponent },
-  	{ path: 'about-project', component: AboutProjectComponent }
+	{ path: 'rating', component: RatingComponent },
+	{ path: 'catalog', component: CatalogComponent },
+	{ path: 'exchange/:_id', component: ExchangeComponent},
+	{ path: 'contact', component: ContactComponent },
+	{ path: 'about-project', component: AboutProjectComponent },
+	{ path: 'chat/:_id', component: ChatComponent}
 ];
 
 @NgModule({

@@ -8,7 +8,7 @@
 					<img src="../../assets/images/loading.gif" alt="" class="loading">
 				</div>
 			</div>
-			<div class="container" 
+			<div class="container"
 				*ngIf="loadData(recipientInfo, senderInfo, recipientGame, senderGamesArray);">
 				<div class="users-info">
 					<div *ngIf="recipientInfo" class="recipient-box">
@@ -57,13 +57,13 @@
 								<img src="{{this.appService.getUrl('/assets/images/arrows.png')}}" />
 							</div>
 							<div class="drag-drop-area">
-								<div class="drag-drop-container" droppable 
+								<div class="drag-drop-container" droppable
 									[dragOverClass]="'drag-target-border-green'"
-									[dragHintClass]="'drag-hint'" 
+									[dragHintClass]="'drag-hint'"
 									(onDrop)="onGamesDrop($event)">
 									<div *ngFor="let game of droppedGames" class="drag-drop-element">
 										<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.gameImage }}" />
-										<span class="glyphicon glyphicon glyphicon glyphicon-remove" aria-hidden="true" 
+										<span class="glyphicon glyphicon glyphicon glyphicon-remove" aria-hidden="true"
 										(click)="removeFromDragAndDrop(game.id, game.title, game.gameImage)"></span>
 									</div>
 									<div *ngFor="let i of Arr(droppedGamesCounter).fill(1)"class="drag-drop-element">
@@ -76,7 +76,7 @@
 							</div>
 						</div>
 						<div class="drag-drop-panel-footer">
-							<button *ngIf="!sent" class="btn" type="button" name="button"
+							<button *ngIf="!sent" class="custom-button btn" type="button" name="button"
 								(click)="saveExchange(recipientGame, recipientGame._id, recipientInfo._id, senderInfo._id)">Wyślij
 							</button>
 						</div>
@@ -88,7 +88,7 @@
 								<div id="custom-scrollbar" class="scrollbar">
 									<div id="custom-scrollbar" class="games">
 										<div class="list-center">
-											<li [draggable] *ngFor="let game of senderGamesArray" 
+											<li [draggable] *ngFor="let game of senderGamesArray"
 											[dragData]="game"> {{ game.title }} </li>
 										</div>
 									</div>
@@ -100,7 +100,7 @@
 									<div class="single-game" *ngFor="let game of checkboxArray">
 										<div class="custom-checkbox" [draggable] [dragData]="game">
 											<input type="checkbox" id="{{ game.id }}" [(ngModel)]="game.checked">
-											<label for="{{ game.id }}" 
+											<label for="{{ game.id }}"
 												(click)="checkboxOnClickEvent(game)">
 											<span>{{ game.title }}</span></label>
 										</div>

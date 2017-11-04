@@ -25,6 +25,7 @@ io.set("origins", "*:*");
 io.on('connection', function (socket, data) {
 
     if (socket.handshake.query.userId) {
+
       var client = {
         "socketId": socket.id,
         "userId": socket.handshake.query.userId
@@ -47,14 +48,23 @@ io.on('connection', function (socket, data) {
           }
         });
       });
+
+      socket.on('sendMessage', function (data) {
+        clients.find(function (el) {
+          if(el.userId == data) {
+              io.to(el.socketId).emit('getMessage', data);
+          }
+        });
+      });
     }
 
     socket.on('disconnect', function() {
-     var index = clients.indexOf(socket);
-     if (index != -1) {
-         clients.splice(index, 1);
-         console.info('Client gone (id=' + socket.id + ').');
-     }
+      for(var i = 0; i < clients.length; i++) {
+        if(clients[i].socketId == socket.id) {
+          clients.splice(i, 1);
+          console.info('Client ' + socket.id + ' disconnected');
+        }
+      }
    });
 });
 
@@ -63,6 +73,8 @@ var userModel = require('./models/user.model');
 var tempUserModel = require('./models/tempUser.model');
 var userGameModel = require('./models/userGame.model');
 var exchangeModel = require('./models/exchange.model');
+var chatModel = require('./models/chat.model');
+var messageModel = require('./models/message.model');
 
 // ROUTES
 var userRoute = require('./routes/user.route.js');
@@ -72,6 +84,7 @@ var coverUploadRoute = require('./routes/coverUpload.route.js');
 var avatarUploadRoute = require('./routes/avatarUpload.route.js');
 var transactionsRoute = require('./routes/transactions.route.js');
 var notificationsRoute = require('./routes/notifications.route.js');
+var chatRoute = require('./routes/chat.route.js');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://gamesapp:engineering@ds135800.mlab.com:35800/gamesapp');
@@ -108,6 +121,7 @@ app.use('/app', coverUploadRoute);
 app.use('/app', avatarUploadRoute);
 app.use('/app', transactionsRoute);
 app.use('/app', notificationsRoute);
+app.use('/app', chatRoute);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));

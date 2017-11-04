@@ -16,7 +16,7 @@ export class AppService {
   private transactionsUrl = this.getUrl('/app/start');
 
   public unread = 0;
-  private socket = null;
+  public socket = null;
 
   constructor (private http: Http, private notificationsService: NotificationsService) {
     if(this.isLoggedIn()) {

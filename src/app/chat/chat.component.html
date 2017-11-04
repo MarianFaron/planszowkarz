@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      <div class="inner chat">
+        <div class="chat-header">
+          <h4>{{friendId}}</h4>
+        </div>
+        <div id="chat-content" class="chat-content" #chatContent>
+          <div *ngIf="this.messages">
+            <div *ngFor="let message of this.messages.messages">
+              <div [ngClass]="(this.myId==message.sender)?'message':'message received'">
+                <div class="message-content">
+                  {{message.content}}
+                </div>
+                <div class="message-date">
+                  {{message.date | date:'medium'}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!this.messages">
+            Brak wiadomości.
+          </div>
+        </div>
+        <div class="chat-form">
+          <form class="" action="/app/chat" method="post">
+            <textarea name="name" rows="8" cols="80" value="{{this.content}}" #messageContent [ngModel]="content"></textarea>
+          </form>
+          <button (click)="sendMessage(messageContent.value);messageContent.value=''" class="btn custom-button">Wyślij</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

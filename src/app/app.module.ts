@@ -38,6 +38,7 @@ import { Ng2DragDropModule } from "ng2-drag-drop";
 import { SlickModule } from 'ngx-slick';
 import { ContactComponent } from './contact/contact.component';
 import { AboutProjectComponent } from './about-project/about-project.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { AboutProjectComponent } from './about-project/about-project.component';
     CatalogComponent,
     UserHistoryReceivedComponent,
     ContactComponent,
-    AboutProjectComponent
+    AboutProjectComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,7 @@ import { AboutProjectComponent } from './about-project/about-project.component';
     CollapseModule,
     BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot(),
-    Ng2DragDropModule,
+    Ng2DragDropModule.forRoot(),
     SlickModule.forRoot()
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pl-PL" }, AuthGuard],

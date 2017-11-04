@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { UsersService } from './users/users.service';
 import { User } from './users/users';
 import { AuthGuard } from './guards/auth.guard';
@@ -13,7 +13,7 @@ import { UserGame } from './profile/user-games/user-games';
   styleUrls: ['./app.component.css', './app.component.scss'],
   providers: [UsersService, AuthGuard, AppService]
 })
-export class AppComponent  {
+export class AppComponent implements OnDestroy {
 
   title = 'Planszówkarz';
   currentUser;
@@ -71,6 +71,10 @@ export class AppComponent  {
     } else {
       this.currentUser = null;
     }
+  }
+
+  ngOnDestroy() {
+    this.appService.socket.emit('disconnect');
   }
 
 }

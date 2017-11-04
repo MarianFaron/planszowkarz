@@ -10,10 +10,11 @@ section#exchange {
     margin-bottom: -60px;
 
     .exchange-background {
-      background-image: url("http://localhost:8080/assets/images/exchange-background.jpg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
+      // background-image: url("http://localhost:8080/assets/images/exchange-background.jpg");
+      // background-size: cover;
+      // background-repeat: no-repeat;
+      // background-position: center center;
+      background: $pl-light-gray4;
       min-height: calc(100vh - 90px);
       padding-bottom: 20px;
 
@@ -27,7 +28,7 @@ section#exchange {
         .loading-information {
           background-color: $pl-light-gray4;
           padding: 20px;
-          border-radius: 10px;
+          border-radius: 4px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -44,18 +45,18 @@ section#exchange {
           }
         }
       }
-      
+
       .container {
-        @include respond-to(desktop) { 
+        @include respond-to(desktop) {
           width: 100%;
         }
 
-        @include respond-to(tablet) {  
+        @include respond-to(tablet) {
           padding-left: 20px;
           padding-right: 20px;
         }
 
-        @include respond-to(small-mobile) { 
+        @include respond-to(small-mobile) {
           padding-left: 5px;
           padding-right: 5px;
         }
@@ -67,11 +68,11 @@ section#exchange {
           flex-direction: row;
           justify-content: space-between;
           flex-wrap: wrap;
-          background-color: $pl-light-gray4;
+          background-color: $pl-white;
           opacity: 0.8;
 
           .recipient-box {
-            @include respond-to(tablet) {  
+            @include respond-to(tablet) {
               width: 100%
             }
 
@@ -79,11 +80,11 @@ section#exchange {
               display: flex;
               align-items: flex-start;
 
-              @include respond-to(tablet) {  
+              @include respond-to(tablet) {
                 width: 100%;
               }
 
-              @include respond-to(small-mobile) { 
+              @include respond-to(small-mobile) {
                 align-items: center;
               }
 
@@ -93,12 +94,12 @@ section#exchange {
                 border-radius: 2px;
                 border: 4px solid $pl-white;
 
-                @include respond-to(tablet) {  
+                @include respond-to(tablet) {
                   width: 100px;
                   height: 100px;
                 }
 
-                @include respond-to(small-mobile) { 
+                @include respond-to(small-mobile) {
                   width: 70px;
                   height: 70px;
                 }
@@ -121,7 +122,7 @@ section#exchange {
                   font-family: 'Open Sans', sans-serif;
                   color: $pl-dark-gray;
 
-                  @include respond-to(small-mobile) { 
+                  @include respond-to(small-mobile) {
                     display: none;
                   }
                 }
@@ -130,7 +131,7 @@ section#exchange {
           }
 
           .sender-box {
-            @include respond-to(tablet) {  
+            @include respond-to(tablet) {
               width: 100%;
               display: flex;
               justify-content: flex-end;
@@ -140,7 +141,7 @@ section#exchange {
               display: flex;
               align-items: flex-start;
 
-              @include respond-to(small-mobile) { 
+              @include respond-to(small-mobile) {
                 align-items: center;
               }
 
@@ -150,12 +151,12 @@ section#exchange {
                 border-radius: 2px;
                 border: 4px solid $pl-white;
 
-                @include respond-to(tablet) {  
+                @include respond-to(tablet) {
                   width: 100px;
                   height: 100px;
                 }
 
-                @include respond-to(small-mobile) { 
+                @include respond-to(small-mobile) {
                   width: 70px;
                   height: 70px;
                 }
@@ -181,32 +182,32 @@ section#exchange {
           flex-wrap: wrap;
           min-height: 400px;
 
-          @include respond-to(tablet) {  
+          @include respond-to(tablet) {
             flex-direction: column-reverse;
           }
 
           .exchange-panel {
-            width: 60%;
+            width: 68%;
             padding: 20px 10px;
-            background-color: $pl-light-gray4;
+            background-color: $pl-white;
             opacity: 0.8;
             display: flex;
             flex-direction: column;
 
-            @include respond-to(desktop) { 
+            @include respond-to(desktop) {
               width: 65%;
             }
 
-            @include respond-to(tablet) {  
+            @include respond-to(tablet) {
               width: 100%;
             }
 
-            @include respond-to(small-mobile) { 
+            @include respond-to(small-mobile) {
               padding: 20px 5px;
             }
 
             .drag-drop-panel-header {
-              @include respond-to(mobile) { 
+              @include respond-to(mobile) {
                 display: none;
               }
 
@@ -216,7 +217,7 @@ section#exchange {
                 text-align: center;
                 line-height: 35px;
                 color: $pl-black;
-                border-radius: 10px;
+                border-radius: 4px;
               }
             }
 
@@ -228,7 +229,7 @@ section#exchange {
               align-items: center;
               height: 100%;
 
-              @include respond-to(mobile) { 
+              @include respond-to(mobile) {
                 flex-direction: column-reverse
               }
 
@@ -239,7 +240,7 @@ section#exchange {
                 flex-direction: column;
                 text-align: center;
 
-                @include respond-to(mobile) { 
+                @include respond-to(mobile) {
                   width: 100%;
                 }
 
@@ -268,11 +269,11 @@ section#exchange {
                 display: flex;
                 justify-content: center;
 
-                @include respond-to(desktop) { 
+                @include respond-to(desktop) {
                   width: 15%;
                 }
 
-                @include respond-to(mobile) { 
+                @include respond-to(mobile) {
                   width: 100%;
                   margin-bottom: 20px;
                 }
@@ -289,11 +290,11 @@ section#exchange {
                 justify-content: center;
                 flex-direction: column;
 
-                @include respond-to(desktop) { 
+                @include respond-to(desktop) {
                   width: 45%;
                 }
 
-                @include respond-to(mobile) { 
+                @include respond-to(mobile) {
                   display: none;
                 }
 
@@ -312,12 +313,12 @@ section#exchange {
                   flex-wrap: wrap;
                   justify-content: center;
 
-                  @include respond-to(desktop) { 
+                  @include respond-to(desktop) {
                     padding: 20px;
                     margin: 0 auto;
                   }
 
-                  @include respond-to(small-mobile) { 
+                  @include respond-to(small-mobile) {
                     padding: 20px 0px;
                   }
 
@@ -326,7 +327,7 @@ section#exchange {
                     margin: 5px 0 0 5px;
                     width: 60px;
                     height: 60px;
-                    border-radius: 10px;
+                    border-radius: 4px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -335,7 +336,7 @@ section#exchange {
                     img {
                       height: 56px;
                       width: 56px;
-                      border-radius: 10px;
+                      border-radius: 4px;
                     }
 
                     span {
@@ -356,14 +357,14 @@ section#exchange {
                 }
 
                 .drag-drop-info {
-                  @include respond-to(mobile) { 
+                  @include respond-to(mobile) {
                     display: none;
                   }
 
                   p {
                     font-style: italic;
 
-                    @include respond-to(desktop) { 
+                    @include respond-to(desktop) {
                       text-align: center;
                     }
 
@@ -382,30 +383,15 @@ section#exchange {
               padding: 20px 0px;
               display: flex;
               justify-content: center;
-
-              button {
-                margin: 0;
-                color: $pl-white;
-                font-weight: 500;
-                background: $pl-orange;
-                border: none;
-                min-width: 100px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                border-radius: 10px;
-                height: 36px;
-              }
             }
           }
 
           .list-of-game {
             width: 30%;
             padding: 0;
-            background-color: $pl-light-gray4;
+            background-color: $pl-white;
             opacity: 0.8;
-            @include respond-to(tablet) {  
+            @include respond-to(tablet) {
               width: 100%;
               margin-bottom: 20px 15px;
             }
@@ -414,11 +400,11 @@ section#exchange {
               width: 100%;
               min-height: 500px;
 
-              @include respond-to(tablet) {  
+              @include respond-to(tablet) {
                 min-height: auto;
               }
 
-              @include respond-to(small-mobile) { 
+              @include respond-to(small-mobile) {
                 padding: 20px 0px;
               }
 
@@ -440,13 +426,13 @@ section#exchange {
                   overflow-x: hidden;
                   background: transparent;
 
-                  @include respond-to(tablet) {  
+                  @include respond-to(tablet) {
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: center;
                   }
 
-                  @include respond-to(mobile) { 
+                  @include respond-to(mobile) {
                     display: none;
                   }
 
@@ -462,11 +448,11 @@ section#exchange {
                       list-style: none;
                       text-align: center;
                       cursor: pointer;
-                      border-radius: 10px;
+                      border-radius: 4px;
                       max-width: 250px;
                       text-shadow: 1px 1px 1px $pl-black;
 
-                      @include respond-to(tablet) {  
+                      @include respond-to(tablet) {
                         margin: 0 10px 10px;
                         width: 250px;
                       }
@@ -477,7 +463,7 @@ section#exchange {
                 .mobile-games {
                   display: none;
 
-                  @include respond-to(mobile) { 
+                  @include respond-to(mobile) {
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -493,7 +479,7 @@ section#exchange {
                           text-align: center;
                           cursor: pointer;
                           line-height: 20px;
-                          border-radius: 10px;
+                          border-radius: 4px;
                           max-width: 250px;
                           font-weight: 400;
                         }

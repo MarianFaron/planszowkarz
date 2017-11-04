@@ -32,5 +32,6 @@
     <div id="center" class="single-transaction-content">
       <p>Status:</p>
       <p *ngIf="history?.status == 'accepted'">Zaakceptowane<p>
+        <button type="button" name="button" class="custom-button btn" (click)="this.startChat(history.sender._id, history.recipient._id)">Czat</button>
     </div>
 </div>
