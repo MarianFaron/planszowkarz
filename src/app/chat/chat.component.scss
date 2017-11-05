@@ -5,13 +5,15 @@
   background: $pl-white;
   overflow: auto;
   padding: 15px;
+
   .chat-header {
     box-shadow: 0 4px 2px -2px $pl-light-gray;
-    margin: -15px -15px 1px -15px;
+    margin: -15px -15px 1px;
     padding: 15px;
     z-index: 9999;
     position: relative;
   }
+
   .chat-content {
     height: 300px;
     overflow-y: scroll;
@@ -22,6 +24,7 @@
       float: right;
       margin: 10px 0;
       position: relative;
+
       .message-content {
         background: $pl-orange;
         color: $pl-white;
@@ -29,12 +32,14 @@
         padding: 15px;
         text-align: right;
       }
+
       .message-date {
         text-align: right;
-        font-size: 11px;
+        @include font-size(11);
         color: $pl-gray2;
         margin-top: 5px;
       }
+
       .message-sender {
         text-align: right;
       }
@@ -42,22 +47,27 @@
 
     .message.received {
       float: left;
+
       .message-content {
         background: $pl-light-gray4;
         color: $pl-dark-gray;
         text-align: left;
       }
-      .message-date,
-      .meesage-sender {
+
+      .meesage-sender,
+      .message-date {
         text-align: left;
       }
     }
   }
+
   .chat-form {
     margin-top: 30px;
+
     textarea {
       width: 100%;
     }
+
     button {
       float: right;
     }
