@@ -112,6 +112,7 @@ header{
         width: calc(100%/3);
         @media only screen and (max-width: $mobile-breakpoint) {
           display: none;
+          widows: 0;
         }
 
         ul{
@@ -142,6 +143,7 @@ header{
         align-items: center;
         @media only screen and (max-width: $mobile-breakpoint) {
           align-items: flex-start;
+          width: 75%;
         }
 
         a.logo{

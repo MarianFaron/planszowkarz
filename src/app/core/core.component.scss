@@ -2,7 +2,130 @@
 @import '../../sass/mixins';
 @import '../../sass/pet-7-stroke';
 
-#newGames {
+section#main-banner{
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 56px);
+  position: relative;
+  margin: -20px 0 0;
+
+  .banner-background{
+    background-image: url("http://localhost:8080/assets/images/banner.jpg");
+    background-position: center center;
+    background-size: cover;
+    width: 100%;
+    padding: 0;
+    height: 500px;
+    opacity: 0.7;
+    @media only screen and (max-width: $desktop-breakpoint) {
+      padding: 20%;
+      height: auto;
+    }
+    @media only screen and (max-width: $mobile-breakpoint) {
+      padding: 25%;
+    }
+    @media only screen and (max-width: $small-mobile-breakpoint) {
+      padding: auto;
+      height: 250px;
+    }
+  }
+
+  .banner-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(-180deg,rgba(60,73,108,0), $pl-black 98%);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: 50px 15px;
+    @media only screen and (max-width: $mobile-breakpoint) {
+      padding: 25px 15px;
+    }
+
+    .container{
+      @media only screen and (max-width: $mobile-breakpoint) {
+        padding: 0;
+        margin: 0 auto;
+        max-width: 768px;
+        width: 100%;
+      }
+
+      .banner-header{
+        display: flex;
+        flex-direction: column;
+        
+
+        h1{
+          color: $pl-white;
+          margin: 0 0 15px;
+          text-transform: uppercase;
+          @include font-size(42);
+          line-height: 52px;
+          font-weight: 300;
+          text-shadow: 0 2px 4px rgba(0,0,0,.5);
+
+          @media only screen and (max-width: $mobile-breakpoint) {
+            @include font-size(32);
+            line-height: 36px;
+          }
+
+          @media only screen and (max-width: $small-mobile-breakpoint) {
+            @include font-size(24);
+            line-height: 26px;
+          }
+          
+        }
+
+        h2{
+          color: $pl-white;
+          margin: 0;
+          @include font-size(32);
+          line-height: 32px;
+          font-weight: 300;
+          text-shadow: 0 2px 4px rgba(0,0,0,.5);
+
+          @media only screen and (max-width: $mobile-breakpoint) {
+            @include font-size(20);
+            line-height: 24px;
+          }
+
+          @media only screen and (max-width: $small-mobile-breakpoint) {
+            @include font-size(16);
+            line-height: 18px;
+          }
+        }
+      }
+    }
+  }
+}
+
+section#newGames,
+section#forWho,
+section#hoToMakeExchange{
+  padding: 50px 15px;
+
+  @media only screen and (max-width: $mobile-breakpoint) {
+    padding: 50px 15px 10px;
+  }
+
+  h2{
+    @include font-size(23);
+    font-weight: 28px;
+    font-weight: 700;
+    color: $pl-dark-gray;
+    margin: 0;
+    text-align: center
+
+  }
+  .main-hr{
+    margin: 20px auto;
+  }
+}
+
+section#newGames {
   .new-game-wrapper {
     padding: 0 15px 20px;
     line-height: 28px;
@@ -28,7 +151,7 @@
           -moz-transition: all 150ms linear;
           -ms-transition: all 150ms linear;
           -o-transition: all 150ms linear;
-          transition: all 150ms linear;
+          transition: all 150ms linear;          
         }
 
         a:active,
@@ -74,70 +197,82 @@
     }
   }
 
-  .rate-wrapper {
-    padding: 0 15px 20px;
-    line-height: 28px;
+}
 
-    h3{
-      @include font-size(16);
+section#forWho,
+section#hoToMakeExchange{
+  padding: 50px 15px 70px;
+    .section-wrapper{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-      text-transform: uppercase;
-      color: $pl-mid-gray;
+      .section-row{
+        display: flex;
+        align-items: center;
+        margin: 0 0 20px;
+
+        span{
+          width: 100px;
+          height: 100px;
+          background-color: white;
+          box-shadow: 2px 2px 1px #d8d8d8;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+          font-size: 42px;
+          line-height: 42px;
+          font-weight: 800;
+          color: orange;
+          margin: 0 30px 0 0;
+        }
+
+        h3{
+          width: calc(100% - 130px);
+        }
+      }
     }
+}
 
-    .inner {
-      background: $pl-white;
-      box-shadow: 2px 2px 1px $pl-gray;
-      padding-bottom: 20px;
 
-      .rate-info {
-        padding: 0 20px;
+section#goToRegister{
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 56px);
+  position: relative;
+  margin: -20px 0 0;
 
-        .rate-img {
-          height: 170px;
-          float: left;
-          padding-top: 20px;
+  .section-background{
+    background-image: url("http://localhost:8080/assets/images/banner2.jpg");
+    background-position: center center;
+    background-size: cover;
+    width: 100%;
+    padding: 0;
+    height: 300px;
+    opacity: 0.7;
+  }
 
-          img {
-            height: 100%;
-            max-width: 150px;
-            max-height: 150px;
-          }                    
-        }
+  .section-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(-180deg,rgba(60,73,108,0), $pl-black 98%);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: 50px 15px;
 
-        .rate-text {
-            padding-left: 20px;
-            float: left;
-        }
-
-        &:after {
-          content: '';
-          display: block;
-          clear: both;
-        }
-
-        .icon {
-          @include font-size(18);
-          position: relative;
-          top: 2px;
-
-          &-comment {
-            @include pet-icon-after($pl-icon-comment);
-          }
-
-          &-star {
-            @include pet-icon-after($pl-icon-star);
-          }
-        }
-      }
-
-      .rate-hr {
-        border: 0;
-        height: 1px;
-        background: $pl-gray2;
-        width: 90%;
-        margin-bottom: 0;
-      }
+    h2{
+      color: $pl-white;
+      margin: 0;
+      @include font-size(32);
+      line-height: 32px;
+      font-weight: 300;
+      text-shadow: 0 2px 4px rgba(0,0,0,.5);
+      text-align: center;
     }
   }
 }

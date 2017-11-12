@@ -1,6 +1,18 @@
+<section id="main-banner">
+  <div class="banner-background"></div>
+  <div class="banner-container">
+    <div class="container">
+      <div class="banner-header">
+        <h1> Planszówkarz </h1>
+        <h2> wymieniaj się z innymi swoimi planszówkami </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="newGames" class="newestGames">
   <div class="container">
-    <h3>Najnowsze ogłoszenia</h3>
+    <h2>Najnowsze ogłoszenia</h2>
     <hr class="main-hr">
     <div class="row">
       <div *ngIf="!userGame">
@@ -51,130 +63,66 @@
         </div>
       </ngx-slick>
     </div>
-    <div class="row">
-      <div class="col-md-4 col-sm-12 rate-wrapper">
-        <h3>Najwyżej oceniane</h3>
-        <hr class="main-hr">
-        <div class="inner">
-          <div class="rate-info">
-            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
-            <div class="rate-text">
-              <h3>Civilization</h3>
-              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-              <span class="icon icon-comment" aria-hidden="true"></span> 10 komentarzy
-              <div class="text-left">
-                <button type="button" class="btn btn-default custom-button">Więcej</button>
-              </div>
-            </div>
-          </div>
-          <hr class="rate-hr">
-          <div class="rate-info">
-            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}wiedzmin.jpg" alt="wiedzmin" class="rate-img">
-            <div class="rate-text">
-              <h3>Wiedźmin</h3>
-              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
-              <span class="icon icon-comment" aria-hidden="true"></span> 5 komentarzy
-              <div class="text-left">
-                <button type="button" class="btn btn-default custom-button">Więcej</button>
-              </div>
-            </div>
-          </div>
-          <hr class="rate-hr">
-          <div class="rate-info">
-            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
-            <div class="rate-text">
-              <h3>Civilization</h3>
-              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-              <span class="icon icon-comment" aria-hidden="true"></span> 10 komentarzy
-              <div class="text-left">
-                <button type="button" class="btn btn-default custom-button">Więcej</button>
-              </div>
-            </div>
-          </div>
+  </div>
+</section>
+
+<section id="forWho">
+    <div class="container">
+      <h2>Dla kogo stworzyliśmy planszówkarza</h2>
+      <hr class="main-hr">
+      <div class="section-wrapper">
+        <div class="section-row">
+          <span> 1 </span>
+          <h3> Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h3>
         </div>
-      </div>
-      <div class="col-md-4 col-sm-12 rate-wrapper">
-        <h3>Najczęściej komentowane</h3>
-        <hr class="main-hr">
-        <div class="inner">
-          <div class="rate-info">
-            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
-            <div class="rate-text">
-              <h3>Civilization</h3>
-              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-              <span class="icon icon-comment" aria-hidden="true"></span> 10 komentarzy
-              <div class="text-left">
-                <button type="button" class="btn btn-default custom-button">Więcej</button>
-              </div>
-            </div>
-          </div>
-          <hr class="rate-hr">
-          <div class="rate-info">
-            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}wiedzmin.jpg" alt="wiedzmin" class="rate-img">
-            <div class="rate-text">
-              <h3>Wiedźmin</h3>
-              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
-              <span class="icon icon-comment" aria-hidden="true"></span> 5 komentarzy
-              <div class="text-left">
-                <button type="button" class="btn btn-default custom-button">Więcej</button>
-              </div>
-            </div>
-          </div>
-          <hr class="rate-hr">
-          <div class="rate-info">
-            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
-            <div class="rate-text">
-              <h3>Civilization</h3>
-              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-              <span class="icon icon-comment" aria-hidden="true"></span> 10 komentarzy
-              <div class="text-left">
-                <button type="button" class="btn btn-default custom-button">Więcej</button>
-              </div>
-            </div>
-          </div>
+        <div class="section-row">
+          <span> 2 </span>
+          <h3> Duis ipsum dolor, malesuada a porttitor ac, pharetra ut odio </h3>
         </div>
-      </div>
-      <div class="col-md-4 col-sm-12 rate-wrapper">
-        <h3>Najwyżej oceniane</h3>
-        <hr class="main-hr">
-        <div class="inner">
-          <div class="rate-info">
-            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
-            <div class="rate-text">
-              <h3>Civilization</h3>
-              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-              <span class="icon icon-comment" aria-hidden="true"></span> 10 komentarzy
-              <div class="text-left">
-                <button type="button" class="btn btn-default custom-button">Więcej</button>
-              </div>
-            </div>
-          </div>
-          <hr class="rate-hr">
-          <div class="rate-info">
-            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}wiedzmin.jpg" alt="wiedzmin" class="rate-img">
-            <div class="rate-text">
-              <h3>Wiedźmin</h3>
-              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 7/10 <br>
-              <span class="icon icon-comment" aria-hidden="true"></span> 5 komentarzy
-              <div class="text-left">
-                <button type="button" class="btn btn-default custom-button">Więcej</button>
-              </div>
-            </div>
-          </div>
-          <hr class="rate-hr">
-          <div class="rate-info">
-            <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}civilizationpl.jpg" alt="civilization" class="rate-img">
-            <div class="rate-text">
-              <h3>Civilization</h3>
-              <span class="icon icon-star" aria-hidden="true"></span> Ocena: 8.5/10 <br>
-              <span class="icon icon-comment" aria-hidden="true"></span> 10 komentarzy
-              <div class="text-left">
-                <button type="button" class="btn btn-default custom-button">Więcej</button>
-              </div>
-            </div>
-          </div>
+        <div class="section-row">
+          <span> 3 </span>
+          <h3> Fusce tempus odio urna, porta mollis odio consequat. </h3>
         </div>
       </div>
     </div>
+</section>
+
+<section id="goToRegister" >
+  <div class="section-background"></div>
+  <div class="section-container">
+    <div class="container">
+        <div class="section-content">
+          <h2> Załóż konto i dołącz do nas! </h2>
+        </div>
+    </div>
   </div>
+</section>
+
+<section id="hoToMakeExchange">
+    <div class="container">
+      <h2>Przeprowadź wymianę w 5 krokach</h2>
+      <hr class="main-hr">
+      <div class="section-wrapper">
+        <div class="section-row">
+          <span> 1 </span>
+          <h3> Załóż konto lub zaloguj się przez facebooka. </h3>
+        </div>
+        <div class="section-row">
+          <span> 2 </span>
+          <h3> Dodaj gry, które chcesz wymienić. </h3>
+        </div>
+        <div class="section-row">
+          <span> 3 </span>
+          <h3> Znajdź grę, którą chcesz uzyskać. </h3>
+        </div>
+        <div class="section-row">
+          <span> 4 </span>
+          <h3> Zaproponuj wymianę właścicielowi gry. </h3>
+        </div>
+        <div class="section-row">
+          <span> 5 </span>
+          <h3> Ustal szczegóły wymiany komunikując się za pomocą czatu. </h3>
+        </div>
+      </div>
+    </div>
 </section>
