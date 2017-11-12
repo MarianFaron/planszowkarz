@@ -21,6 +21,7 @@ export class AppComponent implements OnDestroy {
   errorMessage: string;
   games: UserGame[];
   user: User[];
+  mobileNavbar = false;
   public isCollapsed:boolean = true;
 
   public collapsed(event:any):void {
@@ -75,6 +76,15 @@ export class AppComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.appService.socket.emit('disconnect');
+  }
+
+  toggleMobileNavbar(){
+    if(this.mobileNavbar){
+      this.mobileNavbar = false;
+    }
+    else{
+      this.mobileNavbar = true;
+    }
   }
 
 }

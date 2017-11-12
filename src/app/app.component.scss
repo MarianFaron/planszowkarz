@@ -1,5 +1,6 @@
 @import '../sass/colors';
 @import '../sass/mixins';
+@import '../sass/pet-7-stroke';
 
 .form-label {
   .form-group {
@@ -82,5 +83,143 @@
 
   @include respond-to(mobile) {
     flex-direction: column;
+  }
+}
+
+header{
+  margin: 0 0 20px;
+  width: 100%;
+  position: relative;
+  z-index: 100;
+
+  nav.main-navbar{
+    background-color: $pl-mid-gray;
+    height: 56px;
+    width: 100%;
+    margin: 0;
+    padding: 0 15px;
+
+    .navbar-container{
+      max-width: 992px;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .column{
+        width: calc(100%/3);
+        @media only screen and (max-width: $mobile-breakpoint) {
+          display: none;
+        }
+
+        ul{
+          margin: 0;
+          padding: 0;
+          widows: 100%;
+          display: flex;
+          justify-content: space-around;
+
+          li{
+            list-style: none;
+            display: flex;
+            justify-content: center;
+
+            a{
+              color: $pl-white;
+              cursor: pointer;
+              text-decoration: none;
+
+            }
+          }
+        }
+      }
+
+      .logo-column{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @media only screen and (max-width: $mobile-breakpoint) {
+          align-items: flex-start;
+        }
+
+        a.logo{
+          @include font-size(18);
+
+          line-height: 20px;
+          color: $pl-white;
+          cursor: pointer;
+          text-decoration: none;
+
+          img{
+            max-width: 50px;
+            display: inline-block;
+            margin-right: 10px;
+            padding: 5px;
+
+          }
+        }
+      }
+
+      .icon {
+        @include font-size(30);
+        padding: 14px 0 10px;
+        display: none;
+        cursor: pointer;
+
+        @media only screen and (max-width: $mobile-breakpoint) {
+          display: block;
+        }
+
+        &-menu {
+          @include pet-icon-before($pl-icon-menu);
+          color: $pl-orange;
+        }
+
+        &-menu:hover,
+        &-menu:focus,
+        &-menu:active {
+          text-decoration: none;
+          color: rgba( $pl-orange, 0.8);
+        }
+      }
+    }
+  }
+
+  nav.mobile-navbar{
+    background-color: $pl-mid-gray;
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+    border-top: 1px solid $pl-orange;
+    position: absolute;
+
+    .navbar-container{
+      max-width: 320px;
+      width: 100%;
+      margin: 0 auto;
+
+      ul{
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+
+        li{
+          list-style: none;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+
+          a{
+            color: $pl-white;
+            cursor: pointer;
+            text-decoration: none;
+            line-height: 40px;
+          }
+        }
+      }
+    }
   }
 }
