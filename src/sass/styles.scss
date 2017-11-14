@@ -65,6 +65,16 @@ textarea.form-control {
   background: $pl-orange;
   border: none;
   min-width: 100px;
+  @include respond-to(desktop) {
+    min-width: 0;
+    @include font-size(12);
+  }
+  @include respond-to(mobile) {
+    padding: 6px;
+    display: block;
+    width: 200px;
+    margin: 10px auto;
+  }
 }
 
 .custom-button:hover,
