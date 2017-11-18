@@ -39,6 +39,7 @@ import { SlickModule } from 'ngx-slick';
 import { ContactComponent } from './contact/contact.component';
 import { AboutProjectComponent } from './about-project/about-project.component';
 import { ChatComponent } from './chat/chat.component';
+import { AuthorsComponent } from './authors/authors.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { ChatComponent } from './chat/chat.component';
     UserHistoryReceivedComponent,
     ContactComponent,
     AboutProjectComponent,
-    ChatComponent
+    ChatComponent,
+    AuthorsComponent
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutProjectComponent } from './about-project/about-project.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ChatComponent } from './chat/chat.component';
+import { AuthorsComponent } from './authors/authors.component';
 
 export const router: Routes = [
 	{ path: '', redirectTo: '/main', pathMatch:'full'},
@@ -53,7 +54,8 @@ export const router: Routes = [
 	{ path: 'exchange/:_id', component: ExchangeComponent},
 	{ path: 'contact', component: ContactComponent },
 	{ path: 'about-project', component: AboutProjectComponent },
-	{ path: 'chat/:_id', component: ChatComponent}
+	{ path: 'chat/:_id', component: ChatComponent},
+	{ path: 'authors', component: AuthorsComponent }
 ];
 
 @NgModule({
