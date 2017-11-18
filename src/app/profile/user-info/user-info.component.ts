@@ -76,4 +76,12 @@ export class UserInfoComponent implements OnInit {
                         },
                         error => this.errorMessage = <any>error);
   }
+  wartosc(x:number, y:number){
+    if(x>0){
+      var z = x/y; var m = z.toFixed(2);
+      return m + "/5";
+    }else{
+      return "Jeszcze nie oceniono";
+    }
+  }
 }

@@ -49,7 +49,7 @@
 					<span class="icon icon-change"></span><p> Liczba przeprowadzonych wymian: {{userInfo?.numberOfExchanges}}</p>
 				</li>
 				<li>
-					<span class="icon icon-star"></span><p> Ocena społeczności: {{userInfo?.sumOfGrades}}</p>
+					<span class="icon icon-star"></span><p> Ocena społeczności: {{wartosc(userInfo?.sumOfGrades, userInfo?.numberOfRatings)}}</p>
 				</li>
 			</div>
 		</ul>

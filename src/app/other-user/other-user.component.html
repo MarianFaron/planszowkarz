@@ -16,8 +16,8 @@
 				<div class="user-sidebar inner">
 					<div class="other-info">
 						<div *ngIf="userInfo">
-							<img *ngIf="userInfo?.avatarImage" class="user-avatar" alt="facebook-avatar"
-								src="http://graph.facebook.com/{{userInfo?.facebook.id}}/picture?width=160&amp;height=160"/>
+							<!--<img *ngIf="userInfo?.avatarImage" class="user-avatar" alt="facebook-avatar"
+								src="http://graph.facebook.com/{{userInfo?.facebook.id}}/picture?width=160&amp;height=160"/>-->
 							<img *ngIf="userInfo?.avatarImage" class="user-avatar" alt="user-avatar" 
 								src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" />
 						</div>
@@ -67,8 +67,19 @@
 								</li>
 								<li>
 									<span class="icon icon-star" aria-hidden="true"></span>
-									Ocena społeczności: {{userInfo?.sumOfGrades}}
+									Ocena społeczności: {{wartosc(userInfo?.sumOfGrades, userInfo?.numberOfRatings)}}
 								</li>
+								<li><p>Oceń użytkownika:</p>
+									<select #rating class="rateInput">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>	
+									<button class="btn btn-default custom-button customRateButton" (click)="addGrade(userInfo?._id, rating.value)">Zagłosuj!</button>
+								</li>
+																
 							</div>
 						</ul>
 					</div>
