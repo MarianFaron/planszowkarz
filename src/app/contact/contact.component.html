@@ -1,3 +1,38 @@
-<div class="container">
-  Kontakt
-</div>
+<section id="contactPage">
+  <div class="container">
+    <div class="section-container">
+      <div class="section-wrapper">
+        <h4>Formluarz kontaktowy</h4>
+        <h5>Skorzystaj z formularza i skontaktuj się z nami!</h5>
+        <form class="col">
+          <div class="form-group">
+            <label>Temat wiadomości</label>
+            <input class="form-control" name="subject" placeholder="Np. Niedziałająca funkcjonalność"
+              #messageSubject />
+          </div>
+          <div class="form-group">
+            <label>Treść wiadomości</label>
+            <textarea class="form-control" name="content" placeholder="Np. Opis problemu" #messageContent></textarea>
+          </div>
+          <div class="form-group">
+            <label>Adres e-mail</label>
+            <input class="form-control" name="email" placeholder="twoj@adres.pl" #messageAuthorEmail />
+          </div>
+          <div class="form-group">
+            <label>Imię</label>
+            <input type="text" class="form-control" name="name" placeholder="Np. Jan" #messageAuthorName/>
+          </div>
+          <div class="form-group">
+            <label>Nazwisko</label>
+            <input type="text" class="form-control" name="surname" placeholder="Np. Kowalski" #messageAuthorSurname/>
+          </div>
+          <div class="button-row">
+            <button class="btn custom-button" data-target="#add-game" data-toggle="modal">
+              Wyślij wiadomość
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

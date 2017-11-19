@@ -1,0 +1,47 @@
+@import '../../sass/mixins';
+@import '../../sass/colors';
+
+
+.section-container{
+    background: #FFF;
+    box-shadow: 2px 2px 1px #d8d8d8;
+    margin: 15px auto;
+    padding: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 480px;
+
+    .section-wrapper{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        h4{
+            @include font-size(22);
+
+            line-height: 24px;
+            margin: 0 0 20px;
+        }
+
+        h5{
+            @include font-size(15);
+            
+            line-height: 20px;
+            margin: 0 0 20px;
+        }
+
+        textarea{
+            min-height: 150px;
+        }
+        
+        .button-row{
+            display: flex;
+            margin: 20px 0 0;
+
+            .custom-button{
+                margin: 0;
+            }
+        }
+    
+    }
+}
