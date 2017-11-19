@@ -42,6 +42,20 @@
                 margin: 0;
             }
         }
+
+        .label-row{
+            display: flex;
+
+            label{
+                width: auto;
+            }
+            
+            span{
+                margin: 0 0 0 5px;
+                color: $pl-red;
+            }
+        }
+
     
     }
 }

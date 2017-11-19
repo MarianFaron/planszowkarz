@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContactMessage } from './contact-message'
 
 @Component({
   selector: 'app-contact',
@@ -10,6 +11,24 @@ export class ContactComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
+
+  //contactMessage: ContactMessage;
+
+  contactMessage = {
+    subject: "Temat",
+    content: "Treść",
+    authorEmail: "mail@wp.pl",
+    authorName: "Janek",
+    authorSurname: "Kowalski"
+  }
+
+  sendMessage(valid, message) {
+    if(!valid) {
+      return;
+    }
+  }
+  
 
 }
