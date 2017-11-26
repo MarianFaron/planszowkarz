@@ -1,34 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ElementRef, Input} from '@angular/core';
+import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import { ContactMessage } from './contact-message'
+import { ContactService } from './contact.service';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  styleUrls: ['./contact.component.scss'],
+  providers: [ContactService]
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  errorMessage: string;
+  contactMessage: ContactMessage;
 
-  ngOnInit() {
-    
-  }
+  model = {
+    subject: '',
+    content: '',
+    authorEmail: '',
+    authorName: '',
+    authorSurname: ''
+  };
 
-  //contactMessage: ContactMessage;
+  constructor(
+    private contactService: ContactService,
+    private http: Http, 
+    private appService: AppService
+  ) { }
 
-  contactMessage = {
-    subject: "Temat",
-    content: "Treść",
-    authorEmail: "mail@wp.pl",
-    authorName: "Janek",
-    authorSurname: "Kowalski"
-  }
+  ngOnInit() { }
 
-  sendMessage(valid, message) {
+  sendMessage(valid, subject, content, authorEmail, authorName, authorSurname) {
     if(!valid) {
+      this.appService.showNotification('Powiadomienie', 'Popraw dane w formularzu.', 'danger');
       return;
     }
+    else{
+      this.contactService.registerApplication(subject, content, authorEmail, authorName, authorSurname)
+                                              .subscribe(
+                                                contactMessage  => {
+                                                  this.contactMessage;
+                                                  this.appService.showNotification('Powiadomienie', 'Wysłano zgłoszenie.', 'success');
+                                                },
+                                                error =>  {
+                                                  this.errorMessage = <any>error
+                                                });
+    }
   }
-  
-
 }

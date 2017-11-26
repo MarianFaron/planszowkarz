@@ -9,43 +9,48 @@
             <div class="label-row">
               <label>Temat wiadomości</label>
               <span>*</span>
+              <span *ngIf="!messageSubject.valid">Podaj temat wiadomości</span>
             </div>
             <input type="text" class="form-control" placeholder="Np. Niedziałająca funkcjonalność"
               #messageSubject="ngModel" required 
-              [(ngModel)]="contactMessage.subject" name="subject"/>
+              [(ngModel)]="model.subject" name="subject"/>
           </div>
           <div class="form-group">
             <div class="label-row">
               <label>Treść wiadomości</label>
               <span>*</span>
+              <span *ngIf="!messageContent.valid">Podaj treść wiadomości</span>
             </div>
             <textarea class="form-control" placeholder="Np. Opis problemu" 
               #messageContent="ngModel" required 
-              [(ngModel)]="contactMessage.content" name="content"></textarea>
+              [(ngModel)]="model.content" name="content"></textarea>
           </div>
           <div class="form-group">
             <div class="label-row">
               <label>Adres e-mail</label>
               <span>*</span>
+              <span *ngIf="!messageAuthorEmail.valid">Podaj poprawny adres e-mail</span>
             </div>
             <input type="email" class="form-control" placeholder="twoj@adres.pl" 
-              #messageAuthorEmail="ngModel" required 
-              [(ngModel)]="contactMessage.authorEmail" name="authorEmail"/>
+              #messageAuthorEmail="ngModel" required email
+              [(ngModel)]="model.authorEmail" name="authorEmail"/>
           </div>
           <div class="form-group">
             <label>Imię</label>
             <input type="text" class="form-control" placeholder="Np. Jan" 
               #messageAuthorName="ngModel" 
-              [(ngModel)]="contactMessage.authorName" name="authorName"/>
+              [(ngModel)]="model.authorName" name="authorName"/>
           </div>
           <div class="form-group">
             <label>Nazwisko</label>
             <input type="text" class="form-control" placeholder="Np. Kowalski" 
               #messageAuthorSurname="ngModel" 
-              [(ngModel)]="contactMessage.authorSurname" name="authorSurname"/>
+              [(ngModel)]="model.authorSurname" name="authorSurname"/>
           </div>
           <div class="button-row">
-            <button class="btn custom-button" (click)="sendMessage(formRef.valid, contactMessage)"> Wyślij wiadomość </button>
+            <button class="btn custom-button" 
+            (click)="sendMessage(formRef.valid, model.subject, model.content, model.authorEmail, model.authorName, model.authorSurname)"> 
+            Wyślij wiadomość </button>
           </div>
         </form>
       </div>

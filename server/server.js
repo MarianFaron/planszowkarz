@@ -75,6 +75,7 @@ var userGameModel = require('./models/userGame.model');
 var exchangeModel = require('./models/exchange.model');
 var chatModel = require('./models/chat.model');
 var messageModel = require('./models/message.model');
+var contactModel = require('./models/contact.model');
 
 // ROUTES
 var userRoute = require('./routes/user.route.js');
@@ -85,6 +86,7 @@ var avatarUploadRoute = require('./routes/avatarUpload.route.js');
 var transactionsRoute = require('./routes/transactions.route.js');
 var notificationsRoute = require('./routes/notifications.route.js');
 var chatRoute = require('./routes/chat.route.js');
+var contactRoute = require('./routes/contact.route.js');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://gamesapp:engineering@ds135800.mlab.com:35800/gamesapp');
@@ -122,6 +124,7 @@ app.use('/app', avatarUploadRoute);
 app.use('/app', transactionsRoute);
 app.use('/app', notificationsRoute);
 app.use('/app', chatRoute);
+app.use('/app', contactRoute);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
