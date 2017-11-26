@@ -1,7 +1,7 @@
 <header>
   <nav class="main-navbar">
     <div class="container navbar-container">
-      <div class="column">
+      <div class="column first-column">
         <ul>
           <li><a routerLink="/games" routerLinkActive="active"><span class="glyphicon glyphicon-ok-sign"></span> Wymiana </a></li>
           <li><a routerLink="/rating" routerLinkActive="active"><span class="glyphicon glyphicon-star"></span> Ranking </a></li>
@@ -13,7 +13,7 @@
               {{title}}
           </a>
       </div>
-      <div class="column">
+      <div class="column last-column">
         <ul>
           <li *ngIf="currentUser == null">
             <a routerLink="/register" routerLinkActive="active">

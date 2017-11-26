@@ -46,6 +46,10 @@
         .label-row{
             display: flex;
 
+            @media only screen and (max-width: $small-mobile-breakpoint) {
+                flex-direction: column;
+            }
+
             label{
                 width: auto;
             }
@@ -53,6 +57,12 @@
             span{
                 margin: 0 0 0 5px;
                 color: $pl-red;
+            }
+
+            span.error-message{
+                @media only screen and (max-width: $small-mobile-breakpoint) {
+                   margin: 0 0 5px;
+                }
             }
         }
 

@@ -105,6 +105,10 @@ header{
       display: flex;
       align-items: center;
       justify-content: space-between;
+      @media only screen and (max-width: $mobile-breakpoint) {
+        width: 100%;
+        padding: 0;
+      }
 
       .column{
         width: calc(100%/3);
@@ -124,6 +128,8 @@ header{
             list-style: none;
             display: flex;
             justify-content: center;
+            flex-basis: 50%;
+            width: 50%;
 
             a{
               color: $pl-white;
@@ -135,13 +141,29 @@ header{
         }
       }
 
+      .first-column > ul{
+        justify-content: flex-start;
+
+        li{
+          justify-content: flex-start;
+        }
+      }
+
+      .last-column > ul{
+        justify-content: flex-end;
+
+        li{
+          justify-content: flex-end;
+        }
+      }
+
       .logo-column{
         display: flex;
         flex-direction: column;
         align-items: center;
         @media only screen and (max-width: $mobile-breakpoint) {
           align-items: flex-start;
-          width: 75%;
+          width: 100%;
         }
 
         a.logo{

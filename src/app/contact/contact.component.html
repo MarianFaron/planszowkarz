@@ -7,9 +7,11 @@
         <form class="col" #formRef="ngForm" novalidate="false">
           <div class="form-group">
             <div class="label-row">
-              <label>Temat wiadomości</label>
-              <span>*</span>
-              <span *ngIf="!messageSubject.valid">Podaj temat wiadomości</span>
+              <div class="label-row-content">
+                <label>Temat wiadomości</label>
+                <span>*</span>
+              </div>
+              <span class="error-message" *ngIf="!messageSubject.valid">Podaj temat wiadomości</span>
             </div>
             <input type="text" class="form-control" placeholder="Np. Niedziałająca funkcjonalność"
               #messageSubject="ngModel" required 
@@ -17,9 +19,11 @@
           </div>
           <div class="form-group">
             <div class="label-row">
-              <label>Treść wiadomości</label>
-              <span>*</span>
-              <span *ngIf="!messageContent.valid">Podaj treść wiadomości</span>
+              <div class="label-row-content">
+                <label>Treść wiadomości</label>
+                <span>*</span>
+              </div>
+              <span class="error-message" *ngIf="!messageContent.valid">Podaj treść wiadomości</span>
             </div>
             <textarea class="form-control" placeholder="Np. Opis problemu" 
               #messageContent="ngModel" required 
@@ -27,9 +31,11 @@
           </div>
           <div class="form-group">
             <div class="label-row">
-              <label>Adres e-mail</label>
-              <span>*</span>
-              <span *ngIf="!messageAuthorEmail.valid">Podaj poprawny adres e-mail</span>
+              <div class="label-row-content">
+                <label>Adres e-mail</label>
+                <span>*</span>
+              </div>
+              <span class="error-message" *ngIf="!messageAuthorEmail.valid">Podaj poprawny adres e-mail</span>
             </div>
             <input type="email" class="form-control" placeholder="twoj@adres.pl" 
               #messageAuthorEmail="ngModel" required email
