@@ -1,6 +1,6 @@
-@import '../../../sass/mixins';
-@import '../../../sass/colors';
-@import '../../../sass/pet-7-stroke';
+@import '../../../scss/mixins';
+@import '../../../scss/colors';
+@import '../../../scss/font-awesome';
 
 $custom-mobile-breakpoint: 580px;
 
@@ -79,19 +79,19 @@ $custom-mobile-breakpoint: 580px;
             padding: 14px 0 10px;
 
             &-joy {
-              @include pet-icon-before($pl-icon-joy);
+              @include pet-icon-before($pl-cubes);
             }
 
             &-bell {
-              @include pet-icon-before($pl-icon-bell);
+              @include pet-icon-before($pl-bell-o);
             }
 
             &-config {
-              @include pet-icon-before($pl-icon-config);
+              @include pet-icon-before($pl-gears);
             }
 
             &-date {
-              @include pet-icon-before($pl-icon-date);
+              @include pet-icon-before($pl-calendar);
             }
           }
         }

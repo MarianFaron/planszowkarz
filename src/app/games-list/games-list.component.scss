@@ -1,6 +1,6 @@
-@import '../../sass/mixins';
-@import '../../sass/colors';
-@import '../../sass/pet-7-stroke';
+@import '../../scss/mixins';
+@import '../../scss/colors';
+@import '../../scss/font-awesome';
 
 .games-list {
   margin-top: 15px;
@@ -40,7 +40,7 @@
           form {
             width: 100%;
             display: inline-block;
-            border: 1px solid #b6b6b6;
+            border: 1px solid $pl-gray2;
 
             @media screen and (max-width: 880px){
               max-width: 270px;
@@ -146,7 +146,7 @@
             }
           }
 
-          .right{
+          .right {
             @media screen and (max-width: 880px) {
               display: flex;
               flex-direction: column;
@@ -171,7 +171,7 @@
             }
           }
 
-          .text-center{
+          .text-center {
             @media screen and (max-width: 880px){
               width: 100%;
             }
@@ -183,7 +183,6 @@
           justify-content: center;
           align-items: center;
           flex-direction: column;
-          // min-height: 150px;
           padding: 20px;
 
           h2 {
@@ -273,13 +272,26 @@
               display: flex;
               justify-content: flex-start;
               align-items: center;
+              top: 2px;
 
               @media screen and (max-width: 580px) {
                 margin: 0 auto 5px;
               }
 
+              .icon-marker + p {
+                margin-left: 5px;
+              }
+
+              .icon-user + a {
+                margin-left: 2px;
+              }
+
+              a {
+                margin: 4px 0 0;
+              }
+
               p {
-                margin: 0;
+                margin: 4px 0 0;
               }
 
               span {
@@ -329,19 +341,22 @@
 
           .icon {
             @include font-size(19);
+
             position: relative;
             top: 2px;
 
             &-user {
-              @include pet-icon-after($pl-icon-user);
+              @include pet-icon-after($pl-user);
+              margin: 0 3px;
             }
 
             &-marker {
-              @include pet-icon-after($pl-icon-marker);
+              @include pet-icon-after($pl-map-marker);
+              margin: 0 3px;
             }
 
             &-date {
-              @include pet-icon-after($pl-icon-date);
+              @include pet-icon-after($pl-calendar);
             }
           }
         }

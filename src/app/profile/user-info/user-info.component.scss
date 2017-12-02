@@ -1,6 +1,6 @@
-@import '../../../sass/mixins';
-@import '../../../sass/colors';
-@import '../../../sass/pet-7-stroke';
+@import '../../../scss/mixins';
+@import '../../../scss/colors';
+@import '../../../scss/font-awesome';
 
 .user-sidebar {
   margin: 0;
@@ -85,8 +85,17 @@
 .user-info-box {
   margin-bottom: 15px;
 
+  li {
+    width: 100%;
+    display: flex;
+
+    &.usercity p {
+      margin-left: 4px;
+    }
+  }
+
   p {
-    margin: -10px 0 0;
+    margin: 0;
     vertical-align: middle;
     display: inline-block;
   }
@@ -94,32 +103,36 @@
   .icon {
     @include font-size(21);
 
+    color: $pl-dark-gray2;
+
     &-mail {
-      @include pet-icon-after($pl-icon-mail);
+      @include pet-icon-after($pl-envelope-o);
     }
 
     &-phone {
-      @include pet-icon-after($pl-icon-phone);
+      @include pet-icon-after($pl-phone);
+      margin: 0 3px;
     }
 
     &-date {
-      @include pet-icon-after($pl-icon-date);
+      @include pet-icon-after($pl-calendar-o);
     }
 
     &-game {
-      @include pet-icon-after($pl-icon-games);
+      @include pet-icon-after($pl-puzzle-piece);
     }
 
     &-change {
-      @include pet-icon-after($pl-icon-change);
+      @include pet-icon-after($pl-exchange);
     }
 
     &-city {
-      @include pet-icon-after($pl-icon-marker);
+      @include pet-icon-after($pl-map-marker);
+      margin: 0 4px;
     }
 
     &-star {
-      @include pet-icon-after($pl-icon-star);
+      @include pet-icon-after($pl-star);
     }
   }
 }

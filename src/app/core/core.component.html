@@ -31,26 +31,44 @@
                   <h3>{{ game.title }}</h3>
                 </a>
                 <div class="info-box">
-                  <span class="icon icon-user" aria-hidden="true"></span>
-                  <span *ngIf="!game.userID.facebook">
-                    <a routerLink="/user-profile/{{ game.userID.local.login }}">
-                      {{ game.userID.local.login }}</a>
-                  </span>
-                  <span *ngIf="game.userID.facebook">
-                    <a routerLink="/user-profile/{{ game.userID.local.login }}">
-                      {{ game.userID.facebook.name }}</a>
-                  </span>
-                  <div *ngIf="game.userID.city">
-                    <span class="icon icon-marker" aria-hidden="true"></span>
+                  <div class="info-element">
+                    <div>
+                      <span class="icon icon-user" aria-hidden="true"></span>
+                    </div>
+                    <div class="info-element__user">
+                      <span *ngIf="!game.userID.facebook">
+                        <a routerLink="/user-profile/{{ game.userID.local.login }}">
+                          {{ game.userID.local.login }}</a>
+                      </span>
+                      <span *ngIf="game.userID.facebook">
+                        <a routerLink="/user-profile/{{ game.userID.local.login }}">
+                          {{ game.userID.facebook.name }}</a>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="info-element" *ngIf="game.userID.city">
+                    <div>
+                      <span class="icon icon-marker" aria-hidden="true"></span>
+                    </div>
+                    <div class="info-element__city">
                       Lokalizacja: {{ game.userID.city }}
+                    </div>
                   </div>
-                  <div *ngIf="!game.userID.city">
-                    <span class="icon icon-marker" aria-hidden="true"></span>
+                  <div class="info-element" *ngIf="!game.userID.city">
+                    <div>
+                      <span class="icon icon-marker" aria-hidden="true"></span>
+                    </div>
+                    <div class="info-element__city">
                       Lokalizacja: -
+                    </div>
                   </div>
-                  <div *ngIf="game.createdDate">
-                    <span class="icon icon-date" aria-hidden="true"></span>
-                      Dodane {{ game.createdDate | date:'longDate' }}
+                  <div class="info-element" *ngIf="game.createdDate">
+                    <div>
+                      <span class="icon icon-date" aria-hidden="true"></span>
+                    </div>
+                    <div>
+                      Dodane {{ game.createdDate | date:'shortDate' }}
+                    </div>
                   </div>
                   <div *ngIf="this.appService.isLoggedIn()" class="text-center">
                     <button *ngIf="this.appService.getCurrentUser()._id != game.userID._id"

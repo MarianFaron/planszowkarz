@@ -19,7 +19,12 @@
 				<!-- FACEBOOK INFO  -->
 				<div *ngIf="userInfo?.facebook">
 					<li *ngIf="userInfo?.facebook.email">
-						<span class="icon icon-mail"></span><p>Email: <a href="mailto:{{userInfo?.facebook.email}}">{{userInfo?.facebook.email}}</a></p>
+						<div>
+							<span class="icon icon-mail"></span>
+						</div>
+						<div>
+							<p>Email: <a href="mailto:{{userInfo?.facebook.email}}">{{userInfo?.facebook.email}}</a></p>
+						</div>
 					</li>
 				</div>
 
@@ -27,29 +32,64 @@
 
 				<div *ngIf="userInfo?.local && !userInfo?.facebook">
 					<li *ngIf="userInfo?.local.email">
-						<span class="icon icon-mail"></span><p>Email: <a href="mailto:{{userInfo?.local.email}}">{{userInfo?.local.email}}</a></p>
+						<div>
+							<span class="icon icon-mail"></span>
+						</div>
+						<div>
+							<p>Email: <a href="mailto:{{userInfo?.local.email}}">{{userInfo?.local.email}}</a></p>
+						</div>
 					</li>
 				</div>
 
 				<li *ngIf="userInfo?.contactNumber">
-					<span class="icon icon-phone"></span><p> Telefon: {{userInfo?.contactNumber}}<p>
+					<div>
+						<span class="icon icon-phone"></span>
+					</div>
+					<div>
+						<p> Telefon: {{userInfo?.contactNumber}}<p>
+					</div>
 				</li>
 				<li *ngIf="userInfo?.dateBirth">
-					<span class="icon icon-date"></span><p> Data urodzenia: {{userInfo?.dateBirth}}</p>
+					<div>
+						<span class="icon icon-date"></span>
+					</div>
+					<div>
+						<p> Data urodzenia: {{userInfo?.dateBirth}}</p>
+					</div>
 				</li>
 				<li *ngIf="userInfo?.city" class="usercity">
-					<span class="icon icon-city"></span><p> Miasto: {{userInfo?.city}}</p>
+					<div>
+						<span class="icon icon-city"></span>
+					</div>
+					<div>
+						<p> Miasto: {{userInfo?.city}}</p>
+					</div>
 				</li>
 			</div>
 			<div class="user-info-box">
 				<li>
-					<span class="icon icon-game"></span><p> Liczba gier na wymianę: {{userInfo?.numberOfGames}}</p>
+					<div>
+						<span class="icon icon-game"></span>
+					</div>
+					<div>
+						<p> Liczba gier na wymianę: {{userInfo?.numberOfGames}}</p>
+					</div>
 				</li>
 				<li>
-					<span class="icon icon-change"></span><p> Liczba przeprowadzonych wymian: {{userInfo?.numberOfExchanges}}</p>
+					<div>
+						<span class="icon icon-change"></span>
+					</div>
+					<div>
+						<p> Liczba przeprowadzonych wymian: {{userInfo?.numberOfExchanges}}</p>
+					</div>
 				</li>
 				<li>
-					<span class="icon icon-star"></span><p> Ocena społeczności: {{wartosc(userInfo?.sumOfGrades, userInfo?.numberOfRatings)}}</p>
+					<div>
+						<span class="icon icon-star"></span>
+					</div>
+					<div>
+						<p> Ocena społeczności: {{wartosc(userInfo?.sumOfGrades, userInfo?.numberOfRatings)}}</p>
+					</div>
 				</li>
 			</div>
 		</ul>
