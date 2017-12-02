@@ -51,7 +51,7 @@ $desktop-breakpoint: 1200px;
   }
 }
 
-@mixin pet-icon-after($icon, $font-family: 'Pe-icon-7-stroke') {
+@mixin pet-icon-after($icon, $font-family: 'FontAwesome') {
   &:after {
     content: $icon;
     font-family: $font-family;
@@ -63,7 +63,7 @@ $desktop-breakpoint: 1200px;
   }
 }
 
-@mixin pet-icon-before($icon, $font-family: 'Pe-icon-7-stroke') {
+@mixin pet-icon-before($icon, $font-family: 'FontAwesome') {
   &:before {
     content: $icon;
     font-family: $font-family;

@@ -1,6 +1,6 @@
-@import '../sass/colors';
-@import '../sass/mixins';
-@import '../sass/pet-7-stroke';
+@import '../scss/colors';
+@import '../scss/mixins';
+@import '../scss/font-awesome';
 
 .form-label {
   .form-group {
@@ -71,7 +71,7 @@
   }
 }
 
-.main-navbar{
+.main-navbar {
   @include respond-to(desktop) {
     display: flex;
     justify-content: center;
@@ -86,52 +86,54 @@
   }
 }
 
-header{
+header {
   margin: 0 0 20px;
   width: 100%;
   position: relative;
   z-index: 100;
 
-  nav.main-navbar{
+  nav.main-navbar {
     background-color: $pl-mid-gray;
     height: 56px;
     width: 100%;
     margin: 0;
     padding: 0 15px;
 
-    .navbar-container{
+    .navbar-container {
       height: 100%;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      @media only screen and (max-width: $mobile-breakpoint) {
+
+      @include respond-to(mobile) {
         width: 100%;
         padding: 0;
       }
 
-      .column{
+      .column {
         width: calc(100%/3);
-        @media only screen and (max-width: $mobile-breakpoint) {
+
+        @include respond-to(mobile) {
           display: none;
           widows: 0;
         }
 
-        ul{
+        ul {
           margin: 0;
           padding: 0;
           widows: 100%;
           display: flex;
           justify-content: space-around;
 
-          li{
+          li {
             list-style: none;
             display: flex;
             justify-content: center;
             flex-basis: 50%;
             width: 50%;
 
-            a{
+            a {
               color: $pl-white;
               cursor: pointer;
               text-decoration: none;
@@ -141,32 +143,33 @@ header{
         }
       }
 
-      .first-column > ul{
+      .first-column > ul {
         justify-content: flex-start;
 
-        li{
+        li {
           justify-content: flex-start;
         }
       }
 
-      .last-column > ul{
+      .last-column > ul {
         justify-content: flex-end;
 
-        li{
+        li {
           justify-content: flex-end;
         }
       }
 
-      .logo-column{
+      .logo-column {
         display: flex;
         flex-direction: column;
         align-items: center;
-        @media only screen and (max-width: $mobile-breakpoint) {
+
+        @include respond-to(mobile) {
           align-items: flex-start;
           width: 100%;
         }
 
-        a.logo{
+        a.logo {
           @include font-size(18);
 
           line-height: 20px;
@@ -174,7 +177,7 @@ header{
           cursor: pointer;
           text-decoration: none;
 
-          img{
+          img {
             max-width: 50px;
             display: inline-block;
             margin-right: 10px;
@@ -186,16 +189,18 @@ header{
 
       .icon {
         @include font-size(30);
-        padding: 14px 0 10px;
+
+        padding: 10px 0;
         display: none;
         cursor: pointer;
 
-        @media only screen and (max-width: $mobile-breakpoint) {
-          display: block;
+        @include respond-to(mobile) {
+           display: block;         
         }
 
         &-menu {
-          @include pet-icon-before($pl-icon-menu);
+          @include pet-icon-before($pl-bars);
+
           color: $pl-orange;
         }
 
@@ -203,13 +208,13 @@ header{
         &-menu:focus,
         &-menu:active {
           text-decoration: none;
-          color: rgba( $pl-orange, 0.8);
+          color: rgba($pl-orange, 0.8);
         }
       }
     }
   }
 
-  nav.mobile-navbar{
+  nav.mobile-navbar {
     background-color: $pl-mid-gray;
     width: 100%;
     margin: 0;
@@ -217,24 +222,24 @@ header{
     border-top: 1px solid $pl-orange;
     position: absolute;
 
-    .navbar-container{
+    .navbar-container {
       max-width: 320px;
       width: 100%;
       margin: 0 auto;
 
-      ul{
+      ul {
         display: flex;
         flex-direction: column;
         margin: 0;
         padding: 0;
 
-        li{
+        li {
           list-style: none;
           width: 100%;
           display: flex;
           justify-content: center;
 
-          a{
+          a {
             color: $pl-white;
             cursor: pointer;
             text-decoration: none;

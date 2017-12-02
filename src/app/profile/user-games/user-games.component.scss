@@ -1,6 +1,6 @@
-@import '../../../sass/mixins';
-@import '../../../sass/colors';
-@import '../../../sass/pet-7-stroke';
+@import '../../../scss/mixins';
+@import '../../../scss/colors';
+@import '../../../scss/font-awesome';
 
 .games-main-panel {
   margin: 10px 0 0;
@@ -36,13 +36,14 @@
         }
 
         .icon {
-          @include font-size(21);
+          @include font-size(18);
 
           position: relative;
-          top: 4px;
+          top: 3px;
+          left: -2px;
 
           &-add {
-            @include pet-icon-after($pl-icon-add);
+            @include pet-icon-after($pl-plus);
           }
         }
       }
@@ -156,6 +157,22 @@
 
                 span {
                   margin-right: 5px;
+                }
+
+                .icon {
+                  @include font-size(16);
+
+                  position: relative;
+                  top: 1px;
+
+                  &-edit {
+                    @include pet-icon-after($pl-pencil-square-o);
+                    
+                  }
+
+                  &-trash {
+                    @include pet-icon-after($pl-trash-o);
+                  }
                 }
               }
 

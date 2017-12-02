@@ -1,5 +1,6 @@
-@import '../../../sass/mixins';
-@import '../../../sass/colors';
+@import '../../../scss/mixins';
+@import '../../../scss/colors';
+@import '../../../scss/font-awesome';
 
 $custom-mobile-breakpoint: 580px;
 
@@ -56,6 +57,29 @@ $custom-mobile-breakpoint: 580px;
 
         span {
           margin-right: 5px;
+
+          &.icon {
+            @include font-size(18);
+
+            position: relative;
+            top: 0px;
+
+            &-send {
+              @include pet-icon-after($pl-paper-plane-o);
+            }
+
+            &-envelope {
+              @include pet-icon-after($pl-envelope-open-o);
+            }
+
+            &-ok {
+              @include pet-icon-after($pl-check);
+            }
+
+            &-ban {
+              @include pet-icon-after($pl-ban);
+            }
+          }
 
           @media only screen and (max-width: 678px) {
             margin-bottom: 5px;

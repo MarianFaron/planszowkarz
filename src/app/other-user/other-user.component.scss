@@ -1,6 +1,6 @@
-@import '../../sass/mixins';
-@import '../../sass/colors';
-@import '../../sass/pet-7-stroke';
+@import '../../scss/mixins';
+@import '../../scss/colors';
+@import '../../scss/font-awesome';
 
 .user-info-panel {
   margin: 0;
@@ -250,38 +250,42 @@ hr.style1 {
 .user-info-box {
   margin-bottom: 15px;
 
+  li {
+    display: flex;
+  }
+
   .icon {
     @include font-size(20);
     position: relative;
-    top: 4px;
-
-    &-phone {
-      @include pet-icon-after($pl-icon-phone);
-    }
-
-    &-marker {
-      @include pet-icon-after($pl-icon-marker);
-    }
+    top: 0;
+    color: $pl-dark-gray2;
 
     &-date {
-      @include pet-icon-after($pl-icon-date);
+      @include pet-icon-after($pl-calendar);
     }
 
     &-mail {
-      @include pet-icon-after($pl-icon-mail);
+      @include pet-icon-after($pl-envelope);
+      margin: 0 1px;
     }
 
     &-games {
-      @include pet-icon-after($pl-icon-games);
+      @include pet-icon-after($pl-gamepad);
     }
 
     &-change {
-      @include pet-icon-after($pl-icon-change);
+      @include pet-icon-after($pl-exchange);
+      margin-left: 1px;
     }
 
     &-star {
-      @include pet-icon-after($pl-icon-star);
+      @include pet-icon-after($pl-star);
+      margin: 0 1px;
     }
+  }
+
+  p {
+    margin: 0 0 0 10px;
   }
 }
 

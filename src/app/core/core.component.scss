@@ -1,8 +1,8 @@
-@import '../../sass/colors';
-@import '../../sass/mixins';
-@import '../../sass/pet-7-stroke';
+@import '../../scss/colors';
+@import '../../scss/mixins';
+@import '../../scss/font-awesome';
 
-section#main-banner{
+section#main-banner {
   width: 100%;
   height: 100%;
   max-height: calc(100vh - 56px);
@@ -10,28 +10,31 @@ section#main-banner{
   position: relative;
   margin: -20px 0 0;
 
-  .banner-background{
-    background-image: url("http://localhost:8080/assets/images/banner.jpg");
+  .banner-background {
+    background-image: url("../assets/images/banner.jpg");
     background-position: center center;
     background-size: cover;
     width: 100%;
     padding: 0;
     height: 500px;
     opacity: 0.7;
-    @media only screen and (max-width: $desktop-breakpoint) {
+
+    @include respond-to(desktop) {
       padding: 20%;
       height: auto;
     }
-    @media only screen and (max-width: $mobile-breakpoint) {
+
+    @include respond-to(mobile) {
       padding: 25%;
     }
-    @media only screen and (max-width: $small-mobile-breakpoint) {
+
+    @include respond-to(small-mobile) {
       padding: auto;
       height: 250px;
     }
   }
 
-  .banner-container{
+  .banner-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -42,59 +45,64 @@ section#main-banner{
     justify-content: flex-start;
     align-items: flex-end;
     padding: 50px 15px;
-    @media only screen and (max-width: $mobile-breakpoint) {
+
+    @include respond-to(mobile) {
       padding: 25px 15px;
     }
 
-    .container{
-      @media only screen and (max-width: $mobile-breakpoint) {
+    .container {
+      @include respond-to(mobile) {
         padding: 0;
         margin: 0 auto;
         max-width: 768px;
         width: 100%;
       }
 
-      .banner-header{
+      .banner-header {
         display: flex;
         flex-direction: column;
         
+        h1 {
+          @include font-size(42);
 
-        h1{
           color: $pl-white;
           margin: 0 0 15px;
           text-transform: uppercase;
-          @include font-size(42);
           line-height: 52px;
           font-weight: 300;
-          text-shadow: 0 2px 4px rgba(0,0,0,.5);
+          text-shadow: 0 2px 4px rgba($pl-white,.5);
 
-          @media only screen and (max-width: $mobile-breakpoint) {
+          @include respond-to(mobile) {
             @include font-size(32);
+
             line-height: 36px;
           }
 
-          @media only screen and (max-width: $small-mobile-breakpoint) {
+          @include respond-to(small-mobile) {
             @include font-size(24);
+
             line-height: 26px;
           }
-          
         }
 
-        h2{
+        h2 {
+          @include font-size(32);
+
           color: $pl-white;
           margin: 0;
-          @include font-size(32);
           line-height: 32px;
           font-weight: 300;
-          text-shadow: 0 2px 4px rgba(0,0,0,.5);
+          text-shadow: 0 2px 4px rgba($pl-white,.5);
 
-          @media only screen and (max-width: $mobile-breakpoint) {
+          @include respond-to(mobile) {
             @include font-size(20);
+
             line-height: 24px;
           }
 
-          @media only screen and (max-width: $small-mobile-breakpoint) {
+          @include respond-to(small-mobile) {
             @include font-size(16);
+
             line-height: 18px;
           }
         }
@@ -105,23 +113,24 @@ section#main-banner{
 
 section#newGames,
 section#forWho,
-section#hoToMakeExchange{
+section#hoToMakeExchange {
   padding: 50px 15px;
 
-  @media only screen and (max-width: $mobile-breakpoint) {
+  @include respond-to(mobile) {
     padding: 50px 15px 10px;
   }
 
-  h2{
+  h2 {
     @include font-size(23);
+
     font-weight: 28px;
     font-weight: 700;
     color: $pl-dark-gray;
     margin: 0;
     text-align: center
-
   }
-  .main-hr{
+
+  .main-hr {
     margin: 20px auto;
   }
 }
@@ -172,64 +181,77 @@ section#newGames {
           max-height: 150px;
           margin: 0 auto;
         }
-
-        .icon {
-          @include font-size(20);
-          position: relative;
-          top: 4px;
-
-          &-user {
-            @include pet-icon-after($pl-icon-user);
-          }
-
-          &-marker {
-            @include pet-icon-after($pl-icon-marker);
-          }
-
-          &-date {
-            @include pet-icon-after($pl-icon-date);
-          }
-        }
       }
     }
 
     .info-box {
       padding: 0;
+
+      .info-element {
+        display: flex;
+        margin: 0;
+
+        div:nth-child(2) {
+          margin: 4px 0 3px 10px;
+        }
+      }
+
+      .icon {
+        @include font-size(20);
+        position: relative;
+        top: 4px;
+
+        &-user {
+          @include pet-icon-after($pl-user);
+          margin: 0 3px;
+        }
+
+        &-marker {
+          @include pet-icon-after($pl-map-marker);
+          margin: 0 4px;
+        }
+
+        &-date {
+          @include pet-icon-after($pl-calendar);
+        }
+      }
     }
   }
 
 }
 
 section#forWho,
-section#hoToMakeExchange{
+section#hoToMakeExchange {
   padding: 50px 15px 70px;
-    .section-wrapper{
+
+    .section-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
 
-      .section-row{
+      .section-row {
         display: flex;
         align-items: center;
         margin: 0 0 20px;
 
-        span{
+        span {
+          @include font-size(42);
+
           width: 100px;
           height: 100px;
-          background-color: white;
-          box-shadow: 2px 2px 1px #d8d8d8;
+          background-color: $pl-white;
+          box-shadow: 2px 2px 1px $pl-gray;
           display: flex;
           justify-content: center;
           align-items: center;
           border-radius: 50%;
-          font-size: 42px;
           line-height: 42px;
           font-weight: 800;
           color: orange;
           margin: 0 30px 0 0;
         }
 
-        h3{
+        h3 {
           width: calc(100% - 130px);
           max-width: 500px;
         }
@@ -238,15 +260,15 @@ section#hoToMakeExchange{
 }
 
 
-section#goToRegister{
+section#goToRegister {
   width: 100%;
   height: 100%;
   max-height: calc(100vh - 56px);
   position: relative;
   margin: -20px 0 0;
 
-  .section-background{
-    background-image: url("http://localhost:8080/assets/images/banner2.jpg");
+  .section-background {
+    background-image: url("../assets/images/banner2.jpg");
     background-position: center center;
     background-size: cover;
     width: 100%;
@@ -255,25 +277,26 @@ section#goToRegister{
     opacity: 0.7;
   }
 
-  .section-container{
+  .section-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(-180deg,rgba(60,73,108,0), $pl-black 98%);
+    background-image: linear-gradient(-180deg,rgba($pl-green,0), $pl-black 98%);
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
     padding: 50px 15px;
 
-    h2{
+    h2 {
+      @include font-size(32);
+
       color: $pl-white;
       margin: 0;
-      @include font-size(32);
       line-height: 32px;
       font-weight: 300;
-      text-shadow: 0 2px 4px rgba(0,0,0,.5);
+      text-shadow: 0 2px 4px rgba($pl-white,.5);
       text-align: center;
     }
   }
