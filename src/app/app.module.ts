@@ -80,7 +80,7 @@ import { AuthorsComponent } from './authors/authors.component';
     CollapseModule,
     BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot(),
-    Ng2DragDropModule,
+    Ng2DragDropModule.forRoot(),
     SlickModule.forRoot()
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pl-PL" }, AuthGuard],
