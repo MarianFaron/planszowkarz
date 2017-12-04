@@ -8,16 +8,16 @@
   .config-content {
 
     .config-top {
-      display: flex;
+      @include display-flex;
 
       @media screen and (max-width: 500px) {
-        flex-wrap: wrap;
+        @include flex-wrap(wrap);
       }
 
       .left-column {
         width: 50%;
-        display: flex;
-        flex-direction: column;
+        @include display-flex;
+        @include flex-direction(column);
 
         @media screen and (max-width: 500px){
           width: 320px;
@@ -27,17 +27,17 @@
 
       .right-column {
         width: 50%;
-        display: flex;
-        flex-direction: column;
+        @include display-flex;
+        @include flex-direction(column);
 
         @media screen and (max-width: 500px){
           width: 100%;
         }
 
         .game-image {
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          @include display-flex;
+          @include justify-content(center);
+          @include align-items(center);
           vertical-align: middle;
           width: 160px;
           height: 120px;
@@ -58,12 +58,12 @@
         }
 
         .edit-img-box {
-          display: flex;
-          flex-direction: column;
+          @include display-flex;
+          @include flex-direction(column);
 
           .center-image {
-            display: flex;
-            align-self: center;
+            @include display-flex;
+            @include align-self(center);
             position: relative;
 
             label {
@@ -82,13 +82,13 @@
         }
 
         .input-file .center-button {
-          display: flex;
-          justify-content:center;
+          @include display-flex;
+          @include justify-content(center);
 
           .inputfile {
             width: 0.1px;
             height: 0.1px;
-            opacity: 0;
+            @include opacity(0);
             overflow: hidden;
             position: absolute;
             z-index: -1;

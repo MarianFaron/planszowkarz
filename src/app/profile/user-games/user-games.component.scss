@@ -140,13 +140,12 @@
             }
 
             .game-info-buttons {
-              
-              display: flex;
-              justify-content: flex-end;
+              @include display-flex;
+              @include justify-content(flex-end);
               margin-top: 20px;
 
               @media screen and (max-width: 400px) {
-                justify-content: center;
+                @include justify-content(center);
               }
 
               button {
@@ -196,16 +195,16 @@
 
 .modal-body {
   .modal-top {
-    display: flex;
+    @include display-flex;
 
     @media screen and (max-width: 500px) {
-      flex-direction: column;
+      @include flex-direction(column);
     }
 
     .left-column {
       width: 50%;
-      display: flex;
-      flex-direction: column;
+      @include display-flex;
+      @include flex-direction(column);
 
       @media screen and (max-width: 500px) {
         width: 100%;
@@ -235,20 +234,20 @@
 
     .right-column {
       width: 50%;
-      display: flex;
-      flex-direction: column;
+      @include display-flex;
+      @include flex-direction(column);
 
       @media screen and (max-width: 500px) {
         width: 100%;
       }
 
       .edit-img-box {
-        display: flex;
-        flex-direction: column;
+        @include display-flex;
+        @include flex-direction(column);
 
         .center-image {
-          display: flex;
-          align-self: center;
+          @include display-flex;
+          @include align-self(center);
         }
       }
 
@@ -258,8 +257,8 @@
         }
 
         .center-button {
-          display: flex;
-          justify-content: center;
+          @include display-flex;
+          @include justify-content(center);
 
           .inputfile {
             width: 0.1px;

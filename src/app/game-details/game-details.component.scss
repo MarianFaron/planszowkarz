@@ -20,9 +20,9 @@
       .game-box {
         padding: 30px;
         width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
+        @include display-flex;
+        @include flex-direction(row);
+        @include justify-content(center);
         flex-wrap: wrap;
 
         .left-col {
@@ -39,9 +39,9 @@
             border: 1px solid $pl-light-gray;
             width: 100%;
             height: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @include display-flex;
+            @include justify-content(center);
+            @include align-items(center);
 
             img {
               max-width: 100%;
@@ -76,8 +76,8 @@
           @media screen and (max-width: 960px) {
             flex-basis: calc(100%/1);
             margin-top: 50px;
-            justify-content: center;
-            display: flex;
+            @include justify-content(center);
+            @include display-flex;
           }
 
           .game-info {
@@ -127,8 +127,8 @@
         padding: 0 30px;
         margin-bottom: 30px;
         width: 100%;
-        display: flex;
-        justify-content: flex-end;
+        @include display-flex;
+        @include justify-content( flex-end);
         flex-wrap: wrap;
       }
 
@@ -150,13 +150,13 @@
 
         .games-box {
           padding: 18px 0px;
-          display: flex;
-          justify-content: center;
+          @include display-flex;
+          @include justify-content(center);
           flex-wrap: wrap;
-          flex-direction: row;
+          @include flex-direction(row);
 
           .single-game-box {
-            justify-content: center;
+            @include justify-content(center);
             padding: 18px 0;
             text-align: center;
             flex-wrap: wrap;
