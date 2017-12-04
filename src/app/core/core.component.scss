@@ -14,6 +14,7 @@ section#main-banner {
     background-image: url("../assets/images/banner.jpg");
     background-position: center center;
     background-size: cover;
+    background-attachment: fixed;
     width: 100%;
     padding: 0;
     height: 500px;
@@ -61,8 +62,9 @@ section#main-banner {
       .banner-header {
         display: flex;
         flex-direction: column;
-        
+
         h1 {
+
           @include font-size(42);
 
           color: $pl-white;
@@ -70,7 +72,7 @@ section#main-banner {
           text-transform: uppercase;
           line-height: 52px;
           font-weight: 300;
-          text-shadow: 0 2px 4px rgba($pl-white,.5);
+          // text-shadow: 0 2px 4px rgba($pl-white,.5);
 
           @include respond-to(mobile) {
             @include font-size(32);
@@ -83,6 +85,7 @@ section#main-banner {
 
             line-height: 26px;
           }
+
         }
 
         h2 {
@@ -92,7 +95,6 @@ section#main-banner {
           margin: 0;
           line-height: 32px;
           font-weight: 300;
-          text-shadow: 0 2px 4px rgba($pl-white,.5);
 
           @include respond-to(mobile) {
             @include font-size(20);
@@ -153,7 +155,7 @@ section#newGames {
         overflow: hidden;
         height: 400px;
 
-        a, 
+        a,
         h3 {
           text-decoration: none;
           color: $pl-dark-gray;
@@ -161,7 +163,7 @@ section#newGames {
           -moz-transition: all 150ms linear;
           -ms-transition: all 150ms linear;
           -o-transition: all 150ms linear;
-          transition: all 150ms linear;          
+          transition: all 150ms linear;
         }
 
         a:active,
@@ -197,7 +199,7 @@ section#newGames {
       }
 
       .icon {
-        @include font-size(20);
+        @include font-size(15);
         position: relative;
         top: 4px;
 
@@ -227,7 +229,9 @@ section#hoToMakeExchange {
     .section-wrapper {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
+      max-width: 500px;
+      margin: 0 auto;
 
       .section-row {
         display: flex;
@@ -271,6 +275,7 @@ section#goToRegister {
     background-image: url("../assets/images/banner2.jpg");
     background-position: center center;
     background-size: cover;
+    background-attachment: fixed;
     width: 100%;
     padding: 0;
     height: 300px;
@@ -296,7 +301,7 @@ section#goToRegister {
       margin: 0;
       line-height: 32px;
       font-weight: 300;
-      text-shadow: 0 2px 4px rgba($pl-white,.5);
+      // text-shadow: 0 2px 4px rgba($pl-white,.5);
       text-align: center;
     }
   }

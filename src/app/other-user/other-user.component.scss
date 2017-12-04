@@ -8,14 +8,12 @@
 
   a {
     color: $pl-dark-gray;
-    // text-decoration: underline;
   }
 
   a:active,
   a:focus,
   a:hover {
     color: $pl-orange;
-    // text-decoration: underline;
   }
 }
 
@@ -237,6 +235,8 @@ hr.style1 {
           display: flex;
           justify-content: flex-end;
           margin-top: 20px;
+          align-items: center;
+          height: 100%;
 
           @media screen and (max-width: 400px) {
             justify-content: center;
@@ -255,10 +255,10 @@ hr.style1 {
   }
 
   .icon {
-    @include font-size(20);
+    @include font-size(15);
     position: relative;
     top: 0;
-    color: $pl-dark-gray2;
+    color: $pl-dark-gray;
 
     &-date {
       @include pet-icon-after($pl-calendar);
@@ -300,7 +300,7 @@ hr.style1 {
 }
 .customRateButton{
   margin-top: -4px;
-  
+
 }
 .rateInput{
   color: $pl-orange;

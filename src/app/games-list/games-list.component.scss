@@ -10,11 +10,7 @@
       width: 98%;
       margin: 0 auto;
     }
-
-    h3 {
-      margin-top: 0;
-    }
-
+    
     .games-list-content {
       display: flex;
       justify-content: space-between;
@@ -52,8 +48,8 @@
               border-bottom: 1px solid $pl-white;
               color: $pl-black;
               padding: 0 0 0 10px;
-              height: 30px;
-              width: calc(100% - 30px);
+              height: 40px;
+              width: calc(100% - 40px);
             }
 
             .search-input:focus {
@@ -80,10 +76,10 @@
 
             .custom-button {
               margin: 0 0 0 -4px;
-              height: 30px;
-              width: 30px;
+              height: 40px;
+              width: 40px;
               float: right;
-              min-width: 30px;
+              min-width: 40px;
             }
           }
 
@@ -340,7 +336,7 @@
           }
 
           .icon {
-            @include font-size(19);
+            @include font-size(15);
 
             position: relative;
             top: 2px;

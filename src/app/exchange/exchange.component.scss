@@ -10,10 +10,6 @@ section#exchange {
     margin-bottom: -60px;
 
     .exchange-background {
-      // background-image: url("http://localhost:8080/assets/images/exchange-background.jpg");
-      // background-size: cover;
-      // background-repeat: no-repeat;
-      // background-position: center center;
       background: $pl-light-gray4;
       min-height: calc(100vh - 90px);
       padding-bottom: 20px;
@@ -33,7 +29,6 @@ section#exchange {
           justify-content: center;
           align-items: center;
           flex-direction: column;
-          opacity: 0.8;
 
           .loading {
             margin: 0;
@@ -69,7 +64,6 @@ section#exchange {
           justify-content: space-between;
           flex-wrap: wrap;
           background-color: $pl-white;
-          opacity: 0.8;
 
           .recipient-box {
             @include respond-to(tablet) {
@@ -188,9 +182,8 @@ section#exchange {
 
           .exchange-panel {
             width: 68%;
-            padding: 20px 10px;
+            padding: 15px;
             background-color: $pl-white;
-            opacity: 0.8;
             display: flex;
             flex-direction: column;
 
@@ -214,7 +207,6 @@ section#exchange {
               h3 {
                 padding: 0;
                 margin: 0 0 20px;
-                text-align: center;
                 line-height: 35px;
                 color: $pl-black;
                 border-radius: 4px;
@@ -390,7 +382,6 @@ section#exchange {
             width: 30%;
             padding: 0;
             background-color: $pl-white;
-            opacity: 0.8;
             @include respond-to(tablet) {
               width: 100%;
               margin-bottom: 20px 15px;
@@ -442,7 +433,7 @@ section#exchange {
 
                       li {
                       background-color: $pl-orange;
-                      color: $pl-light-gray4;
+                      color: $pl-white;
                       margin: 5px;
                       padding: 8px;
                       list-style: none;
@@ -450,7 +441,6 @@ section#exchange {
                       cursor: pointer;
                       border-radius: 4px;
                       max-width: 250px;
-                      text-shadow: 1px 1px 1px $pl-black;
 
                       @include respond-to(tablet) {
                         margin: 0 10px 10px;

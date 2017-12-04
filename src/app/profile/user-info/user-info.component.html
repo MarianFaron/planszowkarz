@@ -1,68 +1,68 @@
-<div class="user-sidebar inner">
+<div class="user-sidebar inner" data-aos="fade-up">
 	<div class="other-info">
-		<div *ngIf="userInfo">
-			<img *ngIf="!userInfo?.avatarImage" class="user-avatar" alt="facebook-avatar"
-			src="http://graph.facebook.com/{{userInfo?.facebook.id}}/picture?width=160&amp;height=160"/>
-			<img *ngIf="userInfo?.avatarImage" class="user-avatar" alt="user-avatar" 
-			src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" />
+		<div *ngIf="this.profileService.userInfo">
+			<img *ngIf="!this.profileService.userInfo?.avatarImage" class="user-avatar" alt="facebook-avatar"
+			src="http://graph.facebook.com/{{this.profileService.userInfo?.facebook.id}}/picture?width=160&amp;height=160"/>
+			<img *ngIf="this.profileService.userInfo?.avatarImage" class="user-avatar" alt="user-avatar"
+			src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{this.profileService.userInfo?.avatarImage}}" />
 		</div>
-		<div *ngIf="!userInfo">
+		<div *ngIf="!this.profileService.userInfo">
 			<div class="text-center">
 				<img src="../../assets/images/loading.gif" alt="" class="loading">
 			</div>
 		</div>
 		<ul>
 			<div class="user-info-box">
-				<li *ngIf="userInfo?.local && !userInfo?.facebook" class="username">{{userInfo?.local.login}}</li>
-				<li *ngIf="userInfo?.facebook" class="username">{{userInfo?.facebook.name}}</li>
+				<li *ngIf="this.profileService.userInfo?.local && !this.profileService.userInfo?.facebook" class="username">{{this.profileService.userInfo?.local.login}}</li>
+				<li *ngIf="this.profileService.userInfo?.facebook" class="username">{{this.profileService.userInfo?.facebook.name}}</li>
 
 				<!-- FACEBOOK INFO  -->
-				<div *ngIf="userInfo?.facebook">
-					<li *ngIf="userInfo?.facebook.email">
+				<div *ngIf="this.profileService.userInfo?.facebook">
+					<li *ngIf="this.profileService.userInfo?.facebook.email">
 						<div>
 							<span class="icon icon-mail"></span>
 						</div>
 						<div>
-							<p>Email: <a href="mailto:{{userInfo?.facebook.email}}">{{userInfo?.facebook.email}}</a></p>
+							<p>Email: <a href="mailto:{{this.profileService.userInfo?.facebook.email}}">{{this.profileService.userInfo?.facebook.email}}</a></p>
 						</div>
 					</li>
 				</div>
 
 				<!-- LOCAL INFO -->
 
-				<div *ngIf="userInfo?.local && !userInfo?.facebook">
-					<li *ngIf="userInfo?.local.email">
+				<div *ngIf="this.profileService.userInfo?.local && !this.profileService.userInfo?.facebook">
+					<li *ngIf="this.profileService.userInfo?.local.email">
 						<div>
 							<span class="icon icon-mail"></span>
 						</div>
 						<div>
-							<p>Email: <a href="mailto:{{userInfo?.local.email}}">{{userInfo?.local.email}}</a></p>
+							<p>Email: <a href="mailto:{{this.profileService.userInfo?.local.email}}">{{this.profileService.userInfo?.local.email}}</a></p>
 						</div>
 					</li>
 				</div>
 
-				<li *ngIf="userInfo?.contactNumber">
+				<li *ngIf="this.profileService.userInfo?.contactNumber">
 					<div>
 						<span class="icon icon-phone"></span>
 					</div>
 					<div>
-						<p> Telefon: {{userInfo?.contactNumber}}<p>
+						<p> Telefon: {{this.profileService.userInfo?.contactNumber}}<p>
 					</div>
 				</li>
-				<li *ngIf="userInfo?.dateBirth">
+				<li *ngIf="this.profileService.userInfo?.dateBirth">
 					<div>
 						<span class="icon icon-date"></span>
 					</div>
 					<div>
-						<p> Data urodzenia: {{userInfo?.dateBirth}}</p>
+						<p> Data urodzenia: {{this.profileService.userInfo?.dateBirth}}</p>
 					</div>
 				</li>
-				<li *ngIf="userInfo?.city" class="usercity">
+				<li *ngIf="this.profileService.userInfo?.city" class="usercity">
 					<div>
 						<span class="icon icon-city"></span>
 					</div>
 					<div>
-						<p> Miasto: {{userInfo?.city}}</p>
+						<p> Miasto: {{this.profileService.userInfo?.city}}</p>
 					</div>
 				</li>
 			</div>
@@ -72,7 +72,7 @@
 						<span class="icon icon-game"></span>
 					</div>
 					<div>
-						<p> Liczba gier na wymianę: {{userInfo?.numberOfGames}}</p>
+						<p> Liczba gier na wymianę: <b>{{this.profileService.userInfo?.numberOfGames}}</b></p>
 					</div>
 				</li>
 				<li>
@@ -80,7 +80,7 @@
 						<span class="icon icon-change"></span>
 					</div>
 					<div>
-						<p> Liczba przeprowadzonych wymian: {{userInfo?.numberOfExchanges}}</p>
+						<p> Liczba przeprowadzonych wymian: <b>{{this.profileService.userInfo?.numberOfExchanges}}</b></p>
 					</div>
 				</li>
 				<li>
@@ -88,7 +88,7 @@
 						<span class="icon icon-star"></span>
 					</div>
 					<div>
-						<p> Ocena społeczności: {{wartosc(userInfo?.sumOfGrades, userInfo?.numberOfRatings)}}</p>
+						<p> Ocena społeczności: <b>{{wartosc(this.profileService.userInfo?.sumOfGrades, this.profileService.userInfo?.numberOfRatings)}}</b></p>
 					</div>
 				</li>
 			</div>

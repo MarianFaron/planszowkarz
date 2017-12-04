@@ -1,5 +1,5 @@
-<div class="single-transaction inner" *ngFor="let history of userHistory">
-    <div class="transaction-box">
+<div class="single-transaction inner" *ngFor="let history of userHistory" data-aos="fade-up">
+    <div class="transaction-box" >
         <div class="senderBox" *ngIf="!history?.sender.facebook">
             <p>Gracz</p>
             <a class="sender" routerLink="/user-profile/{{ history?.sender.local.login }}">
@@ -43,7 +43,7 @@
                     <button class="btn custom-button" data-dismiss="modal" name="button" type="button"
                     (click)="acceptExchange(history._id);">Akceptuj</button>
                 </div>
-            </div>  
+            </div>
         </div>
     </div>
 </div>

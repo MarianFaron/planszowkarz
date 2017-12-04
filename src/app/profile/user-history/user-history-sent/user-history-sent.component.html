@@ -1,5 +1,5 @@
-<div class="single-transaction inner" *ngFor="let history of userHistory">
-    <div id="left" class="single-transaction-content">
+<div class="single-transaction inner" *ngFor="let history of userHistory" data-aos="fade-up">
+    <div id="left" class="single-transaction-content" >
       <div *ngIf="!history?.recipient.facebook">
         <a routerLink="/user-profile/{{ history?.recipient.local.login }}">
           <p>Login: {{history?.recipient.local.login}}</p>

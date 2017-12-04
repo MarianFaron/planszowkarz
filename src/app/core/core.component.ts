@@ -19,8 +19,8 @@ export class CoreComponent implements OnInit {
   userGame: UserGame[];
   slideConfig = {
     "dots": false,
-    "nextArrow": false,
-    "prevArrow": false,
+    "nextArrow": "<div class='next-arrow'><i class='fa fa-angle-right'></i></div>",
+    "prevArrow": "<div class='prev-arrow'><i class='fa fa-angle-left'></i></div>",
     "autoplay": true,
     "slidesToShow": 4,
     "slidesToScroll": 1,

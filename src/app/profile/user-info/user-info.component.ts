@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import { UserInfoService } from './user-info.service';
 import { AppService } from '../../app.service';
+import { ProfileService } from '../profile.service';
 import { UserInfo } from './user-info';
 import { IMyOptions} from 'mydatepicker';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
-
+import { Subscription } from "rxjs/Subscription"
 
 @Component({
   selector: 'app-user-info',
@@ -26,7 +27,7 @@ export class UserInfoComponent implements OnInit {
   public URL = this.appService.getUrl('/app/avatarUpload');
   public avatarUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
-  constructor(private http: Http, private appService: AppService, private userInfoService: UserInfoService) {}
+  constructor(private http: Http, private profileService: ProfileService, private appService: AppService, private userInfoService: UserInfoService) {}
 
   private myDatePickerOptions: IMyOptions = {
     dateFormat: 'dd-mm-yyyy',
@@ -48,9 +49,10 @@ export class UserInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getUserInfo();
+
     this.avatarUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
     this.avatarUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
+    this.profileService.getUserInfo();
   }
 
   file: File;
@@ -60,7 +62,7 @@ export class UserInfoComponent implements OnInit {
     let files: FileList = target.files;
     this.file = files[0];
     this.avatarImgName = this.file.name;
-  }  
+  }
 
   //get user information
 

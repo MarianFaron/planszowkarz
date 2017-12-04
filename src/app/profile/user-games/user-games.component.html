@@ -1,6 +1,6 @@
 <div class="games-main-panel">
 	<div class="games-info">
-		<div class="games-panel-header inner">
+		<div class="games-panel-header inner" data-aos="fade-up">
 				<div class="button-add-new-game">
 					<button class="btn right custom-button" data-toggle="modal" data-target="#add-game">
 						<span class="icon icon-add" aria-hidden="true"></span> Dodaj
@@ -14,30 +14,33 @@
 				</div>
 			</div>
 			<div *ngFor="let game of pagedItems">
-				<div class="single-game-box">
-				  <div class="single-box-content inner" >
-				    <div class="game-image">
-				      <a routerLink="/games/{{ game._id }}">
-				        <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
-				      </a>
-				    </div>
-				    <div class="game-info">
-				      <a routerLink="/games/{{ game._id }}">
-				        <p class="title">{{ game.title }}</p>
-				      </a>
-				      <p><strong>Kategoria: </strong>{{ game.category }}</p>
-				      <p><strong>Stan: </strong>{{ game.state }}</p>
-				      <div class="game-info-buttons">
-				        <button class="btn btn-default"
-				            data-toggle="modal" attr.data-target="#edit-game-{{game._id}}">
-				          <span class="icon icon-edit" aria-hidden="true"></span>Edytuj
-				        </button>
-				        <button class="btn btn-default btn-remove-game"
-				            data-toggle="modal" attr.data-target="#remove-game-{{game._id}}">
-				          <span class="icon icon-trash" aria-hidden="true"></span>Usuń
-				        </button>
-				      </div>
-				    </div>
+				<div class="single-game-box" >
+				  <div class="">
+						<div class="single-box-content inner" data-aos="fade-up">
+							<div class="game-image">
+					      <a routerLink="/games/{{ game._id }}">
+					        <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
+					      </a>
+					    </div>
+					    <div class="game-info" >
+					      <a routerLink="/games/{{ game._id }}">
+					        <p class="title">{{ game.title }}</p>
+					      </a>
+					      <p><strong>Kategoria: </strong>{{ game.category }}</p>
+					      <p><strong>Stan: </strong>{{ game.state }}</p>
+					      <div class="game-info-buttons">
+					        <button class="btn btn-default"
+					            data-toggle="modal" attr.data-target="#edit-game-{{game._id}}">
+					          <span class="icon icon-edit" aria-hidden="true"></span>Edytuj
+					        </button>
+					        <button class="btn btn-default btn-remove-game"
+					            data-toggle="modal" attr.data-target="#remove-game-{{game._id}}">
+					          <span class="icon icon-trash" aria-hidden="true"></span>Usuń
+					        </button>
+					      </div>
+					    </div>
+						</div>
+
 				    <div class="game-info-function-box">
 
 				      <!-- Edit Game Modal -->
@@ -82,7 +85,7 @@
 				                </div>
 				                <div class="right-column">
 				                  <div class="edit-img-box form-group">
-				                    <label>Zdjęcie</label>
+				                    <label class="image-label">Zdjęcie</label>
 				                    <div class="game-image center-image">
 				                      <a routerLink="/games/{{ game._id }}">
 				                        <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
@@ -90,7 +93,7 @@
 				                    </div>
 				                  </div>
 				                  <div class="form-group input-file">
-				                    <label id="change-photo">Zmień zdjęcie</label>
+				                    <label id="change-photo" class="image-label">Zmień zdjęcie</label>
 				                    <div class="center-button">
 				                      <input id="file" type="file" name="photo" class="inputfile"
 				                      value="cdcd" ng2FileSelect
@@ -208,12 +211,12 @@
 					</div>
 					<div class="right-column">
 						<div class="form-group input-file">
-							<label>Dodaj zdjęcie</label>
+							<label class="image-label">Dodaj zdjęcie</label>
 							<div class="center-button">
 								<input id="add-file" type="file" name="photo" class="inputfile"
 								value="cdcd" ng2FileSelect
 								[uploader]="coverUploader" #userGameImage (change)="onChange($event)" />
-								<label for="add-file"><i class="fa fa-download" aria-hidden="true"></i>Wybierz plik</label>
+								<label for="add-file" class="image-label"><i class="fa fa-download" aria-hidden="true"></i>Wybierz plik</label>
 							</div>
 						</div>
 					</div>

@@ -18,11 +18,11 @@ $custom-mobile-breakpoint: 580px;
 
     .navbar-nav {
       width: 100%;
-      display: flex;
+      @include display-flex;
       margin: 8px 0px;
 
       @media only screen and (max-width: $custom-mobile-breakpoint) {
-        flex-direction: column;
+        @include flex-direction(column);
       }
 
       li {
@@ -34,18 +34,20 @@ $custom-mobile-breakpoint: 580px;
         }
 
         a.active-link {
-          color: $pl-orange;         
+          color: $pl-orange;
         }
 
         a {
+          color: $pl-dark-gray;
+          font-weight: normal;
           @media only screen and (max-width: 678px) {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
+            @include display-flex;
+            @include justify-content(center);
+            @include flex-direction(column);
           }
 
           @media only screen and (max-width: $custom-mobile-breakpoint) {
-            flex-direction: row;
+            @include flex-direction(row);
           }
         }
 
@@ -99,8 +101,8 @@ $custom-mobile-breakpoint: 580px;
   overflow: auto;
 
   .senderBox {
-    display: flex;
-    justify-content: center;
+    @include display-flex;
+    @include justify-content(center);
 
     p {
       margin-right: 5px;
@@ -119,17 +121,17 @@ $custom-mobile-breakpoint: 580px;
   }
 
   .stateBox {
-    display: flex;
+    @include display-flex;
     width: 100%;
-    justify-content: space-between;
+    @include justify-content(space-between);
 
     @media only screen and (max-width: $custom-mobile-breakpoint) {
-      flex-direction: column;
+      @include flex-direction(column);
     }
 
     .gameState {
-      display: flex;
-      align-items: flex-end;
+      @include display-flex;
+      @include align-items(flex-end);
 
       p {
         margin-right: 5px;

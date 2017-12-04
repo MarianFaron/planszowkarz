@@ -1,16 +1,15 @@
 <section id="newGames" class="games-list">
   <div class="container">
-    <h3>{{pageTitle}}</h3>
+    <h3 class="section-header">{{pageTitle}}</h3>
+    <hr class="main-hr">
     <small>
       <div *ngIf="this.query.title"><b>Tytuł:</b> {{this.query.title}}</div>
       <div *ngIf="this.query.category"><b>Kategorie:</b> {{this.query.category}}</div>
       <div *ngIf="this.query.state"><b>Stan:</b> {{this.query.state}}</div>
     </small>
-    <hr class="main-hr">
     <div class="games-list-content">
-      <div class="search-bar">
+      <div class="search-bar" data-aos="fade-up">
         <div class="inner">
-          <!-- <h2>Wyszukaj grę po tytule</h2> -->
           <form action="/app/search" method="post">
           	<input type="text" class="search-input" name="search" value=""
             #searchInput placeholder="Wpisz tytuł..." [(ngModel)]="this.queryTitle">
@@ -18,8 +17,7 @@
             <i class="fa fa-search"></i></button>
           </form>
         </div>
-        <div class="inner">
-          <!-- <h2>Filtruj po kategorii i stanie</h2> -->
+        <div class="inner" data-aos="fade-up">
           <div class="column left">
             <h3>Kategorie</h3>
             <div class="game-categories">
@@ -74,7 +72,7 @@
           </div>
         </div>
         <div *ngFor="let game of pagedItems">
-            <div class="game-box">
+            <div class="game-box" data-aos="fade-up">
                 <div class="game-image">
                   <a routerLink="/games/{{ game._id }}">
                     <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}" alt="{{game.title}}" class="img-responsive center-block">

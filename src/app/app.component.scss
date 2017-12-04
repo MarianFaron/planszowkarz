@@ -24,7 +24,7 @@
     color: $pl-dark-gray;
     outline: 0;
     appearance: none;
-    transition: all 0.2s ease-in-out;
+    @include transition(all 0.2s ease-in-out);
     margin: 10px auto;
   }
 }
@@ -39,8 +39,8 @@
     top: 15px;
     left: 8px;
     color: $pl-mid-gray2;
-    transform: translate3d(0, 0, 0);
-    transition: all 0.2s ease-in-out;
+    @include transform(translate3d(0, 0, 0));
+    @include transition(all 0.2s ease-in-out);
 		padding: 0 10px;
   }
 }
@@ -67,14 +67,13 @@
 		top: -2px;
 		background: $pl-white;
 		padding: 0 10px;
-    // transform: translate3d(0, -10px, 0);
   }
 }
 
 .main-navbar {
   @include respond-to(desktop) {
-    display: flex;
-    justify-content: center;
+    @include display-flex;
+    @include justify-content(center);
 
     li {
       min-width: 120px;
@@ -82,7 +81,7 @@
   }
 
   @include respond-to(mobile) {
-    flex-direction: column;
+    @include flex-direction(column);
   }
 }
 
@@ -102,9 +101,9 @@ header {
     .navbar-container {
       height: 100%;
       margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @include display-flex;
+      @include align-items(center);
+      @include justify-content(space-between);
 
       @include respond-to(mobile) {
         width: 100%;
@@ -123,15 +122,15 @@ header {
           margin: 0;
           padding: 0;
           widows: 100%;
-          display: flex;
-          justify-content: space-around;
+          @include display-flex;
+          @include justify-content(space-around);
 
           li {
             list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-basis: 50%;
-            width: 50%;
+            @include display-flex;
+            @include justify-content(center);
+            @include flex-basis(30%)
+            width: 30%;
 
             a {
               color: $pl-white;
@@ -144,28 +143,28 @@ header {
       }
 
       .first-column > ul {
-        justify-content: flex-start;
+        @include justify-content(flex-start);
 
         li {
-          justify-content: flex-start;
+          @include justify-content(flex-start);
         }
       }
 
       .last-column > ul {
-        justify-content: flex-end;
+        @include justify-content(flex-end);
 
         li {
-          justify-content: flex-end;
+          @include justify-content(flex-end);
         }
       }
 
       .logo-column {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        @include display-flex;
+        @include flex-direction(column);
+        @include align-items(center);
 
         @include respond-to(mobile) {
-          align-items: flex-start;
+          @include align-items(flex-start);
           width: 100%;
         }
 
@@ -195,7 +194,7 @@ header {
         cursor: pointer;
 
         @include respond-to(mobile) {
-           display: block;         
+           display: block;
         }
 
         &-menu {
@@ -228,16 +227,16 @@ header {
       margin: 0 auto;
 
       ul {
-        display: flex;
-        flex-direction: column;
+        @include display-flex;
+        @include flex-direction(column);
         margin: 0;
         padding: 0;
 
         li {
           list-style: none;
           width: 100%;
-          display: flex;
-          justify-content: center;
+          @include display-flex;
+          @include justify-content(center);
 
           a {
             color: $pl-white;

@@ -6,14 +6,6 @@
   padding: 15px 30px;
 
   .config-content {
-    h3 {
-      @include font-size(25);
-
-      text-align: center;
-      text-transform: none;
-      font-weight: 400;
-      margin-bottom: 40px;
-    }
 
     .config-top {
       display: flex;
@@ -84,6 +76,7 @@
               color: $pl-red;
               background-color: $pl-white;
               border: 2px solid $pl-red;
+
             }
           }
         }
@@ -113,13 +106,8 @@
             margin-top: 7px;
             border-radius: 4px;
             width: 160px;
+            cursor: pointer;
           }
-
-          .inputfile:focus + label,
-          .inputfile + label:hover {
-            text-shadow: 1px 1px 1px $pl-black;
-          }
-
           i {
             margin-right: 10px;
           }
@@ -128,7 +116,7 @@
     }
 
     .config-change-password {
-      width: 50%;
+      width: 100%;
       margin: 0 auto;
 
       @media screen and (max-width: 500px) {
@@ -136,7 +124,6 @@
       }
 
       input {
-        max-width: 320px;
         margin: 0 auto 10px 0;
       }
     }
@@ -152,6 +139,9 @@
   }
 
   .form-group label {
+    text-align: left;
+  }
+  .form-group label.avatar-label {
     text-align: center;
   }
 

@@ -27,9 +27,9 @@
       .button-add-new-game {
         float: right;
         height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include display-flex;
+        @include justify-content(center);
+        @include align-items(center);
 
         .custom-button {
           padding: 0 12px 5px;
@@ -66,18 +66,18 @@
         .single-box-content {
           padding: 10px 20px;
           width: 100%;
-          display: inline-flex;
+          @include display-inline-flex;
 
           @media screen and (max-width: 400px) {
-            display: flex;
-            flex-direction: column;
+            @include display-flex;
+            @include flex-direction(column);
             text-align: center;
           }
 
           .game-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @include display-flex;
+            @include justify-content(center);
+            @include align-items(center);
             vertical-align: middle;
             width: 160px;
             height: 120px;
@@ -100,9 +100,9 @@
           .game-info {
             margin-left: 30px;
             width: calc(100% - 190px);
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
+            @include display-flex;
+            @include flex-direction(column);
+            @include flex-wrap(wrap);
 
             @media screen and (max-width: 400px) {
               margin: 0;
@@ -111,12 +111,12 @@
 
             a {
               color: $pl-dark-gray;
-              display: flex;
-              align-items: center;
+              @include display-flex;
+              @include align-items(center);
 
               @media screen and (max-width: 400px) {
+                @include justify-content(center);
                 min-height: auto;
-                justify-content: center;
                 margin: 20px 0;
               }
             }
@@ -140,6 +140,7 @@
             }
 
             .game-info-buttons {
+              
               display: flex;
               justify-content: flex-end;
               margin-top: 20px;
@@ -167,7 +168,7 @@
 
                   &-edit {
                     @include pet-icon-after($pl-pencil-square-o);
-                    
+
                   }
 
                   &-trash {
@@ -222,7 +223,7 @@
         margin: 0;
       }
 
-      input, 
+      input,
       select {
         max-width: 320px;
 
@@ -280,11 +281,6 @@
             padding: 6px 12px;
             border-radius: 4px;
             width: 160px;
-          }
-
-          .inputfile:focus + label,
-          .inputfile + label:hover {
-            text-shadow: 1px 1px 1px $pl-black;
             cursor: pointer;
           }
 
@@ -307,5 +303,9 @@
 }
 
 .form-group label {
+  text-align: left;
+}
+
+.form-group label.image-label {
   text-align: center;
 }

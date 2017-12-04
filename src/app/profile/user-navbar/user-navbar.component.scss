@@ -23,7 +23,7 @@ $custom-mobile-breakpoint: 580px;
       margin-bottom: 0px;
 
       ul {
-        display: flex;
+        @include display-flex;
         margin: 0 auto;
         padding: 0;
         flex-flow: row wrap;
@@ -31,23 +31,22 @@ $custom-mobile-breakpoint: 580px;
         li {
           display: block;
           text-align: center;
-          -ms-flex: 1;
-          flex: 1;
+          @include flex(1)
           border: 1px solid rgba($pl-dark-gray, 0.1);
 
           a {
             padding: 0.65em 0 0.5em;
             background: $pl-white;
-            color: $pl-dark-gray2;
+            color: $pl-dark-gray;
             line-height: 1;
             text-decoration: none;
             display: block;
             height: 84px;
 
             @media screen and (max-width: $custom-mobile-breakpoint) {
-              display: flex;
-              justify-content: center;
-              align-items: center;
+              @include display-flex;
+              @include justify-content(center);
+              @include align-items(center);
             }
 
             span {
@@ -64,8 +63,8 @@ $custom-mobile-breakpoint: 580px;
             }
           }
 
-          a:hover, 
-          a:focus, 
+          a:hover,
+          a:focus,
           a:active {
             color: $pl-orange;
           }
@@ -111,9 +110,9 @@ $custom-mobile-breakpoint: 580px;
       height: 50px;
       background-color: $pl-white;
       margin: 5px 0 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include display-flex;
+      @include justify-content(center);
+      @include align-items(center);
 
       h3 {
         @include font-size(18);

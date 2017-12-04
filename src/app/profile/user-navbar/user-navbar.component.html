@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
-			<div class="tabs">
+			<div class="tabs" data-aos="fade-up">
 				<nav>
 					<ul>
 						<li>
@@ -11,18 +11,18 @@
 							</a>
 						</li>
 						<li >
-							<a routerLink='notifications' routerLinkActive ='active-link' class="icon icon-bell" (click)="setCurrentTabName('Powiadomienia');">	
+							<a routerLink='notifications' routerLinkActive ='active-link' class="icon icon-bell" (click)="setCurrentTabName('Powiadomienia');">
 								<span>Powiadomienia</span>
 							</a>
 						</li>
 						<li>
-							<a routerLink='history' routerLinkActive ='active-link' class="icon icon-date" 
+							<a routerLink='history' routerLinkActive ='active-link' class="icon icon-date"
 							(click)="setCurrentTabName('Historia wymiany');">
 								<span>Historia wymiany</span>
 							</a>
 						</li>
 						<li>
-							<a routerLink='config' routerLinkActive ='active-link' class="icon icon-config" 
+							<a routerLink='config' routerLinkActive ='active-link' class="icon icon-config"
 							(click)="setCurrentTabName('Ustawienia');">
 								<span>Ustawienia</span>
 							</a>
@@ -30,7 +30,7 @@
 					</ul>
 				</nav>
 			</div>
-		</div>		
+		</div>
 	</div>
 	<div class="row">
 		<div class="mobile-tab-name">
