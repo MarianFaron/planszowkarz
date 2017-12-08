@@ -6,32 +6,36 @@ section#main-banner {
   width: 100%;
   height: 100%;
   max-height: calc(100vh - 56px);
-  min-height: 400px;
   position: relative;
   margin: -20px 0 0;
 
   .banner-background {
     background-image: url("../assets/images/banner.jpg");
-    background-position: center center;
+    background-position: 50% 50%;
     background-size: cover;
     background-attachment: fixed;
     width: 100%;
     padding: 0;
-    height: 500px;
+    height: 550px;
     opacity: 0.7;
 
     @include respond-to(desktop) {
-      padding: 20%;
-      height: auto;
+      padding: 25%;
+      height: auto;     
     }
 
     @include respond-to(mobile) {
-      padding: 25%;
+      padding: inherit;
+      min-height: 400px;
+      height: 100%;
+      background-position: 90% 50%;
+
     }
 
     @include respond-to(small-mobile) {
-      padding: auto;
-      height: 250px;
+      height: calc(100vh - 56px);
+      max-height: 400px;
+
     }
   }
 
@@ -41,7 +45,7 @@ section#main-banner {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(-180deg,rgba(60,73,108,0), $pl-black 98%);
+    background-image: linear-gradient(-180deg, rgba($pl-green,0), $pl-black 98%);
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
@@ -49,6 +53,7 @@ section#main-banner {
 
     @include respond-to(mobile) {
       padding: 25px 15px;
+
     }
 
     .container {
@@ -57,6 +62,7 @@ section#main-banner {
         margin: 0 auto;
         max-width: 768px;
         width: 100%;
+
       }
 
       .banner-header {
@@ -64,7 +70,6 @@ section#main-banner {
         flex-direction: column;
 
         h1 {
-
           @include font-size(42);
 
           color: $pl-white;
@@ -72,7 +77,11 @@ section#main-banner {
           text-transform: uppercase;
           line-height: 52px;
           font-weight: 300;
-          // text-shadow: 0 2px 4px rgba($pl-white,.5);
+
+          @include respond-to(desktop) {
+            @include font-size(36);
+
+          }
 
           @include respond-to(mobile) {
             @include font-size(32);
@@ -95,6 +104,11 @@ section#main-banner {
           margin: 0;
           line-height: 32px;
           font-weight: 300;
+
+          @include respond-to(desktop) {
+            @include font-size(26);
+            
+          }
 
           @include respond-to(mobile) {
             @include font-size(20);
@@ -120,6 +134,7 @@ section#hoToMakeExchange {
 
   @include respond-to(mobile) {
     padding: 50px 15px 10px;
+
   }
 
   h2 {
@@ -129,11 +144,12 @@ section#hoToMakeExchange {
     font-weight: 700;
     color: $pl-dark-gray;
     margin: 0;
-    text-align: center
+    text-align: center;
   }
 
   .main-hr {
     margin: 20px auto;
+
   }
 }
 
@@ -149,11 +165,12 @@ section#newGames {
       .inner {
         background: $pl-white;
         box-shadow: 2px 2px 1px $pl-gray;
-        margin: 0 10px;
+        margin: 0 auto;
         padding: 20px;
         text-overflow: ellipsis;
         overflow: hidden;
         height: 400px;
+        max-width: 300px;
 
         a,
         h3 {
@@ -171,9 +188,9 @@ section#newGames {
         a:hover,
         h3:active,
         h3:focus,
-        h3:hover
-        {
+        h3:hover{
             color: $pl-orange;
+
         }
 
         img {
@@ -195,26 +212,31 @@ section#newGames {
 
         div:nth-child(2) {
           margin: 4px 0 3px 10px;
+
         }
       }
 
       .icon {
         @include font-size(15);
+
         position: relative;
         top: 4px;
 
         &-user {
           @include pet-icon-after($pl-user);
           margin: 0 3px;
+
         }
 
         &-marker {
           @include pet-icon-after($pl-map-marker);
           margin: 0 4px;
+
         }
 
         &-date {
           @include pet-icon-after($pl-calendar);
+
         }
       }
     }
@@ -225,6 +247,11 @@ section#newGames {
 section#forWho,
 section#hoToMakeExchange {
   padding: 50px 15px 70px;
+
+  @include respond-to(mobile) {
+    padding: 50px 15px;
+
+  }
 
     .section-wrapper {
       display: flex;
@@ -251,8 +278,16 @@ section#hoToMakeExchange {
           border-radius: 50%;
           line-height: 42px;
           font-weight: 800;
-          color: orange;
+          color: $pl-orange;
           margin: 0 30px 0 0;
+
+          @include respond-to(mobile) {
+            @include font-size(32);
+
+            width: 60px;
+            height: 60px;
+
+          }
         }
 
         h3 {
@@ -280,6 +315,7 @@ section#goToRegister {
     padding: 0;
     height: 300px;
     opacity: 0.7;
+
   }
 
   .section-container {
@@ -288,7 +324,7 @@ section#goToRegister {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(-180deg,rgba($pl-green,0), $pl-black 98%);
+    background-image: linear-gradient(-180deg, rgba($pl-green,0), $pl-black 98%);
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
@@ -301,7 +337,6 @@ section#goToRegister {
       margin: 0;
       line-height: 32px;
       font-weight: 300;
-      // text-shadow: 0 2px 4px rgba($pl-white,.5);
       text-align: center;
     }
   }

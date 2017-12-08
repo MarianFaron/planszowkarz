@@ -129,7 +129,7 @@ header {
             list-style: none;
             @include display-flex;
             @include justify-content(center);
-            @include flex-basis(30%)
+            @include flex-basis(30%);
             width: 30%;
 
             a {
@@ -249,3 +249,199 @@ header {
     }
   }
 }
+
+.main {
+  min-height: calc(100vh - 157px);
+}
+.messages {
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  bottom: 0;
+  left:0;
+  right:0;
+  margin: auto;
+  width: 25%;
+  height: 30%;
+  text-align: center;
+}
+
+.notifications-count {
+  background: $pl-gray2;
+  color: $pl-white;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+
+footer {
+  width: 100%;
+  margin: 0;
+  background: $pl-dark-gray;
+  padding: 35px 15px;
+  min-height: 200px;
+
+  .container {
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1440px;
+    width: 100%;
+
+    .section-row:first-child {
+      margin: 0 0 30px;
+
+      @include respond-to(mobile) {
+        margin: 0;
+
+      }
+    }
+
+    .section-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0;
+      min-height: 50px;
+
+      @include respond-to(mobile) {
+        flex-direction: column;
+        justify-content: center;
+
+      }
+
+      .section-column {
+        flex-basis: 50%;
+        width: 50%;
+        display: flex;
+
+        @include respond-to(mobile) {
+          justify-content: center;
+          flex-basis: 100%;
+          width: 100%;
+
+        }
+
+        a {
+          color: $pl-white;
+
+        }
+
+        a:hover,
+        a:focus,
+        a:active {
+          color: rgba($pl-white, 0.5);
+          text-decoration: none;
+
+        }
+        
+        a.logo {
+          @include font-size(18);
+
+          line-height: 20px;
+          cursor: pointer;
+          text-decoration: none;
+
+          img {
+            max-width: 50px;
+            display: inline-block;
+            margin-right: 10px;
+            padding: 5px;
+
+          }
+        }
+
+        ul {
+          display: flex;
+          justify-content: space-between;
+          list-style-type: none;
+          margin: 0;
+
+          @include respond-to(small-mobile) {
+            flex-direction: column;
+
+          }
+          
+          li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            margin: 0;
+            min-width: 100px;
+
+            a {
+              @include font-size(14);
+
+              line-height: 20px;
+              text-transform: uppercase;
+              
+            }
+          }
+        }
+      }
+
+      .section-column:last-child {
+        justify-content: flex-end;
+
+        @include respond-to(mobile) {
+          justify-content: center;
+
+        }
+      }
+
+      span {
+        color: rgba($pl-white, 0.5);
+
+      }
+    }
+
+    .center-content {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+/* <Pozostałości z app.component.css> */
+@include respond-to(mobile) {
+
+  .navbar-toggle {
+    border: none;
+  }
+
+  .navbar-toggle:hover,
+  .navbar-toggle:focus ,
+  .navbar-toggle:active {
+    background: transparent;
+  }
+
+  .navbar-toggle .icon-bar {
+    background-color: $pl-white;
+  }
+
+  .navbar a:hover, .navbar a:focus, .navbar a:active,
+  .navbar a.active {
+    color: $pl-orange;
+    border-bottom: 3px solid transparent;
+  }
+}
+
+.swiper-button-next{
+    right: 0;
+    background-color: $pl-green2;
+}
+
+.swiper-button-next, .swiper-button-prev{
+  height: 50px;
+  background-color: $pl-green2;
+}
+
+#newGames > div > div:nth-child(3) > div > swiper > div > div.swiper-button-next{
+    right: 0;
+    background-color: $pl-green2;
+}
+/* </Pozostałości z app.component.css>  */

@@ -220,24 +220,34 @@ textarea:focus {
     @include opacity(0.5);
 }
 
-.next-arrow{
-    right: -30px !important;
+.next-arrow {
+  right: -30px;
+
+  @include respond-to(tablet) {
+    right: -10px;
+  }
 }
 
-.prev-arrow{
-  left: -30px !important;
+.prev-arrow {
+  left: -30px;
+
+  @include respond-to(mobile) {
+    left: -10px;
+  }
 }
 
-.next-arrow, .prev-arrow{
-  height: 100px !important;
-  border-radius: 5px;
+.next-arrow, .prev-arrow {
   position: absolute;
-  top: calc(50% - 50px);
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
   width: 30px;
   color: $pl-orange;
   line-height: 55px;
   text-align: center;
   cursor: pointer;
+  z-index: 999;
+
   @include font-size(48);
 }
 

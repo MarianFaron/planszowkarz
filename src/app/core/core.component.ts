@@ -38,7 +38,7 @@ export class CoreComponent implements OnInit {
           }
         },
         {
-          "breakpoint": 479,
+          "breakpoint": 600,
           "settings": {
             "slidesToShow": 1,
           }
