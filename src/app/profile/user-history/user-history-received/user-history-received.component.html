@@ -1,47 +1,48 @@
-<div class="single-transaction inner" *ngFor="let history of userHistory" data-aos="fade-up">
-    <div class="transaction-box" >
-        <div class="senderBox" *ngIf="!history?.sender.facebook">
-            <p>Gracz</p>
-            <a class="sender" routerLink="/user-profile/{{ history?.sender.local.login }}">
-                <p>{{history?.sender.local.login}}</p>
-            </a>
-            <p>złożył Ci propozycję wymiany. Jest zainteresowany grą:</p>
-        </div>
-        <div class="senderBox" *ngIf="history?.sender.facebook">
-            <p>Gracz</p>
-            <a class="sender" routerLink="/user-profile/{{ history?.sender.facebook.name }}">
-                <p>{{history?.sender.facebook.name}}</p>
-            </a>
-            <p>złożył Ci propozycję wymiany. Jest zainteresowany grą: </p>
-        </div>
-        <div class="gameTitleBig">
-            <p>{{history?.recipientGame.title}}</p>
-        </div>
-        <p id="info">Jeśli jesteś zainteresowany wybierz jedną z proponowanych gier. </p>
-        <div class="modal-body">
-            <form>
-            <div *ngFor="let gamePropose of history.proposeGames">
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="options" (click)="senderGame = gamePropose;"/>
-                        <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                        {{gamePropose}}
-                    </label>
+<div class="transaction-wrapper inner" *ngFor="let history of userHistory" data-aos="fade-up">
+    <div class="transaction-box">
+        <div class="transaction-top">
+            <div class="transaction-row">
+                <p>Data: <strong>{{history?.date| date:'medium'}}</strong></p>
+            </div>
+            <div class="transaction-row transaction-center-row">
+                <p class="transaction-paragraph">Gracz
+                <a *ngIf="!history?.sender.facebook" class="transaction-link" routerLink="/user-profile/{{history?.sender.local.login}}">
+                    {{history?.sender.local.login}}
+                </a>
+                <a *ngIf="history?.sender.facebook" class="transaction-link" routerLink="/user-profile/{{history?.sender.facebook.name}}">
+                    {{history?.sender.facebook.name}}
+                </a>
+                złożył Ci propozycję wymiany. Jest zainteresowany grą:</p>
+            </div>
+            <div class="transaction-row transaction-center-row">
+                <p class="bigTitle">{{history?.recipientGame.title}}</p>
+            </div>
+            <div class="transaction-row transaction-vertical-row">
+                <p>Jeśli jesteś zainteresowany wybierz jedną z proponowanych gier.</p>
+                <div class="transaction-form">
+                    <form>
+                        <div *ngFor="let gamePropose of history.proposeGames">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="options" (click)="senderGame = gamePropose;"/>
+                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                    {{gamePropose}}
+                                </label>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            </form>
         </div>
-        <div class="modal-footer" style="display: flex; padding-bottom: 0;">
-            <div class="stateBox" *ngIf="history?.status== 'pending'">
-                <div class="gameState">
-                    <p>Status:</p>
-                    <p><strong>w trakcie</strong></p>
+        <div class="transaction-bottom">
+            <div class="transaction-row">
+                <div class="transaction-column" *ngIf="history?.status== 'pending'">
+                    <p>Status: <strong>oczekiwanie na odpowiedź</strong></p>
                 </div>
-                <div class="buttonsBox">
-                    <button class="btn btn-color" data-dismiss="modal"
-                    (click)="discardExchange(history._id);">Odrzuć</button>
+                <div class="transaction-column">
+                    <button class="btn btn-color" data-dismiss="modal" (click)="discardExchange(history._id);">Odrzuć</button>
                     <button class="btn custom-button" data-dismiss="modal" name="button" type="button"
-                    (click)="acceptExchange(history._id);">Akceptuj</button>
+                            (click)="acceptExchange(history._id);">Akceptuj</button>
                 </div>
             </div>
         </div>

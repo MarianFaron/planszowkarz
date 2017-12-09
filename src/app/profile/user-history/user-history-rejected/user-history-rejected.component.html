@@ -1,37 +1,42 @@
-<div class="single-transaction inner" *ngFor="let history of userHistory | searchfilter: 'status' : 'rejected'" data-aos="fade-up">
-    <div id="left" class="single-transaction-content" >
-      <div *ngIf="history?.recipient.local && !history?.recipient.facebook">
-        <a routerLink="/user-profile/{{ history?.recipient.local.login }}">
-          <p>Login: {{history?.recipient.local.login}}</p>
-        </a>
-      </div>
-      <div *ngIf="history?.recipient.facebook">
-        <a routerLink="/user-profile/{{ history?.recipient.local.login }}">
-          <p>Login: {{history?.recipient.facebook.name}}</p>
-        </a>
-      </div>
-      <div class="gameTitle">
-        <p> Nazwa gry: {{history?.recipientGame.title}}</p>
-      </div>
-    </div>
-    <div id="right" class="single-transaction-content">
-      <div *ngIf="history?.sender.local && !history?.sender.facebook">
-        <a routerLink="/user-profile/{{ history?.sender.local.login }}">
-          <p>Login: {{history?.sender.local.login}}</p>
-        </a>
-      </div>
-      <div *ngIf="history?.sender.facebook">
-        <a routerLink="/user-profile/{{ history?.sender.facebook.name }}">
-          <p>Login: {{history?.sender.facebook.name}}</p>
-        </a>
-      </div>
-      <div class="gameTitle">
-        <p *ngIf="history?.senderGame"> Nazwa gry: {{history?.senderGame}}</p>
-        <p *ngIf="!history?.senderGame"> Nie wybrano gry</p>
-      </div>
-    </div>
-    <div id="center" class="single-transaction-content">
-      <p>Status:</p>
-      <p *ngIf="history?.status == 'rejected'">Odrzucone<p>
+<div class="transaction-wrapper inner" *ngFor="let history of userHistory | searchfilter: 'status' : 'rejected'" data-aos="fade-up">
+    <div class="transaction-box" >
+        <div class="transaction-top">
+            <div class="transaction-row">
+                <p>Data: <strong>{{history?.date| date:'medium'}}</strong></p>
+            </div>
+            <div class="transaction-row">
+                <p class="transaction-paragraph">Wymiana z
+                <a *ngIf="!history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.local.login}}">
+                    {{history?.recipient.local.login}}
+                </a>
+                <a *ngIf="history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.facebook.name}}">
+                    {{history?.recipient.facebook.name}}
+                </a>
+                zakończona niepowodzeniem.</p>
+            </div>
+            <div class="transaction-row transaction-row-padding">
+                <div class="transaction-column">
+                    <p><strong>Nazwa gry</strong>
+                    <p *ngIf="history?.senderGame">{{history?.senderGame}}</p>
+                    <p *ngIf="!history?.senderGame">Nie wybrano gry</p>
+                </div>
+                <div class="arrow-box">
+                    <img src="{{this.appService.getUrl('/assets/images/arrows.png')}}" />
+                </div>
+                <div class="transaction-column">
+                    <p><strong>Nazwa gry:</strong></p>
+                    <p *ngIf="history?.recipientGame.title">{{history?.recipientGame.title}}</p>
+                    <p *ngIf="!history?.recipientGame.title">Nie wybrano gry</p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div class="transaction-bottom">
+            <div class="transaction-row">
+                <div class="transaction-column" *ngIf="history?.status== 'rejected'">
+                    <p>Status: <strong>odrzucona</strong></p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

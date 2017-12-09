@@ -1,36 +1,34 @@
-<div class="single-transaction inner" *ngFor="let history of userHistory" data-aos="fade-up">
-    <div id="left" class="single-transaction-content" >
-      <div *ngIf="!history?.recipient.facebook">
-        <a routerLink="/user-profile/{{ history?.recipient.local.login }}">
-          <p>Login: {{history?.recipient.local.login}}</p>
-        </a>
-      </div>
-      <div *ngIf="history?.recipient.facebook">
-        <a routerLink="/user-profile/{{ history?.recipient.local.login }}">
-          <p>Login: {{history?.recipient.facebook.name}}</p>
-        </a>
-      </div>
-      <div class="gameTitle">
-        <p>Nazwa gry: {{history?.recipientGame.title}}</p>
-      </div>
-    </div>
-    <div id="right" class="single-transaction-content">
-      <div *ngIf="!history?.sender.facebook">
-        <a routerLink="/user-profile/{{ history?.sender.local.login }}">
-          <p>Login: {{history?.sender.local.login}}</p>
-        </a>
-      </div>
-      <div *ngIf="history?.sender.facebook">
-        <a routerLink="/user-profile/{{ history?.sender.facebook.name }}">
-          <p>Login: {{history?.sender.facebook.name}}</p>
-        </a>
-      </div>
-      <div class="gameTitle" *ngFor="let gamePropose of history.proposeGames">
-        <p>Proponowane: {{gamePropose}}</p>
-      </div>
-    </div>
-    <div id="center" class="single-transaction-content">
-      <p>Status:</p>
-      <p *ngIf="history?.status == 'pending'">W trakcie<p>
+<div class="transaction-wrapper inner" *ngFor="let history of userHistory" data-aos="fade-up">
+    <div class="transaction-box" >
+        <div class="transaction-top">
+            <div class="transaction-row">
+                <p>Data: <strong>{{history?.date| date:'medium'}}</strong></p>
+            </div>
+            <div class="transaction-row">
+                <p class="transaction-paragraph">Wysłałeś do
+                <a *ngIf="!history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.local.login}}">
+                    {{history?.recipient.local.login}}
+                </a>
+                <a *ngIf="history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.facebook.name}}">
+                    {{history?.recipient.facebook.name}}
+                </a>
+                propozycję wymiany za grę <strong>{{history?.recipientGame.title}}</strong>. Zaproponowałeś następujące gry:</p>
+            </div>
+            <div class="transaction-row">
+                <ul>
+                    <li *ngFor="let gamePropose of history.proposeGames">
+                        <span _ngcontent-c8="" aria-hidden="true" class="icon icon-circle"></span>
+                        <p>{{gamePropose}}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="transaction-bottom">
+            <div class="transaction-row">
+                <div class="transaction-column" *ngIf="history?.status== 'pending'">
+                    <p>Status: <strong>oczekiwanie na odpowiedź</strong></p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

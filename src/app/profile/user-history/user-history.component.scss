@@ -92,103 +92,136 @@ $custom-mobile-breakpoint: 580px;
   }
 }
 
-.inner {
+.transaction-wrapper {
+  overflow: auto;
   margin: 10px auto;
   padding: 15px;
-}
 
-.single-transaction {
-  overflow: auto;
+  .transaction-top {
+    display: flex;
+    flex-direction: column;
 
-  .senderBox {
-    @include display-flex;
-    @include justify-content(center);
+    .transaction-row {
+      display: flex;
 
-    p {
-      margin-right: 5px;
+      .transaction-column {
+        display: flex;
+        flex-direction: column;
+        width: calc(50% - 50px);
+        p {
+          text-align: center;
+          line-height: 24px;
+
+        }        
+      }
+
+      .arrow-box {
+        width: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          margin: 0;
+          width: 60px;
+          height: 60px;
+
+        }
+      }
+
+      .transaction-link{
+        margin: 0;
+        color: $pl-orange;
+        font-weight: 600;
+
+      }
+
+      .transaction-form {
+        padding: 0 15px 15px;
+        position: relative;
+
+        span.cr {
+          border: 1px solid $pl-orange;
+        }
+
+      }
+
+      li {
+        list-style: none;
+        display: flex;
+        align-items: center;
+
+        .icon {
+          @include font-size(8);
+      
+          color: $pl-dark-gray;
+          margin: 0 5px 0 0;
+    
+          &-circle {
+            @include pet-icon-after($pl-circle);
+          }
+        }
+      }
     }
 
-    .sender {
-      color: $pl-orange;
+    .transaction-center-row {
+      justify-content: center;
+
+    }
+
+    .transaction-vertical-row {
+      flex-direction: column;
+
+    }
+
+    .transaction-row-padding {
+      padding: 15px 0;
+      min-height: 80px;
+
     }
   }
 
-  .gameTitleBig p {
-    @include font-size(30);
+  .transaction-bottom{
+    border-top: 1px solid $pl-light-gray;
+    padding: 15px 0 0;
 
+    .transaction-row{
+      display: flex;
+      justify-content: space-between;
+
+      .transaction-column {
+        display: flex;
+
+        .btn {
+          margin: 0;
+
+        }
+
+        .btn:first-child{
+          margin: 0 15px 0 0;
+
+        }
+      }
+    }
+  }
+
+  p {
+    margin: 0;
+    line-height: 32px;
+    display: inline-block;
+
+  }
+
+  p.transaction-paragraph {
+    line-height: 24px;
+    margin: 0 0 6px;
+
+  }
+
+  p.bigTitle{
+    @include font-size(30);
+    
     text-align: center;
     color: $pl-orange;
-  }
-
-  .stateBox {
-    @include display-flex;
-    width: 100%;
-    @include justify-content(space-between);
-
-    @media only screen and (max-width: $custom-mobile-breakpoint) {
-      @include flex-direction(column);
-    }
-
-    .gameState {
-      @include display-flex;
-      @include align-items(flex-end);
-
-      p {
-        margin-right: 5px;
-      }
-    }
-  }
-
-  // accepted, rejected, sent
-  .single-transaction-content {
-    p {
-      margin: 5px 0;
-      text-align: center;
-    }
-
-    a {
-      color: $pl-dark-gray;
-      text-decoration: none;
-
-      &:hover {
-        color: $pl-orange;
-      }
-    }
-  }
-
-  #left {
-    float: left;
-    width: 200px;
-
-    p {
-      text-align: left;
-    }
-
-    .gameTitle p {
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-  }
-
-  #center {
-    margin: 0 auto;
-    width: 200px;
-  }
-
-  #right {
-    float: right;
-    width: 200px;
-    text-align: right;
-
-    p {
-      text-align: right;
-    }
-
-    .gameTitle p {
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
+    margin: 0 0 20px;
   }
 }
