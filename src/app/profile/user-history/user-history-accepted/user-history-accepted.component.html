@@ -23,14 +23,14 @@
                     <img src="{{this.appService.getUrl('/assets/images/arrows.png')}}" />
                 </div>
                 <div class="transaction-column">
-                    <p><strong>Nazwa gry:</strong></p>
+                    <p><strong>Nazwa gry</strong></p>
                     <p>{{history?.recipientGame.title}}</p>
                 </div>
             </div>
         </div>
         <div class="transaction-bottom">
             <div class="transaction-row">
-                <div class="transaction-column" *ngIf="history?.status== 'accepted'">
+                <div class="transaction-column transaction-column-margin" *ngIf="history?.status== 'accepted'">
                     <p>Status: <strong>zaakceptowane</strong></p>
                 </div>
                 <div class="transaction-column">
