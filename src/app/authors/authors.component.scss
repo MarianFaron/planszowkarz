@@ -2,10 +2,10 @@
 @import '../../scss/colors';
 
 .section-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  @include display-flex;
+  @include flex-wrap(wrap);
+  @include justify-content(space-between);
+  @include align-items(center);
 
   .author-card {
     @include font-size(14);

@@ -29,9 +29,9 @@
       margin: 0 0 15px;
       padding: 10px 15px;
       min-height: 50px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
+      @include display-flex;
+      @include justify-content(flex-end);
+      @include align-items(center);
 
       .icon {
         @include font-size(12);
@@ -248,9 +248,9 @@
           background: $pl-orange;
           border: none;
           border-radius: 4px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          @include display-flex;
+          @include align-items(center);
+          @include justify-content(center);
           cursor: pointer;
         }
 
@@ -280,11 +280,11 @@ textarea {
 }
 
 .modal-footer {
-  display: flex;
-  justify-content: flex-end;
+  @include display-flex;
+  @include justify-content(flex-end);
 
   @include respond-to(small-mobile) {
-    justify-content: center;
+    @include justify-content(center);
   }
 
   .btn {

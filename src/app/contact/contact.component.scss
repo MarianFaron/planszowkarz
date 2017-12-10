@@ -12,8 +12,8 @@
     max-width: 480px;
 
     .section-wrapper{
-        display: flex;
-        flex-direction: column;
+        @include display-flex;
+        @include flex-direction(column);
         width: 100%;
 
         h4{
@@ -35,7 +35,7 @@
         }
         
         .button-row{
-            display: flex;
+            @include display-flex;
             margin: 20px 0 0;
 
             .custom-button{
@@ -44,10 +44,10 @@
         }
 
         .label-row{
-            display: flex;
+            @include display-flex;
 
             @media only screen and (max-width: $small-mobile-breakpoint) {
-                flex-direction: column;
+                @include flex-direction(column);
             }
 
             label{

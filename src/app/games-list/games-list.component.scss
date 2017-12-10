@@ -189,7 +189,7 @@
         .inner:last-child {
           @media screen and (max-width: 880px){
             @include display-flex;
-            flex-wrap: wrap;
+            @include flex-wrap(wrap);
           }
         }
       }
@@ -214,7 +214,7 @@
           margin-bottom: 15px;
           min-height: 150px;
           @include display-flex;
-          flex-wrap: wrap;
+          @include flex-wrap(wrap);
 
           .game-image {
             @include display-flex;

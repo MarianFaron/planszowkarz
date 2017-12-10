@@ -23,7 +23,7 @@
         @include display-flex;
         @include flex-direction(row);
         @include justify-content(center);
-        flex-wrap: wrap;
+        @include flex-wrap(wrap);
 
         .left-col {
           float: left;
@@ -129,7 +129,7 @@
         width: 100%;
         @include display-flex;
         @include justify-content( flex-end);
-        flex-wrap: wrap;
+        @include flex-wrap(wrap);
       }
 
       .other-games-box {
@@ -152,14 +152,14 @@
           padding: 18px 0px;
           @include display-flex;
           @include justify-content(center);
-          flex-wrap: wrap;
+          @include flex-wrap(wrap);
           @include flex-direction(row);
 
           .single-game-box {
             @include justify-content(center);
             padding: 18px 0;
             text-align: center;
-            flex-wrap: wrap;
+            @include flex-wrap(wrap);
             margin: 10px;
 
             .game-content {

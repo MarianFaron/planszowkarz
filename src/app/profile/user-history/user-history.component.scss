@@ -100,15 +100,15 @@ $custom-mobile-breakpoint: 580px;
   padding: 15px;
 
   .transaction-top {
-    display: flex;
-    flex-direction: column;
+    @include display-flex;
+    @include flex-direction(column);
 
     .transaction-row {
-      display: flex;
+      @include display-flex;
 
       .transaction-column {
-        display: flex;
-        flex-direction: column;
+        @include display-flex;
+        @include flex-direction(column);
         width: calc(50% - 50px);
         @include respond-to(mobile) {
           width: 100%;          
@@ -122,9 +122,9 @@ $custom-mobile-breakpoint: 580px;
 
       .arrow-box {
         width: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include display-flex;
+        @include justify-content(center);
+        @include align-items(center);
         @include respond-to(mobile) {
           padding: 15px 0;
         }
@@ -153,8 +153,8 @@ $custom-mobile-breakpoint: 580px;
 
       li {
         list-style: none;
-        display: flex;
-        align-items: center;
+        @include display-flex;
+        @include align-items(center);
 
         .icon {
           @include font-size(8);
@@ -170,11 +170,11 @@ $custom-mobile-breakpoint: 580px;
     }
 
     .transaction-center-row {
-      justify-content: center;
+      @include justify-content(center);
     }
 
     .transaction-vertical-row {
-      flex-direction: column;
+      @include flex-direction(column);
     }
 
     .transaction-row-padding {
@@ -182,8 +182,8 @@ $custom-mobile-breakpoint: 580px;
       min-height: 80px;
 
       @include respond-to(mobile) {
-        flex-direction: column;
-        align-items: center;
+        @include flex-direction(column);
+        @include align-items(center);
       }
     }
   }
@@ -193,15 +193,15 @@ $custom-mobile-breakpoint: 580px;
     padding: 15px 0 0;
 
     .transaction-row{
-      display: flex;
-      justify-content: space-between;
+      @include display-flex;
+      @include justify-content(space-between);
 
       @include respond-to(mobile) {
-        flex-direction: column;
+        @include flex-direction(column);
       }
 
       .transaction-column {
-        display: flex;
+        @include display-flex;
 
         .btn {
           margin: 0;

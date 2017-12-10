@@ -301,25 +301,25 @@ footer {
     }
 
     .section-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include display-flex;
+      @include justify-content(space-between);
+      @include align-items(center);
       margin: 0;
       min-height: 50px;
 
       @include respond-to(mobile) {
-        flex-direction: column;
-        justify-content: center;
+        @include flex-direction(column);
+        @include justify-content(center);
 
       }
 
       .section-column {
         flex-basis: 50%;
         width: 50%;
-        display: flex;
+        @include display-flex;
 
         @include respond-to(mobile) {
-          justify-content: center;
+          @include justify-content(center);
           flex-basis: 100%;
           width: 100%;
 
@@ -355,20 +355,20 @@ footer {
         }
 
         ul {
-          display: flex;
-          justify-content: space-between;
+          @include display-flex;
+          @include justify-content(space-between);
           list-style-type: none;
           margin: 0;
 
           @include respond-to(small-mobile) {
-            flex-direction: column;
+            @include flex-direction(column);
 
           }
           
           li {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @include display-flex;
+            @include align-items(center);
+            @include justify-content(center);
             min-height: 50px;
             margin: 0;
             min-width: 100px;
@@ -385,10 +385,10 @@ footer {
       }
 
       .section-column:last-child {
-        justify-content: flex-end;
+        @include justify-content(flex-end);
 
         @include respond-to(mobile) {
-          justify-content: center;
+          @include justify-content(center);
 
         }
       }
@@ -400,8 +400,8 @@ footer {
     }
 
     .center-content {
-      display: flex;
-      justify-content: center;
+      @include display-flex;
+      @include justify-content(center);
     }
   }
 }

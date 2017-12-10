@@ -15,9 +15,9 @@ section#exchange {
       padding-bottom: 20px;
 
       .loading-exchange-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include display-flex;
+        @include justify-content(center);
+        @include align-items(center);
         height: calc(100vh - 146px);
         width: 100%;
 
@@ -25,10 +25,10 @@ section#exchange {
           background-color: $pl-light-gray4;
           padding: 20px;
           border-radius: 4px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
+          @include display-flex;
+          @include justify-content(center);
+          @include align-items(center);
+          @include flex-direction(column);
 
           .loading {
             margin: 0;
@@ -59,10 +59,10 @@ section#exchange {
         .users-info {
           margin-top: 20px;
           padding: 5px;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          flex-wrap: wrap;
+          @include display-flex;
+          @include flex-direction(row);
+          @include justify-content(space-between);
+          @include flex-wrap(wrap);
           background-color: $pl-white;
 
           .recipient-box {
@@ -71,15 +71,15 @@ section#exchange {
             }
 
             .recipient {
-              display: flex;
-              align-items: flex-start;
+              @include display-flex;
+              @include align-items(flex-start);
 
               @include respond-to(tablet) {
                 width: 100%;
               }
 
               @include respond-to(small-mobile) {
-                align-items: center;
+                @include align-items(center);
               }
 
               img {
@@ -127,16 +127,16 @@ section#exchange {
           .sender-box {
             @include respond-to(tablet) {
               width: 100%;
-              display: flex;
-              justify-content: flex-end;
+              @include display-flex;
+              @include justify-content(flex-end);
             }
 
             .sender {
-              display: flex;
-              align-items: flex-start;
+              @include display-flex;
+              @include align-items(flex-start);
 
               @include respond-to(small-mobile) {
-                align-items: center;
+                @include align-items(center);
               }
 
               img {
@@ -170,22 +170,22 @@ section#exchange {
 
         .exchange {
           margin-top: 20px;
-          display: flex;
-          justify-content: space-between;
-          flex-direction: row;
-          flex-wrap: wrap;
+          @include display-flex;
+          @include justify-content(space-between);
+          @include flex-direction(row);
+          @include flex-wrap(wrap);
           min-height: 400px;
 
           @include respond-to(tablet) {
-            flex-direction: column-reverse;
+            @include flex-direction(column-reverse);
           }
 
           .exchange-panel {
             width: 68%;
             padding: 15px;
             background-color: $pl-white;
-            display: flex;
-            flex-direction: column;
+            @include display-flex;
+            @include flex-direction(column);
 
             @include respond-to(desktop) {
               width: 65%;
@@ -214,22 +214,22 @@ section#exchange {
             }
 
             .drag-drop-panel-content {
-              display: flex;
-              flex-direction: row;
-              justify-content: space-between;
-              flex-wrap: wrap;
-              align-items: center;
+              @include display-flex;
+              @include flex-direction(row);
+              @include justify-content(space-between);
+              @include flex-wrap(wrap);
+              @include align-items(center);
               height: 100%;
 
               @include respond-to(mobile) {
-                flex-direction: column-reverse
+                @include flex-direction(column-reverse);
               }
 
               .recipient-game {
                 width: 40%;
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
+                @include display-flex;
+                @include justify-content(center);
+                @include flex-direction(column);
                 text-align: center;
 
                 @include respond-to(mobile) {
@@ -258,8 +258,8 @@ section#exchange {
 
               .exchange-arrows {
                 width: 20%;
-                display: flex;
-                justify-content: center;
+                @include display-flex;
+                @include justify-content(center);
 
                 @include respond-to(desktop) {
                   width: 15%;
@@ -278,9 +278,9 @@ section#exchange {
 
               .drag-drop-area {
                 width: 40%;
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
+                @include display-flex;
+                @include justify-content(center);
+                @include flex-direction(column);
 
                 @include respond-to(desktop) {
                   width: 45%;
@@ -301,9 +301,9 @@ section#exchange {
                 .drag-drop-container {
                   padding: 20px 5px 20px 0;
                   max-width: 240px;
-                  display: flex;
-                  flex-wrap: wrap;
-                  justify-content: center;
+                  @include display-flex;
+                  @include flex-wrap(wrap);
+                  @include justify-content(center);
 
                   @include respond-to(desktop) {
                     padding: 20px;
@@ -320,9 +320,9 @@ section#exchange {
                     width: 60px;
                     height: 60px;
                     border-radius: 4px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    @include display-flex;
+                    @include justify-content(center);
+                    @include align-items(center);
                     position: relative;
 
                     img {
@@ -373,8 +373,8 @@ section#exchange {
             .drag-drop-panel-footer {
               border: none;
               padding: 20px 0px;
-              display: flex;
-              justify-content: center;
+              @include display-flex;
+              @include justify-content(center);
             }
           }
 
@@ -418,9 +418,9 @@ section#exchange {
                   background: transparent;
 
                   @include respond-to(tablet) {
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: center;
+                    @include display-flex;
+                    @include flex-wrap(wrap);
+                    @include justify-content(center);
                   }
 
                   @include respond-to(mobile) {
@@ -454,9 +454,9 @@ section#exchange {
                   display: none;
 
                   @include respond-to(mobile) {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
+                    @include display-flex;
+                    @include flex-direction(column);
+                    @include justify-content(center);
                     max-width: 250px;
                     margin: 0 auto;
 
