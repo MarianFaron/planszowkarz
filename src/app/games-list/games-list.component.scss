@@ -3,7 +3,7 @@
 @import '../../scss/font-awesome';
 
 .games-list {
-  margin-top: 15px;
+  margin: 15px 0 50px;
 
   .container {
     @include respond-to(tablet) {

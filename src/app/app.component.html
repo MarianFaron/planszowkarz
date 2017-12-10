@@ -15,9 +15,9 @@
       </div>
       <div class="column last-column">
         <ul>
-          <li *ngIf="currentUser == null">
+          <li *ngIf="currentUser == null" class="double-space">
             <a routerLink="/register" routerLinkActive="active">
-              <span class="glyphicon glyphicon-log-in"></span> Rejestracja / Logowanie
+              <span class="glyphicon glyphicon-log-in"></span> Rejestracja&nbsp;/&nbsp;Logowanie
             </a>
           </li>
           <li *ngIf="currentUser != null">

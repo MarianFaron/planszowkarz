@@ -129,8 +129,7 @@ header {
             list-style: none;
             @include display-flex;
             @include justify-content(center);
-            @include flex-basis(30%);
-            width: 30%;
+            width: 50%;
 
             a {
               color: $pl-white;
@@ -156,6 +155,10 @@ header {
         li {
           @include justify-content(flex-end);
         }
+
+        li.double-space {
+          width: 100%;
+        }        
       }
 
       .logo-column {
@@ -281,128 +284,121 @@ header {
 footer {
   width: 100%;
   margin: 0;
-  background: $pl-dark-gray;
-  padding: 35px 15px;
+  background: $pl-mid-gray;
+  padding: 35px 0;
   min-height: 200px;
 
-  .container {
-    padding: 0;
-    margin: 0 auto;
-    max-width: 1440px;
-    width: 100%;
+  .section-row:first-child {
+    margin: 0 0 30px;
 
-    .section-row:first-child {
-      margin: 0 0 30px;
+    @include respond-to(mobile) {
+      margin: 0;
 
-      @include respond-to(mobile) {
-        margin: 0;
+    }
+  }
 
-      }
+  .section-row {
+    @include display-flex;
+    @include justify-content(space-between);
+    @include align-items(center);
+    margin: 0;
+    min-height: 50px;
+
+    @include respond-to(mobile) {
+      @include flex-direction(column);
+      @include justify-content(center);
+
     }
 
-    .section-row {
+    .section-column {
+      flex-basis: 50%;
+      width: 50%;
       @include display-flex;
-      @include justify-content(space-between);
-      @include align-items(center);
-      margin: 0;
-      min-height: 50px;
 
       @include respond-to(mobile) {
-        @include flex-direction(column);
         @include justify-content(center);
+        flex-basis: 100%;
+        width: 100%;
 
       }
 
-      .section-column {
-        flex-basis: 50%;
-        width: 50%;
+      a {
+        color: $pl-white;
+
+      }
+
+      a:hover,
+      a:focus,
+      a:active {
+        color: rgba($pl-white, 0.5);
+        text-decoration: none;
+
+      }
+      
+      a.logo {
+        @include font-size(18);
+
+        line-height: 20px;
+        cursor: pointer;
+        text-decoration: none;
+
+        img {
+          max-width: 50px;
+          display: inline-block;
+          margin-right: 10px;
+          padding: 5px;
+
+        }
+      }
+
+      ul {
         @include display-flex;
+        @include justify-content(space-between);
+        list-style-type: none;
+        margin: 0;
 
-        @include respond-to(mobile) {
-          @include justify-content(center);
-          flex-basis: 100%;
-          width: 100%;
-
-        }
-
-        a {
-          color: $pl-white;
-
-        }
-
-        a:hover,
-        a:focus,
-        a:active {
-          color: rgba($pl-white, 0.5);
-          text-decoration: none;
+        @include respond-to(small-mobile) {
+          @include flex-direction(column);
 
         }
         
-        a.logo {
-          @include font-size(18);
-
-          line-height: 20px;
-          cursor: pointer;
-          text-decoration: none;
-
-          img {
-            max-width: 50px;
-            display: inline-block;
-            margin-right: 10px;
-            padding: 5px;
-
-          }
-        }
-
-        ul {
+        li {
           @include display-flex;
-          @include justify-content(space-between);
-          list-style-type: none;
+          @include align-items(center);
+          @include justify-content(flex-end);
+          min-height: 50px;
           margin: 0;
+          min-width: 100px;
 
-          @include respond-to(small-mobile) {
-            @include flex-direction(column);
+          a {
+            @include font-size(14);
 
-          }
-          
-          li {
-            @include display-flex;
-            @include align-items(center);
-            @include justify-content(center);
-            min-height: 50px;
-            margin: 0;
-            min-width: 100px;
-
-            a {
-              @include font-size(14);
-
-              line-height: 20px;
-              text-transform: uppercase;
-              
-            }
+            line-height: 20px;
+            text-transform: uppercase;
+            
           }
         }
       }
+    }
 
-      .section-column:last-child {
-        @include justify-content(flex-end);
+    .section-column:last-child {
+      @include justify-content(flex-end);
 
-        @include respond-to(mobile) {
-          @include justify-content(center);
-
-        }
-      }
-
-      span {
-        color: rgba($pl-white, 0.5);
+      @include respond-to(mobile) {
+        @include justify-content(center);
 
       }
     }
 
-    .center-content {
-      @include display-flex;
-      @include justify-content(center);
+    span {
+      color: rgba($pl-white, 0.5);
+
     }
+  }
+
+  .center-content {
+    @include display-flex;
+    @include justify-content(center);
   }
 }
 

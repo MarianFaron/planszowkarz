@@ -1,6 +1,11 @@
 @import '../../scss/colors';
 @import '../../scss/mixins';
 
+
+.user-info-panel {
+  margin: 0 0 50px;
+}
+
 .inner {
   background: $pl-white;
   box-shadow: 2px 2px 1px $pl-light-gray2;
