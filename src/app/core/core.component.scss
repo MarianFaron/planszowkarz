@@ -10,10 +10,8 @@ section#main-banner {
   margin: -20px 0 0;
 
   .banner-background {
-    background-image: url("../assets/images/banner.jpg");
-    background-position: 50% 50%;
+    background: url("../assets/images/banner.jpg") top center fixed;
     background-size: cover;
-    background-attachment: fixed;
     width: 100%;
     padding: 0;
     height: 550px;
@@ -29,13 +27,11 @@ section#main-banner {
       min-height: 400px;
       height: 100%;
       background-position: 90% 50%;
-
     }
 
     @include respond-to(small-mobile) {
       height: calc(100vh - 56px);
       max-height: 400px;
-
     }
   }
 
@@ -53,7 +49,6 @@ section#main-banner {
 
     @include respond-to(mobile) {
       padding: 25px 15px;
-
     }
 
     .container {
@@ -62,7 +57,6 @@ section#main-banner {
         margin: 0 auto;
         max-width: 768px;
         width: 100%;
-
       }
 
       .banner-header {
@@ -94,7 +88,6 @@ section#main-banner {
 
             line-height: 26px;
           }
-
         }
 
         h2 {
@@ -134,7 +127,6 @@ section#hoToMakeExchange {
 
   @include respond-to(mobile) {
     padding: 50px 15px 10px;
-
   }
 
   h2 {
@@ -149,7 +141,6 @@ section#hoToMakeExchange {
 
   .main-hr {
     margin: 20px auto;
-
   }
 }
 
@@ -190,7 +181,6 @@ section#newGames {
         h3:focus,
         h3:hover{
             color: $pl-orange;
-
         }
 
         img {
@@ -212,7 +202,6 @@ section#newGames {
 
         div:nth-child(2) {
           margin: 4px 0 3px 10px;
-
         }
       }
 
@@ -225,18 +214,15 @@ section#newGames {
         &-user {
           @include pet-icon-after($pl-user);
           margin: 0 3px;
-
         }
 
         &-marker {
           @include pet-icon-after($pl-map-marker);
           margin: 0 4px;
-
         }
 
         &-date {
           @include pet-icon-after($pl-calendar);
-
         }
       }
     }
@@ -250,7 +236,6 @@ section#hoToMakeExchange {
 
   @include respond-to(mobile) {
     padding: 50px 15px;
-
   }
 
     .section-wrapper {
@@ -286,7 +271,6 @@ section#hoToMakeExchange {
 
             width: 60px;
             height: 60px;
-
           }
         }
 
@@ -307,15 +291,12 @@ section#goToRegister {
   margin: -20px 0 0;
 
   .section-background {
-    background-image: url("../assets/images/banner2.jpg");
-    background-position: center center;
+    background: url("../assets/images/banner2.jpg") top center fixed;
     background-size: cover;
-    background-attachment: fixed;
     width: 100%;
     padding: 0;
     height: 300px;
     opacity: 0.7;
-
   }
 
   .section-container {

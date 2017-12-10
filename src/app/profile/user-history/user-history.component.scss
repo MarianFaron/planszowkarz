@@ -111,13 +111,12 @@ $custom-mobile-breakpoint: 580px;
         flex-direction: column;
         width: calc(50% - 50px);
         @include respond-to(mobile) {
-          width: 100%;
-          
+          width: 100%;          
         }
+
         p {
           text-align: center;
           line-height: 24px;
-
         }        
       }
 
@@ -128,13 +127,12 @@ $custom-mobile-breakpoint: 580px;
         align-items: center;
         @include respond-to(mobile) {
           padding: 15px 0;
-
         }
+
         img {
           margin: 0;
           width: 60px;
           height: 60px;
-
         }
       }
 
@@ -142,7 +140,6 @@ $custom-mobile-breakpoint: 580px;
         margin: 0;
         color: $pl-orange;
         font-weight: 600;
-
       }
 
       .transaction-form {
@@ -152,7 +149,6 @@ $custom-mobile-breakpoint: 580px;
         span.cr {
           border: 1px solid $pl-orange;
         }
-
       }
 
       li {
@@ -175,21 +171,19 @@ $custom-mobile-breakpoint: 580px;
 
     .transaction-center-row {
       justify-content: center;
-
     }
 
     .transaction-vertical-row {
       flex-direction: column;
-
     }
 
     .transaction-row-padding {
       padding: 15px 0;
       min-height: 80px;
+
       @include respond-to(mobile) {
         flex-direction: column;
         align-items: center;
-
       }
     }
   }
@@ -201,9 +195,9 @@ $custom-mobile-breakpoint: 580px;
     .transaction-row{
       display: flex;
       justify-content: space-between;
+
       @include respond-to(mobile) {
         flex-direction: column;
-
       }
 
       .transaction-column {
@@ -220,20 +214,17 @@ $custom-mobile-breakpoint: 580px;
         }
 
         .btn-color {
-          border: 1px solid $pl-dark-gray3;
-          
+          border: 1px solid $pl-dark-gray3;          
         }
 
         .btn:first-child{
           margin: 0 15px 0 0;
-
         }
       }
 
       .transaction-column-margin {
         @include respond-to(mobile) {
           margin: 0 0 10px;
-
         }
       }
     }
@@ -243,13 +234,11 @@ $custom-mobile-breakpoint: 580px;
     margin: 0;
     line-height: 32px;
     display: inline-block;
-
   }
 
   p.transaction-paragraph {
     line-height: 24px;
     margin: 0 0 6px;
-
   }
 
   p.bigTitle{
