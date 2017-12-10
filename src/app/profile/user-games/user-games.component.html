@@ -1,11 +1,9 @@
 <div class="games-main-panel">
 	<div class="games-info">
 		<div class="games-panel-header inner" data-aos="fade-up">
-				<div class="button-add-new-game">
-					<button class="btn right custom-button" data-toggle="modal" data-target="#add-game">
-						<span class="icon icon-add" aria-hidden="true"></span> Dodaj
-					</button>
-				</div>
+				<button class="btn right custom-button" data-toggle="modal" data-target="#add-game">
+					<span class="icon icon-add" aria-hidden="true"></span> Dodaj grę
+				</button>
 		</div>
 		<div class="games-panel-content">
 			<div *ngIf="!pagedItems">
@@ -29,11 +27,11 @@
 					      <p><strong>Kategoria: </strong>{{ game.category }}</p>
 					      <p><strong>Stan: </strong>{{ game.state }}</p>
 					      <div class="game-info-buttons">
-					        <button class="btn btn-default"
+					        <button class="btn btn-color"
 					            data-toggle="modal" attr.data-target="#edit-game-{{game._id}}">
 					          <span class="icon icon-edit" aria-hidden="true"></span>Edytuj
 					        </button>
-					        <button class="btn btn-default btn-remove-game"
+					        <button class="btn btn-color btn-remove-game"
 					            data-toggle="modal" attr.data-target="#remove-game-{{game._id}}">
 					          <span class="icon icon-trash" aria-hidden="true"></span>Usuń
 					        </button>
@@ -53,8 +51,8 @@
 				              <h4 class="modal-title">Edytuj grę</h4>
 				            </div>
 				            <div class="modal-body">
-				              <div class="modal-top">
-				                <div class="left-column">
+				              <div class="section-top">
+				                <div class="section-column">
 				                  <div class="form-group">
 				                    <label>Tytuł</label>
 				                    <input class="form-control" value="{{game.title}}" #userGameTitle />
@@ -83,7 +81,7 @@
 				                    </select>
 				                  </div>
 				                </div>
-				                <div class="right-column">
+				                <div class="section-column">
 				                  <div class="edit-img-box form-group">
 				                    <label class="image-label">Zdjęcie</label>
 				                    <div class="game-image center-image">

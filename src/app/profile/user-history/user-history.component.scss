@@ -40,6 +40,8 @@ $custom-mobile-breakpoint: 580px;
         a {
           color: $pl-dark-gray;
           font-weight: normal;
+          @include font-size(14);
+          
           @media only screen and (max-width: 678px) {
             @include display-flex;
             @include justify-content(center);
@@ -213,8 +215,13 @@ $custom-mobile-breakpoint: 580px;
           height: 32px;
           font-weight: 500;
 
-          @include font-size(12);
+          @include font-size(13);
 
+        }
+
+        .btn-color {
+          border: 1px solid $pl-dark-gray3;
+          
         }
 
         .btn:first-child{

@@ -6,70 +6,56 @@
   margin: 10px 0 0;
   display: block;
 
+  .btn {
+    margin: 0;
+    padding: 0;
+    width: 100px;
+    height: 32px;
+    font-weight: 500;
+
+    @include font-size(13);
+
+  }
+
+  .btn-color {
+    background-color: $pl-light-gray;
+    border: 1px solid $pl-dark-gray3;
+  }
+
   .games-info {
-    margin-bottom: 40px;
+    margin: 0 0 40px;
 
     .games-panel-header {
-      margin: 0;
-      margin-bottom: 10px;
-      padding: 0 20px 15px 0;
-      height: 50px;
-      display: block;
+      margin: 0 0 15px;
+      padding: 10px 15px;
+      min-height: 50px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
 
-      h5 {
-        @include font-size(24);
+      .icon {
+        @include font-size(12);
 
-        letter-spacing: -0.02em;
-        line-height: 30px;
-        display: inline-block;
-      }
-
-      .button-add-new-game {
-        float: right;
-        height: 100%;
-        @include display-flex;
-        @include justify-content(center);
-        @include align-items(center);
-
-        .custom-button {
-          padding: 0 12px 5px;
-        }
-
-        .icon {
-          @include font-size(18);
-
-          position: relative;
-          top: 3px;
-          left: -2px;
-
-          &-add {
-            @include pet-icon-after($pl-plus);
-          }
+        &-add {
+          @include pet-icon-after($pl-plus);
         }
       }
-    }
-
-    hr.style1{
-      border-top: 1px solid $pl-orange;
-      margin: 5px 3%;
     }
 
     .games-panel-content {
       display: block;
 
       .single-game-box {
-        margin-bottom: 15px;
+        margin: 0 0 15px;
         width: 100%;
         min-height: 130px;
-        display: table;
 
         .single-box-content {
-          padding: 10px 20px;
+          padding: 10px 15px;
           width: 100%;
-          @include display-inline-flex;
+          @include display-flex;
 
-          @media screen and (max-width: 400px) {
-            @include display-flex;
+          @include respond-to(small-mobile) {
             @include flex-direction(column);
             text-align: center;
           }
@@ -78,12 +64,11 @@
             @include display-flex;
             @include justify-content(center);
             @include align-items(center);
-            vertical-align: middle;
             width: 160px;
             height: 120px;
             border: 1px solid $pl-light-gray;
 
-            @media screen and (max-width: 400px){
+            @include respond-to(small-mobile) {
               display: block;
               margin: 0 auto;
             }
@@ -91,7 +76,7 @@
             img {
               background-position: top;
               max-height: 116px;
-              max-width: 116px;
+              max-width: 156px;
               position: relative;
               margin: auto;
             }
@@ -104,7 +89,7 @@
             @include flex-direction(column);
             @include flex-wrap(wrap);
 
-            @media screen and (max-width: 400px) {
+            @include respond-to(small-mobile) {
               margin: 0;
               width: 100%;
             }
@@ -114,7 +99,7 @@
               @include display-flex;
               @include align-items(center);
 
-              @media screen and (max-width: 400px) {
+              @include respond-to(small-mobile) {
                 @include justify-content(center);
                 min-height: auto;
                 margin: 20px 0;
@@ -144,15 +129,11 @@
               @include justify-content(flex-end);
               margin-top: 20px;
 
-              @media screen and (max-width: 400px) {
+              @include respond-to(small-mobile) {
                 @include justify-content(center);
               }
 
-              button {
-                width: 80px;
-                background-color: $pl-light-gray;
-                border-radius: 5px;
-                border: none;
+              .btn {
                 margin-left: 5px;
 
                 span {
@@ -167,7 +148,6 @@
 
                   &-edit {
                     @include pet-icon-after($pl-pencil-square-o);
-
                   }
 
                   &-trash {
@@ -191,113 +171,103 @@
   }
 }
 
-/* Edit game */
+.section-top {
+  @include display-flex;
 
-.modal-body {
-  .modal-top {
+  @include respond-to(small-mobile) {
+    @include flex-direction(column);
+  }
+
+  .section-column {
+    width: 50%;
     @include display-flex;
+    @include flex-direction(column);
 
-    @media screen and (max-width: 500px) {
-      @include flex-direction(column);
+    @include respond-to(small-mobile) {
+      width: 100%;
     }
 
-    .left-column {
-      width: 50%;
-      @include display-flex;
-      @include flex-direction(column);
+    .form-group .alert-danger {
+      @include font-size(13);
 
-      @media screen and (max-width: 500px) {
-        width: 100%;
-      }
+      border-radius: 0;
+      border: none;
+      color: $pl-red;
+      background-color: $pl-white;
+      font-weight: 600;
+      padding: 5px;
+      margin: 0;
+    }
 
-      .form-group .alert-danger {
-        @include font-size(13);
+    input,
+    select {
+      max-width: 320px;
 
-        border-radius: 0;
-        border: none;
-        color: $pl-red;
-        background-color: $pl-white;
-        font-weight: 600;
-        padding: 5px;
-        margin: 0;
-      }
-
-      input,
-      select {
-        max-width: 320px;
-
-        @media screen and (max-width: 500px) {
-          margin: 0 auto;
-        }
+      @include respond-to(small-mobile) {
+        margin: 0 auto;
       }
     }
 
-    .right-column {
-      width: 50%;
+    .edit-img-box {
       @include display-flex;
       @include flex-direction(column);
 
-      @media screen and (max-width: 500px) {
-        width: 100%;
-      }
-
-      .edit-img-box {
+      .center-image {
         @include display-flex;
-        @include flex-direction(column);
+        @include align-self(center);
+      }
+    }
 
-        .center-image {
-          @include display-flex;
-          @include align-self(center);
-        }
+    .input-file {
+      #change-photo {
+        margin-top: 9px;
       }
 
-      .input-file {
-        #change-photo {
-          margin-top: 9px;
+      .center-button {
+        @include display-flex;
+        @include justify-content(center);
+
+        .inputfile {
+          width: 0.1px;
+          height: 0.1px;
+          opacity: 0;
+          overflow: hidden;
+          position: absolute;
+          z-index: -1;
         }
 
-        .center-button {
-          @include display-flex;
-          @include justify-content(center);
+        .inputfile + label {
+          @include font-size(13);
 
-          .inputfile {
-            width: 0.1px;
-            height: 0.1px;
-            opacity: 0;
-            overflow: hidden;
-            position: absolute;
-            z-index: -1;
-          }
+          font-weight: 500;
+          padding: 0;
+          margin: 0;
+          width: 150px;
+          height: 32px;
+          color: $pl-white;
+          background: $pl-orange;
+          border: none;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
 
-          .inputfile + label {
-            @include font-size(14);
-
-            color: $pl-white;
-            background: $pl-orange;
-            font-weight: 500;
-            border: none;
-            min-width: 100px;
-            padding: 6px 12px;
-            border-radius: 4px;
-            width: 160px;
-            cursor: pointer;
-          }
-
-          i {
-            margin-right: 10px;
-          }
+        i {
+          margin-right: 10px;
         }
       }
     }
   }
+}
 
-  textarea {
-    max-width: 100%;
-    margin: 0 auto;
+textarea {
+  max-width: 100%;
+  margin: 0 auto;
 
-    @media screen and (max-width: 500px) {
-      width: 320px;
-    }
+  @include respond-to(small-mobile) {
+    width: 320px;
   }
 }
 
@@ -307,4 +277,17 @@
 
 .form-group label.image-label {
   text-align: center;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+
+  @include respond-to(small-mobile) {
+    justify-content: center;
+  }
+
+  .btn {
+    margin-left: 5px;
+  }
 }

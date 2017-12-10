@@ -16,17 +16,17 @@
             </div>
             <div class="transaction-row transaction-row-padding">
                 <div class="transaction-column">
-                    <p><strong>Nazwa gry</strong>
-                    <p *ngIf="history?.senderGame">{{history?.senderGame}}</p>
-                    <p *ngIf="!history?.senderGame">Nie wybrano gry</p>
+                    <p>Nazwa gry</p>
+                    <p *ngIf="history?.senderGame"><strong>{{history?.senderGame}}</strong></p>
+                    <p *ngIf="!history?.senderGame"><strong>Nie wybrano gry</strong></p>
                 </div>
                 <div class="arrow-box">
                     <img src="{{this.appService.getUrl('/assets/images/arrows.png')}}" />
                 </div>
                 <div class="transaction-column">
-                    <p><strong>Nazwa gry</strong></p>
-                    <p *ngIf="history?.recipientGame.title">{{history?.recipientGame.title}}</p>
-                    <p *ngIf="!history?.recipientGame.title">Nie wybrano gry</p>
+                    <p>Nazwa gry</p>
+                    <p *ngIf="history?.recipientGame.title"><strong>{{history?.recipientGame.title}}</strong></p>
+                    <p *ngIf="!history?.recipientGame.title"><strong>Nie wybrano gry</strong></p>
                     <p></p>
                 </div>
             </div>

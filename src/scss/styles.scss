@@ -50,7 +50,8 @@ textarea.form-control {
   @include box-shadow(0,0,0,0,$pl-white,false);
 }
 
-input {
+input,
+select {
   height: 40px!important;
   line-height: 40px!important;
 }
