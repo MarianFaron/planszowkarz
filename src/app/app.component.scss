@@ -135,7 +135,6 @@ header {
               color: $pl-white;
               cursor: pointer;
               text-decoration: none;
-
             }
           }
         }
@@ -184,7 +183,6 @@ header {
             display: inline-block;
             margin-right: 10px;
             padding: 5px;
-
           }
         }
       }
@@ -293,7 +291,6 @@ footer {
 
     @include respond-to(mobile) {
       margin: 0;
-
     }
   }
 
@@ -307,7 +304,6 @@ footer {
     @include respond-to(mobile) {
       @include flex-direction(column);
       @include justify-content(center);
-
     }
 
     .section-column {
@@ -319,12 +315,10 @@ footer {
         @include justify-content(center);
         flex-basis: 100%;
         width: 100%;
-
       }
 
       a {
         color: $pl-white;
-
       }
 
       a:hover,
@@ -332,7 +326,6 @@ footer {
       a:active {
         color: rgba($pl-white, 0.5);
         text-decoration: none;
-
       }
       
       a.logo {
@@ -347,7 +340,6 @@ footer {
           display: inline-block;
           margin-right: 10px;
           padding: 5px;
-
         }
       }
 
@@ -359,7 +351,6 @@ footer {
 
         @include respond-to(small-mobile) {
           @include flex-direction(column);
-
         }
         
         li {
@@ -374,8 +365,7 @@ footer {
             @include font-size(14);
 
             line-height: 20px;
-            text-transform: uppercase;
-            
+            text-transform: uppercase;            
           }
         }
       }
@@ -392,13 +382,12 @@ footer {
 
     span {
       color: rgba($pl-white, 0.5);
-
     }
   }
 
   .center-content {
     @include display-flex;
-    @include justify-content(center);
+    @include justify-content(center);    
   }
 }
 

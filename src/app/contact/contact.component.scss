@@ -1,71 +1,72 @@
 @import '../../scss/mixins';
 @import '../../scss/colors';
 
+#contactPage{
+    margin: 0 0 50px;
 
-.section-container{
-    background: #FFF;
-    box-shadow: 2px 2px 1px #d8d8d8;
-    margin: 15px auto;
-    padding: 20px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 480px;
+    .section-container{
+        background: $pl-white;
+        box-shadow: 2px 2px 1px $pl-gray;
+        margin: 15px auto;
+        padding: 20px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 480px;
 
-    .section-wrapper{
-        @include display-flex;
-        @include flex-direction(column);
-        width: 100%;
-
-        h4{
-            @include font-size(22);
-
-            line-height: 24px;
-            margin: 0 0 20px;
-        }
-
-        h5{
-            @include font-size(15);
-            
-            line-height: 20px;
-            margin: 0 0 20px;
-        }
-
-        textarea{
-            min-height: 150px;
-        }
-        
-        .button-row{
+        .section-wrapper{
             @include display-flex;
-            margin: 20px 0 0;
+            @include flex-direction(column);
+            width: 100%;
 
-            .custom-button{
-                margin: 0;
-            }
-        }
+            h4{
+                @include font-size(22);
 
-        .label-row{
-            @include display-flex;
-
-            @media only screen and (max-width: $small-mobile-breakpoint) {
-                @include flex-direction(column);
+                line-height: 24px;
+                margin: 0 0 20px;
             }
 
-            label{
-                width: auto;
+            h5{
+                @include font-size(15);
+                
+                line-height: 20px;
+                margin: 0 0 20px;
+            }
+
+            textarea{
+                min-height: 150px;
             }
             
-            span{
-                margin: 0 0 0 5px;
-                color: $pl-red;
+            .button-row{
+                @include display-flex;
+                margin: 20px 0 0;
+
+                .custom-button{
+                    margin: 0;
+                }
             }
 
-            span.error-message{
-                @media only screen and (max-width: $small-mobile-breakpoint) {
-                   margin: 0 0 5px;
+            .label-row{
+                @include display-flex;
+
+                @include respond-to(small-mobile) {
+                    @include flex-direction(column);
+                }
+
+                label{
+                    width: auto;
+                }
+                
+                span{
+                    margin: 0 0 0 5px;
+                    color: $pl-red;
+                }
+
+                span.error-message{
+                    @include respond-to(small-mobile) {
+                        margin: 0 0 5px;
+                    }
                 }
             }
         }
-
-    
     }
 }
