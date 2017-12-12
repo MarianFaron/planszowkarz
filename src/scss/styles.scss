@@ -92,14 +92,14 @@ textarea:focus {
   min-width: 100px;
   height: 32px;
   @include transition(all ease-in 0.15s);
+
   @include respond-to(desktop) {
-    min-width: 0;
     @include font-size(12);
   }
+
   @include respond-to(mobile) {
     padding: 6px;
     display: block;
-    width: 200px;
     margin: 10px auto;
   }
 }
@@ -131,6 +131,10 @@ textarea:focus {
   background: $pl-orange;
   margin-left: 0;
   width: 60px;
+}
+
+hr {
+  margin-bottom: 10px;
 }
 
 .inner{

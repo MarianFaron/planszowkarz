@@ -4,13 +4,23 @@
             <div class="transaction-row">
                 <p>Data: <strong>{{history?.date| date:'medium'}}</strong></p>
             </div>
-            <div class="transaction-row">
+            <div *ngIf="this.currentUserID != history.recipient._id" class="transaction-row">
                 <p class="transaction-paragraph">Wymiana została zaakceptowana. Skontaktuj się z 
                 <a *ngIf="!history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.local.login}}">
                     {{history?.recipient.local.login}}
                 </a>
                 <a *ngIf="history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.facebook.name}}">
                     {{history?.recipient.facebook.name}}
+                </a>
+                za pomocą czatu by ustalić szczegóły wymiany.
+            </div>
+            <div *ngIf="this.currentUserID != history.sender._id" class="transaction-row">
+                <p class="transaction-paragraph">Wymiana została zaakceptowana. Skontaktuj się z 
+                <a *ngIf="!history?.sender.facebook" class="transaction-link" routerLink="/user-profile/{{history?.sender.local.login}}">
+                    {{history?.sender.local.login}}
+                </a>
+                <a *ngIf="history?.sender.facebook" class="transaction-link" routerLink="/user-profile/{{history?.sender.facebook.name}}">
+                    {{history?.sender.facebook.name}}
                 </a>
                 za pomocą czatu by ustalić szczegóły wymiany.
             </div>

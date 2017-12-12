@@ -18,14 +18,14 @@
       width: 100%;
       padding-top: 15px;
 
-      @media screen and (max-width: 880px){
+      @include respond-to(tablet) {
         flex-flow: wrap column;
       }
 
       .search-bar {
         width: 300px;
 
-        @media screen and (max-width: 880px){
+        @include respond-to(tablet) {
           width: 100%;
         }
 
@@ -38,7 +38,7 @@
             display: inline-block;
             border: 1px solid $pl-gray2;
 
-            @media screen and (max-width: 880px){
+            @include respond-to(tablet) {
               max-width: 270px;
             }
 
@@ -86,18 +86,32 @@
           .column {
             width: 100%;
 
-            @media screen and (max-width: 880px) {
+            @include respond-to(tablet) {
               width: 50%;
             }
 
-            @media screen and (max-width: 500px) {
+            @include respond-to(small-mobile) {
               width: 100%;
+            }
+
+            .custom-checkbox {
+              margin: 0 0 12px;
+
+              label > span {
+                color: $pl-black;
+                cursor: pointer;
+                line-height: 20px;
+                border-radius: 4px;
+                max-width: 250px;
+                font-weight: 400;
+                border: none;
+              }
             }
 
             h3 {
               margin: 0 0 15px;
 
-              @media screen and (max-width: 880px) {
+              @include respond-to(tablet) {
                 margin: 25px 25px 15px;
               }
             }
@@ -109,11 +123,11 @@
 
             .game-categories,
             .game-states {
-              @media screen and (max-width: 880px) {
+              @include respond-to(tablet) {
                 margin-right: 25px;
               }
 
-              @media screen and (max-width: 500px) {
+              @include respond-to(small-mobile) {
                 margin: 0;
               }
 
@@ -131,25 +145,25 @@
           }
 
           .left {
-            @media screen and (max-width: 880px) {
+            @include respond-to(tablet) {
               @include display-flex;
               @include flex-direction(column);
               @include align-items( flex-end);
             }
 
-            @media screen and (max-width: 500px) {
+            @include respond-to(small-mobile) {
               @include align-items(center);
             }
           }
 
           .right {
-            @media screen and (max-width: 880px) {
+            @include respond-to(tablet) {
               @include display-flex;
               @include flex-direction(column);
               @include align-items( flex-start);
             }
 
-            @media screen and (max-width: 500px) {
+            @include respond-to(small-mobile) {
               @include align-items(center);
             }
           }
@@ -162,13 +176,13 @@
             margin: 15px 0;
             text-align: center;
 
-            @media screen and (max-width: 880px){
+            @include respond-to(tablet) {
               width: 100%;
             }
           }
 
           .text-center {
-            @media screen and (max-width: 880px){
+            @include respond-to(tablet) {
               width: 100%;
             }
           }
@@ -187,7 +201,7 @@
         }
 
         .inner:last-child {
-          @media screen and (max-width: 880px){
+          @include respond-to(tablet) {
             @include display-flex;
             @include flex-wrap(wrap);
           }
@@ -198,7 +212,7 @@
         width: calc(100% - 315px);
         margin: 0 0 0 15px;
 
-        @media screen and (max-width: 880px){
+        @include respond-to(tablet) {
           width: 100%;
           margin: 0;
         }
@@ -225,7 +239,7 @@
             height: 120px;
             border: 1px solid $pl-light-gray;
 
-            @media screen and (max-width: 580px){
+            @include respond-to(small-mobile) {
               margin: 0 auto 15px;
             }
 
@@ -245,23 +259,27 @@
             @include justify-content(center);
             padding: 0 20px;
 
-            @media screen and (max-width: 1064px) {
+            @include respond-to(desktop) {
               width: calc(100% - 160px);
             }
 
-            @media screen and (max-width: 880px) {
+            @include respond-to(tablet) {
               width: calc(100% - 300px);
             }
 
-            @media screen and (max-width: 720px) {
+            @include respond-to(mobile) {
               width: calc(100% - 160px);
             }
 
-            @media screen and (max-width: 580px) {
+            @include respond-to(small-mobile) {
               width: 100%;
               text-align: center;
               padding: 0;
               margin: 0 auto;
+            }
+
+            h3 {
+              margin: 0 0 15px;
             }
 
             .single-info {
@@ -270,7 +288,7 @@
               @include align-items(center);
               top: 2px;
 
-              @media screen and (max-width: 580px) {
+              @include respond-to(small-mobile) {
                 margin: 0 auto 5px;
               }
 
@@ -313,24 +331,24 @@
             @include justify-content(center);
             @include align-items(center);
 
-            @media screen and (max-width: 1064px) {
+            @include respond-to(desktop) {
               width: 100%;
             }
 
-            @media screen and (max-width: 880px) {
+            @include respond-to(tablet) {
               width: 140px;
             }
 
-            @media screen and (max-width: 720px) {
+            @include respond-to(mobile) {
               width: 100%;
+              margin: 10px auto;
             }
 
             .game-info-buttons {
-              text-align: right;
-              margin-right: 15px;
+              margin: 0;
 
-              @media (max-width: 580px) {
-                text-align: center;
+              .btn {
+                margin: 0;
               }
             }
           }
