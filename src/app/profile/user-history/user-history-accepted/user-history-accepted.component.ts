@@ -6,6 +6,7 @@ import { UserHistoryService } from '../user-history.service';
 import { ChatService } from '../../../chat/chat.service';
 
 
+
 @Component({
   selector: 'app-user-history-accepted',
   templateUrl: './user-history-accepted.component.html',
@@ -14,21 +15,23 @@ import { ChatService } from '../../../chat/chat.service';
 })
 export class UserHistoryAcceptedComponent implements OnInit {
 
-  	userHistory: UserHistory[];
+  userHistory: UserHistory[];
 	errorMessage: string;
 
-  	constructor(private http: Http, private chatService: ChatService, private appService: AppService, private userHistoryService: UserHistoryService) { }
+	currentUserID: string;
 
-  	ngOnInit() {
-  		this.getUserHistory();
-  	}
+	constructor(private http: Http, private chatService: ChatService, private appService: AppService, private userHistoryService: UserHistoryService) { }
+
+	ngOnInit() {
+		this.getUserHistory();
+	}
 
 	getUserHistory() {
 
 	  var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-	  var userID = currentUser._id;
+	  this.currentUserID = currentUser._id;
 
-	  this.userHistoryService.getHistoryExchanges(userID)
+	  this.userHistoryService.getHistoryExchanges(this.currentUserID)
 	                    .subscribe(
 	                      userHistory => {
 	                        this.userHistory = userHistory;
@@ -44,5 +47,6 @@ export class UserHistoryAcceptedComponent implements OnInit {
         window.location.replace('/chat/'+chat[0]._id);
       },
       error => this.errorMessage = <any>error);;
-  }
+	}
+	
 }

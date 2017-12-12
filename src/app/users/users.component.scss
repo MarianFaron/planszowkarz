@@ -1,6 +1,11 @@
 @import '../../scss/colors';
 @import '../../scss/mixins';
 
+
+.user-info-panel {
+  margin: 0 0 50px;
+}
+
 .inner {
   background: $pl-white;
   box-shadow: 2px 2px 1px $pl-light-gray2;
@@ -24,11 +29,6 @@
 
     border-radius: 0;
     border: none;
-    //color: white;
-    //font-weight: 500;
-    //font-size: 16px;
-    //background: url("../../assets/images/icons/alert.png") no-repeat center right;
-    //background-color: #F44336;
     color: $pl-red;
     background-color: $pl-white;
     font-weight: 600;

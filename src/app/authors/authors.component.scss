@@ -1,174 +1,177 @@
 @import '../../scss/mixins';
 @import '../../scss/colors';
 
-.section-container {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 50px auto -30px;
-  justify-content: center;
-  align-items: center;
+#authorsPage {
+  margin: 0 0 50px;
+  
+  .section-container {
+    @include display-flex;
+    @include flex-wrap(wrap);
+    @include justify-content(space-between);
+    @include align-items(center);
 
-  .author-card {
-    @include font-size(14);
+    .author-card {
+      @include font-size(14);
 
-    background: $pl-white;
-    border-radius: 3px;
-    box-shadow: 0 3px 7px -3px rgba($pl-black, 0.3);
-    margin: 10px;
-    overflow: hidden;
-    position: relative;
-    line-height: 1.45em;
-    height: 200px;
-    width: 45%;
-
-    @include respond-to(mobile) {
-      width: 80%;
-    }
-
-    @include respond-to(small-mobile) {
-      width: 70%;
-      height: 350px;
-    }
-
-    &:hover .author-photo {
-      transform: scale(1.1);
-
-      @include respond-to(small-mobile) {
-        transform: none;
-      }
-    }
-
-    .author-photo {
-      float: left;
-      height: 100%;
-      width: 40%;
+      background: $pl-white;
+      border-radius: 3px;
+      box-shadow: 0 3px 7px -3px rgba($pl-black, 0.3);
+      margin: 10px 0;
+      overflow: hidden;
       position: relative;
-      transition: 0.3s ease;
+      line-height: 1.45em;
+      height: 200px;
+      width: 45%;
+
+      @include respond-to(mobile) {
+        width: 80%;
+      }
 
       @include respond-to(small-mobile) {
-        width: 100%;
-        height: 60%;
-        transition: none;
+        width: 70%;
+        height: 350px;
       }
 
-      &.photo1 {
-        background: url("../../assets/images/photo1.jpg") 50% 35% no-repeat;
-        background-size: cover;
+      &:hover .author-photo {
+        transform: scale(1.1);
 
         @include respond-to(small-mobile) {
-          background-position: 50% 40%;
+          transform: none;
         }
       }
 
-      &.photo2 {
-        background: url("http://i62.tinypic.com/34oq4o0.jpg") center no-repeat;
-        background-size: cover;
-      }
-
-      &.photo3 {
-        background: url("http://i62.tinypic.com/34oq4o0.jpg") center no-repeat;
-        background-size: cover;
-      }
-
-      &.photo4 {
-        background: url("http://i62.tinypic.com/34oq4o0.jpg") center no-repeat;
-        background-size: cover;
-      }
-    }
-
-    .author-description {
-      padding: 42px 10px;
-      box-sizing: border-box;
-      position: relative;
-      float: left;
-      width: 60%;
-      z-index: 0;
-
-      @include respond-to(small-mobile) {
-        padding-top: 20px;
-        width: 100%;
-        text-align: center;
-      }
-
-      &:before {
-        transform: skewX(-5deg);
-        content: "";
-        background: $pl-white;
-        width: 100%;
-        z-index: -1;
-        position: absolute;
-        left: -15px;
-        top: -10px;
-        bottom: 0;
-        padding: 10px 0;
-
-        @include respond-to(tablet) {
-          bottom: -5px;
-        }
-
-        @include respond-to(small-mobile) {
-          visibility: hidden;
-        }
-      }
-
-      h1 {
-        @include font-size(28);
-
-        font-weight: 400;
-        margin: 0 0 10px;
-
-        @include respond-to(desktop) {
-          @include font-size(25)
-        }
-
-        @include respond-to(tablet) {
-          @include font-size(20);
-        }
-
-        @include respond-to(small-mobile) {
-          margin: 0;
-        }
-      }
-
-      h2 {
-        @include font-size(12);
-
-        color: $pl-black / 1.5;
-        line-height: 1.2em;
-        text-transform: uppercase;
-        font-weight: 400;
-        margin: 5px 0;
-
-        @include respond-to(small-mobile) {
-          margin-bottom: 0;
-        }
-      }
-
-      p {
+      .author-photo {
+        float: left;
+        height: 100%;
+        width: 40%;
         position: relative;
-        margin: 0;
-        padding-top: 20px;
+        transition: 0.3s ease;
 
-        @include respond-to(desktop) {
-          @include font-size(13);
+        @include respond-to(small-mobile) {
+          width: 100%;
+          height: 60%;
+          transition: none;
         }
 
-        &:nth-of-type(2) {
-          padding-top: 0px;
-        }
-
-        &:first-of-type:after {
-          content: "";
-          background: $pl-orange;
-          height: 6px;
-          width: 40px;
-          position: absolute;
-          top: 6px;
-          left: 0;
+        &.photo1 {
+          background: url("../../assets/images/photo1.jpg") 50% 35% no-repeat;
+          background-size: cover;
 
           @include respond-to(small-mobile) {
-            height: 2px;
-            width: 100%;
+            background-position: 50% 40%;
+          }
+        }
+
+        &.photo2 {
+          background: url("http://i62.tinypic.com/34oq4o0.jpg") center no-repeat;
+          background-size: cover;
+        }
+
+        &.photo3 {
+          background: url("http://i62.tinypic.com/34oq4o0.jpg") center no-repeat;
+          background-size: cover;
+        }
+
+        &.photo4 {
+          background: url("http://i62.tinypic.com/34oq4o0.jpg") center no-repeat;
+          background-size: cover;
+        }
+      }
+
+      .author-description {
+        padding: 42px 10px;
+        box-sizing: border-box;
+        position: relative;
+        float: left;
+        width: 60%;
+        z-index: 0;
+
+        @include respond-to(small-mobile) {
+          padding-top: 20px;
+          width: 100%;
+          text-align: center;
+        }
+
+        &:before {
+          transform: skewX(-5deg);
+          content: "";
+          background: $pl-white;
+          width: 100%;
+          z-index: -1;
+          position: absolute;
+          left: -15px;
+          top: -10px;
+          bottom: 0;
+          padding: 10px 0;
+
+          @include respond-to(tablet) {
+            bottom: -5px;
+          }
+
+          @include respond-to(small-mobile) {
+            visibility: hidden;
+          }
+        }
+
+        h1 {
+          @include font-size(28);
+
+          font-weight: 400;
+          margin: 0 0 10px;
+
+          @include respond-to(desktop) {
+            @include font-size(25)
+          }
+
+          @include respond-to(tablet) {
+            @include font-size(20);
+          }
+
+          @include respond-to(small-mobile) {
+            margin: 0;
+          }
+        }
+
+        h2 {
+          @include font-size(12);
+
+          color: $pl-black / 1.5;
+          line-height: 1.2em;
+          text-transform: uppercase;
+          font-weight: 400;
+          margin: 5px 0;
+
+          @include respond-to(small-mobile) {
+            margin-bottom: 0;
+          }
+        }
+
+        p {
+          position: relative;
+          margin: 0;
+          padding-top: 20px;
+
+          @include respond-to(desktop) {
+            @include font-size(13);
+          }
+
+          &:nth-of-type(2) {
+            padding-top: 0px;
+          }
+
+          &:first-of-type:after {
+            content: "";
+            background: $pl-orange;
+            height: 6px;
+            width: 40px;
+            position: absolute;
+            top: 6px;
+            left: 0;
+
+            @include respond-to(small-mobile) {
+              height: 2px;
+              width: 100%;
+            }
           }
         }
       }

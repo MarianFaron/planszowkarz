@@ -1,14 +1,16 @@
 <section id="game-details">
+
 	<div class="game-details-box">
+		<div class="container">
+			<h3 class="section-header">{{ userGame?.title }}</h3>
+			<hr class="main-hr">
+		</div>
 		<div *ngIf="!userGame" class="container">
 			<div class="text-center">
 				<img src="../../assets/images/loading.gif" alt="" class="loading">
 			</div>
 		</div>
 		<div *ngIf="userGame" class="container inner">
-			<div class="game-title">
-				<h1>{{ userGame?.title }}</h1>
-			</div>
 			<div class="game-box">
 				<div class="left-col">
 					<div class="gallery-box">
@@ -23,9 +25,9 @@
 						<div class="owner">
 							<span class="detail-row">
 								<span class="detail-label">Właściciel</span>
-								<span *ngIf="userGame?.userID.facebook" 
+								<span *ngIf="userGame?.userID.facebook"
 									class="detail-value">{{ userGame?.userID.facebook.name }}</span>
-								<span *ngIf="!userGame?.userID.facebook" 
+								<span *ngIf="!userGame?.userID.facebook"
 									class="detail-value">{{ userGame?.userID.local.login }}</span>
 							</span>
 							<span class="detail-row">
@@ -45,7 +47,7 @@
 				</div>
 			</div>
 			<div class="exchange-button" *ngIf="this.appService.isLoggedIn()">
-		        <button *ngIf="this.appService.getCurrentUser()._id != userGame?.userID._id" 
+		        <button *ngIf="this.appService.getCurrentUser()._id != userGame?.userID._id"
 		        routerLink="/exchange/{{ userGame?._id }}" type="button" class="btn btn-default custom-button">Wymień się!</button>
 			</div>
 			<!--

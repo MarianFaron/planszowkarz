@@ -8,14 +8,12 @@
 
   a {
     color: $pl-dark-gray;
-    // text-decoration: underline;
   }
 
   a:active,
   a:focus,
   a:hover {
     color: $pl-orange;
-    // text-decoration: underline;
   }
 }
 
@@ -76,9 +74,9 @@
   .button-add-new-game {
     float: right;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include display-flex;
+    @include justify-content(center);
+    @include align-items(center);
   }
 }
 
@@ -99,10 +97,10 @@ hr.style1 {
       padding: 15px;
       margin-bottom: 15px;
       width: 100%;
-      display: inline-flex;
+      @include display-inline-flex;
 
       .game-image {
-        display: flex;
+        @include display-flex;
         vertical-align: middle;
         width: 120px;
         height: 120px;
@@ -160,18 +158,18 @@ hr.style1 {
     .single-box-content {
       padding: 10px 20px;
       width: 100%;
-      display: inline-flex;
+      @include display-inline-flex;
 
       @media screen and (max-width: 400px) {
-        display: flex;
-        flex-direction: column;
+        @include display-flex;
+        @include flex-direction(column);
         text-align: center;
       }
 
       .game-image {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include display-flex;
+        @include justify-content(center);
+        @include align-items(center);
         vertical-align: middle;
         width: 160px;
         height: 120px;
@@ -194,9 +192,9 @@ hr.style1 {
       .game-info {
         margin-left: 30px;
         width: calc(100% - 150px);
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
+        @include display-flex;
+        @include flex-direction(column);
+        @include flex-wrap(wrap);
 
         @media screen and (max-width: 400px) {
           margin: 0;
@@ -205,12 +203,12 @@ hr.style1 {
 
         a {
           color: $pl-dark-gray;
-          display: flex;
-          align-items: center;
+          @include display-flex;
+          @include align-items(center);
 
           @media screen and (max-width: 400px) {
             min-height: auto;
-            justify-content: center;
+            @include justify-content(center);
             margin: 20px 0;
           }
         }
@@ -234,12 +232,14 @@ hr.style1 {
         }
 
         .game-info-buttons {
-          display: flex;
-          justify-content: flex-end;
+          @include display-flex;
+          @include justify-content(flex-end);
           margin-top: 20px;
+          @include align-items(center);
+          height: 100%;
 
           @media screen and (max-width: 400px) {
-            justify-content: center;
+            @include justify-content(center);
           }
         }
       }
@@ -251,14 +251,14 @@ hr.style1 {
   margin-bottom: 15px;
 
   li {
-    display: flex;
+    @include display-flex;
   }
 
   .icon {
-    @include font-size(20);
+    @include font-size(15);
     position: relative;
     top: 0;
-    color: $pl-dark-gray2;
+    color: $pl-dark-gray;
 
     &-date {
       @include pet-icon-after($pl-calendar);
@@ -300,7 +300,7 @@ hr.style1 {
 }
 .customRateButton{
   margin-top: -4px;
-  
+
 }
 .rateInput{
   color: $pl-orange;

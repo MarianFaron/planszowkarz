@@ -87,7 +87,7 @@
 
   li {
     width: 100%;
-    display: flex;
+    @include display-flex;
 
     &.usercity p {
       margin-left: 4px;
@@ -101,9 +101,9 @@
   }
 
   .icon {
-    @include font-size(21);
+    @include font-size(15);
 
-    color: $pl-dark-gray2;
+    color: $pl-dark-gray;
 
     &-mail {
       @include pet-icon-after($pl-envelope-o);
