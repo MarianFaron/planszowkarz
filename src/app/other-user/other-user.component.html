@@ -65,20 +65,8 @@
 								<li>
 									<span class="icon icon-star" aria-hidden="true"></span>
 									<p>
-										Ocena społeczności: <b>{{wartosc(userInfo?.sumOfGrades, userInfo?.numberOfRatings)}}</b>
+										<star-rating-comp  [hoverEnabled]="true" [labelText]="'Ocena społeczności: '" (onClick)="addGrade(userInfo?._id, $event)" (onHoverRatingChange)="onHoverRatingChange($event)" [starType]="'svg'" [rating]='userInfo?.sumOfGrades/userInfo?.numberOfRatings' [showHalfStars]="true"></star-rating-comp>
 									</p>
-								</li>
-							</div>
-							<div>
-								<li><p>Oceń użytkownika:</p>
-									<select #rating class="rateInput">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-									<button class="btn btn-default custom-button customRateButton" (click)="addGrade(userInfo?._id, rating.value)">Zagłosuj!</button>
 								</li>
 							</div>
 						</ul>

@@ -1,6 +1,6 @@
 @import 'mixins';
 @import 'colors';
-
+@import "~angular-star-rating/assets/scss/star-rating";
 body {
   font-family: 'Open Sans', sans-serif;
   color: $pl-dark-gray;
@@ -27,6 +27,10 @@ h3.section-header {
   font-weight: 700;
   color: $pl-dark-gray;
   margin: 0;
+}
+
+.label-value{
+  @include font-size(14);
 }
 
 .center {

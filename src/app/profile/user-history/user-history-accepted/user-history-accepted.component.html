@@ -26,13 +26,16 @@
                     <p>Nazwa gry</p>
                     <p><strong>{{history?.recipientGame.title}}</strong></p>
                 </div>
+                
             </div>
         </div>
         <div class="transaction-bottom">
             <div class="transaction-row">
+                
                 <div class="transaction-column transaction-column-margin" *ngIf="history?.status== 'accepted'">
                     <p>Status: <strong>zaakceptowane</strong></p>
                 </div>
+                <!--<star-rating-comp [starType]="'svg'" [rating]='5' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="onClick($event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>-->
                 <div class="transaction-column">
                     <button class="btn btn-color" data-dismiss="modal" disabled>Odrzuć</button>
                     <button type="button" name="button" class="custom-button btn"

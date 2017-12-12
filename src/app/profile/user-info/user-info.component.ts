@@ -23,6 +23,7 @@ export class UserInfoComponent implements OnInit {
   userInfo: UserInfo;
   avatarImgName: string;
   currentDate = new Date();
+  rate: number;
 
   public URL = this.appService.getUrl('/app/avatarUpload');
   public avatarUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
@@ -69,21 +70,21 @@ export class UserInfoComponent implements OnInit {
   getUserInfo() {
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var userID = currentUser._id;
-
+this.rate = this.wartosc(this.userInfo.sumOfGrades, this.userInfo.numberOfRatings);   
     this.userInfoService.getUser(userID)
                      .subscribe(
                         userInfo => {
                           this.userInfo = userInfo;
                           this.model.dateBirth = userInfo.dateBirth;
+                          
                         },
                         error => this.errorMessage = <any>error);
+                            
   }
+  
   wartosc(x:number, y:number){
-    if(x>0){
-      var z = x/y; var m = z.toFixed(2);
-      return m + "/5";
-    }else{
-      return "Jeszcze nie oceniono";
-    }
+      var z = x/y; 
+      var m = z.toFixed(2);
+      return +m;
   }
 }

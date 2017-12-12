@@ -6,6 +6,7 @@ import { UserHistoryService } from '../user-history.service';
 import { ChatService } from '../../../chat/chat.service';
 
 
+
 @Component({
   selector: 'app-user-history-accepted',
   templateUrl: './user-history-accepted.component.html',
@@ -44,5 +45,6 @@ export class UserHistoryAcceptedComponent implements OnInit {
         window.location.replace('/chat/'+chat[0]._id);
       },
       error => this.errorMessage = <any>error);;
-  }
+	}
+	
 }

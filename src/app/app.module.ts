@@ -40,6 +40,8 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutProjectComponent } from './about-project/about-project.component';
 import { ChatComponent } from './chat/chat.component';
 import { AuthorsComponent } from './authors/authors.component';
+import { StarRatingModule } from 'angular-star-rating';
+
 
 @NgModule({
   declarations: [
@@ -81,7 +83,8 @@ import { AuthorsComponent } from './authors/authors.component';
     BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot(),
     Ng2DragDropModule.forRoot(),
-    SlickModule.forRoot()
+    SlickModule.forRoot(),
+    StarRatingModule.forRoot()
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pl-PL" }, AuthGuard],
   bootstrap: [AppComponent]
