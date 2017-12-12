@@ -22,14 +22,10 @@
             <h3>Kategorie</h3>
             <div class="game-categories">
               <div *ngFor="let option of categoriesOptions">
-                <div class="checkbox">
-                  <label>
-                      <input type="checkbox"
-                             name="options"
-                             value="{{option.value}}"
-                             [(ngModel)]="option.checked"/>
-                      <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                      {{option.name}}
+                <div class="custom-checkbox">
+                  <input type="checkbox" name="options" id="{{option.name}}" value="{{option.value}}" [(ngModel)]="option.checked">
+                  <label for="{{ option.name }}">
+                    <span>{{option.name}}</span>
                   </label>
                 </div>
               </div>
@@ -39,17 +35,13 @@
             <h3>Stan</h3>
             <div class="game-states">
               <div *ngFor="let option of statesOptions">
-                <div class="checkbox">
-                  <label>
-                      <input type="checkbox"
-                             name="options"
-                             value="{{option.value}}"
-                             [(ngModel)]="option.checked"/>
-                      <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                      {{option.name}}
-                  </label>
+                  <div class="custom-checkbox">
+                    <input type="checkbox" name="options" id="{{option.name}}" value="{{option.value}}" [(ngModel)]="option.checked">
+                    <label for="{{ option.name }}">
+                      <span>{{option.name}}</span>
+                    </label>
+                  </div>
                 </div>
-              </div>
             </div>
           </div>
           <div class="text-center">
