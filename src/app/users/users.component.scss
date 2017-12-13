@@ -13,15 +13,22 @@
 
   .forgot-button {
     background: transparent;
-    color: $pl-orange;
+    color: $pl-dark-gray;
     text-decoration: underline;
     display: inline-block;
     margin-top: 15px;
     float: right;
+    border: none;
+    height: 32px;
+    line-height: 32px;
+    @include transition(all 150ms linear);
 
     @include respond-to(mobile) {
       float: none;
     }
+  }
+  .forgot-button:hover {
+    color: $pl-orange;
   }
 
   .alert-danger{

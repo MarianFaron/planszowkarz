@@ -5,7 +5,7 @@
 
 				<!-- REGISTER FORM -->
 				<form action="/app/users/register" #registerForm="ngForm" method="post">
-					<h3>Rejestracja</h3>
+					<h3 class="section-header">Rejestracja</h3>
 					<hr class="main-hr">
 					<div class="inner">
 						<div class="form-group">
@@ -70,7 +70,7 @@
 			<div class="col-md-6">
 				<!-- LOGIN FORM -->
 				<form action="/app/users/login" #loginForm="ngForm" method="post">
-					<h3>Logowanie</h3>
+					<h3 class="section-header">Logowanie</h3>
 					<hr class="main-hr">
 					<div class="inner">
 						<div class="form-group">
@@ -96,7 +96,7 @@
 						</div>
 						<button type="submit" class="btn custom-button" [disabled]="!loginForm.form.valid" (click)="login(loginUserEmail.value, loginUserPassword.value);">Zaloguj</button>
 						<a class="btn custom-button" style="background:#3b5998" href="/app/auth/facebook"><i class="fa fa-facebook-square"></i> Zaloguj przez Facebook'a</a>
-						<button type="button" class="btn custom-button" data-toggle="modal" data-target="#forgot-password">Nie pamiętasz hasła?</button>
+						<button type="button" class="forgot-button" data-toggle="modal" data-target="#forgot-password">Nie pamiętasz hasła?</button>
 					</div>
 				</form>
 			</div>

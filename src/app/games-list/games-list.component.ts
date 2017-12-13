@@ -108,7 +108,7 @@ export class GamesListComponent implements OnInit {
   }
 
   getGames() {
-    this.coreService.getGames()
+    this.coreService.getAllGames()
                     .subscribe(
                         games => {
                           this.games = games;

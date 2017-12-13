@@ -19,7 +19,7 @@ section#main-banner {
 
     @include respond-to(desktop) {
       padding: 25%;
-      height: auto;     
+      height: auto;
     }
 
     @include respond-to(mobile) {
@@ -100,7 +100,7 @@ section#main-banner {
 
           @include respond-to(desktop) {
             @include font-size(26);
-            
+
           }
 
           @include respond-to(mobile) {
@@ -114,6 +114,14 @@ section#main-banner {
 
             line-height: 18px;
           }
+        }
+
+        p {
+          @include font-size(16);
+          
+          margin: 20px 0;
+          max-width: 600px;
+          color: $pl-white;
         }
       }
     }

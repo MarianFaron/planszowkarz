@@ -12,6 +12,7 @@ import { UserGame } from './../profile/user-games/user-games';
 export class CoreService {
 
     private sliderGames = this.appService.getUrl('/app/sliderGames');
+    private allGames = this.appService.getUrl('/app/paginationGames');
     private userGamesUrl = this.appService.getUrl('/app/users');
 
     constructor (private http: Http, private appService: AppService) {}
@@ -30,6 +31,15 @@ export class CoreService {
       let options = new RequestOptions({ headers: headers });
 
       return this.http.get(this.sliderGames, options)
+                      .map(this.appService.extractData)
+                      .catch(this.appService.handleError);
+    }
+
+    getAllGames(): Observable<UserGame[]>{
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+
+      return this.http.get(this.allGames, options)
                       .map(this.appService.extractData)
                       .catch(this.appService.handleError);
     }

@@ -134,7 +134,8 @@ router.route('/sliderGames')
 				.populate({
 					path: 'userID',
 					select: 'local.login facebook.name city'
-				}).limit(10).exec((err,games) => {
+				})
+        .limit(100).exec((err,games) => {
 					if(err){
 						return res.status(400).json({message: "Bad Requested"});
 					}else{
@@ -146,11 +147,11 @@ router.route('/sliderGames')
 router.route('/paginationGames')
 	// get all games
 	.get((req,res) => {
-		var page = 2;
-		var limit = 10;
+		var page = 20;
+		var limit = 100;
 		userGame.find().sort({createdDate: -1})
-				.skip((page-1)*(limit+1))
-    			.limit(limit)
+				// .skip((page-1)*(limit+1))
+    		// 	.limit(limit)
 				.populate({
 					path: 'userID',
 					select: 'local.login facebook.name city'
