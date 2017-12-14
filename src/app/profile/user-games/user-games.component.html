@@ -11,136 +11,134 @@
 					<img src="../../assets/images/loading.gif" alt="" class="loading">
 				</div>
 			</div>
-			<div *ngFor="let game of pagedItems">
-				<div class="single-game-box" >
-				  <div class="">
-						<div class="single-box-content inner" data-aos="fade-up">
-							<div class="game-image">
-					      <a routerLink="/games/{{ game._id }}">
-					        <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
-					      </a>
-					    </div>
-					    <div class="game-info" >
-					      <a routerLink="/games/{{ game._id }}">
-					        <p class="title">{{ game.title }}</p>
-					      </a>
-					      <p><strong>Kategoria: </strong>{{ game.category }}</p>
-					      <p><strong>Stan: </strong>{{ game.state }}</p>
-					      <div class="game-info-buttons">
-					        <button class="btn btn-color"
-					            data-toggle="modal" attr.data-target="#edit-game-{{game._id}}">
-					          <span class="icon icon-edit" aria-hidden="true"></span>Edytuj
-					        </button>
-					        <button class="btn btn-color btn-remove-game"
-					            data-toggle="modal" attr.data-target="#remove-game-{{game._id}}">
-					          <span class="icon icon-trash" aria-hidden="true"></span>Usuń
-					        </button>
-					      </div>
-					    </div>
+			<div *ngFor="let game of pagedItems" class="single-game-box" >
+				<div class="">
+					<div class="single-box-content inner" data-aos="fade-up">
+						<div class="game-image">
+							<a routerLink="/games/{{ game._id }}">
+								<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
+							</a>
+						</div>
+						<div class="game-info" >
+							<a routerLink="/games/{{ game._id }}">
+								<p class="title">{{ game.title }}</p>
+							</a>
+							<p><strong>Kategoria: </strong>{{ game.category }}</p>
+							<p><strong>Stan: </strong>{{ game.state }}</p>
+							<div class="game-info-buttons">
+								<button class="btn btn-color"
+										data-toggle="modal" attr.data-target="#edit-game-{{game._id}}">
+									<span class="icon icon-edit" aria-hidden="true"></span>Edytuj
+								</button>
+								<button class="btn btn-color btn-remove-game"
+										data-toggle="modal" attr.data-target="#remove-game-{{game._id}}">
+									<span class="icon icon-trash" aria-hidden="true"></span>Usuń
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="game-info-function-box">
+
+						<!-- Edit Game Modal -->
+
+						<div class="modal fade" id="edit-game-{{game._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div id="edit-modal" class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Edytuj grę</h4>
+									</div>
+									<div class="modal-body">
+										<div class="section-top">
+											<div class="section-column">
+												<div class="form-group">
+													<label>Tytuł</label>
+													<input class="form-control" value="{{game.title}}" #userGameTitle />
+												</div>
+												<div class="form-group">
+													<label for="exampleSelect1">Kategoria</label>
+													<select id="exampleSelect1" class="form-control"
+													value="{{game.category}}" #userGameCategory>
+															<option>Strategiczna</option>
+															<option>Logiczna</option>
+															<option>Ekonomiczna</option>
+															<option>Imprezowa</option>
+															<option>Karciana</option>
+															<option>Figurkowa</option>
+															<option>Przygodowa</option>
+															<option>Rodzinna</option>
+															<option>Zręcznościowa</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label for="exampleSelect1">Stan</label>
+													<select id="exampleSelect1" class="form-control"
+														value="{{game.state}}" #userGameState>
+														<option>Nowa</option>
+														<option>Używana</option>
+													</select>
+												</div>
+											</div>
+											<div class="section-column">
+												<div class="edit-img-box form-group">
+													<label class="image-label">Zdjęcie</label>
+													<div class="game-image center-image">
+														<a routerLink="/games/{{ game._id }}">
+															<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
+														</a>
+													</div>
+												</div>
+												<div class="form-group input-file">
+													<label id="change-photo" class="image-label">Zmień zdjęcie</label>
+													<div class="center-button">
+														<input id="file" type="file" name="photo" class="inputfile"
+														value="cdcd" ng2FileSelect
+														[uploader]="coverUploader" #userGameImage (change)="onChange($event)" />
+														<label for="file"><i class="fa fa-download" aria-hidden="true"></i>Wybierz plik</label>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label>Dodatkowy opis</label>
+											<textarea class="form-control" value="{{game.description}}"#userGameDescription>
+											</textarea>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button class="btn btn-color" data-dismiss="modal">Anuluj</button>
+										<button class="btn custom-button" (click)="coverUploader.uploadAll(); editUserGame(game._id, userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameImage.value)" data-dismiss="modal">Zapisz</button>
+									</div>
+								</div>
+							</div>
 						</div>
 
-				    <div class="game-info-function-box">
+						<!-- Remove Game Modal -->
 
-				      <!-- Edit Game Modal -->
-
-				      <div class="modal fade" id="edit-game-{{game._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				        <div id="edit-modal" class="modal-dialog" role="document">
-				          <div class="modal-content">
-				            <div class="modal-header">
-				              <button type="button" class="close" data-dismiss="modal">&times;</button>
-				              <h4 class="modal-title">Edytuj grę</h4>
-				            </div>
-				            <div class="modal-body">
-				              <div class="section-top">
-				                <div class="section-column">
-				                  <div class="form-group">
-				                    <label>Tytuł</label>
-				                    <input class="form-control" value="{{game.title}}" #userGameTitle />
-				                  </div>
-				                  <div class="form-group">
-				                    <label for="exampleSelect1">Kategoria</label>
-				                    <select id="exampleSelect1" class="form-control"
-				                    value="{{game.category}}" #userGameCategory>
-				                        <option>Strategiczna</option>
-				                        <option>Logiczna</option>
-				                        <option>Ekonomiczna</option>
-				                        <option>Imprezowa</option>
-				                        <option>Karciana</option>
-				                        <option>Figurkowa</option>
-				                        <option>Przygodowa</option>
-				                        <option>Rodzinna</option>
-				                        <option>Zręcznościowa</option>
-				                    </select>
-				                  </div>
-				                  <div class="form-group">
-				                    <label for="exampleSelect1">Stan</label>
-				                    <select id="exampleSelect1" class="form-control"
-				                      value="{{game.state}}" #userGameState>
-				                      <option>Nowa</option>
-				                      <option>Używana</option>
-				                    </select>
-				                  </div>
-				                </div>
-				                <div class="section-column">
-				                  <div class="edit-img-box form-group">
-				                    <label class="image-label">Zdjęcie</label>
-				                    <div class="game-image center-image">
-				                      <a routerLink="/games/{{ game._id }}">
-				                        <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
-				                      </a>
-				                    </div>
-				                  </div>
-				                  <div class="form-group input-file">
-				                    <label id="change-photo" class="image-label">Zmień zdjęcie</label>
-				                    <div class="center-button">
-				                      <input id="file" type="file" name="photo" class="inputfile"
-				                      value="cdcd" ng2FileSelect
-				                      [uploader]="coverUploader" #userGameImage (change)="onChange($event)" />
-				                      <label for="file"><i class="fa fa-download" aria-hidden="true"></i>Wybierz plik</label>
-				                    </div>
-				                  </div>
-				                </div>
-				              </div>
-
-				              <div class="form-group">
-				                <label>Dodatkowy opis</label>
-				                <textarea class="form-control" value="{{game.description}}"#userGameDescription>
-				                </textarea>
-				              </div>
-				            </div>
-				            <div class="modal-footer">
-				              <button class="btn btn-color" data-dismiss="modal">Anuluj</button>
-				              <button class="btn custom-button" (click)="coverUploader.uploadAll(); editUserGame(game._id, userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameImage.value)" data-dismiss="modal">Zapisz</button>
-				            </div>
-				          </div>
-				        </div>
-				      </div>
-
-				      <!-- Remove Game Modal -->
-
-				      <div class="modal fade" id="remove-game-{{game._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				        <div class="modal-dialog" role="document">
-				          <div class="modal-content">
-				            <div class="modal-header">
-				              <button type="button" class="close" data-dismiss="modal">&times;</button>
-				              <h4 class="modal-title">Potwierdzenie</h4>
-				            </div>
-				            <div class="modal-body">
-				              <label>Czy na pewno chcesz usunąć grę ze swojego profilu?</label>
-				            </div>
-				            <div class="modal-footer">
-				              <button class="btn btn-color" data-dismiss="modal">Anuluj</button>
-				              <button class="btn custom-button"
-				              (click)="removeUserGame(game._id);
-				              decreaseNumberOfGames(userInfo?._id);" data-dismiss="modal">Potwierdź</button>
-				            </div>
-				          </div>
-				        </div>
-				      </div>
-				    </div>
-				  </div>
+						<div class="modal fade" id="remove-game-{{game._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Potwierdzenie</h4>
+									</div>
+									<div class="modal-body">
+										<label>Czy na pewno chcesz usunąć grę ze swojego profilu?</label>
+									</div>
+									<div class="modal-footer">
+										<button class="btn btn-color" data-dismiss="modal">Anuluj</button>
+										<button class="btn custom-button"
+										(click)="removeUserGame(game._id);
+										decreaseNumberOfGames(userInfo?._id);" data-dismiss="modal">Potwierdź</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
+			</div>			
 		</div>
 		<div class="text-center">
 			<ul *ngIf="pager.pages && pager.pages.length" class="pagination">

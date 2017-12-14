@@ -133,10 +133,6 @@ textarea:focus {
   width: 60px;
 }
 
-hr {
-  margin-bottom: 10px;
-}
-
 .inner{
     background: $pl-white;
     box-shadow: 2px 2px 1px $pl-gray;
@@ -331,6 +327,7 @@ hr {
 
 .pagination {
   box-shadow: 2px 2px 1px $pl-gray;
+  margin: 40px 0 0;
 }
 
 .pagination a,
@@ -349,4 +346,10 @@ hr {
   border-left: none;
   border-right: none;
   cursor: pointer;
+}
+
+.page-content{
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto 60px;
 }

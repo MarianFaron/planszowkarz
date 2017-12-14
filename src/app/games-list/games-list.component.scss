@@ -3,7 +3,7 @@
 @import '../../scss/font-awesome';
 
 .games-list {
-  margin: 15px 0 50px;
+  margin: 15px 0 0;
 
   .container {
     @include respond-to(tablet) {
@@ -225,7 +225,7 @@
           background-color: $pl-white;
           box-shadow: 2px 2px 1px $pl-gray;
           padding: 15px;
-          margin-bottom: 15px;
+          margin: 0 0 15px;
           min-height: 150px;
           @include display-flex;
           @include flex-wrap(wrap);
@@ -373,6 +373,10 @@
               @include pet-icon-after($pl-calendar);
             }
           }
+        }
+
+        .game-box:nth-child(6n+0) {
+          margin: 0;
         }
       }
     }

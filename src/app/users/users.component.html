@@ -1,109 +1,110 @@
-<section id="user-panel" class="user-info-panel">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
+<div class="page-content">	
+	<section id="user-panel" class="user-info-panel">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
 
-				<!-- REGISTER FORM -->
-				<form action="/app/users/register" #registerForm="ngForm" method="post">
-					<h3 class="section-header">Rejestracja</h3>
-					<hr class="main-hr">
-					<div class="inner">
-						<div class="form-group">
-							<label>Login:</label>
-							<input type="text" class="form-control" required minlength="5" name="login" [ngModel]="model.login" #registerUserLogin="ngModel" (keyup)="usedLogin($event)">
-							<div *ngIf="registerUserLogin.errors && (registerUserLogin.dirty || registerUserLogin.touched)" class="alert alert-danger">
-								<div [hidden]="!registerUserLogin.errors.required">
-									Login jest wymagany
+					<!-- REGISTER FORM -->
+					<form action="/app/users/register" #registerForm="ngForm" method="post">
+						<h3 class="section-header">Rejestracja</h3>
+						<hr class="main-hr">
+						<div class="inner">
+							<div class="form-group">
+								<label>Login:</label>
+								<input type="text" class="form-control" required minlength="5" name="login" [ngModel]="model.login" #registerUserLogin="ngModel" (keyup)="usedLogin($event)">
+								<div *ngIf="registerUserLogin.errors && (registerUserLogin.dirty || registerUserLogin.touched)" class="alert alert-danger">
+									<div [hidden]="!registerUserLogin.errors.required">
+										Login jest wymagany
+									</div>
+									<div [hidden]="!registerUserLogin.errors.minlength">
+										Wpisz co najmniej 5 znaków
+									</div>
 								</div>
-								<div [hidden]="!registerUserLogin.errors.minlength">
-									Wpisz co najmniej 5 znaków
+									<div *ngIf="this.loginIsUsed != false" class="alert alert-danger">
+										Login {{ userlogin }} jest używany
+									</div>
+							</div>
+							<div class="form-group">
+								<label>E-mail:</label>
+								<input type="text" class="form-control" name="email" [ngModel]="model.email" #registerUserEmail="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+								<div *ngIf="registerUserEmail.errors && (registerUserEmail.dirty || registerUserEmail.touched)" class="alert alert-danger">
+									<div [hidden]="!registerUserEmail.errors.required">
+										E-mail jest wymagany
+									</div>
+									<div [hidden]="!registerUserEmail.errors.pattern">
+										Wpisz poprawny adres e-mail
+									</div>
 								</div>
 							</div>
-								<div *ngIf="this.loginIsUsed != false" class="alert alert-danger">
-									Login {{ userlogin }} jest używany
-								</div>
-						</div>
-						<div class="form-group">
-							<label>E-mail:</label>
-							<input type="text" class="form-control" name="email" [ngModel]="model.email" #registerUserEmail="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
-							<div *ngIf="registerUserEmail.errors && (registerUserEmail.dirty || registerUserEmail.touched)" class="alert alert-danger">
-								<div [hidden]="!registerUserEmail.errors.required">
-									E-mail jest wymagany
-								</div>
-								<div [hidden]="!registerUserEmail.errors.pattern">
-									Wpisz poprawny adres e-mail
+							<div class="form-group">
+								<label>Hasło:</label>
+								<input type="password" class="form-control" name="password" minlength="3" required [ngModel]="model.password" #registerUserPassword="ngModel">
+								<div *ngIf="registerUserPassword.errors && (registerUserPassword.dirty || registerUserPassword.touched)" class="alert alert-danger">
+									<div [hidden]="!registerUserPassword.errors.required">
+										Hasło jest wymagane
+									</div>
+									<div [hidden]="!registerUserPassword.errors.minlength">
+										Wpisz co najmniej 3 znaki
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label>Hasło:</label>
-							<input type="password" class="form-control" name="password" minlength="3" required [ngModel]="model.password" #registerUserPassword="ngModel">
-							<div *ngIf="registerUserPassword.errors && (registerUserPassword.dirty || registerUserPassword.touched)" class="alert alert-danger">
-								<div [hidden]="!registerUserPassword.errors.required">
-									Hasło jest wymagane
-								</div>
-								<div [hidden]="!registerUserPassword.errors.minlength">
-									Wpisz co najmniej 3 znaki
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<label>Potwierdź hasło:</label>
-							<input type="password" class="form-control" name="confirmPassword" minlength="3" validateEqual="password" required [ngModel]="model.confirmPassword" #registerUserConfirmPassword="ngModel" />
-							<div *ngIf="registerUserConfirmPassword.errors && (registerUserConfirmPassword.dirty || registerUserConfirmPassword.touched)" class="alert alert-danger">
-								<div [hidden]="!registerUserConfirmPassword.errors.required">
-									Potwierdzenie hasła jest wymagane
-								</div>
-								<div [hidden]="!registerUserConfirmPassword.errors.minlength">
-									Wpisz co najmniej 3 znaki
-								</div>
-								<div [hidden]="!registerUserConfirmPassword.errors">
-									Podane hasła różnią się
+							<div class="form-group">
+								<label>Potwierdź hasło:</label>
+								<input type="password" class="form-control" name="confirmPassword" minlength="3" validateEqual="password" required [ngModel]="model.confirmPassword" #registerUserConfirmPassword="ngModel" />
+								<div *ngIf="registerUserConfirmPassword.errors && (registerUserConfirmPassword.dirty || registerUserConfirmPassword.touched)" class="alert alert-danger">
+									<div [hidden]="!registerUserConfirmPassword.errors.required">
+										Potwierdzenie hasła jest wymagane
+									</div>
+									<div [hidden]="!registerUserConfirmPassword.errors.minlength">
+										Wpisz co najmniej 3 znaki
+									</div>
+									<div [hidden]="!registerUserConfirmPassword.errors">
+										Podane hasła różnią się
+									</div>
 								</div>
 							</div>
+							<button type="submit" class="btn custom-button" [disabled]="!registerForm.form.valid || this.loginIsUsed == true" (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value, 'default.png'); registerUserLogin.value=''; registerUserEmail.value=''; registerUserPassword.value='';registerUserConfirmPassword.value=''">Zarejestruj</button>
 						</div>
-						<button type="submit" class="btn custom-button" [disabled]="!registerForm.form.valid || this.loginIsUsed == true" (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value, 'default.png'); registerUserLogin.value=''; registerUserEmail.value=''; registerUserPassword.value='';registerUserConfirmPassword.value=''">Zarejestruj</button>
-					</div>
-				</form>
-			</div>
+					</form>
+				</div>
 
-			<div class="col-md-6">
-				<!-- LOGIN FORM -->
-				<form action="/app/users/login" #loginForm="ngForm" method="post">
-					<h3 class="section-header">Logowanie</h3>
-					<hr class="main-hr">
-					<div class="inner">
-						<div class="form-group">
-							<label>E-mail:</label>
-							<input type="text" class="form-control" name="email" #loginUserEmail="ngModel" [ngModel]="model.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
-							<div *ngIf="loginUserEmail.errors && (loginUserEmail.dirty || loginUserEmail.touched)" class="alert alert-danger">
-								<div [hidden]="!loginUserEmail.errors.required">
-									E-mail jest wymagany
-								</div>
-								<div [hidden]="!loginUserEmail.errors.pattern">
-									Wpisz poprawny adres e-mail
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<label>Hasło:</label>
-							<input type="password" class="form-control" name="password" [ngModel]="model.password" #loginUserPassword="ngModel" required>
-							<div *ngIf="loginUserPassword.errors && (loginUserPassword.dirty || loginUserPassword.touched)" class="alert alert-danger">
-								<div [hidden]="!loginUserPassword.errors.required">
-									Wpisz hasło
+				<div class="col-md-6">
+					<!-- LOGIN FORM -->
+					<form action="/app/users/login" #loginForm="ngForm" method="post">
+						<h3 class="section-header">Logowanie</h3>
+						<hr class="main-hr">
+						<div class="inner">
+							<div class="form-group">
+								<label>E-mail:</label>
+								<input type="text" class="form-control" name="email" #loginUserEmail="ngModel" [ngModel]="model.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+								<div *ngIf="loginUserEmail.errors && (loginUserEmail.dirty || loginUserEmail.touched)" class="alert alert-danger">
+									<div [hidden]="!loginUserEmail.errors.required">
+										E-mail jest wymagany
+									</div>
+									<div [hidden]="!loginUserEmail.errors.pattern">
+										Wpisz poprawny adres e-mail
+									</div>
 								</div>
 							</div>
+							<div class="form-group">
+								<label>Hasło:</label>
+								<input type="password" class="form-control" name="password" [ngModel]="model.password" #loginUserPassword="ngModel" required>
+								<div *ngIf="loginUserPassword.errors && (loginUserPassword.dirty || loginUserPassword.touched)" class="alert alert-danger">
+									<div [hidden]="!loginUserPassword.errors.required">
+										Wpisz hasło
+									</div>
+								</div>
+							</div>
+							<button type="submit" class="btn custom-button" [disabled]="!loginForm.form.valid" (click)="login(loginUserEmail.value, loginUserPassword.value);">Zaloguj</button>
+							<a class="btn custom-button" style="background:#3b5998" href="/app/auth/facebook"><i class="fa fa-facebook-square"></i> Zaloguj przez Facebook'a</a>
+							<button type="button" class="forgot-button" data-toggle="modal" data-target="#forgot-password">Nie pamiętasz hasła?</button>
 						</div>
-						<button type="submit" class="btn custom-button" [disabled]="!loginForm.form.valid" (click)="login(loginUserEmail.value, loginUserPassword.value);">Zaloguj</button>
-						<a class="btn custom-button" style="background:#3b5998" href="/app/auth/facebook"><i class="fa fa-facebook-square"></i> Zaloguj przez Facebook'a</a>
-						<button type="button" class="forgot-button" data-toggle="modal" data-target="#forgot-password">Nie pamiętasz hasła?</button>
-					</div>
-				</form>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-
-</section>
+	</section>
+</div>
 
 <!-- Modal -->
 <div id="forgot-password" class="modal fade" role="dialog">

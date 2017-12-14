@@ -7,7 +7,7 @@ $custom-mobile-breakpoint: 580px;
 .navbar-default {
   @include font-size(16);
 
-  margin-top: 15px;
+  margin: 0 0 15px;
   background-color: $pl-white;
   font-weight: 700;
   box-shadow: 2px 2px 1px $pl-gray;
@@ -96,7 +96,7 @@ $custom-mobile-breakpoint: 580px;
 
 .transaction-wrapper {
   overflow: auto;
-  margin: 10px auto;
+  margin: 0 auto 15px;
   padding: 15px;
 
   .transaction-top {
@@ -248,4 +248,8 @@ $custom-mobile-breakpoint: 580px;
     color: $pl-orange;
     margin: 0 0 20px;
   }
+}
+
+.transaction-wrapper:last-child {
+  margin: 0;
 }

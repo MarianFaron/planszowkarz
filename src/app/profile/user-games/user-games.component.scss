@@ -3,7 +3,7 @@
 @import '../../../scss/font-awesome';
 
 .games-main-panel {
-  margin: 10px 0 0;
+  margin: 0;
   display: block;
 
   .btn {
@@ -166,6 +166,10 @@
             width: 120px;
           }
         }
+      }
+
+      .single-game-box:last-child {
+        margin: 0;
       }
     }
   }

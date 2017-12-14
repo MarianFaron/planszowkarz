@@ -7,7 +7,7 @@ section#main-banner {
   height: 100%;
   max-height: calc(100vh - 56px);
   position: relative;
-  margin: -20px 0 0;
+  margin: -40px 0 0;
 
   .banner-background {
     background: url("../assets/images/banner.jpg") top center fixed;
@@ -240,11 +240,7 @@ section#newGames {
 
 section#forWho,
 section#hoToMakeExchange {
-  padding: 50px 15px 70px;
-
-  @include respond-to(mobile) {
-    padding: 50px 15px;
-  }
+  padding: 50px 15px;
 
     .section-wrapper {
       @include display-flex;

@@ -31,7 +31,6 @@ import { UserHistoryReceivedComponent } from './profile/user-history/user-histor
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { RatingComponent } from './rating/rating.component';
-import { CatalogComponent } from './catalog/catalog.component';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Component } from '@angular/core';
 import { Ng2DragDropModule } from "ng2-drag-drop";
@@ -66,7 +65,6 @@ import { StarRatingModule } from 'angular-star-rating';
     UserHistorySentComponent,
     UserHistoryRejectedComponent,
     RatingComponent,
-    CatalogComponent,
     UserHistoryReceivedComponent,
     ContactComponent,
     AboutProjectComponent,
