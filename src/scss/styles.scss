@@ -94,7 +94,7 @@ textarea:focus {
   @include transition(all ease-in 0.15s);
 
   @include respond-to(desktop) {
-    @include font-size(12);
+    @include font-size(13);
   }
 
   @include respond-to(mobile) {
@@ -119,6 +119,7 @@ textarea:focus {
   font-weight: 500;
   border: none;
   min-width: 100px;
+  border: 1px solid $pl-dark-gray3;
 
   &:hover {
     background-color: $pl-gray;
@@ -131,6 +132,10 @@ textarea:focus {
   background: $pl-orange;
   margin-left: 0;
   width: 60px;
+}
+
+.main-hr-center {
+  margin: 20px auto;
 }
 
 .inner{
@@ -302,17 +307,20 @@ textarea:focus {
 
 // Custom scrollbar
 
-#custom-scrollbar::-webkit-scrollbar-track{
+#custom-scrollbar::-webkit-scrollbar-track,
+.custom-scrollbar::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba($pl-black, 0.3);
   background-color: $pl-light-gray4;
 }
 
-#custom-scrollbar::-webkit-scrollbar{
+#custom-scrollbar::-webkit-scrollbar,
+.custom-scrollbar::-webkit-scrollbar {
   width: 10px;
   background-color: $pl-light-gray4;
 }
 
-#custom-scrollbar::-webkit-scrollbar-thumb{
+#custom-scrollbar::-webkit-scrollbar-thumb, 
+.custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #F90;
   background-image: -webkit-linear-gradient(45deg, rgba($pl-white, .2) 25%,
                         transparent 25%,

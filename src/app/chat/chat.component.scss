@@ -2,16 +2,23 @@
 @import '../../scss/colors';
 
 .chat {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto 50px;
   background: $pl-white;
   overflow: auto;
-  padding: 15px;
+  box-shadow: 0 4px 2px -2px $pl-light-gray;
 
   .chat-header {
-    box-shadow: 0 4px 2px -2px $pl-light-gray;
-    margin: -15px -15px 1px;
-    padding: 15px;
-    z-index: 9999;
-    position: relative;
+    height: 50px;
+    padding: 0 15px;
+    @include display-flex;
+    @include align-items(center);
+    border-bottom: 1px solid $pl-light-gray;
+
+    h4 {
+      margin: 0;
+    }
   }
 
   .chat-content {
@@ -20,16 +27,16 @@
     padding: 15px;
 
     .message {
-      width: 70%;
+      width: 51%;
       float: right;
-      margin: 10px 0;
+      margin: 0 0 5px;
       position: relative;
 
       .message-content {
         background: $pl-orange;
         color: $pl-white;
         border-radius: 5px;
-        padding: 15px;
+        padding: 8px;
         text-align: right;
       }
 
@@ -37,7 +44,7 @@
         text-align: right;
         @include font-size(11);
         color: $pl-gray2;
-        margin-top: 5px;
+        margin-bottom: 5px;
       }
 
       .message-sender {
@@ -62,14 +69,50 @@
   }
 
   .chat-form {
-    margin-top: 30px;
+    margin: 0;
+    padding: 5px;
 
     textarea {
       width: 100%;
+      height: 80px;
     }
+  }
+  .chat-bottom {
+    height: 50px;
+    padding: 0 15px;
+    @include display-flex;
+    @include align-items(center);
+    @include justify-content(center);
 
     button {
-      float: right;
+      margin: 0;
     }
+  }
+}
+
+p {
+  padding:  0 15px;
+  max-width: 530px;
+  margin: 0 auto 20px;
+  text-align: center;
+}
+
+.button-box {
+  @include display-flex;
+  @include justify-content(center);
+  margin: 0 0 50px;
+
+  button {
+    margin: 0 7px;
+  }
+}
+
+.prev-view-button-box {
+  @include display-flex;
+  @include justify-content(center);
+  margin: 0;
+
+  .prev-view {
+    margin: 0;
   }
 }

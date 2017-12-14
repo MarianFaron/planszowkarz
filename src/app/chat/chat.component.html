@@ -1,36 +1,44 @@
-<div class="page-content">  
+<div class="page-content">
   <div class="container">
-    <div class="row">
-      <div class="col-md-offset-2 col-md-8">
-        <div class="inner chat" data-aos="fade-up">
-          <div class="chat-header">
-            <h4>{{friendId}}</h4>
-          </div>
-          <div id="chat-content" class="chat-content" #chatContent>
-            <div *ngIf="this.messages">
-              <div *ngFor="let message of this.messages.messages">
-                <div [ngClass]="(this.myId==message.sender)?'message':'message received'">
-                  <div class="message-content">
-                    {{message.content}}
-                  </div>
-                  <div class="message-date">
-                    {{message.date | date:'medium'}}
-                  </div>
-                </div>
+    <h3 class="section-header text-center">Uzgodnij warunki wymiany</h3>
+    <hr class="main-hr main-hr-center">
+    <div class="inner chat" data-aos="fade-up">
+      <div class="chat-header">
+        <h4>{{friendId}}</h4>
+      </div>
+      <div id="chat-content" class="chat-content custom-scrollbar" #chatContent>
+        <div *ngIf="this.messages">
+            <div *ngFor="let message of this.messages.messages" [ngClass]="(this.myId==message.sender)?'message':'message received'">
+              <div class="message-content">
+                {{message.content}}
+              </div>
+              <div class="message-date">
+                {{message.date | date:'medium'}}
               </div>
             </div>
-            <div *ngIf="!this.messages">
-              Brak wiadomości.
-            </div>
-          </div>
-          <div class="chat-form">
-            <form class="" action="/app/chat" method="post">
-              <textarea (keyup.enter)="sendMessage(messageContent.value);messageContent.value=''" name="name" rows="8" cols="80" value="{{this.content}}" #messageContent [ngModel]="content"></textarea>
-            </form>
-            <button (click)="sendMessage(messageContent.value);messageContent.value=''" class="btn custom-button">Wyślij</button>
-          </div>
+        </div>
+        <div *ngIf="!this.messages">
+          Brak wiadomości.
         </div>
       </div>
+      <div class="chat-form">
+        <form class="" action="/app/chat" method="post">
+          <textarea (keyup.enter)="sendMessage(messageContent.value);messageContent.value=''" placeholder="Wpisz wiadomość..."
+          name="name" rows="8" cols="80" value="{{this.content}}" #messageContent [ngModel]="content"></textarea>
+        </form>
+      </div>
+      <div class="chat-bottom">
+        <button (click)="sendMessage(messageContent.value);messageContent.value=''" class="btn custom-button">Wyślij</button>
+      </div>
+    </div>
+    <p>Po pomyślnym ustaleniu szczegółów wymiany i jej przeprowadzeniu zakończ wymianę, by mieć możliwość jej oceny.
+      Jeśli wymiana nie doszła do skutku możesz ją odrzucić i również dokonać jej oceny.</p>
+    <div class="button-box">
+        <button class="btn btn-color" data-dismiss="modal" disabled>Odrzuć</button>
+        <button class="btn custom-button" data-dismiss="modal" name="button" type="button" disabled>Zakończ</button>
+    </div>
+    <div class="prev-view-button-box">
+      <button routerLink='/profile/history' class="btn btn-color prev-view" data-dismiss="modal">Powrót do historii</button>
     </div>
   </div>
 </div>
