@@ -171,8 +171,8 @@
 				<h4 class="modal-title">Dodaj grę</h4>
 			</div>
 			<div class="modal-body">
-				<div class="modal-top">
-					<div class="left-column">
+				<div class="section-top">
+					<div class="section-column">
 						<div class="form-group">
 							<label>Tytuł</label>
 							<input class="form-control" required [ngModel]="model.title" #userGameTitle="ngModel" />
@@ -205,14 +205,22 @@
 							</select>
 						</div>
 					</div>
-					<div class="right-column">
-						<div class="form-group input-file">
-							<label class="image-label">Dodaj zdjęcie</label>
+					<div class="section-column">
+						<div class="edit-img-box form-group">
+							<label class="image-label">Zdjęcie</label>
+							<div class="game-image center-image">
+								<a href="#">
+									<img src="#">
+								</a>
+							</div>
+						</div>
+						<div class="form-group input-file">	
+							<label id="add-photo" class="image-label">Dodaj zdjęcie</label>	
 							<div class="center-button">
 								<input id="add-file" type="file" name="photo" class="inputfile"
 								value="cdcd" ng2FileSelect
 								[uploader]="coverUploader" #userGameImage (change)="onChange($event)" />
-								<label for="add-file" class="image-label"><i class="fa fa-download" aria-hidden="true"></i>Wybierz plik</label>
+								<label for="add-file"><i class="fa fa-download" aria-hidden="true"></i>Wybierz plik</label>
 							</div>
 						</div>
 					</div>
