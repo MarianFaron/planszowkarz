@@ -129,7 +129,7 @@ header {
             list-style: none;
             @include display-flex;
             @include justify-content(center);
-            width: 50%;
+            width: 35%;
 
             a {
               color: $pl-white;

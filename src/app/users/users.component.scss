@@ -10,6 +10,7 @@
   background: $pl-white;
   box-shadow: 2px 2px 1px $pl-light-gray2;
   padding: 20px;
+  margin-top: 25px;
 
   .forgot-button {
     background: transparent;
@@ -41,5 +42,11 @@
     font-weight: 600;
     padding: 5px;
     margin: 0;
+  }
+}
+
+@include respond-to(mobile) {
+  .custom-button {
+    display: inline-block;
   }
 }

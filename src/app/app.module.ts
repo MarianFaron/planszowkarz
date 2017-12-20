@@ -10,7 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CoreComponent } from './core/core.component';
 import { UsersComponent } from './users/users.component';
 import { AuthGuard } from './guards/auth.guard';
-import { FileSelectDirective } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 import { UserInfoComponent } from './profile/user-info/user-info.component';
 import { UserGamesComponent } from './profile/user-games/user-games.component';
 import { EqualValidator } from './users/equal-validator.directive';
@@ -32,7 +32,6 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { RatingComponent } from './rating/rating.component';
 import { CatalogComponent } from './catalog/catalog.component';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Component } from '@angular/core';
 import { Ng2DragDropModule } from "ng2-drag-drop";
 import { SlickModule } from 'ngx-slick';
@@ -42,14 +41,12 @@ import { ChatComponent } from './chat/chat.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { StarRatingModule } from 'angular-star-rating';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
     CoreComponent,
     UsersComponent,
-    FileSelectDirective,
     UserInfoComponent,
     UserGamesComponent,
     EqualValidator,
@@ -74,6 +71,7 @@ import { StarRatingModule } from 'angular-star-rating';
     AuthorsComponent
   ],
   imports: [
+    FileUploadModule,
     BrowserModule,
     FormsModule,
     HttpModule,

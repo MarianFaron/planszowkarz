@@ -1,5 +1,5 @@
-@import '../../../scss/mixins';
 @import '../../../scss/colors';
+@import '../../../scss/mixins';
 @import '../../../scss/font-awesome';
 
 $custom-mobile-breakpoint: 580px;
@@ -41,7 +41,7 @@ $custom-mobile-breakpoint: 580px;
           color: $pl-dark-gray;
           font-weight: normal;
           @include font-size(14);
-          
+
           @media only screen and (max-width: 678px) {
             @include display-flex;
             @include justify-content(center);
@@ -111,13 +111,13 @@ $custom-mobile-breakpoint: 580px;
         @include flex-direction(column);
         width: calc(50% - 50px);
         @include respond-to(mobile) {
-          width: 100%;          
+          width: 100%;
         }
 
         p {
           text-align: center;
           line-height: 24px;
-        }        
+        }
       }
 
       .arrow-box {
@@ -158,10 +158,10 @@ $custom-mobile-breakpoint: 580px;
 
         .icon {
           @include font-size(8);
-      
+
           color: $pl-dark-gray;
           margin: 0 5px 0 0;
-    
+
           &-circle {
             @include pet-icon-after($pl-circle);
           }
@@ -214,7 +214,7 @@ $custom-mobile-breakpoint: 580px;
         }
 
         .btn-color {
-          border: 1px solid $pl-dark-gray3;          
+          border: 1px solid $pl-dark-gray3;
         }
 
         .btn:first-child{
@@ -243,7 +243,7 @@ $custom-mobile-breakpoint: 580px;
 
   p.bigTitle{
     @include font-size(30);
-    
+
     text-align: center;
     color: $pl-orange;
     margin: 0 0 20px;

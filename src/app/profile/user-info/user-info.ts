@@ -1,5 +1,6 @@
 export class UserInfo {
   constructor(
+    public _id: string,
     public id: number,
     public login: string,
     public email: string,

@@ -6,6 +6,7 @@ import { Router, CanActivate, ActivatedRoute } from '@angular/router'
 import { AppService } from './app.service';
 import * as io from 'socket.io-client';
 import { UserGame } from './profile/user-games/user-games';
+import * as AOS from 'aos'; 
 
 @Component({
   selector: 'app-root',
@@ -53,6 +54,7 @@ export class AppComponent implements OnDestroy {
 
 
   ngOnInit() {
+    AOS.init();
     this.sub = this.route.queryParams.subscribe(params => {
       if(params['userId']) {
           this.appService.getUser(params['userId'])

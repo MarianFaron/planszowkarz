@@ -36,7 +36,7 @@ router.route('/forgot')
       to: email,
       subject: 'Resetowanie hasła',
       text: 'Nowe hasło: ' + password,
-      html: '<div style="background: #f5f5f5; padding-top: 40px;padding-bottom: 40px;"><div class="email" style="width: 500px; margin: 0 auto;border:1px solid #b6b6b6;"><div class="email-header" style="background:#f98d1a;text-align: center;color: #fff; padding: 5px;"><h4 style="margin 0;padding: 0;">Planszówkarz</h4></div><div class="email-content" style="padding: 15px; background: #fff;"><h3>Resetowanie hasła</h3><p style="font-size: 14px;">Nowe hasło: <b>' + password + '</b></p><p style="font-size: 14px;">Jeśli nie wysyłałeś prośby o zresetowanie hasła, zignoruj ten e-mail.</p></div><div class="email-footer" style="background:#f98d1a;text-align: center;color: #fff; padding: 15px; font-size: 12px">Planszówkarz 2017 <a href="#" style="color: #fff">Kontakt</a></div></div></div>'
+      html: '<div style="background: #f5f5f5; padding-top: 40px;padding-bottom: 40px;"><div class="email" style="width: 500px; margin: 0 auto;border:1px solid #b6b6b6;"><div class="email-header" style="background:#444;text-align: center;color: #fff; padding: 5px;"><h4 style="margin 0;padding: 0;">Planszówkarz</h4></div><div class="email-content" style="padding: 15px; background: #fff;"><h3>Resetowanie hasła</h3><p style="font-size: 14px;">Nowe hasło: <b>' + password + '</b></p><p style="font-size: 14px;">Jeśli nie wysyłałeś prośby o zresetowanie hasła, zignoruj ten e-mail.</p></div><div class="email-footer" style="background:#444;text-align: center;color: #fff; padding: 15px; font-size: 12px">Planszówkarz 2017 <a href="#" style="color: #f98d1a">Kontakt</a></div></div></div>'
     };
 
     User.findOne({
@@ -102,11 +102,11 @@ router.route('/users/register')
       } else {
         rand = Math.floor((Math.random() * 10000) + 54);
         host = req.get('host');
-        link = "http://" + req.get('host') + "/app/verify?id=" + rand + "&email=" + user.email;
+        link = "https://" + req.get('host') + "/app/verify?id=" + rand + "&email=" + user.email;
         mailOptions = {
           to: user.email,
           subject: "Potwierdzenie rejestracji",
-          html: '<div style="background: #f5f5f5; padding-top: 40px;padding-bottom: 40px;"><div class="email" style="width: 500px; margin: 0 auto;border:1px solid #b6b6b6;"><div class="email-header" style="background:#f98d1a;text-align: center;color: #fff; padding: 5px;"><h4 style="margin 0;padding: 0;">Planszówkarz</h4></div><div class="email-content" style="padding: 15px; background: #fff;"><h3>Potwierdzenie rejestracji</h3><p style="font-size: 14px;">Kliknij w poniższy link, aby potwierdzić rejestrację.<br><a href=' + link + '>Weryfikuj</a></p><p style="font-size: 14px;">Jeśli nie rejestrowałeś się w aplikacji Planszówkarz, zignoruj ten e-mail.</p></div><div class="email-footer" style="background:#f98d1a;text-align: center;color: #fff; padding: 15px; font-size: 12px">Planszówkarz 2017 <a href="#" style="color: #fff">Kontakt</a></div></div></div>'
+          html: '<div style="background: #f5f5f5; padding-top: 40px;padding-bottom: 40px;"><div class="email" style="width: 500px; margin: 0 auto;border:1px solid #b6b6b6;"><div class="email-header" style="background:#444;text-align: center;color: #fff; padding: 5px;"><h4 style="margin 0;padding: 0;">Planszówkarz</h4></div><div class="email-content" style="padding: 15px; background: #fff;"><h3>Potwierdzenie rejestracji</h3><p style="font-size: 14px;">Kliknij w poniższy link, aby potwierdzić rejestrację.<br><a href=' + link + '>Weryfikuj</a></p><p style="font-size: 14px;">Jeśli nie rejestrowałeś się w aplikacji Planszówkarz, zignoruj ten e-mail.</p></div><div class="email-footer" style="background:#444;text-align: center;color: #fff; padding: 15px; font-size: 12px">Planszówkarz 2017 <a href="#" style="color: #f98d1a">Kontakt</a></div></div></div>'
         }
         transporter.sendMail(mailOptions, function(error, response) {
           if (error) {
@@ -213,7 +213,7 @@ router.route('/edit-user/:id')
       } else {
 
           user.dateBirth = req.body.dateBirth;
-          user.city = req.body.city;          
+          user.city = req.body.city;
           user.contactNumber = req.body.contactNumber;
           user.avatarImage = req.body.avatarImage;
           user.numberOfGames = req.body.numberOfGames;
