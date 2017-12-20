@@ -1,6 +1,13 @@
 @import 'mixins';
 @import 'colors';
 @import "~angular-star-rating/assets/scss/star-rating";
+
+html,
+body {
+  width:100%;
+  overflow-x:hidden;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   color: $pl-dark-gray;
