@@ -60,28 +60,6 @@
             text-align: center;
           }
 
-          .game-image {
-            @include display-flex;
-            @include justify-content(center);
-            @include align-items(center);
-            width: 160px;
-            height: 120px;
-            border: 1px solid $pl-light-gray;
-
-            @include respond-to(small-mobile) {
-              display: block;
-              margin: 0 auto;
-            }
-
-            img {
-              background-position: top;
-              max-height: 116px;
-              max-width: 156px;
-              position: relative;
-              margin: auto;
-            }
-          }
-
           .game-info {
             margin-left: 30px;
             width: calc(100% - 190px);

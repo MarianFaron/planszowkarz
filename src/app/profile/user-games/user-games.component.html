@@ -84,9 +84,8 @@
 												<div class="edit-img-box form-group">
 													<label class="image-label">Zdjęcie</label>
 													<div class="game-image center-image">
-														<a routerLink="/games/{{ game._id }}">
-															<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
-														</a>
+														<img *ngIf="urlEditedGameImage" [src]="urlEditedGameImage" />
+														<img *ngIf="!urlEditedGameImage" src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}" />
 													</div>
 												</div>
 												<div class="form-group input-file">
@@ -94,7 +93,7 @@
 													<div class="center-button">
 														<input id="file" type="file" name="photo" class="inputfile"
 														value="cdcd" ng2FileSelect
-														[uploader]="coverUploader" #userGameImage (change)="onChange($event)" />
+														[uploader]="coverUploader" #userGameImage (change)="onChange($event); showEditGameThumbnail($event)" />
 														<label for="file"><i class="fa fa-download" aria-hidden="true"></i>Wybierz plik</label>
 													</div>
 												</div>
@@ -209,9 +208,8 @@
 						<div class="edit-img-box form-group">
 							<label class="image-label">Zdjęcie</label>
 							<div class="game-image center-image">
-								<a href="#">
-									<img src="#">
-								</a>
+								<img *ngIf="urlNewGameImage" [src]="urlNewGameImage" />
+								<img *ngIf="!urlNewGameImage" src="{{this.appService.getUrl('/assets/uploads/covers/')}}default.png" />
 							</div>
 						</div>
 						<div class="form-group input-file">	
@@ -219,7 +217,7 @@
 							<div class="center-button">
 								<input id="add-file" type="file" name="photo" class="inputfile"
 								value="cdcd" ng2FileSelect
-								[uploader]="coverUploader" #userGameImage (change)="onChange($event)" />
+								[uploader]="coverUploader" #userGameImage (change)="onChange($event); showNewGameThumbnail($event)" />
 								<label for="add-file"><i class="fa fa-download" aria-hidden="true"></i>Wybierz plik</label>
 							</div>
 						</div>
