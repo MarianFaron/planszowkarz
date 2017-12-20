@@ -79,7 +79,7 @@ router.route('/auth/facebook/callback')
           message: info.message
         })
       }
-      res.redirect('/main?userId='+user._id);
+      res.redirect('/register?userId='+user._id);
     })(req, res, next);
   });
 

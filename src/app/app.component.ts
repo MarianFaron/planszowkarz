@@ -6,7 +6,7 @@ import { Router, CanActivate, ActivatedRoute } from '@angular/router'
 import { AppService } from './app.service';
 import * as io from 'socket.io-client';
 import { UserGame } from './profile/user-games/user-games';
-import * as AOS from 'aos'; 
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-root',
@@ -60,8 +60,7 @@ export class AppComponent implements OnDestroy {
           this.appService.getUser(params['userId'])
                             .subscribe(
                               user => {
-                                window.location.reload();
-                                this.router.navigate(['/profile']);
+                                window.location.href = '/profile';
                               },
                               error => this.errorMessage = <any>error);
       }
