@@ -8,7 +8,7 @@
     "tsc:w": "tsc -w",
     "start": "ng serve --proxy-config proxy.config.json",
     "ng": "ng",
-    "build": "ng build && node ./server/server.js",
+    "build": "ng build --prod && node ./server/server.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
