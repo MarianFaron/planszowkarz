@@ -56,6 +56,33 @@ export class UserGamesComponent implements OnInit {
     this.coverUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
   }
 
+  urlNewGameImage: any;
+  urlEditedGameImage: any;
+
+  showNewGameThumbnail(event:any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+  
+      reader.onload = (event:any) => {
+        this.urlNewGameImage = event.target.result;
+      }
+  
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  showEditGameThumbnail(event:any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+  
+      reader.onload = (event:any) => {
+        this.urlEditedGameImage = event.target.result;
+      }
+  
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
   file: File;
   onChange(event: EventTarget) {
     let eventObj: MSInputMethodContext = <MSInputMethodContext> event;

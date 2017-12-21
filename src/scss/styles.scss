@@ -1,6 +1,13 @@
 @import 'mixins';
 @import 'colors';
 @import "~angular-star-rating/assets/scss/star-rating";
+
+html,
+body {
+  width:100%;
+  overflow-x:hidden;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   color: $pl-dark-gray;
@@ -361,3 +368,27 @@ textarea:focus {
   width: 100%;
   margin: 0 auto 60px;
 }
+
+/* <Box dla gry> */
+.game-image {
+  @include display-flex;
+  @include justify-content(center);
+  @include align-items(center);
+  width: 160px;
+  height: 120px;
+  border: 1px solid $pl-light-gray;
+
+  @include respond-to(small-mobile) {
+    display: block;
+    margin: 0 auto;
+  }
+
+  img {
+    background-position: top;
+    max-height: 116px;
+    max-width: 156px;
+    position: relative;
+    margin: auto;
+  }
+}
+/* </Box dla gry> */
