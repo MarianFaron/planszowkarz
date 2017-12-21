@@ -82,7 +82,7 @@ export class UserGamesComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
     }
   }
-  
+
   file: File;
   onChange(event: EventTarget) {
     let eventObj: MSInputMethodContext = <MSInputMethodContext> event;

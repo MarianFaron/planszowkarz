@@ -262,6 +262,7 @@ textarea {
 }
 
 .modal-footer {
+
   @include display-flex;
   @include justify-content(flex-end);
 
@@ -269,7 +270,12 @@ textarea {
     @include justify-content(center);
   }
 
-  .btn {
-    margin-left: 5px;
+  button {
+    margin: 0 0 0 5px !important;
+    height: 32px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
