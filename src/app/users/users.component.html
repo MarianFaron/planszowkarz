@@ -26,7 +26,7 @@
 							</div>
 							<div class="form-group">
 								<label>E-mail:</label>
-								<input type="text" class="form-control" name="email" [ngModel]="model.email" #registerUserEmail="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+								<input type="text" class="form-control" name="email" [ngModel]="model.email" #registerUserEmail="ngModel" pattern="^\S+@\S+\.\S+$" required>
 								<div *ngIf="registerUserEmail.errors && (registerUserEmail.dirty || registerUserEmail.touched)" class="alert alert-danger">
 									<div [hidden]="!registerUserEmail.errors.required">
 										E-mail jest wymagany
