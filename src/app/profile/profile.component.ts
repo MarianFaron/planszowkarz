@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserInfo } from './user-info/user-info';
 import { UserInfoService } from './user-info/user-info.service';
 import { ProfileService } from './profile.service';
-const URL = 'http://s407332.projektstudencki.pl/app/uplo
+const URL = 'http://s407332.projektstudencki.pl/app/uploads';
 
 @Component({
   selector: 'app-profile',
