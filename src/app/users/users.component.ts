@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User }              from './users';
 import { UsersService }       from './users.service';
 import { AppService }       from '../app.service';
+import { Router, ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-users',
@@ -17,7 +18,8 @@ export class UsersComponent implements OnInit {
   mode = 'Observable';
   userlogin = '';
   loginIsUsed: Boolean = false;
-  
+  private sub: any;
+
 
   model = {
       login: '',
@@ -27,9 +29,14 @@ export class UsersComponent implements OnInit {
       avatarImage: 'default.png'
     };
 
-  constructor(private appService: AppService, private userGameService: UsersService) { }
+  constructor(private appService: AppService, private userGameService: UsersService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.sub = this.route.queryParams.subscribe(params => {
+      if(params['success']) {
+        this.appService.showNotification('Powiadomienie', 'Pomyślnie zarejestrowano użytkownika.', 'success')
+      }
+    });
     this.getUsers();
   }
 

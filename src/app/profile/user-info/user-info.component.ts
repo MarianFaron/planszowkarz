@@ -74,8 +74,8 @@ this.rate = this.wartosc(this.userInfo.sumOfGrades, this.userInfo.numberOfRating
     this.userInfoService.getUser(userID)
                      .subscribe(
                         userInfo => {
-                          this.userInfo = userInfo;
-                          this.model.dateBirth = userInfo.dateBirth;
+                          this.userInfo = this.profileService.userInfo;
+                          // this.model.dateBirth = userInfo.dateBirth;
 
                         },
                         error => this.errorMessage = <any>error);

@@ -177,7 +177,7 @@
 					<div class="left-column">
 						<div class="form-group">
 							<label>Tytuł</label>
-							<input class="form-control" required [ngModel]="model.title" #userGameTitle="ngModel" />
+							<input class="form-control" required [ngModel]="model.title" #userGameTitle />
 							<div *ngIf="userGameTitle.errors && (userGameTitle.dirty || userGameTitle.touched)"
 								class="alert alert-danger">
 								<div [hidden]="!userGameTitle.errors.required">
@@ -230,7 +230,7 @@
 				(click)="coverUploader.uploadAll();
 				increaseNumberOfGames(userInfo?._id);
 				addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameImage.value);
-				userGameTitle.value=''; userGameCategory.value=''; userGameState.value=''; userGameDescription.value=''; userGameImage.value='';" data-dismiss="modal">Zapisz</button>
+				userGameTitle.value=''; userGameDescription.value=''; userGameImage.value='';" data-dismiss="modal">Zapisz</button>
 			</div>
 		</div>
 	</div>

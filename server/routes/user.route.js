@@ -131,7 +131,7 @@ router.route('/verify')
 
     var email = req.query.email;
 
-    if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
+    if ((req.protocol + "://" + req.get('host')) == ("https://" + host) || (req.protocol + "://" + req.get('host')) == ("http://" + host)) {
       if (req.query.id == rand) {
 
         var tempUser = TempUser.findOne({
@@ -153,7 +153,7 @@ router.route('/verify')
               TempUser.remove({email: tempUser.email}, function() {
                 console.log("User was deleted");
               });
-              return res.redirect('/register');
+              return res.redirect('/register?success');
             }
           });
 

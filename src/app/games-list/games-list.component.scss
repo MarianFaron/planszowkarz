@@ -38,10 +38,6 @@
             display: inline-block;
             border: 1px solid $pl-gray2;
 
-            @include respond-to(tablet) {
-              max-width: 270px;
-            }
-
             .search-input {
               border: none;
               background: $pl-white;
@@ -50,6 +46,7 @@
               padding: 0 0 0 10px;
               height: 40px;
               width: calc(100% - 40px);
+
             }
 
             .search-input:focus {
@@ -148,11 +145,11 @@
             @include respond-to(tablet) {
               @include display-flex;
               @include flex-direction(column);
-              @include align-items( flex-end);
+              @include align-items( flex-start);
             }
 
             @include respond-to(small-mobile) {
-              @include align-items(center);
+              @include align-items(flex-start);
             }
           }
 
@@ -164,7 +161,7 @@
             }
 
             @include respond-to(small-mobile) {
-              @include align-items(center);
+              @include align-items(flex-start);
             }
           }
 

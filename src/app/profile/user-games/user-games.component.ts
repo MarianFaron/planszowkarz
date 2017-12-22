@@ -8,6 +8,7 @@ import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { UserInfo } from '../user-info/user-info';
 import { Router } from '@angular/router';
 import { PagerService } from '../../pager.service';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-user-games',
@@ -46,7 +47,8 @@ export class UserGamesComponent implements OnInit {
     private userGameService: UserGameService,
     private userConfigService: UserConfigService,
     private router: Router,
-    private pagerService: PagerService
+    private pagerService: PagerService,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit() {
@@ -54,6 +56,7 @@ export class UserGamesComponent implements OnInit {
     this.getUserGame();
     this.coverUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
     this.coverUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
+    // this.userInfo = this.profileService.getUserInfo();
   }
 
   file: File;
@@ -83,6 +86,7 @@ export class UserGamesComponent implements OnInit {
                         userGame  => {
                           this.userGame;
                           this.getUserGame();
+                          this.profileService.getUserInfo();
                           this.appService.showNotification('Powiadomienie', 'Dodano nową grę.', 'success');
                         },
                         error =>  {
@@ -115,6 +119,7 @@ export class UserGamesComponent implements OnInit {
                             userGame  => {
                               this.userGame;
                               this.getUserGame();
+                              this.profileService.getUserInfo();
                               this.appService.showNotification('Powiadomienie', 'Gra została usunięta.', 'success');
                             },
                             error => {
