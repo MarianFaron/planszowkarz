@@ -1,40 +1,28 @@
-<section id="newGames" class="games-list">
-  <div class="container">
-    <h3 class="section-header">{{pageTitle}}</h3>
-    <hr class="main-hr">
-    <small>
-      <div *ngIf="this.query.title"><b>Tytuł:</b> {{this.query.title}}</div>
-      <div *ngIf="this.query.category"><b>Kategorie:</b> {{this.query.category}}</div>
-      <div *ngIf="this.query.state"><b>Stan:</b> {{this.query.state}}</div>
-    </small>
-    <div class="games-list-content">
-      <div class="search-bar" data-aos="fade-up">
-        <div class="inner">
-          <form action="/app/search" method="post">
-          	<input type="text" class="search-input" name="search" value=""
-            #searchInput placeholder="Wpisz tytuł..." [(ngModel)]="this.queryTitle">
-          	<button type="submit" class="custom-button" name="button" (click)="search()">
-            <i class="fa fa-search"></i></button>
-          </form>
-        </div>
-        <div class="inner" data-aos="fade-up">
-          <div class="column left">
-            <h3>Kategorie</h3>
-            <div class="game-categories">
-              <div *ngFor="let option of categoriesOptions">
-                <div class="custom-checkbox">
-                  <input type="checkbox" name="options" id="{{option.name}}" value="{{option.value}}" [(ngModel)]="option.checked">
-                  <label for="{{ option.name }}">
-                    <span>{{option.name}}</span>
-                  </label>
-                </div>
-              </div>
-            </div>
+<div class="page-content">
+  <section id="newGames" class="games-list">
+    <div class="container">
+      <h3 class="section-header">{{pageTitle}}</h3>
+      <hr class="main-hr">
+      <small>
+        <div *ngIf="this.query.title"><b>Tytuł:</b> {{this.query.title}}</div>
+        <div *ngIf="this.query.category"><b>Kategorie:</b> {{this.query.category}}</div>
+        <div *ngIf="this.query.state"><b>Stan:</b> {{this.query.state}}</div>
+      </small>
+      <div class="games-list-content">
+        <div class="search-bar" data-aos="fade-up">
+          <div class="inner">
+            <form action="/app/search" method="post">
+              <input type="text" class="search-input" name="search" value=""
+              #searchInput placeholder="Wpisz tytuł..." [(ngModel)]="this.queryTitle">
+              <button type="submit" class="custom-button" name="button" (click)="search()">
+              <i class="fa fa-search"></i></button>
+            </form>
           </div>
-          <div class="column right">
-            <h3>Stan</h3>
-            <div class="game-states">
-              <div *ngFor="let option of statesOptions">
+          <div class="inner" data-aos="fade-up">
+            <div class="column left">
+              <h3>Kategorie</h3>
+              <div class="game-categories">
+                <div *ngFor="let option of categoriesOptions">
                   <div class="custom-checkbox">
                     <input type="checkbox" name="options" id="{{option.name}}" value="{{option.value}}" [(ngModel)]="option.checked">
                     <label for="{{ option.name }}">
@@ -42,20 +30,34 @@
                     </label>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="column right">
+              <h3>Stan</h3>
+              <div class="game-states">
+                <div *ngFor="let option of statesOptions">
+                    <div class="custom-checkbox">
+                      <input type="checkbox" name="options" id="{{option.name}}" value="{{option.value}}" [(ngModel)]="option.checked">
+                      <label for="{{ option.name }}">
+                        <span>{{option.name}}</span>
+                      </label>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="button" name="button" class="btn custom-button" (click)="search()">
+                <i class="fa fa-save"></i>
+                Filtruj
+              </button>
             </div>
           </div>
-          <div class="text-center">
-            <button type="button" name="button" class="btn custom-button" (click)="search()">
-              <i class="fa fa-save"></i>
-              Filtruj
-            </button>
-          </div>
         </div>
-      </div>
-      <div class="list-of-games">
-        <div *ngIf="!pagedItems">
-          <div class="text-center">
-            <img src="../../assets/images/loading.gif" alt="" class="loading">
+        <div class="list-of-games">
+          <div *ngIf="!pagedItems">
+            <div class="text-center">
+              <img src="../../assets/images/loading.gif" alt="" class="loading">
+            </div>
           </div>
         </div>
         <!-- <div *ngIf="pagedItems == 0">
@@ -100,27 +102,27 @@
                   </div>
                 </div>
             </div>
-        </div>
-        <div class="text-center">
-          <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-            <li [ngClass]="{disabled:pager.currentPage === 1}">
-              <a (click)="setPage(1)">&#60;&#60;</a>
-            </li>
-            <li [ngClass]="{disabled:pager.currentPage === 1}">
-              <a (click)="setPage(pager.currentPage - 1)">&#60;</a>
-            </li>
-            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-              <a (click)="setPage(page)">{{page}}</a>
-            </li>
-            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-              <a (click)="setPage(pager.currentPage + 1)">&#62;</a>
-            </li>
-            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-              <a (click)="setPage(pager.totalPages)">&#62;&#62;</a>
-            </li>
-          </ul>
+          <div class="text-center">
+            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+              <li [ngClass]="{disabled:pager.currentPage === 1}">
+                <a (click)="setPage(1)">&#60;&#60;</a>
+              </li>
+              <li [ngClass]="{disabled:pager.currentPage === 1}">
+                <a (click)="setPage(pager.currentPage - 1)">&#60;</a>
+              </li>
+              <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                <a (click)="setPage(page)">{{page}}</a>
+              </li>
+              <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a (click)="setPage(pager.currentPage + 1)">&#62;</a>
+              </li>
+              <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a (click)="setPage(pager.totalPages)">&#62;&#62;</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>

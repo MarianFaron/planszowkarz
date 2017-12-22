@@ -2,12 +2,12 @@
 @import '../../scss/colors';
 
 #contactPage{
-    margin: 0 0 50px;
+    margin: 0;
 
     .section-container{
         background: $pl-white;
         box-shadow: 2px 2px 1px $pl-gray;
-        margin: 15px auto;
+        margin: 15px auto 0;
         padding: 20px;
         text-overflow: ellipsis;
         overflow: hidden;

@@ -3,7 +3,7 @@
 @import '../../../scss/font-awesome';
 
 .games-main-panel {
-  margin: 10px 0 0;
+  margin: 0;
   display: block;
 
   .btn {
@@ -58,28 +58,6 @@
           @include respond-to(small-mobile) {
             @include flex-direction(column);
             text-align: center;
-          }
-
-          .game-image {
-            @include display-flex;
-            @include justify-content(center);
-            @include align-items(center);
-            width: 160px;
-            height: 120px;
-            border: 1px solid $pl-light-gray;
-
-            @include respond-to(small-mobile) {
-              display: block;
-              margin: 0 auto;
-            }
-
-            img {
-              background-position: top;
-              max-height: 116px;
-              max-width: 156px;
-              position: relative;
-              margin: auto;
-            }
           }
 
           .game-info {
@@ -166,6 +144,10 @@
             width: 120px;
           }
         }
+      }
+
+      .single-game-box:last-child {
+        margin: 0;
       }
     }
   }
@@ -280,6 +262,7 @@ textarea {
 }
 
 .modal-footer {
+
   @include display-flex;
   @include justify-content(flex-end);
 
@@ -287,7 +270,12 @@ textarea {
     @include justify-content(center);
   }
 
-  .btn {
-    margin-left: 5px;
+  button {
+    margin: 0 0 0 5px !important;
+    height: 32px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

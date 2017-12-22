@@ -3,7 +3,7 @@ var express = require('express');
 var bodyParser 	= require('body-parser');
 var app = express();
 var path = require('path');
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 80;
 var morgan = require('morgan');
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -131,4 +131,4 @@ app.get('*', (req, res) => {
 });
 
 // app.listen(port, () => console.log("Server running on: " + port));
-server.listen(port, "127.0.0.1");
+server.listen(port,() => console.log("Server running on: " + port));

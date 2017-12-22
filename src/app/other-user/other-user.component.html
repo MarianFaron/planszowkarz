@@ -1,105 +1,107 @@
-<section id="user-panel" class="user-info-panel">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<h3 class="section-header">Przeglądasz profil użytkownika:
-					<b>
-						<span *ngIf="!userInfo?.facebook">{{userInfo?.local.login}}</span>
-						<span *ngIf="userInfo?.facebook">{{userInfo?.facebook.name}}</span>
-					</b>
-				</h3>
-				<hr class="main-hr">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4 col-md-push-8 user-info">
-				<div class="user-sidebar inner" data-aos="fade-up">
-					<div class="other-info">
-						<div *ngIf="userInfo">
-							<!--<img *ngIf="userInfo?.avatarImage" class="user-avatar" alt="facebook-avatar"
-								src="http://graph.facebook.com/{{userInfo?.facebook.id}}/picture?width=160&amp;height=160"/>-->
-							<img *ngIf="userInfo?.avatarImage" class="user-avatar" alt="user-avatar"
-								src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" />
-						</div>
-						<div *ngIf="!userInfo">
-							<div class="text-center">
-								<img src="../../assets/images/loading.gif" alt="" class="loading">
-							</div>
-						</div>
-						<ul>
-							<div class="user-info-box">
-								<li class="username">
-									<span *ngIf="userInfo?.local && !userInfo?.facebook">{{userInfo?.local.login}}</span>
-									<span *ngIf="userInfo?.facebook">{{userInfo?.facebook.name}}</span>
-								</li>
-								<div *ngIf="userInfo?.local && !userInfo?.facebook">
-									<li *ngIf="userInfo?.local.email">
-										<span class="icon icon-mail" aria-hidden="true"></span>
-										<p>
-											Email: <a href="mailto:{{userInfo?.local.email}}">{{userInfo?.local.email}}</a>
-										</p>
-									</li>
-								</div>
-								<div *ngIf="userInfo?.facebook">
-									<li *ngIf="userInfo?.facebook.email">
-										<span class="icon icon-mail" aria-hidden="true"></span>
-										<p>
-											Email: <a href="mailto:{{userInfo?.facebook.email}}">{{userInfo?.facebook.email}}</a>
-										</p>
-									</li>
-								</div>
-							</div>
-							<div class="user-info-box">
-								<li>
-									<span class="icon icon-games" aria-hidden="true"></span>
-									<p>
-										Liczba gier na wymianę: <b>{{userInfo?.numberOfGames}}</b>
-									</p>
-								</li>
-								<li>
-									<span class="icon icon-change" aria-hidden="true"></span>
-									<p>
-										Liczba przeprowadzonych wymian: <b>{{userInfo?.numberOfExchanges}}</b>
-									</p>
-								</li>
-								<li>
-									<span class="icon icon-star" aria-hidden="true"></span>
-									<p>
-										<star-rating-comp  [hoverEnabled]="true" [labelText]="'Ocena społeczności: '" (onClick)="addGrade(userInfo?._id, $event)" (onHoverRatingChange)="onHoverRatingChange($event)" [starType]="'svg'" [rating]='userInfo?.sumOfGrades/userInfo?.numberOfRatings' [showHalfStars]="true"></star-rating-comp>
-									</p>
-								</li>
-							</div>
-						</ul>
-					</div>
+<div class="page-content">
+	<section id="user-panel" class="user-info-panel">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="section-header">Przeglądasz profil użytkownika:
+						<b>
+							<span *ngIf="!userInfo?.facebook">{{userInfo?.local.login}}</span>
+							<span *ngIf="userInfo?.facebook">{{userInfo?.facebook.name}}</span>
+						</b>
+					</h3>
+					<hr class="main-hr">
 				</div>
 			</div>
-			<div class="col-md-8 col-md-pull-4">
-				<div class="games-main-panel">
-					<div class="games-info">
-						<div class="games-panel-content ">
-							<div *ngIf="!userGame">
-			          			<div class="text-center">
-			            			<img src="../../assets/images/loading.gif" alt="" class="loading">
-			          			</div>
-			        		</div>
-							<div class="single-game-box" *ngFor="let game of userGame">
-								<div class="single-box-content inner" data-aos="fade-up">
-									<div class="game-image">
-										<a routerLink="/games/{{ game._id }}">
-											<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
-										</a>
+			<div class="row">
+				<div class="col-md-4 col-md-push-8 user-info">
+					<div class="user-sidebar inner" data-aos="fade-up">
+						<div class="other-info">
+							<div *ngIf="userInfo">
+								<!--<img *ngIf="userInfo?.avatarImage" class="user-avatar" alt="facebook-avatar"
+									src="http://graph.facebook.com/{{userInfo?.facebook.id}}/picture?width=160&amp;height=160"/>-->
+								<img *ngIf="userInfo?.avatarImage" class="user-avatar" alt="user-avatar"
+									src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" />
+							</div>
+							<div *ngIf="!userInfo">
+								<div class="text-center">
+									<img src="../../assets/images/loading.gif" alt="" class="loading">
+								</div>
+							</div>
+							<ul>
+								<div class="user-info-box">
+									<li class="username">
+										<span *ngIf="userInfo?.local && !userInfo?.facebook">{{userInfo?.local.login}}</span>
+										<span *ngIf="userInfo?.facebook">{{userInfo?.facebook.name}}</span>
+									</li>
+									<div *ngIf="userInfo?.local && !userInfo?.facebook">
+										<li *ngIf="userInfo?.local.email">
+											<span class="icon icon-mail" aria-hidden="true"></span>
+											<p>
+												Email: <a href="mailto:{{userInfo?.local.email}}">{{userInfo?.local.email}}</a>
+											</p>
+										</li>
 									</div>
+									<div *ngIf="userInfo?.facebook">
+										<li *ngIf="userInfo?.facebook.email">
+											<span class="icon icon-mail" aria-hidden="true"></span>
+											<p>
+												Email: <a href="mailto:{{userInfo?.facebook.email}}">{{userInfo?.facebook.email}}</a>
+											</p>
+										</li>
+									</div>
+								</div>
+								<div class="user-info-box">
+									<li>
+										<span class="icon icon-games" aria-hidden="true"></span>
+										<p>
+											Liczba gier na wymianę: <b>{{userInfo?.numberOfGames}}</b>
+										</p>
+									</li>
+									<li>
+										<span class="icon icon-change" aria-hidden="true"></span>
+										<p>
+											Liczba przeprowadzonych wymian: <b>{{userInfo?.numberOfExchanges}}</b>
+										</p>
+									</li>
+									<li>
+										<span class="icon icon-star" aria-hidden="true"></span>
+										<p>
+											<star-rating-comp  [hoverEnabled]="true" [labelText]="'Ocena społeczności: '" (onClick)="addGrade(userInfo?._id, $event)" (onHoverRatingChange)="onHoverRatingChange($event)" [starType]="'svg'" [rating]='userInfo?.sumOfGrades/userInfo?.numberOfRatings' [showHalfStars]="true"></star-rating-comp>
+										</p>
+									</li>
+								</div>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8 col-md-pull-4">
+					<div class="games-main-panel">
+						<div class="games-info">
+							<div class="games-panel-content ">
+								<div *ngIf="!userGame">
+									<div class="text-center">
+										<img src="../../assets/images/loading.gif" alt="" class="loading">
+									</div>
+								</div>
+								<div class="single-game-box" *ngFor="let game of userGame">
+									<div class="single-box-content inner" data-aos="fade-up">
+										<div class="game-image">
+											<a routerLink="/games/{{ game._id }}">
+												<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}">
+											</a>
+										</div>
 
-									<div class="game-info">
-										<a routerLink="/games/{{ game._id }}">
-											<p class="title">{{ game.title }}</p>
-										</a>
-										<p><strong>Kategoria: </strong>{{ game.category }}</p>
-										<p><strong>Stan: </strong>{{ game.state }}</p>
-										<div class="game-info-buttons" *ngIf="this.appService.isLoggedIn()">
-											<button *ngIf="this.appService.getCurrentUser()._id != game.userID._id" routerLink="/exchange/{{ game._id }}"
-											type="button" class="btn btn-default custom-button">
-											Wymień się</button>
+										<div class="game-info">
+											<a routerLink="/games/{{ game._id }}">
+												<p class="title">{{ game.title }}</p>
+											</a>
+											<p><strong>Kategoria: </strong>{{ game.category }}</p>
+											<p><strong>Stan: </strong>{{ game.state }}</p>
+											<div class="game-info-buttons" *ngIf="this.appService.isLoggedIn()">
+												<button *ngIf="this.appService.getCurrentUser()._id != game.userID._id" routerLink="/exchange/{{ game._id }}"
+												type="button" class="btn btn-default custom-button">
+												Wymień się</button>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -109,5 +111,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</div>

@@ -6,13 +6,11 @@ section#exchange {
 
   .exchange-box {
     position: relative;
-    top: -20px;
-    margin-bottom: -60px;
 
     .exchange-background {
       background: $pl-light-gray4;
       min-height: calc(100vh - 90px);
-      padding-bottom: 20px;
+      padding: 0;
 
       .loading-exchange-content {
         @include display-flex;
@@ -57,7 +55,7 @@ section#exchange {
         }
 
         .users-info {
-          margin-top: 20px;
+          margin: 0;
           padding: 5px;
           @include display-flex;
           @include flex-direction(row);
