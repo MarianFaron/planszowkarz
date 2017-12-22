@@ -19,6 +19,6 @@ export class ProfileComponent implements OnInit {
 	constructor(private route: ActivatedRoute, private profileService: ProfileService, private userInfoService: UserInfoService){}
 
 	ngOnInit() {
-
+    this.profileService.userInfo = this.profileService.getUserInfo();
   }
 }

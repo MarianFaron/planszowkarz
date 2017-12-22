@@ -16,7 +16,6 @@ import { UserHistorySentComponent } from './profile/user-history/user-history-se
 import { UserHistoryReceivedComponent } from './profile/user-history/user-history-received/user-history-received.component';
 import { UserHistoryRejectedComponent } from './profile/user-history/user-history-rejected/user-history-rejected.component';
 import { RatingComponent } from './rating/rating.component';
-import { CatalogComponent } from './catalog/catalog.component';
 import { ExchangeComponent } from './exchange/exchange.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutProjectComponent } from './about-project/about-project.component';
@@ -50,7 +49,6 @@ export const router: Routes = [
 	{ path: 'search-results', component: GamesListComponent },
 	{ path: 'games', component: GamesListComponent },
 	{ path: 'rating', component: RatingComponent },
-	{ path: 'catalog', component: CatalogComponent },
 	{ path: 'exchange/:_id', component: ExchangeComponent},
 	{ path: 'contact', component: ContactComponent },
 	{ path: 'about-project', component: AboutProjectComponent },

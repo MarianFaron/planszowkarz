@@ -3,7 +3,7 @@
 
 .about-project-content {
   width: 80%;
-  margin: 0 auto 50px;
+  margin: 0 auto;
 
   .about-project-header {
     @include font-size(24);
@@ -15,7 +15,7 @@
     box-shadow: 0 3px 7px -3px rgba($pl-black, 0.3);
     line-height: 1.45em;
     padding: 10px 30px;
-    margin: 20px 0;
+    margin: 20px 0 0;
 
     @include respond-to(small-mobile) {
       padding: 10px 24px;

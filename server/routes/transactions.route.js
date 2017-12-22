@@ -64,7 +64,7 @@ router.route('/start')
         to: recipient,
         subject: 'Użytkownik prosi o wymianę',
         text: message,
-        html: '<div style="background: #f5f5f5; padding-top: 40px;padding-bottom: 40px;"><div class="email" style="width: 500px; margin: 0 auto;border:1px solid #b6b6b6;"><div class="email-header" style="background:#f98d1a;text-align: center;color: #fff; padding: 5px;"><h4 style="margin 0;padding: 0;">Planszówkarz</h4></div><div class="email-content" style="padding: 15px; background: #fff;"><h3>Prośba o wymianę</h3><p style="font-size: 14px;">' + message + '</p><p style="font-size: 14px;">Jeśli nie chcesz otrzymywać takich wiadomości, zmień ustawienia na swoim profilu.</p></div><div class="email-footer" style="background:#f98d1a;text-align: center;color: #fff; padding: 15px; font-size: 12px">Planszówkarz 2017 <a href="#" style="color: #fff">Kontakt</a></div></div></div>'
+        html: '<div style="background: #f5f5f5; padding-top: 40px;padding-bottom: 40px;"><div class="email" style="width: 500px; margin: 0 auto;border:1px solid #b6b6b6;"><div class="email-header" style="background:#444;text-align: center;color: #fff; padding: 5px;"><h4 style="margin 0;padding: 0;">Planszówkarz</h4></div><div class="email-content" style="padding: 15px; background: #fff;"><h3>Prośba o wymianę</h3><p style="font-size: 14px;">' + message + '</p></div><div class="email-footer" style="background:#444;text-align: center;color: #fff; padding: 15px; font-size: 12px">Planszówkarz 2017 <a href="#" style="color: #f98d1a">Kontakt</a></div></div></div>'
       };
 
       transporter.sendMail(mailOptions, (error, info) => {

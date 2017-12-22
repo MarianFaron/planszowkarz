@@ -28,9 +28,9 @@ export class UserInfoComponent implements OnInit {
   public URL = this.appService.getUrl('/app/avatarUpload');
   public avatarUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
-  constructor(private http: Http, private profileService: ProfileService, private appService: AppService, private userInfoService: UserInfoService) {}
+  constructor(private http: Http, public profileService: ProfileService, private appService: AppService, private userInfoService: UserInfoService) {}
 
-  private myDatePickerOptions: IMyOptions = {
+  myDatePickerOptions: IMyOptions = {
     dateFormat: 'dd-mm-yyyy',
     showTodayBtn: false,
     maxYear: this.currentDate.getFullYear()
@@ -70,20 +70,20 @@ export class UserInfoComponent implements OnInit {
   getUserInfo() {
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var userID = currentUser._id;
-this.rate = this.wartosc(this.userInfo.sumOfGrades, this.userInfo.numberOfRatings);   
+this.rate = this.wartosc(this.userInfo.sumOfGrades, this.userInfo.numberOfRatings);
     this.userInfoService.getUser(userID)
                      .subscribe(
                         userInfo => {
-                          this.userInfo = userInfo;
-                          this.model.dateBirth = userInfo.dateBirth;
-                          
+                          this.userInfo = this.profileService.userInfo;
+                          // this.model.dateBirth = userInfo.dateBirth;
+
                         },
                         error => this.errorMessage = <any>error);
-                            
+
   }
-  
+
   wartosc(x:number, y:number){
-      var z = x/y; 
+      var z = x/y;
       var m = z.toFixed(2);
       return +m;
   }

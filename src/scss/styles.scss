@@ -1,6 +1,8 @@
 @import 'mixins';
 @import 'colors';
+@import 'font-awesome';
 @import "~angular-star-rating/assets/scss/star-rating";
+
 body {
   font-family: 'Open Sans', sans-serif;
   color: $pl-dark-gray;
@@ -94,7 +96,7 @@ textarea:focus {
   @include transition(all ease-in 0.15s);
 
   @include respond-to(desktop) {
-    @include font-size(12);
+    @include font-size(13);
   }
 
   @include respond-to(mobile) {
@@ -119,6 +121,7 @@ textarea:focus {
   font-weight: 500;
   border: none;
   min-width: 100px;
+  border: 1px solid $pl-dark-gray3;
 
   &:hover {
     background-color: $pl-gray;
@@ -133,8 +136,8 @@ textarea:focus {
   width: 60px;
 }
 
-hr {
-  margin-bottom: 10px;
+.main-hr-center {
+  margin: 20px auto;
 }
 
 .inner{
@@ -148,9 +151,17 @@ hr {
 
 /* DATEPICKER */
 
+.mydp, .mydp .headertodaybtn, .mydp .selection, .mydp .selectiongroup, .mydp .selector {
+  border-radius: 0!important;
+}
+
 .mydp .header {
     background: $pl-orange !important;
     color: $pl-white !important
+}
+
+.mydp .selectiongroup {
+  height: 40px;
 }
 
 .mydp .headerbtncell,
@@ -306,17 +317,20 @@ hr {
 
 // Custom scrollbar
 
-#custom-scrollbar::-webkit-scrollbar-track{
+#custom-scrollbar::-webkit-scrollbar-track,
+.custom-scrollbar::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba($pl-black, 0.3);
   background-color: $pl-light-gray4;
 }
 
-#custom-scrollbar::-webkit-scrollbar{
+#custom-scrollbar::-webkit-scrollbar,
+.custom-scrollbar::-webkit-scrollbar {
   width: 10px;
   background-color: $pl-light-gray4;
 }
 
-#custom-scrollbar::-webkit-scrollbar-thumb{
+#custom-scrollbar::-webkit-scrollbar-thumb,
+.custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #F90;
   background-image: -webkit-linear-gradient(45deg, rgba($pl-white, .2) 25%,
                         transparent 25%,
@@ -331,6 +345,7 @@ hr {
 
 .pagination {
   box-shadow: 2px 2px 1px $pl-gray;
+  margin: 40px 0 0;
 }
 
 .pagination a,
@@ -350,3 +365,33 @@ hr {
   border-right: none;
   cursor: pointer;
 }
+
+.page-content{
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto 60px;
+}
+
+/* <Box dla gry> */
+.game-image {
+  @include display-flex;
+  @include justify-content(center);
+  @include align-items(center);
+  width: 160px;
+  height: 120px;
+  border: 1px solid $pl-light-gray;
+
+  @include respond-to(small-mobile) {
+    display: block;
+    margin: 0 auto;
+  }
+
+  img {
+    background-position: top;
+    max-height: 116px;
+    max-width: 156px;
+    position: relative;
+    margin: auto;
+  }
+}
+/* </Box dla gry> */

@@ -1,6 +1,9 @@
-@import '../../scss/mixins';
 @import '../../scss/colors';
+@import '../../scss/mixins';
 @import '../../scss/font-awesome';
+
+
+
 
 .user-info-panel {
   margin: 0;
@@ -92,10 +95,10 @@ hr.style1 {
     width: 100%;
     min-height: 130px;
     display: table;
+    margin: 0 0 15px;
 
     .single-box-content {
       padding: 15px;
-      margin-bottom: 15px;
       width: 100%;
       @include display-inline-flex;
 
@@ -143,6 +146,10 @@ hr.style1 {
         }
       }
     }
+  }
+
+  .single-game-box:last-child {
+    margin: 0;
   }
 }
 

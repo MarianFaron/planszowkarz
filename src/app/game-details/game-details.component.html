@@ -1,131 +1,132 @@
-<section id="game-details">
-
-	<div class="game-details-box">
-		<div class="container">
-			<h3 class="section-header">{{ userGame?.title }}</h3>
-			<hr class="main-hr">
-		</div>
-		<div *ngIf="!userGame" class="container">
-			<div class="text-center">
-				<img src="../../assets/images/loading.gif" alt="" class="loading">
-			</div>
-		</div>
-		<div *ngIf="userGame" class="container inner">
-			<div class="game-box">
-				<div class="left-col">
-					<div class="gallery-box">
-						<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}
-						{{ userGame?.Image }}">
-					</div>
-				</div>
-				<div class="right-col">
-					<div class="game-info">
-						<p>{{ userGame?.description }}</p>
-						<hr>
-						<div class="owner">
-							<span class="detail-row">
-								<span class="detail-label">Właściciel</span>
-								<span *ngIf="userGame?.userID.facebook"
-									class="detail-value">{{ userGame?.userID.facebook.name }}</span>
-								<span *ngIf="!userGame?.userID.facebook"
-									class="detail-value">{{ userGame?.userID.local.login }}</span>
-							</span>
-							<span class="detail-row">
-								<span class="detail-label">Kategoria</span>
-								<span class="detail-value">{{ userGame?.category }}</span>
-							</span>
-							<span class="detail-row">
-								<span class="detail-label">Stan</span>
-								<span class="detail-value">{{ userGame?.state }}</span>
-							</span>
-							<span class="detail-row">
-								<span class="detail-label">Data dodania</span>
-								<span class="detail-value">{{userGame?.createdDate | date:'longDate'}}</span>
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="exchange-button" *ngIf="this.appService.isLoggedIn()">
-		        <button *ngIf="this.appService.getCurrentUser()._id != userGame?.userID._id"
-		        routerLink="/exchange/{{ userGame?._id }}" type="button" class="btn btn-default custom-button">Wymień się!</button>
-			</div>
-			<!--
-			<div class="other-games-box">
-				<h3>Podobne gry</h3>
+<div class="page-content">
+	<section id="game-details">
+		<div class="game-details-box">
+			<div class="container">
+				<h3 class="section-header">{{ userGame?.title }}</h3>
 				<hr class="main-hr">
-				<div class="games-box">
-					<div class="single-game-box inner">
-						<div class="game-content">
-							<img src="#" alt="Zdjęcie gry" />
-							<span class="detail-row">
-								<span class="detail-label">Tytuł</span>
-								<span class="detail-value">tytuł gry</span>
-							</span>
-							<span class="detail-row">
-								<span class="detail-label">Właściciel</span>
-								<span class="detail-value">właściciel</span>
-							</span>
-							<span class="detail-row">
-								<span class="detail-label">Kategoria</span>
-								<span class="detail-value">kategoria gry</span>
-							</span>
+			</div>
+			<div *ngIf="!userGame" class="container">
+				<div class="text-center">
+					<img src="../../assets/images/loading.gif" alt="" class="loading">
+				</div>
+			</div>
+			<div *ngIf="userGame" class="container inner">
+				<div class="game-box">
+					<div class="left-col">
+						<div class="gallery-box">
+							<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}
+							{{ userGame?.Image }}">
 						</div>
 					</div>
-					<div class="single-game-box inner">
-						<div class="game-content">
-							<img src="#" alt="Zdjęcie gry" />
-							<span class="detail-row">
-								<span class="detail-label">Tytuł</span>
-								<span class="detail-value">tytuł gry</span>
-							</span>
-							<span class="detail-row">
-								<span class="detail-label">Właściciel</span>
-								<span class="detail-value">właściciel</span>
-							</span>
-							<span class="detail-row">
-								<span class="detail-label">Kategoria</span>
-								<span class="detail-value">kategoria gry</span>
-							</span>
-						</div>
-					</div>
-					<div class="single-game-box inner">
-						<div class="game-content">
-							<img src="#" alt="Zdjęcie gry" />
-							<span class="detail-row">
-								<span class="detail-label">Tytuł</span>
-								<span class="detail-value">tytuł gry</span>
-							</span>
-							<span class="detail-row">
-								<span class="detail-label">Właściciel</span>
-								<span class="detail-value">właściciel</span>
-							</span>
-							<span class="detail-row">
-								<span class="detail-label">Kategoria</span>
-								<span class="detail-value">kategoria gry</span>
-							</span>
-						</div>
-					</div>
-					<div class="single-game-box inner">
-						<div class="game-content">
-							<img src="#" alt="Zdjęcie gry" />
-							<span class="detail-row">
-								<span class="detail-label">Tytuł</span>
-								<span class="detail-value">tytuł gry</span>
-							</span>
-							<span class="detail-row">
-								<span class="detail-label">Właściciel</span>
-								<span class="detail-value">właściciel</span>
-							</span>
-							<span class="detail-row">
-								<span class="detail-label">Kategoria</span>
-								<span class="detail-value">kategoria gry</span>
-							</span>
+					<div class="right-col">
+						<div class="game-info">
+							<p>{{ userGame?.description }}</p>
+							<hr>
+							<div class="owner">
+								<span class="detail-row">
+									<span class="detail-label">Właściciel</span>
+									<span *ngIf="userGame?.userID.facebook"
+										class="detail-value">{{ userGame?.userID.facebook.name }}</span>
+									<span *ngIf="!userGame?.userID.facebook"
+										class="detail-value">{{ userGame?.userID.local.login }}</span>
+								</span>
+								<span class="detail-row">
+									<span class="detail-label">Kategoria</span>
+									<span class="detail-value">{{ userGame?.category }}</span>
+								</span>
+								<span class="detail-row">
+									<span class="detail-label">Stan</span>
+									<span class="detail-value">{{ userGame?.state }}</span>
+								</span>
+								<span class="detail-row">
+									<span class="detail-label">Data dodania</span>
+									<span class="detail-value">{{userGame?.createdDate | date:'longDate'}}</span>
+								</span>
+							</div>
 						</div>
 					</div>
 				</div>
+				<div class="exchange-button" *ngIf="this.appService.isLoggedIn()">
+					<button *ngIf="this.appService.getCurrentUser()._id != userGame?.userID._id"
+					routerLink="/exchange/{{ userGame?._id }}" type="button" class="btn btn-default custom-button">Wymień się!</button>
+				</div>
+				<!--
+				<div class="other-games-box">
+					<h3>Podobne gry</h3>
+					<hr class="main-hr">
+					<div class="games-box">
+						<div class="single-game-box inner">
+							<div class="game-content">
+								<img src="#" alt="Zdjęcie gry" />
+								<span class="detail-row">
+									<span class="detail-label">Tytuł</span>
+									<span class="detail-value">tytuł gry</span>
+								</span>
+								<span class="detail-row">
+									<span class="detail-label">Właściciel</span>
+									<span class="detail-value">właściciel</span>
+								</span>
+								<span class="detail-row">
+									<span class="detail-label">Kategoria</span>
+									<span class="detail-value">kategoria gry</span>
+								</span>
+							</div>
+						</div>
+						<div class="single-game-box inner">
+							<div class="game-content">
+								<img src="#" alt="Zdjęcie gry" />
+								<span class="detail-row">
+									<span class="detail-label">Tytuł</span>
+									<span class="detail-value">tytuł gry</span>
+								</span>
+								<span class="detail-row">
+									<span class="detail-label">Właściciel</span>
+									<span class="detail-value">właściciel</span>
+								</span>
+								<span class="detail-row">
+									<span class="detail-label">Kategoria</span>
+									<span class="detail-value">kategoria gry</span>
+								</span>
+							</div>
+						</div>
+						<div class="single-game-box inner">
+							<div class="game-content">
+								<img src="#" alt="Zdjęcie gry" />
+								<span class="detail-row">
+									<span class="detail-label">Tytuł</span>
+									<span class="detail-value">tytuł gry</span>
+								</span>
+								<span class="detail-row">
+									<span class="detail-label">Właściciel</span>
+									<span class="detail-value">właściciel</span>
+								</span>
+								<span class="detail-row">
+									<span class="detail-label">Kategoria</span>
+									<span class="detail-value">kategoria gry</span>
+								</span>
+							</div>
+						</div>
+						<div class="single-game-box inner">
+							<div class="game-content">
+								<img src="#" alt="Zdjęcie gry" />
+								<span class="detail-row">
+									<span class="detail-label">Tytuł</span>
+									<span class="detail-value">tytuł gry</span>
+								</span>
+								<span class="detail-row">
+									<span class="detail-label">Właściciel</span>
+									<span class="detail-value">właściciel</span>
+								</span>
+								<span class="detail-row">
+									<span class="detail-label">Kategoria</span>
+									<span class="detail-value">kategoria gry</span>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				-->
 			</div>
-			-->
 		</div>
-	</div>
-</section>
+	</section>
+</div>

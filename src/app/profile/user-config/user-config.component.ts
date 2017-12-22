@@ -39,7 +39,7 @@ export class UserConfigComponent implements OnInit {
               private userInfoService: UserInfoService,
               private userConfigService: UserConfigService) { }
 
-  private myDatePickerOptions: IMyOptions = {
+  myDatePickerOptions: IMyOptions = {
         dateFormat: 'dd-mm-yyyy',
         showTodayBtn: false,
         maxYear: this.currentDate.getFullYear()

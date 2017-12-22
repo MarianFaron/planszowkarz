@@ -86,7 +86,7 @@
 }
 
 header {
-  margin: 0 0 20px;
+  margin: 0 0 40px;
   width: 100%;
   position: relative;
   z-index: 100;
@@ -129,7 +129,7 @@ header {
             list-style: none;
             @include display-flex;
             @include justify-content(center);
-            width: 50%;
+            width: 35%;
 
             a {
               color: $pl-white;
@@ -157,7 +157,7 @@ header {
 
         li.double-space {
           width: 100%;
-        }        
+        }
       }
 
       .logo-column {
@@ -327,7 +327,7 @@ footer {
         color: rgba($pl-white, 0.5);
         text-decoration: none;
       }
-      
+
       a.logo {
         @include font-size(18);
 
@@ -349,10 +349,14 @@ footer {
         list-style-type: none;
         margin: 0;
 
+        @include respond-to(mobile) {
+          padding: 0;
+        }
+
         @include respond-to(small-mobile) {
           @include flex-direction(column);
         }
-        
+
         li {
           @include display-flex;
           @include align-items(center);
@@ -361,11 +365,15 @@ footer {
           margin: 0;
           min-width: 100px;
 
+          @include respond-to(small-mobile) {
+            @include justify-content(center);
+          }
+
           a {
             @include font-size(14);
 
             line-height: 20px;
-            text-transform: uppercase;            
+            text-transform: uppercase;
           }
         }
       }
@@ -387,7 +395,7 @@ footer {
 
   .center-content {
     @include display-flex;
-    @include justify-content(center);    
+    @include justify-content(center);
   }
 }
 

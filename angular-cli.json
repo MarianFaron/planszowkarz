@@ -18,9 +18,21 @@
       "tsconfig": "tsconfig.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/slick-carousel/slick/slick.css",
+        "../node_modules/aos/dist/aos.css",
         "scss/styles.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/slick-carousel/slick/slick.min.js",
+        "../node_modules/aos/dist/aos.js",
+        "../node_modules/socket.io/lib/socket.js",
+        "../node_modules/socket.io/lib/index.js",
+        "../node_modules/socket.io/lib/client.js",
+        "../node_modules/socket.io/lib/namespace.js"
+      ],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",

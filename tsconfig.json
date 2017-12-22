@@ -5,7 +5,7 @@
     "removeComments": false,
     "noImplicitAny": false,
     "outDir": "./dist/out-tsc",
-    "baseUrl": "src",
+    "baseUrl": "./src/app",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",

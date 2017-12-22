@@ -1,109 +1,111 @@
-<section id="exchange">
-	<div class="exchange-box">
-		<div class="exchange-background">
-			<div class="loading-exchange-content"
-				*ngIf="!loadData(recipientInfo, senderInfo, recipientGame, senderGamesArray);">
-				<div class="loading-information">
-					<h2> Ładowanie danych </h2>
-					<img src="../../assets/images/loading.gif" alt="" class="loading">
+<div class="page-content">	
+	<section id="exchange">
+		<div class="exchange-box">
+			<div class="exchange-background">
+				<div class="loading-exchange-content"
+					*ngIf="!loadData(recipientInfo, senderInfo, recipientGame, senderGamesArray);">
+					<div class="loading-information">
+						<h2> Ładowanie danych </h2>
+						<img src="../../assets/images/loading.gif" alt="" class="loading">
+					</div>
 				</div>
-			</div>
-			<div class="container"
-				*ngIf="loadData(recipientInfo, senderInfo, recipientGame, senderGamesArray);">
-				<div class="inner users-info" data-aos="fade-up">
-					<div *ngIf="recipientInfo" class="recipient-box">
-						<div class="recipient">
-							<div *ngIf="recipientInfo?.facebook">
+				<div class="container"
+					*ngIf="loadData(recipientInfo, senderInfo, recipientGame, senderGamesArray);">
+					<div class="inner users-info" data-aos="fade-up">
+						<div *ngIf="recipientInfo" class="recipient-box">
+							<div class="recipient">
+								<div *ngIf="recipientInfo?.facebook">
+									<img class="user-avatar" alt="facebook-avatar"
+									src="http://graph.facebook.com/{{recipientInfo?.facebook.id}}/picture?width=130&amp;height=130" />
+								</div>
+								<div *ngIf="!recipientInfo?.facebook">
+									<img *ngIf="recipientInfo?.avatarImage" class="user-avatar" alt="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{recipientInfo?.avatarImage}}" />
+								</div>
+								<div class="recipient-info">
+									<p *ngIf="recipientInfo?.facebook"> {{recipientInfo?.facebook.name}}</p>
+									<p *ngIf="!recipientInfo?.facebook"> {{recipientInfo?.local.login}}</p>
+									<li>Liczba gier na wymianę: {{recipientInfo?.numberOfGames}}</li>
+									<li>Liczba przeprowadzonych wymian: {{recipientInfo?.numberOfExchanges}}</li>
+									<li>Ocena społeczności: {{recipientInfo?.sumOfGrades}}</li>
+								</div>
+							</div>
+						</div>
+						<div *ngIf="senderInfo" class="sender-box">
+							<div *ngIf="senderInfo?.facebook" class="sender">
+								<p>{{ senderInfo?.facebook.name}}</p>
 								<img class="user-avatar" alt="facebook-avatar"
-								src="http://graph.facebook.com/{{recipientInfo?.facebook.id}}/picture?width=130&amp;height=130" />
+								src="http://graph.facebook.com/{{senderInfo?.facebook.id}}/picture?width=130&amp;height=130"/>
 							</div>
-							<div *ngIf="!recipientInfo?.facebook">
-								<img *ngIf="recipientInfo?.avatarImage" class="user-avatar" alt="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{recipientInfo?.avatarImage}}" />
-							</div>
-							<div class="recipient-info">
-								<p *ngIf="recipientInfo?.facebook"> {{recipientInfo?.facebook.name}}</p>
-								<p *ngIf="!recipientInfo?.facebook"> {{recipientInfo?.local.login}}</p>
-								<li>Liczba gier na wymianę: {{recipientInfo?.numberOfGames}}</li>
-								<li>Liczba przeprowadzonych wymian: {{recipientInfo?.numberOfExchanges}}</li>
-								<li>Ocena społeczności: {{recipientInfo?.sumOfGrades}}</li>
+							<div *ngIf="!senderInfo?.facebook" class="sender">
+								<p>{{ senderInfo?.local.login }}</p>
+								<img class="user-avatar" alt="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{senderInfo?.avatarImage}}" />
 							</div>
 						</div>
 					</div>
-					<div *ngIf="senderInfo" class="sender-box">
-						<div *ngIf="senderInfo?.facebook" class="sender">
-							<p>{{ senderInfo?.facebook.name}}</p>
-							<img class="user-avatar" alt="facebook-avatar"
-							src="http://graph.facebook.com/{{senderInfo?.facebook.id}}/picture?width=130&amp;height=130"/>
-						</div>
-						<div *ngIf="!senderInfo?.facebook" class="sender">
-							<p>{{ senderInfo?.local.login }}</p>
-							<img class="user-avatar" alt="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{senderInfo?.avatarImage}}" />
-						</div>
-					</div>
-				</div>
-				<div class="exchange">
-					<div class="inner exchange-panel" data-aos="fade-up">
-						<div class="drag-drop-panel-header">
-							<h3 class="section-header">Panel wymiany</h3>
-							<hr class="main-hr">
-						</div>
-						<div class="drag-drop-panel-content">
-							<div class="recipient-game">
-								<h3> {{ recipientGame?.title }} </h3>
-								<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ recipientGame?.Image }}" />
-								<h4> Kategoria: {{ recipientGame?.category }} </h4>
-								<h4> Stan: {{ recipientGame?.state }} </h4>
+					<div class="exchange">
+						<div class="inner exchange-panel" data-aos="fade-up">
+							<div class="drag-drop-panel-header">
+								<h3 class="section-header">Panel wymiany</h3>
+								<hr class="main-hr">
 							</div>
-							<div class="exchange-arrows">
-								<img src="{{this.appService.getUrl('/assets/images/arrows.png')}}" />
-							</div>
-							<div class="drag-drop-area">
-								<div class="drag-drop-container" droppable
-									[dragOverClass]="'drag-target-border-green'"
-									[dragHintClass]="'drag-hint'"
-									(onDrop)="onGamesDrop($event)">
-									<div *ngFor="let game of droppedGames" class="drag-drop-element">
-										<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.gameImage }}" />
-										<span class="glyphicon glyphicon glyphicon glyphicon-remove" aria-hidden="true"
-										(click)="removeFromDragAndDrop(game.id, game.title, game.gameImage)"></span>
-									</div>
-									<div *ngFor="let i of Arr(droppedGamesCounter).fill(1)"class="drag-drop-element">
-										<p>+</p>
-									</div>
+							<div class="drag-drop-panel-content">
+								<div class="recipient-game">
+									<h3> {{ recipientGame?.title }} </h3>
+									<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ recipientGame?.Image }}" />
+									<h4> Kategoria: {{ recipientGame?.category }} </h4>
+									<h4> Stan: {{ recipientGame?.state }} </h4>
 								</div>
-								<div class="drag-drop-info">
-									<p><span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>Przeciągnij gry, które chcesz zaproponować użytkownikowi.</p>
+								<div class="exchange-arrows">
+									<img src="{{this.appService.getUrl('/assets/images/arrows.png')}}" />
 								</div>
-							</div>
-						</div>
-						<div class="drag-drop-panel-footer">
-							<button *ngIf="!sent" class="custom-button btn" type="button" name="button"
-								(click)="saveExchange(recipientGame, recipientGame._id, recipientInfo._id, senderInfo._id)">Wyślij
-							</button>
-						</div>
-					</div>
-					<div class="inner list-of-game" data-aos="fade-up">
-						<div class="list-box">
-							<h3>Lista Twoich gier</h3>
-							<div class="list-content">
-								<div id="custom-scrollbar" class="scrollbar">
-									<div id="custom-scrollbar" class="games">
-										<div class="list-center">
-											<li [draggable] *ngFor="let game of senderGamesArray"
-											[dragData]="game"> {{ game.title }} </li>
+								<div class="drag-drop-area">
+									<div class="drag-drop-container" droppable
+										[dragOverClass]="'drag-target-border-green'"
+										[dragHintClass]="'drag-hint'"
+										(onDrop)="onGamesDrop($event)">
+										<div *ngFor="let game of droppedGames" class="drag-drop-element">
+											<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.gameImage }}" />
+											<span class="glyphicon glyphicon glyphicon glyphicon-remove" aria-hidden="true"
+											(click)="removeFromDragAndDrop(game.id, game.title, game.gameImage)"></span>
+										</div>
+										<div *ngFor="let i of Arr(droppedGamesCounter).fill(1)"class="drag-drop-element">
+											<p>+</p>
 										</div>
 									</div>
-								</div>
-								<div class="mobile-games">
 									<div class="drag-drop-info">
-										<p><span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>Zaznacz gry, które chcesz zaproponować użytkownikowi.</p>
+										<p><span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>Przeciągnij gry, które chcesz zaproponować użytkownikowi.</p>
 									</div>
-									<div class="single-game" *ngFor="let game of checkboxArray">
-										<div class="custom-checkbox" [draggable] [dragData]="game">
-											<input type="checkbox" id="{{ game.id }}" [(ngModel)]="game.checked">
-											<label for="{{ game.id }}"
-												(click)="checkboxOnClickEvent(game)">
-											<span>{{ game.title }}</span></label>
+								</div>
+							</div>
+							<div class="drag-drop-panel-footer">
+								<button *ngIf="!sent" class="custom-button btn" type="button" name="button"
+									(click)="saveExchange(recipientGame, recipientGame._id, recipientInfo._id, senderInfo._id)">Wyślij
+								</button>
+							</div>
+						</div>
+						<div class="inner list-of-game" data-aos="fade-up">
+							<div class="list-box">
+								<h3>Lista Twoich gier</h3>
+								<div class="list-content">
+									<div id="custom-scrollbar" class="scrollbar">
+										<div id="custom-scrollbar" class="games">
+											<div class="list-center">
+												<li [draggable] *ngFor="let game of senderGamesArray"
+												[dragData]="game"> {{ game.title }} </li>
+											</div>
+										</div>
+									</div>
+									<div class="mobile-games">
+										<div class="drag-drop-info">
+											<p><span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>Zaznacz gry, które chcesz zaproponować użytkownikowi.</p>
+										</div>
+										<div class="single-game" *ngFor="let game of checkboxArray">
+											<div class="custom-checkbox" [draggable] [dragData]="game">
+												<input type="checkbox" id="{{ game.id }}" [(ngModel)]="game.checked">
+												<label for="{{ game.id }}"
+													(click)="checkboxOnClickEvent(game)">
+												<span>{{ game.title }}</span></label>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -113,5 +115,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</div>
