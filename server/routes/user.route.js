@@ -102,7 +102,7 @@ router.route('/users/register')
       } else {
         rand = Math.floor((Math.random() * 10000) + 54);
         host = req.get('host');
-        link = "http://" + req.get('host') + "/app/verify?id=" + rand + "&email=" + user.email;
+        link = "https://" + req.get('host') + "/app/verify?id=" + rand + "&email=" + user.email;
         mailOptions = {
           to: user.email,
           subject: "Potwierdzenie rejestracji",
