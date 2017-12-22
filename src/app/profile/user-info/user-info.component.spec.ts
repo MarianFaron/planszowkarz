@@ -74,7 +74,7 @@ describe('UserInfoService', () => {
   });
 
   describe('should get user data', () => {
-    const usersInfoUrl = 'http://localhost:8080/app/users/';
+    const usersInfoUrl = 'https://planszowkarz.pl/app/users/';
 
     it('success - get user data', async(inject([UserInfoService, XHRBackend], (userinfoservice, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {

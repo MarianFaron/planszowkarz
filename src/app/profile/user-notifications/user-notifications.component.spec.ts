@@ -53,7 +53,7 @@ describe('UserNotificationService', () => {
   });
 
   describe('should change status of notofication', () => {
-    var changeStatusUrl = 'http://localhost:8080/app/change-status/';
+    var changeStatusUrl = 'https://planszowkarz.pl/app/change-status/';
     it('should success - change status of notification', async(inject([UserNotificationsService, XHRBackend], (usernotificationsservce, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
         var id = '595ba9f5e6a11a1bb864b61f';
@@ -90,7 +90,7 @@ describe('UserNotificationService', () => {
   });
 
   describe('should get user notifications', () => {
-    var appUrl = 'http://localhost:8080/app/';
+    var appUrl = 'https://planszowkarz.pl/app/';
     it('should success - get user notifications', async(inject([UserNotificationsService, XHRBackend], (usernotificationsservce, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
         var id = '594d750e23e60c0de45af913';
@@ -159,7 +159,7 @@ describe('UserNotificationService', () => {
   });
 
   describe('should delete user notification', () => {
-    var notificationsUrl = 'http://localhost:8080/app/notifications/';
+    var notificationsUrl = 'https://planszowkarz.pl/app/notifications/';
     it('should success - delete user notification', async(inject([UserNotificationsService, XHRBackend], (usernotificationsservce, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
         var id = '595ba9f5e6a11a1bb864b61f';
