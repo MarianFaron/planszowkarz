@@ -1,7 +1,8 @@
-<div class="inner">
+<div class="inner" data-aos="fade-up">
 	<div class="config-content">
-		<h3>Edytuj dane</h3>
-		<div class="config-top">			
+		<h3 class="section-header">Edytuj dane</h3>
+		<hr class="main-hr">
+		<div class="config-top">
 			<div class="left-column">
 				<div class="form-group">
 					<label>Data urodzenia: </label>
@@ -9,18 +10,40 @@
 				</div>
 				<div class="form-group">
 					<label>Miasto</label>
-					<input class="form-control" name="city" placeholder="podaj miasto" minlength="3" 
+					<input class="form-control" name="city" placeholder="podaj miasto" minlength="3"
 						value="{{userInfo?.city}}" #userCity />
 				</div>
 				<div class="form-group">
 					<label>Numer telefonu</label>
-					<input type="text" class="form-control" name="contactNumber" placeholder="123456789" 
+					<input type="text" class="form-control" name="contactNumber" placeholder="123456789"
 						minlength="9" maxlength="9" value="{{userInfo?.contactNumber}}" #userContactNumber/>
+				</div>
+				<div *ngIf="checkFbUser()" class="config-change-password">
+					<div [ngClass]="{hidden: userInfo?.local == null}">
+						<div class="form-group">
+							<label>Hasło</label>
+							<input type="password" class="form-control" name="password" minlength="3" required
+									[ngModel]="model.password" #userPassword="ngModel">
+							<div class="alert alert-danger" *ngIf="userPassword.errors && (userPassword.dirty || userPassword.touched)">
+								<div [hidden]="!userPassword.errors.required"> To pole jest wymagane </div>
+								<div [hidden]="!userPassword.errors.minlength"> Wpisz co najmniej 3 znaki </div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Potwierdź hasło</label>
+							<input type="password" class="form-control" name="confirmPassword" minlength="3" validateEqual="password" required [ngModel]="model.confirmPassword" #userConfirmPassword="ngModel" />
+							<div class="alert alert-danger" *ngIf="userConfirmPassword.errors && (userConfirmPassword.dirty || userConfirmPassword.touched)" >
+								<div [hidden]="!userConfirmPassword.errors.required"> To pole jest wymagane </div>
+								<div [hidden]="!userConfirmPassword.errors.minlength"> Wpisz co najmniej 3 znaki </div>
+								<div [hidden]="!userConfirmPassword.errors"> Hasła różnią się </div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="right-column">
 				<div class="edit-img-box form-group">
-					<label>Zdjęcie</label>
+					<label class="avatar-label">Zdjęcie</label>
 					<div class="game-image center-image">
 						<div *ngIf="userInfo?.avatarImage">
 							<img *ngIf="showAvatar" class="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" alt="user-avatar" />
@@ -33,39 +56,16 @@
 					</div>
 				</div>
 				<div class="form-group input-file">
-					<label>Zmień zdjęcie</label>
 					<div class="center-button">
-						<input id="avatar-file" type="file" name="photo" class="inputfile"  
-								value="cdcd" ng2FileSelect 
+						<input id="avatar-file" type="file" name="photo" class="inputfile"
+								value="cdcd" ng2FileSelect
 						[uploader]="avatarUploader" #userAvatarImage (change)="onChange($event)" />
 						<label for="avatar-file"><i class="fa fa-window-close" aria-hidden="true"></i><i class="fa fa-download" aria-hidden="true"></i>Wybierz plik</label>
 					</div>
 				</div>
 			</div>
 		</div>
-		<h3 *ngIf="checkFbUser()">Zmień hasło</h3>
-		<div *ngIf="checkFbUser()" class="config-change-password">
-			<div [ngClass]="{hidden: userInfo?.local == null}">
-				<div class="form-group">
-					<label>Hasło</label>
-					<input type="password" class="form-control" name="password" minlength="3" required 
-							[ngModel]="model.password" #userPassword="ngModel">
-					<div class="alert alert-danger" *ngIf="userPassword.errors && (userPassword.dirty || userPassword.touched)">
-						<div [hidden]="!userPassword.errors.required"> To pole jest wymagane </div>
-						<div [hidden]="!userPassword.errors.minlength"> Wpisz co najmniej 3 znaki </div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label>Potwierdź hasło</label>
-					<input type="password" class="form-control" name="confirmPassword" minlength="3" validateEqual="password" required [ngModel]="model.confirmPassword" #userConfirmPassword="ngModel" />
-					<div class="alert alert-danger" *ngIf="userConfirmPassword.errors && (userConfirmPassword.dirty || userConfirmPassword.touched)" >
-						<div [hidden]="!userConfirmPassword.errors.required"> To pole jest wymagane </div>
-						<div [hidden]="!userConfirmPassword.errors.minlength"> Wpisz co najmniej 3 znaki </div>
-						<div [hidden]="!userConfirmPassword.errors"> Hasła różnią się </div>
-					</div>
-				</div>
-			</div>
-		</div>
+
 		<div class="save-changes">
 			<button class="btn custom-button" data-toggle="modal" data-target="#edit-user" data-dismiss="modal">
 				<i class="fa fa-save"></i> Zapisz zmiany
@@ -86,7 +86,14 @@
 				<label>Czy na pewno chcesz zapisać zmiany na profilu?</label>
 			</div>
 			<div class="modal-footer">
-				<button class="btn custom-button" (click)="avatarUploader.uploadAll(); editUserInfo(userInfo?._id, userCity.value, userContactNumber.value, userAvatarImage.value, userPassword.value)" data-dismiss="modal">Potwierdź</button>
+
+				<button *ngIf="checkFbUser()" class="btn custom-button" (click)="
+				avatarUploader.uploadAll();
+				editUserInfo(userInfo?._id,
+				userCity.value,
+				userContactNumber.value,
+				userAvatarImage.value,
+				userPassword)" data-dismiss="modal">Potwierdź</button>
 			</div>
 		</div>
 	</div>

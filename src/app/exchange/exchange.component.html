@@ -10,7 +10,7 @@
 			</div>
 			<div class="container"
 				*ngIf="loadData(recipientInfo, senderInfo, recipientGame, senderGamesArray);">
-				<div class="inner users-info">
+				<div class="inner users-info" data-aos="fade-up">
 					<div *ngIf="recipientInfo" class="recipient-box">
 						<div class="recipient">
 							<div *ngIf="recipientInfo?.facebook">
@@ -42,9 +42,10 @@
 					</div>
 				</div>
 				<div class="exchange">
-					<div class="inner exchange-panel">
+					<div class="inner exchange-panel" data-aos="fade-up">
 						<div class="drag-drop-panel-header">
-							<h3>Panel wymiany</h3>
+							<h3 class="section-header">Panel wymiany</h3>
+							<hr class="main-hr">
 						</div>
 						<div class="drag-drop-panel-content">
 							<div class="recipient-game">
@@ -81,7 +82,7 @@
 							</button>
 						</div>
 					</div>
-					<div class="inner list-of-game">
+					<div class="inner list-of-game" data-aos="fade-up">
 						<div class="list-box">
 							<h3>Lista Twoich gier</h3>
 							<div class="list-content">

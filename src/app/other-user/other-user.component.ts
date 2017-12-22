@@ -5,6 +5,7 @@ import { AppService } from '../app.service';
 import { OtherUserService } from './other-user.service';
 import { UserInfo } from '../profile/user-info/user-info';
 import { UserGame } from '../profile/user-games/user-games';
+import { OnClickEvent, OnRatingChangeEven, OnHoverRatingChangeEvent } from 'angular-star-rating/star-rating-struct';
 
 @Component({
   selector: 'app-other-user',
@@ -55,8 +56,8 @@ export class OtherUserComponent implements OnInit {
                   error => this.errorMessage = <any>error);
   }
 
-  addGrade(id:string, value){
-    var sumOfGrades = Number(this.userInfo.sumOfGrades) + Number(value);
+  addGrade(id:string, $event:OnClickEvent){
+    var sumOfGrades = Number(this.userInfo.sumOfGrades) + Number($event.rating);
     var numberOfRatings = this.userInfo.numberOfRatings+1;
 
     this.otherUserService.updateUser(id, this.userInfo.dateBirth, this.userInfo.city, this.userInfo.contactNumber, this.userInfo.avatarImage,  
@@ -73,6 +74,17 @@ export class OtherUserComponent implements OnInit {
                           }
                           );
   }
+
+  onHoverRatingChangeResult:OnHoverRatingChangeEvent;
+	onClickResult:OnClickEvent;
+	onClick = ($event:OnClickEvent) => {
+			console.log($event.rating);
+			this.onClickResult = $event;
+	};	
+	onHoverRatingChange = ($event:OnHoverRatingChangeEvent) => {
+		this.onHoverRatingChangeResult = $event;
+	};
+
   wartosc(x:number, y:number){
     if(x>0){
       var z = x/y; var m = z.toFixed(1);

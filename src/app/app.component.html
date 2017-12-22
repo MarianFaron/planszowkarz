@@ -15,9 +15,9 @@
       </div>
       <div class="column last-column">
         <ul>
-          <li *ngIf="currentUser == null">
+          <li *ngIf="currentUser == null" class="double-space">
             <a routerLink="/register" routerLinkActive="active">
-              <span class="glyphicon glyphicon-log-in"></span> Rejestracja / Logowanie
+              <span class="glyphicon glyphicon-log-in"></span> Rejestracja&nbsp;/&nbsp;Logowanie
             </a>
           </li>
           <li *ngIf="currentUser != null">
@@ -65,19 +65,25 @@
   <router-outlet></router-outlet>
 </div>
 
-<div class="footer">
+<footer>
   <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-xs-12">
-          Copyright &copy; 2017 Planszowkarz
+    <div class="section-row">
+      <div class="section-column">
+          <a class="logo" routerLink="/main" routerLinkActive="active">
+            <img src="../../assets/images/logo.png" alt="Planszówkarz" />
+              {{title}}
+          </a>
       </div>
-      <div class="col-md-6 col-xs-12">
+      <div class="section-column">
           <ul>
-            <li><a routerLink="/about-project" routerLinkActive="active">O projekcie</a></li>
-            <li><a routerLink="/authors" routerLinkActive="active">Autorzy</a></li>
-            <li><a routerLink="/contact" routerLinkActive="active">Kontakt</a></li>
-          </ul>
+              <li><a routerLink="/about-project" routerLinkActive="active">O projekcie</a></li>
+              <li><a routerLink="/authors" routerLinkActive="active">Autorzy</a></li>
+              <li><a routerLink="/contact" routerLinkActive="active">Kontakt</a></li>
+            </ul>
       </div>
     </div>
+    <div class="section-row center-content">
+        <span>Copyright &copy; 2017 Planszowkarz</span>
+    </div>
   </div>
-</div>
+</footer>

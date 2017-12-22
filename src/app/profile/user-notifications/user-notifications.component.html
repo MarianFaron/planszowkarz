@@ -8,7 +8,7 @@
 			        </div>
 			    </div>
 				<div *ngFor="let notification of pagedItems">
-					<div class="single-box inner" [ngClass]="{unread: notification.status =='new'}" >
+					<div class="single-box inner" [ngClass]="{unread: notification.status =='new'}" data-aos="fade-up">
 						<div class="box-content">
 							<p (click)="this.changeStatus(notification._id);notification.status = 'read'">
 								<strong>

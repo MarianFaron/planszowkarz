@@ -2,7 +2,9 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import { UserConfigService } from './user-config.service';
 import { AppService } from '../../app.service';
+import { ProfileService } from '../profile.service';
 import { UserInfo } from '../user-info/user-info';
+import { UserInfoService } from '../user-info/user-info.service';
 import { UserInfoComponent } from '../user-info/user-info.component';
 import { IMyOptions} from 'mydatepicker';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
@@ -12,7 +14,7 @@ import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
   selector: 'app-user-config',
   templateUrl: './user-config.component.html',
   styleUrls: ['./user-config.component.scss'],
-  providers: [UserConfigService, AppService]
+  providers: [UserConfigService, AppService, UserInfoService]
 })
 
 
@@ -33,6 +35,8 @@ export class UserConfigComponent implements OnInit {
   constructor(private http: Http,
               private el: ElementRef,
               private appService: AppService,
+              private profileService: ProfileService,
+              private userInfoService: UserInfoService,
               private userConfigService: UserConfigService) { }
 
   private myDatePickerOptions: IMyOptions = {
@@ -102,7 +106,7 @@ export class UserConfigComponent implements OnInit {
                                 month: parseInt(userInfo.dateBirth.substring(4,5)),
                                 day: parseInt(userInfo.dateBirth.substring(0,2))
                               }
-                            }                            
+                            }
                           }
                           this.userInfo = userInfo;
                           this.model.dateBirth = userInfo.dateBirth;
@@ -118,7 +122,7 @@ export class UserConfigComponent implements OnInit {
     var m = this.model.datepicker.date.month;
     var y = this.model.datepicker.date.day;
     var date = '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
-    
+
     // Edycja danych bez zmiany avatara
     if(avatarImage == ""){
       this.avatarImgName = this.userInfo.avatarImage;
@@ -130,7 +134,13 @@ export class UserConfigComponent implements OnInit {
       this.avatarImgName = "";
     }
 
-    this.userConfigService.updateUser(id, date, city, contactNumber, this.avatarImgName, password, 
+    if(this.appService.getCurrentUser().facebook) {
+      password = '';
+    }
+
+    this.profileService.updateUserInfo(date, city, contactNumber, this.avatarImgName);
+
+    this.userConfigService.updateUser(id, date, city, contactNumber, this.avatarImgName, password,
                                       this.userInfo.numberOfGames, this.userInfo.numberOfExchanges,
                                       this.userInfo.numberOfRatings, this.userInfo.sumOfGrades)
                           .subscribe(

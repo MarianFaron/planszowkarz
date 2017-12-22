@@ -18,11 +18,11 @@ $custom-mobile-breakpoint: 580px;
 
     .navbar-nav {
       width: 100%;
-      display: flex;
+      @include display-flex;
       margin: 8px 0px;
 
       @media only screen and (max-width: $custom-mobile-breakpoint) {
-        flex-direction: column;
+        @include flex-direction(column);
       }
 
       li {
@@ -34,18 +34,22 @@ $custom-mobile-breakpoint: 580px;
         }
 
         a.active-link {
-          color: $pl-orange;         
+          color: $pl-orange;
         }
 
         a {
+          color: $pl-dark-gray;
+          font-weight: normal;
+          @include font-size(14);
+          
           @media only screen and (max-width: 678px) {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
+            @include display-flex;
+            @include justify-content(center);
+            @include flex-direction(column);
           }
 
           @media only screen and (max-width: $custom-mobile-breakpoint) {
-            flex-direction: row;
+            @include flex-direction(row);
           }
         }
 
@@ -90,103 +94,158 @@ $custom-mobile-breakpoint: 580px;
   }
 }
 
-.inner {
+.transaction-wrapper {
+  overflow: auto;
   margin: 10px auto;
   padding: 15px;
-}
 
-.single-transaction {
-  overflow: auto;
+  .transaction-top {
+    @include display-flex;
+    @include flex-direction(column);
 
-  .senderBox {
-    display: flex;
-    justify-content: center;
+    .transaction-row {
+      @include display-flex;
 
-    p {
-      margin-right: 5px;
+      .transaction-column {
+        @include display-flex;
+        @include flex-direction(column);
+        width: calc(50% - 50px);
+        @include respond-to(mobile) {
+          width: 100%;          
+        }
+
+        p {
+          text-align: center;
+          line-height: 24px;
+        }        
+      }
+
+      .arrow-box {
+        width: 100px;
+        @include display-flex;
+        @include justify-content(center);
+        @include align-items(center);
+        @include respond-to(mobile) {
+          padding: 15px 0;
+        }
+
+        img {
+          margin: 0;
+          width: 60px;
+          height: 60px;
+        }
+      }
+
+      .transaction-link{
+        margin: 0;
+        color: $pl-orange;
+        font-weight: 600;
+      }
+
+      .transaction-form {
+        padding: 0 15px 15px;
+        position: relative;
+
+        span.cr {
+          border: 1px solid $pl-orange;
+        }
+      }
+
+      li {
+        list-style: none;
+        @include display-flex;
+        @include align-items(center);
+
+        .icon {
+          @include font-size(8);
+      
+          color: $pl-dark-gray;
+          margin: 0 5px 0 0;
+    
+          &-circle {
+            @include pet-icon-after($pl-circle);
+          }
+        }
+      }
     }
 
-    .sender {
-      color: $pl-orange;
+    .transaction-center-row {
+      @include justify-content(center);
+    }
+
+    .transaction-vertical-row {
+      @include flex-direction(column);
+    }
+
+    .transaction-row-padding {
+      padding: 15px 0;
+      min-height: 80px;
+
+      @include respond-to(mobile) {
+        @include flex-direction(column);
+        @include align-items(center);
+      }
     }
   }
 
-  .gameTitleBig p {
-    @include font-size(30);
+  .transaction-bottom{
+    border-top: 1px solid $pl-light-gray;
+    padding: 15px 0 0;
 
+    .transaction-row{
+      @include display-flex;
+      @include justify-content(space-between);
+
+      @include respond-to(mobile) {
+        @include flex-direction(column);
+      }
+
+      .transaction-column {
+        @include display-flex;
+
+        .btn {
+          margin: 0;
+          width: 100px;
+          height: 32px;
+          font-weight: 500;
+
+          @include font-size(13);
+
+        }
+
+        .btn-color {
+          border: 1px solid $pl-dark-gray3;          
+        }
+
+        .btn:first-child{
+          margin: 0 15px 0 0;
+        }
+      }
+
+      .transaction-column-margin {
+        @include respond-to(mobile) {
+          margin: 0 0 10px;
+        }
+      }
+    }
+  }
+
+  p {
+    margin: 0;
+    line-height: 32px;
+    display: inline-block;
+  }
+
+  p.transaction-paragraph {
+    line-height: 24px;
+    margin: 0 0 6px;
+  }
+
+  p.bigTitle{
+    @include font-size(30);
+    
     text-align: center;
     color: $pl-orange;
-  }
-
-  .stateBox {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-
-    @media only screen and (max-width: $custom-mobile-breakpoint) {
-      flex-direction: column;
-    }
-
-    .gameState {
-      display: flex;
-      align-items: flex-end;
-
-      p {
-        margin-right: 5px;
-      }
-    }
-  }
-
-  // accepted, rejected, sent
-  .single-transaction-content {
-    p {
-      margin: 5px 0;
-      text-align: center;
-    }
-
-    a {
-      color: $pl-dark-gray;
-      text-decoration: none;
-
-      &:hover {
-        color: $pl-orange;
-      }
-    }
-  }
-
-  #left {
-    float: left;
-    width: 200px;
-
-    p {
-      text-align: left;
-    }
-
-    .gameTitle p {
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-  }
-
-  #center {
-    margin: 0 auto;
-    width: 200px;
-  }
-
-  #right {
-    float: right;
-    width: 200px;
-    text-align: right;
-
-    p {
-      text-align: right;
-    }
-
-    .gameTitle p {
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
+    margin: 0 0 20px;
   }
 }

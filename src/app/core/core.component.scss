@@ -6,31 +6,32 @@ section#main-banner {
   width: 100%;
   height: 100%;
   max-height: calc(100vh - 56px);
-  min-height: 400px;
   position: relative;
   margin: -20px 0 0;
 
   .banner-background {
-    background-image: url("/home/kamil/Publiczny/planszowkarz/src/assets/images/banner.jpg");
-    background-position: center center;
+    background: url("/home/kamil/Publiczny/planszowkarz/src/assets/images/banner.jpg") top center fixed;
     background-size: cover;
     width: 100%;
     padding: 0;
-    height: 500px;
+    height: 550px;
     opacity: 0.7;
 
     @include respond-to(desktop) {
-      padding: 20%;
-      height: auto;
+      padding: 25%;
+      height: auto;     
     }
 
     @include respond-to(mobile) {
-      padding: 25%;
+      padding: inherit;
+      min-height: 400px;
+      height: 100%;
+      background-position: 90% 50%;
     }
 
     @include respond-to(small-mobile) {
-      padding: auto;
-      height: 250px;
+      height: calc(100vh - 56px);
+      max-height: 400px;
     }
   }
 
@@ -40,10 +41,10 @@ section#main-banner {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(-180deg,rgba(60,73,108,0), $pl-black 98%);
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
+    background-image: linear-gradient(-180deg, rgba($pl-green,0), $pl-black 98%);
+    @include display-flex;
+    @include justify-content(flex-start);
+    @include align-items(flex-end);
     padding: 50px 15px;
 
     @include respond-to(mobile) {
@@ -59,9 +60,9 @@ section#main-banner {
       }
 
       .banner-header {
-        display: flex;
-        flex-direction: column;
-        
+        @include display-flex;
+        @include flex-direction(column);
+
         h1 {
           @include font-size(42);
 
@@ -70,7 +71,11 @@ section#main-banner {
           text-transform: uppercase;
           line-height: 52px;
           font-weight: 300;
-          text-shadow: 0 2px 4px rgba($pl-white,.5);
+
+          @include respond-to(desktop) {
+            @include font-size(36);
+
+          }
 
           @include respond-to(mobile) {
             @include font-size(32);
@@ -92,7 +97,11 @@ section#main-banner {
           margin: 0;
           line-height: 32px;
           font-weight: 300;
-          text-shadow: 0 2px 4px rgba($pl-white,.5);
+
+          @include respond-to(desktop) {
+            @include font-size(26);
+            
+          }
 
           @include respond-to(mobile) {
             @include font-size(20);
@@ -127,7 +136,7 @@ section#hoToMakeExchange {
     font-weight: 700;
     color: $pl-dark-gray;
     margin: 0;
-    text-align: center
+    text-align: center;
   }
 
   .main-hr {
@@ -147,13 +156,14 @@ section#newGames {
       .inner {
         background: $pl-white;
         box-shadow: 2px 2px 1px $pl-gray;
-        margin: 0 10px;
+        margin: 0 auto;
         padding: 20px;
         text-overflow: ellipsis;
         overflow: hidden;
         height: 400px;
+        max-width: 300px;
 
-        a, 
+        a,
         h3 {
           text-decoration: none;
           color: $pl-dark-gray;
@@ -161,7 +171,7 @@ section#newGames {
           -moz-transition: all 150ms linear;
           -ms-transition: all 150ms linear;
           -o-transition: all 150ms linear;
-          transition: all 150ms linear;          
+          transition: all 150ms linear;
         }
 
         a:active,
@@ -169,9 +179,8 @@ section#newGames {
         a:hover,
         h3:active,
         h3:focus,
-        h3:hover
-        {
-            color: $pl-orange;
+        h3:hover{
+          color: $pl-orange;
         }
 
         img {
@@ -188,7 +197,7 @@ section#newGames {
       padding: 0;
 
       .info-element {
-        display: flex;
+        @include display-flex;
         margin: 0;
 
         div:nth-child(2) {
@@ -197,7 +206,8 @@ section#newGames {
       }
 
       .icon {
-        @include font-size(20);
+        @include font-size(15);
+
         position: relative;
         top: 4px;
 
@@ -224,14 +234,20 @@ section#forWho,
 section#hoToMakeExchange {
   padding: 50px 15px 70px;
 
+  @include respond-to(mobile) {
+    padding: 50px 15px;
+  }
+
     .section-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      @include display-flex;
+      @include flex-direction(column);
+      @include align-items(flex-start);
+      max-width: 500px;
+      margin: 0 auto;
 
       .section-row {
-        display: flex;
-        align-items: center;
+        @include display-flex;
+        @include align-items(center);
         margin: 0 0 20px;
 
         span {
@@ -241,14 +257,21 @@ section#hoToMakeExchange {
           height: 100px;
           background-color: $pl-white;
           box-shadow: 2px 2px 1px $pl-gray;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          @include display-flex;
+          @include justify-content(center);
+          @include align-items(center);
           border-radius: 50%;
           line-height: 42px;
           font-weight: 800;
-          color: orange;
+          color: $pl-orange;
           margin: 0 30px 0 0;
+
+          @include respond-to(mobile) {
+            @include font-size(32);
+
+            width: 60px;
+            height: 60px;
+          }
         }
 
         h3 {
@@ -268,8 +291,7 @@ section#goToRegister {
   margin: -20px 0 0;
 
   .section-background {
-    background-image: url("/home/kamil/Publiczny/planszowkarz/src/assets/images/banner2.jpg");
-    background-position: center center;
+    background: url("/home/kamil/Publiczny/planszowkarz/src/assets/images/banner2.jpg") top center fixed;
     background-size: cover;
     width: 100%;
     padding: 0;
@@ -283,10 +305,10 @@ section#goToRegister {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(-180deg,rgba($pl-green,0), $pl-black 98%);
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
+    background-image: linear-gradient(-180deg, rgba($pl-green,0), $pl-black 98%);
+    @include display-flex;
+    @include justify-content(flex-start);
+    @include align-items(flex-end);
     padding: 50px 15px;
 
     h2 {
@@ -296,7 +318,6 @@ section#goToRegister {
       margin: 0;
       line-height: 32px;
       font-weight: 300;
-      text-shadow: 0 2px 4px rgba($pl-white,.5);
       text-align: center;
     }
   }
