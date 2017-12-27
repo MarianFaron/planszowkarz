@@ -39,6 +39,8 @@ router.route('/exchanges')
 			recipientGame: req.body.recipientGame,
 			sender: req.body.sender,
 			recipient: req.body.recipient,
+			senderRate: req.body.senderRate,
+			recipientRate: req.body.recipientRate,
 			status: req.body.status,
 			date: new Date()
 		});
