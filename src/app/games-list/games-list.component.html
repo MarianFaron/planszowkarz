@@ -59,49 +59,49 @@
               <img src="../../assets/images/loading.gif" alt="" class="loading">
             </div>
           </div>
-        </div>
-        <!-- <div *ngIf="pagedItems == 0">
-          <div class="inner">
-            Nie znaleziono pasujących gier...
-          </div>
-        </div> -->
-        <div *ngFor="let game of pagedItems">
+          <!-- <div *ngIf="pagedItems == 0">
+            <div class="inner">
+              Nie znaleziono pasujących gier...
+            </div>
+          </div> -->
+          <div *ngFor="let game of pagedItems">
             <div class="game-box" data-aos="fade-up">
-                <div class="game-image">
-                  <a routerLink="/games/{{ game._id }}">
-                    <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}" alt="{{game.title}}" class="img-responsive center-block">
+              <div class="game-image">
+                <a routerLink="/games/{{ game._id }}">
+                  <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}" alt="{{game.title}}" class="img-responsive center-block">
+                </a>
+              </div>
+              <div class="game-info">
+                <h3><a routerLink="/games/{{ game._id }}">{{ game.title }}</a></h3>
+                <div *ngIf="!game.userID.facebook" class="single-info">
+                  <span class="icon icon-user" aria-hidden="true"></span>
+                  <a routerLink="/user-profile/{{ game.userID.local.login }}">
+                    Dodane przez: {{ game.userID.local.login }}
                   </a>
                 </div>
-                <div class="game-info">
-                  <h3><a routerLink="/games/{{ game._id }}">{{ game.title }}</a></h3>
-                  <div *ngIf="!game.userID.facebook" class="single-info">
-                    <span class="icon icon-user" aria-hidden="true"></span>
-                    <a routerLink="/user-profile/{{ game.userID.local.login }}">
-                      Dodane przez: {{ game.userID.local.login }}
-                    </a>
-                  </div>
-                  <div *ngIf="game.userID.facebook" class="single-info">
-                    <span class="icon icon-user" aria-hidden="true"></span>
-                    <a routerLink="/user-profile/{{ game.userID.local.login }}">
-                      Dodane przez: {{ game.userID.facebook.name }}
-                    </a>
-                  </div>
-                  <div class="single-info">
-                    <span class="icon icon-marker" aria-hidden="true"></span>
-                    <p>Lokalizacja: Poznań</p>
-                  </div>
-                  <div class="single-info">
-                    <span class="icon icon-date" aria-hidden="true"></span>
-                    <p> Dodane {{ game.createdDate | date:'longDate' }}</p>
-                  </div>
+                <div *ngIf="game.userID.facebook" class="single-info">
+                  <span class="icon icon-user" aria-hidden="true"></span>
+                  <a routerLink="/user-profile/{{ game.userID.local.login }}">
+                    Dodane przez: {{ game.userID.facebook.name }}
+                  </a>
                 </div>
-                <div class="exchange-button">
-                  <div class="game-info-buttons" *ngIf="this.appService.isLoggedIn()">
-                    <button *ngIf="this.appService.getCurrentUser()._id != game.userID._id"
-                    routerLink="/exchange/{{ game._id }}" type="button" class="btn btn-default custom-button">Wymień się</button>
-                  </div>
+                <div class="single-info">
+                  <span class="icon icon-marker" aria-hidden="true"></span>
+                  <p>Lokalizacja: Poznań</p>
                 </div>
+                <div class="single-info">
+                  <span class="icon icon-date" aria-hidden="true"></span>
+                  <p> Dodane {{ game.createdDate | date:'longDate' }}</p>
+                </div>
+              </div>
+              <div class="exchange-button">
+                <div class="game-info-buttons" *ngIf="this.appService.isLoggedIn()">
+                  <button *ngIf="this.appService.getCurrentUser()._id != game.userID._id"
+                  routerLink="/exchange/{{ game._id }}" type="button" class="btn btn-default custom-button">Wymień się</button>
+                </div>
+              </div>
             </div>
+          </div>
           <div class="text-center">
             <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
               <li [ngClass]="{disabled:pager.currentPage === 1}">
