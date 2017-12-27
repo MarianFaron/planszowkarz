@@ -39,7 +39,7 @@ section#main-banner {
     top: 0;
     left: 0;
     width: 100%;
-    height: 550px;
+    height: 100%;
     background-image: linear-gradient(-180deg, rgba($pl-green,0), $pl-black 98%);
     @include display-flex;
     @include justify-content(flex-start);

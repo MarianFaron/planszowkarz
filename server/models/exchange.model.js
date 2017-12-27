@@ -21,6 +21,14 @@ var Exchange = new Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     },
+    senderRate: {
+      type: Boolean,
+      default: false
+    },
+    recipientRate: {
+      type: Boolean,
+      default: false
+    },
     status: {
     	type: String,
     	default: 'pending' 
