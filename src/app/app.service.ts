@@ -10,7 +10,7 @@ import { NotificationsService } from 'angular2-notifications';
 @Injectable()
 export class AppService {
 
-  private rootUrl = 'http://s407332.projektstudencki.pl';
+  private rootUrl = 'http://localhost:8080';
   private usersUrl = this.getUrl('/app/users');
   private searchUrl = this.getUrl('/app/search');
   private transactionsUrl = this.getUrl('/app/start');
