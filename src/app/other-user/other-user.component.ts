@@ -85,12 +85,5 @@ export class OtherUserComponent implements OnInit {
 		this.onHoverRatingChangeResult = $event;
 	};
 
-  wartosc(x:number, y:number){
-    if(x>0){
-      var z = x/y; var m = z.toFixed(1);
-      return m + "/5";
-    }else{
-      return "Jeszcze nie oceniono";
-    }
-  }
+
 }

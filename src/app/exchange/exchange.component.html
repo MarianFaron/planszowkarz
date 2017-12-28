@@ -26,7 +26,7 @@
 									<p *ngIf="!recipientInfo?.facebook"> {{recipientInfo?.local.login}}</p>
 									<li>Liczba gier na wymianę: {{recipientInfo?.numberOfGames}}</li>
 									<li>Liczba przeprowadzonych wymian: {{recipientInfo?.numberOfExchanges}}</li>
-									<li>Ocena społeczności: {{recipientInfo?.sumOfGrades}}</li>
+									<li><star-rating-comp [readOnly]="true" [labelText]="'Ocena społeczności: '" [starType]="'svg'" [rating]='recipientInfo?.sumOfGrades/recipientInfo?.numberOfRatings' [showHalfStars]="true"></star-rating-comp></li>
 								</div>
 							</div>
 						</div>

@@ -63,4 +63,20 @@ export class UserHistoryService {
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
   }
+  recipientRate(id: string, recipientRate: boolean){
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+
+      return this.http.patch(`${this.exchangeUrl}/${id}`, {recipientRate}, options)
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
+  }
+  senderRate(id: string, senderRate: boolean){
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+
+      return this.http.patch(`${this.exchangeUrl}/${id}`, {senderRate}, options)
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
+  }
 }

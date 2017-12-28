@@ -4,6 +4,8 @@ export class UserHistory {
      recipient: string,
      senderGame: string,
      recipientGame: string,
+     senderRate: boolean,
+     recipientRate: boolean,
      proposeGames: proposeGames[],
      status: string
   ) { }
