@@ -69,8 +69,7 @@ export class UserHistoryAcceptedComponent implements OnInit {
       error => this.errorMessage = <any>error);;
 	}
 	addGrade(sender:string, recipient:string, gameId:string, $event:OnClickEvent){
-
-		if(sender == this.currentUserName){
+    if(sender == this.currentUserName){
 			this.getUserInfo(recipient);
 			this.whoRated = "sender";
 		}else{
@@ -80,6 +79,7 @@ export class UserHistoryAcceptedComponent implements OnInit {
 		this.exchangeId = gameId;
 		this.rate = $event;
 
+
   }
 
   onHoverRatingChangeResult:OnHoverRatingChangeEvent;
@@ -87,12 +87,12 @@ export class UserHistoryAcceptedComponent implements OnInit {
 	onHoverRatingChange = ($event:OnHoverRatingChangeEvent) => {
 		this.onHoverRatingChangeResult = $event;
 	};
-	
+
 	subscribeGrade(){
-		var sumOfGrades = Number(this.userInfo.sumOfGrades) + Number(this.rate.rating);
+    var sumOfGrades = Number(this.userInfo.sumOfGrades) + Number(this.rate.rating);
 		var numberOfRatings = this.userInfo.numberOfRatings+1;
 
-		this.otherUserService.updateUser(this.userInfo._id, this.userInfo.dateBirth, this.userInfo.city, this.userInfo.contactNumber, this.userInfo.avatarImage,  
+		this.otherUserService.updateUser(this.userInfo._id, this.userInfo.dateBirth, this.userInfo.city, this.userInfo.contactNumber, this.userInfo.avatarImage,
       this.userInfo.numberOfGames, this.userInfo.numberOfExchanges, numberOfRatings, sumOfGrades)
 																																																.subscribe(
 																																																userInfo  => {
@@ -103,7 +103,7 @@ export class UserHistoryAcceptedComponent implements OnInit {
 																																																	this.errorMessage = <any>error
 																																																}
 																																																);
-	
+
 		if(this.whoRated == "sender"){
 			this.userHistoryService.senderRate(this.exchangeId, true)
 								.subscribe(
@@ -120,9 +120,8 @@ export class UserHistoryAcceptedComponent implements OnInit {
 	                        			this.getUserHistory();
 	                      			},
 	                      			error => this.errorMessage = <any>error);
-		}									
+		}
 
 		}
-	
-}
 
+}

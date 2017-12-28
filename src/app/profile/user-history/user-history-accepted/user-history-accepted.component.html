@@ -5,7 +5,7 @@
                 <p>Data: <strong>{{history?.date| date:'d MMMM y, j:mm'}}</strong></p>
             </div>
             <div *ngIf="this.currentUserID != history.recipient._id" class="transaction-row">
-                <p class="transaction-paragraph">Wymiana została zaakceptowana. Skontaktuj się z 
+                <p class="transaction-paragraph">Wymiana została zaakceptowana. Skontaktuj się z
                 <a *ngIf="!history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.local.login}}">
                     {{history?.recipient.local.login}}
                 </a>
@@ -15,7 +15,7 @@
                 za pomocą czatu by ustalić szczegóły wymiany.
             </div>
             <div *ngIf="this.currentUserID != history.sender._id" class="transaction-row">
-                <p class="transaction-paragraph">Wymiana została zaakceptowana. Skontaktuj się z 
+                <p class="transaction-paragraph">Wymiana została zaakceptowana. Skontaktuj się z
                 <a *ngIf="!history?.sender.facebook" class="transaction-link" routerLink="/user-profile/{{history?.sender.local.login}}">
                     {{history?.sender.local.login}}
                 </a>
@@ -36,12 +36,12 @@
                     <p>Nazwa gry</p>
                     <p><strong>{{history?.recipientGame.title}}</strong></p>
                 </div>
-                
+
             </div>
         </div>
         <div class="transaction-bottom">
             <div class="transaction-row">
-                
+
                 <div class="transaction-column transaction-column-margin" *ngIf="history?.status== 'accepted'">
                     <p>Status: <strong>Zaakceptowane</strong></p>
                 </div>
@@ -73,8 +73,7 @@
                         <star-rating-comp [starType]="'svg'" [rating]='5' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.facebook.name, history?.recipient.facebook.name, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
                     </div>
                 </div>
-                
-                
+                <!-- <star-rating-comp [starType]="'svg'" [rating]='5' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender, history?.recipient, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp> -->
                 <div class="transaction-column">
                     <!--<button class="btn btn-color" data-dismiss="modal" disabled>Odrzuć</button>-->
                     <button type="button" name="button" class="custom-button btn"
