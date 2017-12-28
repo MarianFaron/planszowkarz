@@ -137,7 +137,7 @@
 						</div>
 					</div>
 				</div>
-			</div>			
+			</div>
 		</div>
 		<div class="text-center">
 			<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
@@ -173,11 +173,11 @@
 				<div class="section-top">
 					<div class="section-column">
 						<div class="form-group">
-							<label>Tytuł</label>
-							<input class="form-control" required [ngModel]="model.title" #userGameTitle />
+							<label>Tytuł*</label>
+							<input class="form-control" required minlength="3" [(ngModel)]="model.title" #userGameTitle="ngModel" />
 							<div *ngIf="userGameTitle.errors && (userGameTitle.dirty || userGameTitle.touched)"
 								class="alert alert-danger">
-								<div [hidden]="!userGameTitle.errors.required">
+								<div [hidden]="!userGameTitle.errors.required && !userGameTitle.errors.minlength">
 									Tytuł jest wymagany
 								</div>
 							</div>
@@ -212,8 +212,8 @@
 								<img *ngIf="!urlNewGameImage" src="{{this.appService.getUrl('/assets/uploads/covers/')}}default.png" />
 							</div>
 						</div>
-						<div class="form-group input-file">	
-							<label id="add-photo" class="image-label">Dodaj zdjęcie</label>	
+						<div class="form-group input-file">
+							<label id="add-photo" class="image-label">Dodaj zdjęcie</label>
 							<div class="center-button">
 								<input id="add-file" type="file" name="photo" class="inputfile"
 								value="cdcd" ng2FileSelect
@@ -231,10 +231,10 @@
 			<div class="modal-footer">
 				<button class="btn btn-color" data-dismiss="modal">Anuluj</button>
 				<button class="btn custom-button"
-				(click)="coverUploader.uploadAll();
-				increaseNumberOfGames(userInfo?._id);
+				(click)="
 				addUserGame(userGameTitle.value, userGameCategory.value, userGameState.value, userGameDescription.value, userGameImage.value);
-				userGameTitle.value=''; userGameDescription.value=''; userGameImage.value='';" data-dismiss="modal">Zapisz</button>
+				userGameTitle.value=''; userGameDescription.value=''; userGameImage.value='';">Zapisz</button>
+				<div data-dismiss="modal" #closeModal ></div>
 			</div>
 		</div>
 	</div>
