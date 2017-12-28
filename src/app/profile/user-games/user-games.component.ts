@@ -1,4 +1,4 @@
-import { Component, OnInit , ElementRef, Input} from '@angular/core';
+import { Component, OnInit , ElementRef, Input, ViewChild} from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import { UserGame } from './user-games';
 import { AppService } from '../../app.service';
@@ -18,6 +18,8 @@ import { ProfileService } from '../profile.service';
 })
 
 export class UserGamesComponent implements OnInit {
+
+  @ViewChild('closeModal') closeModal: ElementRef;
 
   // PAGER
 
@@ -53,10 +55,11 @@ export class UserGamesComponent implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
+    this.profileService.getUserInfo();
     this.getUserGame();
     this.coverUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
     this.coverUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
-    // this.userInfo = this.profileService.getUserInfo();
+
   }
 
   urlNewGameImage: any;
@@ -65,11 +68,11 @@ export class UserGamesComponent implements OnInit {
   showNewGameThumbnail(event:any) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
-  
+
       reader.onload = (event:any) => {
         this.urlNewGameImage = event.target.result;
       }
-  
+
       reader.readAsDataURL(event.target.files[0]);
     }
   }
@@ -77,11 +80,11 @@ export class UserGamesComponent implements OnInit {
   showEditGameThumbnail(event:any) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
-  
+
       reader.onload = (event:any) => {
         this.urlEditedGameImage = event.target.result;
       }
-  
+
       reader.readAsDataURL(event.target.files[0]);
     }
   }
@@ -108,17 +111,24 @@ export class UserGamesComponent implements OnInit {
     var createdDate = new Date().toString();
 
     if (!title || !category || !state) { return; }
-    this.userGameService.create(title, category, state, description, createdDate, userID, this.gameImgName)
-                     .subscribe(
-                        userGame  => {
-                          this.userGame;
-                          this.getUserGame();
-                          this.profileService.getUserInfo();
-                          this.appService.showNotification('Powiadomienie', 'Dodano nową grę.', 'success');
-                        },
-                        error =>  {
-                          this.errorMessage = <any>error
-                        });
+
+    if(title.length >= 3) {
+      this.userGameService.create(title, category, state, description, createdDate, userID, this.gameImgName)
+                       .subscribe(
+                          userGame  => {
+                            this.userGame;
+                            this.getUserGame();
+                            this.increaseNumberOfGames(userID);
+                            this.appService.showNotification('Powiadomienie', 'Dodano nową grę.', 'success');
+                            this.closeModal.nativeElement.click();
+                            this.model.title = '';
+                            this.coverUploader.uploadAll();
+                          },
+                          error =>  {
+                            this.errorMessage = <any>error
+                          });
+    }
+
   }
 
 
@@ -182,6 +192,7 @@ export class UserGamesComponent implements OnInit {
 
   increaseNumberOfGames(id: string){
     this.numberOfGames+=1;
+    this.profileService.userInfo.numberOfGames+=1;
     this.editUserInfo(id);
   }
 
@@ -196,7 +207,7 @@ export class UserGamesComponent implements OnInit {
                                       this.numberOfGames, this.userInfo.numberOfExchanges, this.userInfo.numberOfRatings, this.userInfo.sumOfGrades)
                           .subscribe(
                                 userInfo  => {
-                                    this.userInfo;
+                                    // this.userInfo;
                                     this.getUserInfo();
                                 },
                                 error =>  {
