@@ -24,8 +24,8 @@ import { ChatComponent } from './chat/chat.component';
 import { AuthorsComponent } from './authors/authors.component';
 
 export const router: Routes = [
-	{ path: '', redirectTo: '/main', pathMatch:'full'},
-	{ path: 'main', component: CoreComponent },
+	{ path: '', redirectTo: '/', pathMatch:'full'},
+	{ path: '', component: CoreComponent },
 	{ path: 'register', component: UsersComponent},
 	{ path: 'profile', component: ProfileComponent, canActivate: [AuthGuard],
 		children: [
