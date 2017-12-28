@@ -89,9 +89,6 @@ export class UserHistoryAcceptedComponent implements OnInit {
 	};
 	
 	subscribeGrade(){
-
-		console.log(this.exchangeId);
-
 		var sumOfGrades = Number(this.userInfo.sumOfGrades) + Number(this.rate.rating);
 		var numberOfRatings = this.userInfo.numberOfRatings+1;
 
