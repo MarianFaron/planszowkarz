@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ChatService } from './chat.service';
+import { ExchangeService } from '../exchange/exchange.service';
 import { CoreService } from '../core/core.service';
 import { AppService } from '../app.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,11 +11,11 @@ import * as io from 'socket.io-client';
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
-  providers: [CoreService, ChatService]
+  providers: [CoreService, ChatService, ExchangeService]
 })
 export class ChatComponent implements OnInit {
 
-  constructor(private chatService: ChatService, private activeRoute: ActivatedRoute, private coreService: CoreService, private appService: AppService) { }
+  constructor(private chatService: ChatService,private exchangeService: ExchangeService, private activeRoute: ActivatedRoute, private coreService: CoreService, private appService: AppService) { }
 
   myId: string;
   friendId: string;
@@ -73,17 +74,24 @@ export class ChatComponent implements OnInit {
      }
    }
 
+   closeExchange(chatId: string, userId: string) {
+     this.exchangeService.closeExchange(chatId, userId).subscribe(
+       res => { window.location.replace('/profile/history/accepted'); },
+       error => { this.errorMessage = <any>error; }
+     );
+   }
+
    getChat(chatId: string) {
      this.chatService.getChat(chatId)
                      .subscribe(
                          chat => {
                            this.chat = chat;
-                           if(this.checkChatAccess(this.myId, chat) == true) {
+                           if(this.checkChatAccess(this.myId, chat) != true || chat.chat[0].status == 'closed') {
+                             window.location.replace('/profile');
+                           } else {
                              this.getChatfriend();
                              this.getMessages(this.chatId);
                              this.scrollToBottom();
-                           } else {
-                             window.location.replace('/profile');
                            }
                          },
                          error => {
@@ -104,6 +112,8 @@ export class ChatComponent implements OnInit {
     this.scrollToBottom();
   }
 
+
+
   getMessages(chatId: string) {
     this.chatService.getMessages(chatId)
                     .subscribe(
@@ -118,15 +128,17 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage(content: string) {
-    this.chatService.sendMessage(this.chat.chat[0]._id, this.myId, this.friend._id, content)
-        .map((response) => {
-          this.getMessages(this.chat.chat[0]._id);
-        })
-        .subscribe(
-          message  => {
-            this.chatService.getMessages(this.chat.chat[0]._id);
-            this.socket.emit('sendMessage', this.friend._id);
-          },
-          error => this.errorMessage = <any>error);
+    if(content != "") {
+      this.chatService.sendMessage(this.chat.chat[0]._id, this.myId, this.friend._id, content)
+          .map((response) => {
+            this.getMessages(this.chat.chat[0]._id);
+          })
+          .subscribe(
+            message  => {
+              this.chatService.getMessages(this.chat.chat[0]._id);
+              this.socket.emit('sendMessage', this.friend._id);
+            },
+            error => this.errorMessage = <any>error);
+    }
   }
 }

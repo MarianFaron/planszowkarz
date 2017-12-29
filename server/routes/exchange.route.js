@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Exchange = require('../models/exchange.model');
+var Chat = require('../models/chat.model');
 var User = require('../models/user.model');
 var Notification = require('../models/notification.model');
 
@@ -201,5 +202,49 @@ router.route('/exchanges/:id/received')
 					}
 		});
 	});
+
+	router.route('/exchanges/close')
+		.post((req, res) => {
+
+			var exchangeId;
+
+			Chat.findById(req.body.chatId, (err, chat) => {
+				if(err){
+					return res.status(400).json({message: "Bad Requested"});
+				} else if(!chat){
+					return res.status(404).json({message: "Chat not Found"});
+				} else {
+
+					exchangeId = chat.exchange;
+
+					Exchange.findById(exchangeId, (err, exchange) => {
+						if(err){
+							return res.status(400).json({message: "Bad Requested"});
+						} else if(!exchange){
+							return res.status(404).json({message: "Exchange not Found"});
+						} else {
+							if(req.body.userId == exchange.sender) {
+								exchange.isCLosedBySender = true;
+							} else {
+								exchange.isClosedByRecipient = true;
+							}
+							if(exchange.isCLosedBySender && exchange.isClosedByRecipient) {
+								exchange.status = 'closed';
+
+								chat.status = 'closed';
+								chat.save();
+							}
+							exchange.save((err) => {
+								if (err){
+									return res.status(409).json({message: 'Wrong Exchange'});
+								} else {
+									return res.status(201).json(exchange);
+								}
+							});
+						}
+					});
+				}
+			});
+		});
 
 module.exports = router;

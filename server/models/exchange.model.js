@@ -29,9 +29,17 @@ var Exchange = new Schema({
       type: Boolean,
       default: false
     },
+    isCLosedBySender: {
+      type: Boolean,
+      default: false
+    },
+    isClosedByRecipient: {
+      type: Boolean,
+      default: false
+    },
     status: {
     	type: String,
-    	default: 'pending' 
+    	default: 'pending'
     },
     date: {
       type: Date,
