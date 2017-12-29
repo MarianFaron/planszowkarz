@@ -123,6 +123,7 @@ export class UserGamesComponent implements OnInit {
                             this.closeModal.nativeElement.click();
                             this.model.title = '';
                             this.coverUploader.uploadAll();
+                            this.urlNewGameImage = '';
                           },
                           error =>  {
                             this.errorMessage = <any>error
@@ -144,6 +145,7 @@ export class UserGamesComponent implements OnInit {
                               this.userGame;
                               this.getUserGame();
                               this.appService.showNotification('Powiadomienie', 'Zapisano zmiany.', 'success');
+                              this.urlEditedGameImage = '';
                             },
                             error =>  {
                               this.errorMessage = <any>error
