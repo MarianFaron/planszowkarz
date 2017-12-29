@@ -10,6 +10,13 @@ var Chat = new Schema({
     user2: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
+    },
+    exchange: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Exchange'
+    },
+    status: {
+      type: String
     }
 }, {
   versionKey: false

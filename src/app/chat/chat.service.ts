@@ -15,11 +15,11 @@ export class ChatService {
 
     constructor (private http: Http, private appService: AppService) {}
 
-    startChat(sender: string, recipient: string) {
+    startChat(exchangeId: string, sender: string, recipient: string) {
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
 
-      return this.http.post(this.chatUrl, {sender, recipient}, options)
+      return this.http.post(this.chatUrl, {exchangeId, sender, recipient}, options)
                       .map(this.appService.extractData)
                       .catch(this.appService.handleError);
     }
@@ -54,7 +54,7 @@ export class ChatService {
     sendMessage(chat: string, sender: string, recipient: string, content: string) {
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-      
+
       return this.http.post(`${this.chatUrl}/${chat}/messages`, {chat, sender, recipient, content }, options)
                       .map(this.appService.extractData)
                       .catch(this.appService.handleError);
