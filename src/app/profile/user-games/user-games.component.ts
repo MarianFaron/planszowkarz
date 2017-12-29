@@ -86,6 +86,7 @@ export class UserGamesComponent implements OnInit {
   }
 
   public coverUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
+
   onChange(event: EventTarget) {
     
     this.coverUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
@@ -97,6 +98,7 @@ export class UserGamesComponent implements OnInit {
     let files: FileList = target.files;
     file = files[0];
     this.gameImgName = file.name;
+    
   }
 
 
