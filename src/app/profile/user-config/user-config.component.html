@@ -41,23 +41,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="right-column">
+			<div *ngIf="checkFbUser()" class="right-column">
 				<div class="edit-img-box form-group">
 					<label class="avatar-label">Zdjęcie</label>
 					<div class="game-image center-image">
 						<div *ngIf="userInfo?.avatarImage">
-							<!-- <img *ngIf="showAvatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" alt="user-avatar" />
-							 -->
 							<img *ngIf="urlEditedUserImage" [src]="urlEditedUserImage" />
 							<img *ngIf="!urlEditedUserImage" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" alt="user-avatar" />
-						
-							
-							
-							<!-- <div *ngIf="userInfo?.facebook">
-								<label *ngIf="showAvatar" (click)="deleteImage();">
-									<i class="fa fa-times" aria-hidden="true"></i>
-								</label>
-							</div> -->
 						</div>
 					</div>
 				</div>

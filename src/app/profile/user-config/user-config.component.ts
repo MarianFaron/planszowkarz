@@ -17,7 +17,6 @@ import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
   providers: [UserConfigService, AppService, UserInfoService]
 })
 
-
 export class UserConfigComponent implements OnInit {
 
   errorMessage: string;
@@ -25,9 +24,6 @@ export class UserConfigComponent implements OnInit {
   userInfo: UserInfo;
   avatarImgName: string;
   currentDate = new Date();
-
-  deleteImageStatus = false;
-  showAvatar = true;
 
   public URL = this.appService.getUrl('/app/avatarUpload');
 
@@ -100,12 +96,6 @@ export class UserConfigComponent implements OnInit {
     }
   }
 
-  // delete avatar
-  deleteImage() {
-    this.deleteImageStatus = true;
-    this.showAvatar = false;
-  }
-
   //get user information
 
   getUserInfo() {
@@ -143,12 +133,6 @@ export class UserConfigComponent implements OnInit {
     // Edycja danych bez zmiany avatara
     if(avatarImage == ""){
       this.avatarImgName = this.userInfo.avatarImage;
-    }
-
-    // Usunięcie avatara
-    if(this.deleteImageStatus){
-      avatarImage = "";
-      this.avatarImgName = "";
     }
 
     if(this.appService.getCurrentUser().facebook) {
