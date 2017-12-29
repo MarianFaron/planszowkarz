@@ -76,7 +76,9 @@
               color: $pl-red;
               background-color: $pl-white;
               border: 2px solid $pl-red;
-
+              @include display-flex;
+              @include justify-content(center);
+              @include align-items(center);
             }
           }
         }
@@ -107,6 +109,9 @@
             border-radius: 4px;
             width: 160px;
             cursor: pointer;
+            @include display-flex;
+            @include justify-content(center);
+            @include align-items(center);
           }
           i {
             margin-right: 10px;

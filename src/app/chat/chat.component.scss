@@ -99,8 +99,9 @@ p {
 
 .button-box {
   @include display-flex;
-  @include justify-content(center);
-  margin: 0 0 50px;
+  @include justify-content(space-between);
+  margin: 0 auto 50px;
+  max-width: 500px;
 
   button {
     margin: 0 7px;

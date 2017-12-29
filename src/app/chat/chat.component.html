@@ -34,11 +34,8 @@
     <p>Po pomyślnym ustaleniu szczegółów wymiany i jej przeprowadzeniu zakończ wymianę, by mieć możliwość jej oceny.
       Jeśli wymiana nie doszła do skutku możesz ją odrzucić i również dokonać jej oceny.</p>
     <div class="button-box">
-        <button class="btn btn-color" data-dismiss="modal" disabled>Odrzuć</button>
-        <button class="btn custom-button" data-dismiss="modal" name="button" type="button" disabled>Zakończ</button>
-    </div>
-    <div class="prev-view-button-box">
-      <button routerLink='/profile/history' class="btn btn-color prev-view" data-dismiss="modal">Powrót do historii</button>
+      <button routerLink='/profile/history' class="btn btn-color prev-view" data-dismiss="modal"><i class="fa fa-angle-left"></i> Powrót do historii</button>
+      <button class="btn custom-button" data-dismiss="modal" name="button" type="button" (click)="this.closeExchange(chatId, this.appService.getCurrentUser()._id)">Zakończ wymianę</button>
     </div>
   </div>
 </div>

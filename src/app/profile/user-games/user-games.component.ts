@@ -40,7 +40,6 @@ export class UserGamesComponent implements OnInit {
   }
 
   public URL = this.appService.getUrl('/app/coverUpload');
-  public coverUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
   constructor (
     private http: Http,
@@ -57,9 +56,6 @@ export class UserGamesComponent implements OnInit {
     this.getUserInfo();
     this.profileService.getUserInfo();
     this.getUserGame();
-    this.coverUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
-    this.coverUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
-
   }
 
   urlNewGameImage: any;
@@ -89,17 +85,24 @@ export class UserGamesComponent implements OnInit {
     }
   }
 
-  file: File;
+  public coverUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
+
   onChange(event: EventTarget) {
+    
+    this.coverUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+    this.coverUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
+
+    let file: File;
     let eventObj: MSInputMethodContext = <MSInputMethodContext> event;
     let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
     let files: FileList = target.files;
-    this.file = files[0];
-    this.gameImgName = this.file.name;
+    file = files[0];
+    this.gameImgName = file.name;
+    
   }
 
 
-  addUserGame(title: string, category: string, state: string, description: string,  Image: string) {
+  addUserGame(title: string, category: string, state: string, description: string, Image: string) {
 
     if(Image == ""){
       this.gameImgName = "default.png";
@@ -123,6 +126,8 @@ export class UserGamesComponent implements OnInit {
                             this.closeModal.nativeElement.click();
                             this.model.title = '';
                             this.coverUploader.uploadAll();
+                            this.coverUploader.clearQueue();
+                            this.urlNewGameImage = '';
                           },
                           error =>  {
                             this.errorMessage = <any>error
@@ -144,6 +149,9 @@ export class UserGamesComponent implements OnInit {
                               this.userGame;
                               this.getUserGame();
                               this.appService.showNotification('Powiadomienie', 'Zapisano zmiany.', 'success');
+                              this.coverUploader.uploadAll();
+                              this.coverUploader.clearQueue();
+                              this.urlEditedGameImage = '';
                             },
                             error =>  {
                               this.errorMessage = <any>error

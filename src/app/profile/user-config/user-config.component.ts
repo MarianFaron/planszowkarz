@@ -30,7 +30,6 @@ export class UserConfigComponent implements OnInit {
   showAvatar = true;
 
   public URL = this.appService.getUrl('/app/avatarUpload');
-  public avatarUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
   constructor(private http: Http,
               private el: ElementRef,
@@ -60,18 +59,36 @@ export class UserConfigComponent implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
-    this.checkFbUser();
-    this.avatarUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
-    this.avatarUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
+    this.checkFbUser();    
   }
 
-  file: File;
+  urlEditedUserImage: any;
+
+  showEditAvatarThumbnail(event:any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = (event:any) => {
+        this.urlEditedUserImage = event.target.result;
+      }
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  public avatarUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
   onChange(event: EventTarget) {
+
+    this.avatarUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+    this.avatarUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
+
+    let file: File;
     let eventObj: MSInputMethodContext = <MSInputMethodContext> event;
     let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
     let files: FileList = target.files;
-    this.file = files[0];
-    this.avatarImgName = this.file.name;
+    file = files[0];
+    this.avatarImgName = file.name;
+
   }
 
   checkFbUser() {
@@ -148,6 +165,9 @@ export class UserConfigComponent implements OnInit {
                                   this.userInfo;
                                   this.getUserInfo();
                                   this.appService.showNotification('Powiadomienie', 'Dane użytkownika zostały zmienione.', 'success');
+                                  this.avatarUploader.uploadAll();
+                                  this.avatarUploader.clearQueue();
+                                  this.urlEditedUserImage = '';
                               },
                               error =>  {
                                   this.errorMessage = <any>error
