@@ -41,6 +41,7 @@ import { ChatComponent } from './chat/chat.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { StarRatingModule } from 'angular-star-rating';
 
+
 @NgModule({
   declarations: [
     AppComponent,

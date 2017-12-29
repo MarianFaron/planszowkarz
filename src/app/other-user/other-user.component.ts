@@ -56,31 +56,9 @@ export class OtherUserComponent implements OnInit {
                   error => this.errorMessage = <any>error);
   }
 
-  addGrade(id:string, $event:OnClickEvent){
-    var sumOfGrades = Number(this.userInfo.sumOfGrades) + Number($event.rating);
-    var numberOfRatings = this.userInfo.numberOfRatings+1;
-
-    this.otherUserService.updateUser(id, this.userInfo.dateBirth, this.userInfo.city, this.userInfo.contactNumber, this.userInfo.avatarImage,  
-      this.userInfo.numberOfGames, this.userInfo.numberOfExchanges,
-      numberOfRatings, sumOfGrades)
-                          .subscribe(
-                          userInfo  => {
-                            this.userInfo;
-                            this.getUserInfo( this.activeRoute.snapshot.params['login']);
-                            this.appService.showNotification('Powiadomienie', 'Oceniono użytkownika.', 'success');
-                          },
-                          error =>  {
-                            this.errorMessage = <any>error
-                          }
-                          );
-  }
 
   onHoverRatingChangeResult:OnHoverRatingChangeEvent;
-	onClickResult:OnClickEvent;
-	onClick = ($event:OnClickEvent) => {
-			console.log($event.rating);
-			this.onClickResult = $event;
-	};	
+	
 	onHoverRatingChange = ($event:OnHoverRatingChangeEvent) => {
 		this.onHoverRatingChangeResult = $event;
 	};
