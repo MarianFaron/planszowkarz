@@ -30,8 +30,10 @@
             <div class="game-card">
               <div class="inner">
                 <a routerLink="/games/{{ game._id }}">
-                  <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}"
+                  <div class="img-box">
+                    <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}"
                       alt="{{game.title}}" class="img-responsive" />
+                  </div>
                   <h3>{{ game.title }}</h3>
                 </a>
                 <div class="info-box">
