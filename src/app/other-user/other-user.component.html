@@ -17,8 +17,8 @@
 					<div class="user-sidebar inner" data-aos="fade-up">
 						<div class="other-info">
 							<div *ngIf="userInfo">
-								<!--<img *ngIf="userInfo?.avatarImage" class="user-avatar" alt="facebook-avatar"
-									src="http://graph.facebook.com/{{userInfo?.facebook.id}}/picture?width=160&amp;height=160"/>-->
+								<img *ngIf="!userInfo?.avatarImage" class="user-avatar" alt="facebook-avatar"
+									src="http://graph.facebook.com/{{userInfo?.facebook.id}}/picture?width=160&amp;height=160"/>
 								<img *ngIf="userInfo?.avatarImage" class="user-avatar" alt="user-avatar"
 									src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" />
 							</div>
