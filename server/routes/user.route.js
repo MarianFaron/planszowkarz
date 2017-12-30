@@ -212,6 +212,8 @@ router.route('/edit-user/:id')
         });
       } else {
 
+        console.log(req.body.password);
+
           user.dateBirth = req.body.dateBirth;
           user.city = req.body.city;
           user.contactNumber = req.body.contactNumber;
@@ -221,7 +223,7 @@ router.route('/edit-user/:id')
           user.numberOfRatings = req.body.numberOfRatings;
           user.sumOfGrades = req.body.sumOfGrades;
 
-          if(!user.facebook && req.body.password != '' && req.body.password.length >= 3) {
+          if(req.body.password != '' && req.body.password.length >= 3) {
             user.local.password = user.generateHash(req.body.password);
           }
 

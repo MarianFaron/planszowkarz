@@ -30,7 +30,7 @@ export class UserConfigService {
 	updateUser(id: string, dateBirth: string, city: string, contactNumber: string, avatarImage: string, password, 
 			numberOfGames: number, numberOfExchanges: number, numberOfRatings: number, sumOfGrades: number): Observable<UserInfo[]> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
-    	let options = new RequestOptions({ headers: headers });
+		let options = new RequestOptions({ headers: headers });
 
     	return this.http.post(`${this.editUserUrl}/${id}`, {dateBirth, city, contactNumber, avatarImage, password, numberOfGames, numberOfExchanges, numberOfRatings, sumOfGrades}, options)
                     .map(this.appService.extractData)

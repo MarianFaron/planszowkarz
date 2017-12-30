@@ -123,28 +123,31 @@ export class UserConfigComponent implements OnInit {
 
   //edit user information
 
-  editUserInfo(id: string, city: string, contactNumber: string, avatarImage: string, password: string) {
+  editUserInfo(valid, id: string, city: string, contactNumber: string, avatarImage: string, password: string, confirmPassword: string) {
 
     var d = this.model.datepicker.date.year;
     var m = this.model.datepicker.date.month;
     var y = this.model.datepicker.date.day;
     var date = '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
 
-    // Edycja danych bez zmiany avatara
+    // edit user data without change user's avatar 
+
     if(avatarImage == ""){
       this.avatarImgName = this.userInfo.avatarImage;
     }
 
-    if(this.appService.getCurrentUser().facebook) {
-      password = '';
-    }
+    if(password === confirmPassword) {
 
-    this.profileService.updateUserInfo(date, city, contactNumber, this.avatarImgName);
+      if(this.appService.getCurrentUser().facebook) {
+        password = '';
+      }
 
-    this.userConfigService.updateUser(id, date, city, contactNumber, this.avatarImgName, password,
-                                      this.userInfo.numberOfGames, this.userInfo.numberOfExchanges,
-                                      this.userInfo.numberOfRatings, this.userInfo.sumOfGrades)
-                          .subscribe(
+      this.profileService.updateUserInfo(date, city, contactNumber, this.avatarImgName);
+
+      this.userConfigService.updateUser(id, date, city, contactNumber, this.avatarImgName, password,
+                                        this.userInfo.numberOfGames, this.userInfo.numberOfExchanges,
+                                        this.userInfo.numberOfRatings, this.userInfo.sumOfGrades)
+                            .subscribe(
                               userInfo  => {
                                   this.userInfo;
                                   this.getUserInfo();
@@ -156,6 +159,11 @@ export class UserConfigComponent implements OnInit {
                               error =>  {
                                   this.errorMessage = <any>error
                               }
-                           );
-  }
+                            );
+    }
+
+    else {
+      this.appService.showNotification('Powiadomienie', 'Popraw dane w formularzu.', 'danger');
+    }
+  }    
 }
