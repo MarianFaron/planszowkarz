@@ -15,30 +15,38 @@
 						<div *ngIf="recipientInfo" class="recipient-box">
 							<div class="recipient">
 								<div *ngIf="recipientInfo?.facebook">
-									<img class="user-avatar" alt="facebook-avatar"
-									src="http://graph.facebook.com/{{recipientInfo?.facebook.id}}/picture?width=130&amp;height=130" />
+									<div class="img-box">
+										<img class="user-avatar" alt="facebook-avatar"
+										src="http://graph.facebook.com/{{recipientInfo?.facebook.id}}/picture?width=130&amp;height=130" />
+									</div>
 								</div>
 								<div *ngIf="!recipientInfo?.facebook">
-									<img *ngIf="recipientInfo?.avatarImage" class="user-avatar" alt="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{recipientInfo?.avatarImage}}" />
+									<div class="img-box">
+										<img *ngIf="recipientInfo?.avatarImage" class="user-avatar" alt="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{recipientInfo?.avatarImage}}" />
+									</div>
 								</div>
 								<div class="recipient-info">
 									<p *ngIf="recipientInfo?.facebook"> {{recipientInfo?.facebook.name}}</p>
 									<p *ngIf="!recipientInfo?.facebook"> {{recipientInfo?.local.login}}</p>
 									<li>Liczba gier na wymianę: {{recipientInfo?.numberOfGames}}</li>
 									<li>Liczba przeprowadzonych wymian: {{recipientInfo?.numberOfExchanges}}</li>
-									<li>Ocena społeczności: {{recipientInfo?.sumOfGrades}}</li>
+									<li><star-rating-comp [readOnly]="true" [labelText]="'Ocena społeczności: '" [starType]="'svg'" [rating]='recipientInfo?.sumOfGrades/recipientInfo?.numberOfRatings' [showHalfStars]="true"></star-rating-comp></li>
 								</div>
 							</div>
 						</div>
 						<div *ngIf="senderInfo" class="sender-box">
 							<div *ngIf="senderInfo?.facebook" class="sender">
 								<p>{{ senderInfo?.facebook.name}}</p>
-								<img class="user-avatar" alt="facebook-avatar"
-								src="http://graph.facebook.com/{{senderInfo?.facebook.id}}/picture?width=130&amp;height=130"/>
+								<div class="img-box">
+									<img class="user-avatar" alt="facebook-avatar"
+									src="http://graph.facebook.com/{{senderInfo?.facebook.id}}/picture?width=130&amp;height=130"/>
+								</div>
 							</div>
 							<div *ngIf="!senderInfo?.facebook" class="sender">
 								<p>{{ senderInfo?.local.login }}</p>
-								<img class="user-avatar" alt="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{senderInfo?.avatarImage}}" />
+								<div class="img-box">
+									<img class="user-avatar" alt="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{senderInfo?.avatarImage}}" />
+								</div>
 							</div>
 						</div>
 					</div>
@@ -51,7 +59,9 @@
 							<div class="drag-drop-panel-content">
 								<div class="recipient-game">
 									<h3> {{ recipientGame?.title }} </h3>
-									<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ recipientGame?.Image }}" />
+									<div class="img-box">
+										<img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ recipientGame?.Image }}" />
+									</div>
 									<h4> Kategoria: {{ recipientGame?.category }} </h4>
 									<h4> Stan: {{ recipientGame?.state }} </h4>
 								</div>
@@ -97,7 +107,7 @@
 									</div>
 									<div class="mobile-games">
 										<div class="drag-drop-info">
-											<p><span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>Zaznacz gry, które chcesz zaproponować użytkownikowi.</p>
+											<p><span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>Przeciągnij gry, które chcesz zaproponować użytkownikowi z listy po prawej stronie.</p>
 										</div>
 										<div class="single-game" *ngFor="let game of checkboxArray">
 											<div class="custom-checkbox" [draggable] [dragData]="game">

@@ -36,7 +36,7 @@ router.route('/forgot')
       to: email,
       subject: 'Resetowanie hasła',
       text: 'Nowe hasło: ' + password,
-      html: '<div style="background: #f5f5f5; padding-top: 40px;padding-bottom: 40px;"><div class="email" style="width: 500px; margin: 0 auto;border:1px solid #b6b6b6;"><div class="email-header" style="background:#444;text-align: center;color: #fff; padding: 5px;"><h4 style="margin 0;padding: 0;">Planszówkarz</h4></div><div class="email-content" style="padding: 15px; background: #fff;"><h3>Resetowanie hasła</h3><p style="font-size: 14px;">Nowe hasło: <b>' + password + '</b></p><p style="font-size: 14px;">Jeśli nie wysyłałeś prośby o zresetowanie hasła, zignoruj ten e-mail.</p></div><div class="email-footer" style="background:#444;text-align: center;color: #fff; padding: 15px; font-size: 12px">Planszówkarz 2017 <a href="#" style="color: #f98d1a">Kontakt</a></div></div></div>'
+      html: '<div style="background: #f5f5f5; padding-top: 40px;padding-bottom: 40px;"><div class="email" style="width: 500px; margin: 0 auto;border:1px solid #b6b6b6;"><div class="email-header" style="background:#444;text-align: center;color: #fff; padding: 5px;"><h4 style="margin 0;padding: 0;">Planszówkarz</h4></div><div class="email-content" style="padding: 15px; background: #fff;"><h3>Resetowanie hasła</h3><p style="font-size: 14px;">Nowe hasło: <b>' + password + '</b></p><p style="font-size: 14px;">Jeśli nie wysyłałeś prośby o zresetowanie hasła, zignoruj ten e-mail.</p></div><div class="email-footer" style="background:#444;text-align: center;color: #fff; padding: 15px; font-size: 12px">Planszówkarz 2017 <a href="https://planszowkarz.pl/contact" style="color: #f98d1a">Kontakt</a></div></div></div>'
     };
 
     User.findOne({
@@ -212,6 +212,8 @@ router.route('/edit-user/:id')
         });
       } else {
 
+        console.log(req.body.password);
+
           user.dateBirth = req.body.dateBirth;
           user.city = req.body.city;
           user.contactNumber = req.body.contactNumber;
@@ -221,7 +223,7 @@ router.route('/edit-user/:id')
           user.numberOfRatings = req.body.numberOfRatings;
           user.sumOfGrades = req.body.sumOfGrades;
 
-          if(!user.facebook && req.body.password != '' && req.body.password.length >= 3) {
+          if(req.body.password != '' && req.body.password.length >= 3) {
             user.local.password = user.generateHash(req.body.password);
           }
 
@@ -251,6 +253,7 @@ router.route('/users')
       }
     });
   })
+  
   // post new user
   .post((req, res) => {
     if (!req.body.login || !req.body.password) {
@@ -276,6 +279,37 @@ router.route('/users')
       });
     }
   });
+
+
+  router.route('/users/rankRates')
+  // get users for rank
+  .get((req, res) => {
+    User.find({ "numberOfRatings" : { $gt: 0 } } ,(err, users) => {
+      if (err) {
+        return res.status(400).json({
+          message: "Bad Requested"
+        });
+      } else {
+        return res.status(200).json( users );
+      }
+    }).sort({ sumOfGrades: -1 }).limit(10);
+  });
+
+
+  router.route('/users/rankGames')
+  // get users for rank
+  .get((req, res) => {
+    User.find((err, users) => {
+      if (err) {
+        return res.status(400).json({
+          message: "Bad Requested"
+        });
+      } else {
+        return res.status(200).json( users );
+      }
+    }).sort({ numberOfExchanges: -1, numberOfGames: -1 }).limit(10);
+  });
+
 
 router.route('/users/:id')
   .get((req, res) => {
@@ -373,5 +407,6 @@ router.route('/users/login/:login')
     });
   });
 
+  
 
 module.exports = router;

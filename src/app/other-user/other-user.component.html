@@ -17,8 +17,8 @@
 					<div class="user-sidebar inner" data-aos="fade-up">
 						<div class="other-info">
 							<div *ngIf="userInfo">
-								<!--<img *ngIf="userInfo?.avatarImage" class="user-avatar" alt="facebook-avatar"
-									src="http://graph.facebook.com/{{userInfo?.facebook.id}}/picture?width=160&amp;height=160"/>-->
+								<img *ngIf="!userInfo?.avatarImage" class="user-avatar" alt="facebook-avatar"
+									src="http://graph.facebook.com/{{userInfo?.facebook.id}}/picture?width=160&amp;height=160"/>
 								<img *ngIf="userInfo?.avatarImage" class="user-avatar" alt="user-avatar"
 									src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" />
 							</div>
@@ -60,13 +60,13 @@
 									<li>
 										<span class="icon icon-change" aria-hidden="true"></span>
 										<p>
-											Liczba przeprowadzonych wymian: <b>{{userInfo?.numberOfExchanges}}</b>
+											Przeprowadzone wymiany: <b>{{userInfo?.numberOfExchanges}}</b>
 										</p>
 									</li>
 									<li>
 										<span class="icon icon-star" aria-hidden="true"></span>
 										<p>
-											<star-rating-comp  [hoverEnabled]="true" [labelText]="'Ocena społeczności: '" (onClick)="addGrade(userInfo?._id, $event)" (onHoverRatingChange)="onHoverRatingChange($event)" [starType]="'svg'" [rating]='userInfo?.sumOfGrades/userInfo?.numberOfRatings' [showHalfStars]="true"></star-rating-comp>
+											<star-rating-comp [readOnly]="true" [labelText]="'Ocena społeczności: '" [starType]="'svg'" [rating]='userInfo?.sumOfGrades/userInfo?.numberOfRatings' [showHalfStars]="true"></star-rating-comp>
 										</p>
 									</li>
 								</div>

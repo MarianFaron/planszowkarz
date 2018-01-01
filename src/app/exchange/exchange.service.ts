@@ -13,8 +13,8 @@ import { UserGame } from './../profile/user-games/user-games';
 export class ExchangeService {
 
 	private exchangeUrl = this.appService.getUrl('/app/exchanges');
-	private userGameUrl = this.appService.getUrl('/app/userGames');	
-    private userGamesUrl = this.appService.getUrl('/app/users');
+	private userGameUrl = this.appService.getUrl('/app/userGames');
+  private userGamesUrl = this.appService.getUrl('/app/users');
 
     constructor (private http: Http, private appService: AppService) {}
 
@@ -25,6 +25,15 @@ export class ExchangeService {
       return this.http.post(this.exchangeUrl, {proposeGames, recipientGame, sender, recipient}, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
+    }
+
+		closeExchange(chatId: string, userId: string) {
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+
+      return this.http.post(`${this.exchangeUrl}/close`, {chatId, userId}, options)
+                      .map(this.appService.extractData)
+                      .catch(this.appService.handleError);
     }
 
     getRecipientGame(id: string) {

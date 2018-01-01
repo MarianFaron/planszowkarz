@@ -17,7 +17,6 @@ import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
   providers: [UserConfigService, AppService, UserInfoService]
 })
 
-
 export class UserConfigComponent implements OnInit {
 
   errorMessage: string;
@@ -26,11 +25,7 @@ export class UserConfigComponent implements OnInit {
   avatarImgName: string;
   currentDate = new Date();
 
-  deleteImageStatus = false;
-  showAvatar = true;
-
   public URL = this.appService.getUrl('/app/avatarUpload');
-  public avatarUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
   constructor(private http: Http,
               private el: ElementRef,
@@ -60,18 +55,36 @@ export class UserConfigComponent implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
-    this.checkFbUser();
-    this.avatarUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
-    this.avatarUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
+    this.checkFbUser();    
   }
 
-  file: File;
+  urlEditedUserImage: any;
+
+  showEditAvatarThumbnail(event:any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = (event:any) => {
+        this.urlEditedUserImage = event.target.result;
+      }
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  public avatarUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
   onChange(event: EventTarget) {
+
+    this.avatarUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+    this.avatarUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
+
+    let file: File;
     let eventObj: MSInputMethodContext = <MSInputMethodContext> event;
     let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
     let files: FileList = target.files;
-    this.file = files[0];
-    this.avatarImgName = this.file.name;
+    file = files[0];
+    this.avatarImgName = file.name;
+
   }
 
   checkFbUser() {
@@ -81,12 +94,6 @@ export class UserConfigComponent implements OnInit {
     } else {
       return true;
     }
-  }
-
-  // delete avatar
-  deleteImage() {
-    this.deleteImageStatus = true;
-    this.showAvatar = false;
   }
 
   //get user information
@@ -116,42 +123,47 @@ export class UserConfigComponent implements OnInit {
 
   //edit user information
 
-  editUserInfo(id: string, city: string, contactNumber: string, avatarImage: string, password: string) {
+  editUserInfo(valid, id: string, city: string, contactNumber: string, avatarImage: string, password: string, confirmPassword: string) {
 
     var d = this.model.datepicker.date.year;
     var m = this.model.datepicker.date.month;
     var y = this.model.datepicker.date.day;
     var date = '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
 
-    // Edycja danych bez zmiany avatara
+    // edit user data without change user's avatar 
+
     if(avatarImage == ""){
       this.avatarImgName = this.userInfo.avatarImage;
     }
 
-    // Usunięcie avatara
-    if(this.deleteImageStatus){
-      avatarImage = "";
-      this.avatarImgName = "";
-    }
+    if(password === confirmPassword) {
 
-    if(this.appService.getCurrentUser().facebook) {
-      password = '';
-    }
+      if(this.appService.getCurrentUser().facebook) {
+        password = '';
+      }
 
-    this.profileService.updateUserInfo(date, city, contactNumber, this.avatarImgName);
+      this.profileService.updateUserInfo(date, city, contactNumber, this.avatarImgName);
 
-    this.userConfigService.updateUser(id, date, city, contactNumber, this.avatarImgName, password,
-                                      this.userInfo.numberOfGames, this.userInfo.numberOfExchanges,
-                                      this.userInfo.numberOfRatings, this.userInfo.sumOfGrades)
-                          .subscribe(
+      this.userConfigService.updateUser(id, date, city, contactNumber, this.avatarImgName, password,
+                                        this.userInfo.numberOfGames, this.userInfo.numberOfExchanges,
+                                        this.userInfo.numberOfRatings, this.userInfo.sumOfGrades)
+                            .subscribe(
                               userInfo  => {
                                   this.userInfo;
                                   this.getUserInfo();
                                   this.appService.showNotification('Powiadomienie', 'Dane użytkownika zostały zmienione.', 'success');
+                                  this.avatarUploader.uploadAll();
+                                  this.avatarUploader.clearQueue();
+                                  this.urlEditedUserImage = '';
                               },
                               error =>  {
                                   this.errorMessage = <any>error
                               }
-                           );
-  }
+                            );
+    }
+
+    else {
+      this.appService.showNotification('Powiadomienie', 'Popraw dane w formularzu.', 'danger');
+    }
+  }    
 }

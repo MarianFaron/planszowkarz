@@ -2,69 +2,98 @@
 	<div class="config-content">
 		<h3 class="section-header">Edytuj dane</h3>
 		<hr class="main-hr">
-		<div class="config-top">
+		<form class="config-top" #formRef="ngForm" novalidate="false">
 			<div class="left-column">
 				<div class="form-group">
 					<label>Data urodzenia: </label>
-					<my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model.datepicker" required></my-date-picker>
+					<my-date-picker 
+					name="mydate" 
+					[options]="myDatePickerOptions" 
+					[(ngModel)]="model.datepicker" 
+					required></my-date-picker>
 				</div>
 				<div class="form-group">
 					<label>Miasto</label>
-					<input class="form-control" name="city" placeholder="podaj miasto" minlength="3"
-						value="{{userInfo?.city}}" #userCity />
+					<input 
+					type="text"
+					class="form-control" 
+					name="city" 
+					placeholder="podaj miasto" 
+					minlength="3"
+					value="{{userInfo?.city}}" 
+					#userCity />
 				</div>
 				<div class="form-group">
 					<label>Numer telefonu</label>
-					<input type="text" class="form-control" name="contactNumber" placeholder="123456789"
-						minlength="9" maxlength="9" value="{{userInfo?.contactNumber}}" #userContactNumber/>
+					<input 
+					type="text" 
+					class="form-control" 
+					name="contactNumber" 
+					placeholder="123456789"
+					maxlength="9" 
+					value="{{userInfo?.contactNumber}}" 
+					#userContactNumber/>
 				</div>
-				<div *ngIf="checkFbUser()" class="config-change-password">
-					<div [ngClass]="{hidden: userInfo?.local == null}">
-						<div class="form-group">
-							<label>Hasło</label>
-							<input type="password" class="form-control" name="password" minlength="3" required
-									[ngModel]="model.password" #userPassword="ngModel">
-							<div class="alert alert-danger" *ngIf="userPassword.errors && (userPassword.dirty || userPassword.touched)">
-								<div [hidden]="!userPassword.errors.required"> To pole jest wymagane </div>
-								<div [hidden]="!userPassword.errors.minlength"> Wpisz co najmniej 3 znaki </div>
-							</div>
+				<div class="config-change-password"
+				[ngClass]="{hidden: userInfo?.facebook}">
+					<div class="form-group">
+						<label>Hasło</label>
+						<input 
+						type="password" 
+						class="form-control" 
+						name="password" 
+						minlength="3"
+						[ngModel]="model.password" 
+						#userPassword="ngModel">
+						<div class="alert alert-danger" 
+						*ngIf="userPassword.errors && (userPassword.dirty || userPassword.touched)">
+							<div [hidden]="!userPassword.errors.minlength"> Wpisz co najmniej 3 znaki </div>
 						</div>
-						<div class="form-group">
-							<label>Potwierdź hasło</label>
-							<input type="password" class="form-control" name="confirmPassword" minlength="3" validateEqual="password" required [ngModel]="model.confirmPassword" #userConfirmPassword="ngModel" />
-							<div class="alert alert-danger" *ngIf="userConfirmPassword.errors && (userConfirmPassword.dirty || userConfirmPassword.touched)" >
-								<div [hidden]="!userConfirmPassword.errors.required"> To pole jest wymagane </div>
-								<div [hidden]="!userConfirmPassword.errors.minlength"> Wpisz co najmniej 3 znaki </div>
-								<div [hidden]="!userConfirmPassword.errors"> Hasła różnią się </div>
-							</div>
+					</div>
+					<div class="form-group">
+						<label>Potwierdź hasło</label>
+						<input 
+						type="password" 
+						class="form-control" 
+						name="confirmPassword" 
+						minlength="3" 
+						validateEqual="password"
+						[ngModel]="model.confirmPassword" 
+						#userConfirmPassword="ngModel" />
+						<div class="alert alert-danger" *ngIf="userConfirmPassword.errors && (userConfirmPassword.dirty || userConfirmPassword.touched)" >
+							<div [hidden]="!userConfirmPassword.errors.minlength"> Wpisz co najmniej 3 znaki </div>
+							<div [hidden]="!userConfirmPassword.errors"> Hasła różnią się </div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="right-column">
+			<div class="right-column" [ngClass]="{hidden: userInfo?.facebook}">
 				<div class="edit-img-box form-group">
 					<label class="avatar-label">Zdjęcie</label>
 					<div class="game-image center-image">
 						<div *ngIf="userInfo?.avatarImage">
-							<img *ngIf="showAvatar" class="user-avatar" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" alt="user-avatar" />
-							<div *ngIf="userInfo?.facebook">
-								<label *ngIf="showAvatar" (click)="deleteImage();">
-									<i class="fa fa-times" aria-hidden="true"></i>
-								</label>
-							</div>
+							<img *ngIf="urlEditedUserImage" [src]="urlEditedUserImage" />
+							<img *ngIf="!urlEditedUserImage" src="{{this.appService.getUrl('/assets/uploads/avatars/')}}{{userInfo?.avatarImage}}" alt="user-avatar" />
 						</div>
 					</div>
 				</div>
 				<div class="form-group input-file">
 					<div class="center-button">
-						<input id="avatar-file" type="file" name="photo" class="inputfile"
-								value="cdcd" ng2FileSelect
-						[uploader]="avatarUploader" #userAvatarImage (change)="onChange($event)" />
-						<label for="avatar-file"><i class="fa fa-window-close" aria-hidden="true"></i><i class="fa fa-download" aria-hidden="true"></i>Wybierz plik</label>
+						<input 
+						id="avatar-file" 
+						type="file" 
+						name="photo" 
+						class="inputfile"
+						value="cdcd" 
+						ng2FileSelect
+						[uploader]="avatarUploader" 
+						#userAvatarImage 
+						(change)="onChange($event); showEditAvatarThumbnail($event)" />
+						<label for="avatar-file"><i class="fa fa-download" aria-hidden="true"></i>Wybierz plik</label>
 					</div>
 				</div>
 			</div>
-		</div>
+		</form>
 
 		<div class="save-changes">
 			<button class="btn custom-button" data-toggle="modal" data-target="#edit-user" data-dismiss="modal">
@@ -87,13 +116,16 @@
 			</div>
 			<div class="modal-footer">
 
-				<button *ngIf="checkFbUser()" class="btn custom-button" (click)="
-				avatarUploader.uploadAll();
-				editUserInfo(userInfo?._id,
-				userCity.value,
-				userContactNumber.value,
-				userAvatarImage.value,
-				userPassword)" data-dismiss="modal">Potwierdź</button>
+				<button class="btn custom-button" 
+				(click)="editUserInfo(
+					formRef.valid,
+					userInfo?._id, 
+					userCity.value,
+					userContactNumber.value,
+					userAvatarImage.value,
+					userPassword.value,
+					userConfirmPassword.value)" 
+				data-dismiss="modal">Potwierdź</button>
 			</div>
 		</div>
 	</div>

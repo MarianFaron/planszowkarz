@@ -1,4 +1,4 @@
-import { Component, OnInit , ElementRef, Input} from '@angular/core';
+import { Component, OnInit , ElementRef, Input, ViewChild} from '@angular/core';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod} from '@angular/http';
 import { UserGame } from './user-games';
 import { AppService } from '../../app.service';
@@ -19,6 +19,8 @@ import { ProfileService } from '../profile.service';
 
 export class UserGamesComponent implements OnInit {
 
+  @ViewChild('closeModal') closeModal: ElementRef;
+
   // PAGER
 
   pager: any = {};
@@ -38,7 +40,6 @@ export class UserGamesComponent implements OnInit {
   }
 
   public URL = this.appService.getUrl('/app/coverUpload');
-  public coverUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
   constructor (
     private http: Http,
@@ -53,10 +54,8 @@ export class UserGamesComponent implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
+    this.profileService.getUserInfo();
     this.getUserGame();
-    this.coverUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
-    this.coverUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
-    // this.userInfo = this.profileService.getUserInfo();
   }
 
   urlNewGameImage: any;
@@ -65,11 +64,11 @@ export class UserGamesComponent implements OnInit {
   showNewGameThumbnail(event:any) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
-  
+
       reader.onload = (event:any) => {
         this.urlNewGameImage = event.target.result;
       }
-  
+
       reader.readAsDataURL(event.target.files[0]);
     }
   }
@@ -77,26 +76,33 @@ export class UserGamesComponent implements OnInit {
   showEditGameThumbnail(event:any) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
-  
+
       reader.onload = (event:any) => {
         this.urlEditedGameImage = event.target.result;
       }
-  
+
       reader.readAsDataURL(event.target.files[0]);
     }
   }
 
-  file: File;
+  public coverUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
+
   onChange(event: EventTarget) {
+    
+    this.coverUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+    this.coverUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
+
+    let file: File;
     let eventObj: MSInputMethodContext = <MSInputMethodContext> event;
     let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
     let files: FileList = target.files;
-    this.file = files[0];
-    this.gameImgName = this.file.name;
+    file = files[0];
+    this.gameImgName = file.name;
+    
   }
 
 
-  addUserGame(title: string, category: string, state: string, description: string,  Image: string) {
+  addUserGame(title: string, category: string, state: string, description: string, Image: string) {
 
     if(Image == ""){
       this.gameImgName = "default.png";
@@ -108,17 +114,26 @@ export class UserGamesComponent implements OnInit {
     var createdDate = new Date().toString();
 
     if (!title || !category || !state) { return; }
-    this.userGameService.create(title, category, state, description, createdDate, userID, this.gameImgName)
-                     .subscribe(
-                        userGame  => {
-                          this.userGame;
-                          this.getUserGame();
-                          this.profileService.getUserInfo();
-                          this.appService.showNotification('Powiadomienie', 'Dodano nową grę.', 'success');
-                        },
-                        error =>  {
-                          this.errorMessage = <any>error
-                        });
+
+    if(title.length >= 3) {
+      this.userGameService.create(title, category, state, description, createdDate, userID, this.gameImgName)
+                       .subscribe(
+                          userGame  => {
+                            this.userGame;
+                            this.getUserGame();
+                            this.increaseNumberOfGames(userID);
+                            this.appService.showNotification('Powiadomienie', 'Dodano nową grę.', 'success');
+                            this.closeModal.nativeElement.click();
+                            this.model.title = '';
+                            this.coverUploader.uploadAll();
+                            this.coverUploader.clearQueue();
+                            this.urlNewGameImage = '';
+                          },
+                          error =>  {
+                            this.errorMessage = <any>error
+                          });
+    }
+
   }
 
 
@@ -134,6 +149,9 @@ export class UserGamesComponent implements OnInit {
                               this.userGame;
                               this.getUserGame();
                               this.appService.showNotification('Powiadomienie', 'Zapisano zmiany.', 'success');
+                              this.coverUploader.uploadAll();
+                              this.coverUploader.clearQueue();
+                              this.urlEditedGameImage = '';
                             },
                             error =>  {
                               this.errorMessage = <any>error
@@ -182,6 +200,7 @@ export class UserGamesComponent implements OnInit {
 
   increaseNumberOfGames(id: string){
     this.numberOfGames+=1;
+    this.profileService.userInfo.numberOfGames+=1;
     this.editUserInfo(id);
   }
 
@@ -196,7 +215,7 @@ export class UserGamesComponent implements OnInit {
                                       this.numberOfGames, this.userInfo.numberOfExchanges, this.userInfo.numberOfRatings, this.userInfo.sumOfGrades)
                           .subscribe(
                                 userInfo  => {
-                                    this.userInfo;
+                                    // this.userInfo;
                                     this.getUserInfo();
                                 },
                                 error =>  {

@@ -2,9 +2,6 @@
 @import '../../scss/mixins';
 @import '../../scss/font-awesome';
 
-
-
-
 .user-info-panel {
   margin: 0;
   width: 100%;
@@ -25,8 +22,33 @@
   padding: 20px 3% 1px;
   display: block;
 
+  @include respond-to(tablet) {
+    padding-bottom: 20px;
+  }
+
+  @include respond-to(small-mobile) {
+    padding-bottom: 1px;
+  }
+
   .other-info {
     margin-bottom: 40px;
+
+    @include respond-to(tablet) {
+      margin-bottom: 0;
+
+      > div {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+
+    @include respond-to(small-mobile) {
+      margin-bottom: 40px;
+
+      > div {
+        display: block;
+      }
+    }
 
     .user-avatar {
       max-width: 250px;
@@ -43,6 +65,22 @@
       padding: 0;
       display: block;
       border-top: none;
+
+      @include respond-to(tablet) {
+        display: inline-block;
+        margin: 0 0 0 5px;
+        vertical-align: middle;
+        width: 61%;
+        position: relative;
+        top: 10px;
+      }
+
+      @include respond-to(small-mobile) {
+        width: 100%;
+        display: block;
+        margin: 15px 0 0;
+        position: initial;
+      }
 
       li {
         text-decoration: none;

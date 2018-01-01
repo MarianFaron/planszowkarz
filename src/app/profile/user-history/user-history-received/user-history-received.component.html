@@ -2,7 +2,7 @@
     <div class="transaction-box">
         <div class="transaction-top">
             <div class="transaction-row">
-                <p>Data: <strong>{{history?.date| date:'medium'}}</strong></p>
+                <p>Data: <strong>{{history?.date| date:'d MMMM y, j:mm'}}</strong></p>
             </div>
             <div class="transaction-row transaction-center-row">
                 <p class="transaction-paragraph">Gracz
@@ -40,9 +40,9 @@
                     <p>Status: <strong>oczekiwanie na odpowiedź</strong></p>
                 </div>
                 <div class="transaction-column">
-                    <button class="btn btn-color" data-dismiss="modal" (click)="discardExchange(history._id);">Odrzuć</button>
+                    <button class="btn btn-color" data-dismiss="modal" (click)="discardExchange(history._id, history.sender);">Odrzuć</button>
                     <button class="btn custom-button" data-dismiss="modal" name="button" type="button"
-                            (click)="acceptExchange(history._id);">Akceptuj</button>
+                            (click)="acceptExchange(history._id, history.sender);">Akceptuj</button>
                 </div>
             </div>
         </div>

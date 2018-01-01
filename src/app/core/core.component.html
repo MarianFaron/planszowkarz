@@ -5,8 +5,8 @@
       <div class="banner-header">
         <h1> Planszówkarz </h1>
         <h2> wymieniaj się z innymi swoimi planszówkami </h2>
-        <p>          
-          Zaoferuj użytkownikom swoje gry planszowe na wymianę i poznawaj nowe, dzięki wymianie w apliacji! Nawiąż kontakt z innymi osobami i wspólnie odkryjcie świat gier planszowych.
+        <p>
+          Zaoferuj użytkownikom swoje gry planszowe na wymianę i poznawaj nowe, dzięki wymianie w aplikacji! Nawiąż kontakt z innymi osobami i wspólnie odkryjcie świat gier planszowych.
         </p>
       </div>
     </div>
@@ -30,8 +30,10 @@
             <div class="game-card">
               <div class="inner">
                 <a routerLink="/games/{{ game._id }}">
-                  <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}"
+                  <div class="img-box">
+                    <img src="{{this.appService.getUrl('/assets/uploads/covers/')}}{{ game.Image }}"
                       alt="{{game.title}}" class="img-responsive" />
+                  </div>
                   <h3>{{ game.title }}</h3>
                 </a>
                 <div class="info-box">
@@ -94,20 +96,20 @@
 
 <section id="forWho">
     <div class="container">
-      <h2>Dla kogo stworzyliśmy planszówkarza</h2>
+      <h2>Dla kogo stworzyliśmy planszówkarza?</h2>
       <hr class="main-hr">
       <div class="section-wrapper">
         <div class="section-row" data-aos="fade-up">
-          <span> 1 </span>
-          <h3> Dla miłośników planszówek, którzy chcą zagrać w nowe gry. </h3>
+          <span class="icon-love"></span>
+          <h3> Dla <b>miłośników planszówek</b>, którzy chcą zagrać w nowe gry. </h3>
         </div>
         <div class="section-row" data-aos="fade-up">
-          <span> 2 </span>
-          <h3> Dla osób, które posiadają gry, których nie używają. Zamiast wyrzuć - wymień się za nową. </h3>
+          <span class="icon-exchange"></span>
+          <h3> Dla osób, które posiadają gry, których nie używają. <b>Zamiast wyrzucać - wymień się</b> za nową. </h3>
         </div>
         <div class="section-row" data-aos="fade-up">
-          <span> 3 </span>
-          <h3> Dla osób poszukujących nowych gier. Sprawdź ranking, a dowiesz się które gry są najpopularniejsze. </h3>
+          <span class="icon-new"></span>
+          <h3> Dla osób poszukujących <b>nowych gier</b>. Sprawdź ranking, a dowiesz się które gry są najpopularniejsze. </h3>
         </div>
       </div>
     </div>

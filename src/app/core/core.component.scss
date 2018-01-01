@@ -39,7 +39,7 @@ section#main-banner {
     top: 0;
     left: 0;
     width: 100%;
-    height: 550px;
+    height: 100%;
     background-image: linear-gradient(-180deg, rgba($pl-green,0), $pl-black 98%);
     @include display-flex;
     @include justify-content(flex-start);
@@ -135,7 +135,6 @@ section#main-banner {
 }
 
 section#newGames,
-section#forWho,
 section#hoToMakeExchange {
   padding: 50px 15px;
 
@@ -197,12 +196,18 @@ section#newGames {
           color: $pl-orange;
         }
 
-        img {
-          width: 100%;
-          height: 100%;
-          max-width: 150px;
-          max-height: 150px;
+        .img-box {
+          width: 150px;
+          height: 150px;
           margin: 0 auto;
+
+          img {
+            max-width: 100%;
+            max-height: 100%;
+            height: auto;
+            width: auto;
+            margin: auto;
+          }
         }
       }
     }
@@ -244,7 +249,6 @@ section#newGames {
 
 }
 
-section#forWho,
 section#hoToMakeExchange {
   padding: 50px 15px;
 
@@ -292,7 +296,6 @@ section#hoToMakeExchange {
     }
 }
 
-
 section#goToRegister {
   width: 100%;
   height: 100%;
@@ -328,6 +331,65 @@ section#goToRegister {
       line-height: 32px;
       font-weight: 300;
       text-align: center;
+    }
+  }
+}
+
+section#forWho {
+
+  .section-wrapper {
+    @include display-flex;
+    @include justify-content(space-between);
+
+    .section-row {
+      width: 30%;
+      @include display-inline-flex;
+      @include flex-direction(column);
+      margin: 50px 0 80px;
+
+      span {
+        @include font-size(42);
+
+        width: 100px;
+        height: 100px;
+        background-color: $pl-white;
+        box-shadow: 2px 2px 1px $pl-gray;
+        @include display-flex;
+        @include justify-content(center);
+        @include align-items(center);
+        border-radius: 50%;
+        line-height: 42px;
+        font-weight: 800;
+        color: $pl-orange;
+        margin: 0 30px 0 0;
+
+        @include respond-to(mobile) {
+          @include font-size(32);
+
+          width: 60px;
+          height: 60px;
+        }
+      }
+
+      .icon-love {
+        @include pet-icon-after($pl-heart-o);
+      }
+
+      .icon-exchange {
+        @include pet-icon-after($pl-exchange);
+      }
+
+      .icon-new {
+        @include pet-icon-after($pl-star);
+      }
+
+      @include respond-to(mobile) {
+        width: 100%;
+        margin: 10px 0 50px;
+      }
+    }
+    @include respond-to(mobile) {
+      @include flex-direction(column);
     }
   }
 }
