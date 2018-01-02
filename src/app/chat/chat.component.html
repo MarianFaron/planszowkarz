@@ -8,14 +8,14 @@
       </div>
       <div id="chat-content" class="chat-content custom-scrollbar" #chatContent>
         <div *ngIf="this.messages">
-            <div *ngFor="let message of this.messages.messages" [ngClass]="(this.myId==message.sender)?'message':'message received'">
-              <div class="message-content">
-                {{message.content}}
-              </div>
-              <div class="message-date">
-                {{message.date | date:'medium'}}
-              </div>
+          <div *ngFor="let message of this.messages.messages" [ngClass]="(this.myId==message.sender)?'message':'message received'">
+            <div class="message-content">
+              {{message.content}}
             </div>
+            <div class="message-date">
+              {{message.date | date:'medium'}}
+            </div>
+          </div>
         </div>
         <div *ngIf="!this.messages">
           Brak wiadomości.
@@ -23,22 +23,40 @@
       </div>
       <div class="chat-form">
         <form class="" action="/app/chat" method="post">
-          <textarea (keyup.enter)="sendMessage(messageContent.value);messageContent.value=''" placeholder="Wpisz wiadomość..."
-          name="name" rows="8" cols="80" value="{{this.content}}" #messageContent [ngModel]="content"></textarea>
+          <textarea (keyup.enter)="sendMessage(messageContent.value);messageContent.value=''" placeholder="Wpisz wiadomość..." name="name" rows="8" cols="80" value="{{this.content}}" #messageContent [ngModel]="content"></textarea>
         </form>
       </div>
       <div class="chat-bottom">
         <button (click)="sendMessage(messageContent.value);messageContent.value=''" class="btn custom-button">Wyślij</button>
       </div>
     </div>
-    <p>Po pomyślnym ustaleniu szczegółów wymiany i jej przeprowadzeniu zakończ wymianę, by mieć możliwość jej oceny.
-      Jeśli wymiana nie doszła do skutku możesz ją odrzucić i również dokonać jej oceny.</p>
+    <p>Po pomyślnym ustaleniu szczegółów wymiany i jej przeprowadzeniu zakończ wymianę, by mieć możliwość jej oceny. Jeśli wymiana nie doszła do skutku możesz ją odrzucić i również dokonać jej oceny.</p>
     <div class="button-box">
-        <button class="btn btn-color" data-dismiss="modal" disabled>Odrzuć</button>
-        <button class="btn custom-button" data-dismiss="modal" name="button" type="button" disabled>Zakończ</button>
+      <button routerLink='/profile/history' class="btn btn-color prev-view" data-dismiss="modal"><i class="fa fa-angle-left"></i> Powrót do historii</button>
+      <button type="button" class="custom-button btn" data-toggle="modal" data-target="#close-exchange">Zakończ wymianę</button>
     </div>
-    <div class="prev-view-button-box">
-      <button routerLink='/profile/history' class="btn btn-color prev-view" data-dismiss="modal">Powrót do historii</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="close-exchange" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Zmiana statusu wymiany</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Status wymiany zostanie zmieniony, jeśli drugi użytkownik również ją zakończy.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-color" data-dismiss="modal">Zamknij</button>
+        <button class="btn custom-button" data-dismiss="modal" name="button" type="button" (click)="this.closeExchange(chatId, this.appService.getCurrentUser()._id)">Potwierdź</button>
+
+      </div>
     </div>
   </div>
 </div>

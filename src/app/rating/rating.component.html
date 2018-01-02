@@ -1,17 +1,44 @@
 <div class="page-content">
   <div class="container">
     <div class="col-md-6">
-      <h3 class="section-header">Najpopularniejsze gry</h3>
+      <h3 class="section-header">Najwyżej oceniani użytkownicy</h3>
       <hr class="main-hr">
-      <div class="inner">
-        test
+      <div *ngIf="!usersRankList">
+        <div class="text-center">
+          <img src="../../assets/images/loading.gif" alt="" class="loading">
+        </div>
+      </div>
+      <div *ngIf="usersRankList">
+        <div class="recipientWrapper inner" *ngFor="let user of usersRankList" data-aos="fade-up">
+          <div class="recipient">
+            <div class="recipient-info stars">
+              <p class="recipient-infoName" *ngIf="user.facebook"> <a routerLink="/user-profile/{{ user.local.login }}">{{user?.facebook.name}}</a></p>
+              <p class="recipient-infoName" *ngIf="!user.facebook"> <a routerLink="/user-profile/{{ user.local.login }}">{{user?.local.login}}</a></p>
+              <p><star-rating-comp [readOnly]="true" [labelText]="'Ocena społeczności: '" [labelPosition]="'top'" [starType]="'svg'" [rating]='user?.sumOfGrades/user?.numberOfRatings' [showHalfStars]="true"></star-rating-comp></p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-md-6">
-      <h3 class="section-header">Najwyżej oceniani użytkownicy</h3>
+      <h3 class="section-header">Największa liczba wymian</h3>
       <hr class="main-hr">
-      <div class="inner">
-        test
+      <div *ngIf="!usersGamesList">
+        <div class="text-center">
+          <img src="../../assets/images/loading.gif" alt="" class="loading">
+        </div>
+      </div>
+      <div *ngIf="usersGamesList">
+        <div class="recipientWrapper inner" *ngFor="let user of usersGamesList" data-aos="fade-up">
+          <div class="recipient">
+            <div class="recipient-info">
+              <p class="recipient-infoName" *ngIf="user.facebook"> <a routerLink="/user-profile/{{ user.local.login }}">{{user?.facebook.name}}</a></p>
+              <p class="recipient-infoName" *ngIf="!user.facebook"> <a routerLink="/user-profile/{{ user.local.login }}">{{user?.local.login}}</a></p>
+              <p>Liczba gier na wymianę: {{user?.numberOfGames}}</p>
+              <p>Liczba przeprowadzonych wymian: {{user?.numberOfExchanges}}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

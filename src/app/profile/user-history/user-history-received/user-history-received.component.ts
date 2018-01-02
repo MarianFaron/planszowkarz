@@ -12,16 +12,16 @@ import { UserHistoryService } from '../user-history.service';
 })
 export class UserHistoryReceivedComponent implements OnInit {
 
-  	userHistory: UserHistory[];
+  userHistory: UserHistory[];
 	errorMessage: string;
 	status: string;
 	senderGame = "";
 
-  	constructor(private http: Http, private appService: AppService, private userHistoryService: UserHistoryService) { }
+	constructor(private http: Http, private appService: AppService, private userHistoryService: UserHistoryService) { }
 
-  	ngOnInit() {
-  		this.getUserHistory();
-  	}
+	ngOnInit() {
+		this.getUserHistory();
+	}
 
 	getUserHistory() {
 
@@ -36,26 +36,27 @@ export class UserHistoryReceivedComponent implements OnInit {
 	                      error => this.errorMessage = <any>error);
 	}
 
-	discardExchange(id: string){
-		console.log("id game "+ id);
+	discardExchange(id: string, sender: Object){
 		this.status = "rejected";
-		this.userHistoryService.saveDiscardExchane(id, this.status)
+		this.userHistoryService.saveDiscardExchane(id, this.status, sender, this.appService.getCurrentUser())
 								.subscribe(
 									userHistory => {
 	                        			this.userHistory;
 	                        			this.getUserHistory();
 	                      			},
 	                      			error => this.errorMessage = <any>error);
-		this.appService.showNotification('Powiadomienie', 'Wymiana została odrzucona', 'success');		
+		this.appService.showNotification('Powiadomienie', 'Wymiana została odrzucona', 'success');
 	}
 
-	acceptExchange(id: string){
+	acceptExchange(id: string, sender: Object){
+
 		if (this.senderGame == ""){
 			this.appService.showNotification('Powiadomienie', 'Wybierz grę', 'danger');
 		}
 		else{
 			this.status = "accepted";
-			this.userHistoryService.saveAcceptExchange(id, this.senderGame, this.status)
+
+			this.userHistoryService.saveAcceptExchange(id, this.senderGame, this.status, sender, this.appService.getCurrentUser())
 									.subscribe(
 										userHistory => {
 		                        			this.userHistory;

@@ -18,7 +18,7 @@ router.route('/:userID/notifications')
           notifications: notifications
         });
       }
-    });
+    }).sort({sendDate:1});
   })
 
   router.route('/:userID/unread-notifications')

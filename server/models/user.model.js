@@ -64,6 +64,10 @@ var User = new Schema({
     sumOfGrades: {
         type: Number,
         default: 0
+    },
+    rank: {
+        type: Number,
+        default: 0
     }
 }, {
   versionKey: false

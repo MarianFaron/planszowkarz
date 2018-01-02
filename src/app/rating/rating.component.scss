@@ -1,4 +1,44 @@
+@import '../../scss/colors';
+@import '../../scss/mixins';
+@import '../../scss/font-awesome';
+
 .inner {
   padding: 15px;
   margin-top: 25px;
+}
+
+.recipient-info{
+  text-align: left;
+}
+
+.recipient-info.stars {
+  @include display-flex;
+  @include justify-content(space-between);
+}
+
+.recipientWrapper{
+  .recipient-infoName{
+    @include font-size(18);
+
+  }
+
+  &:first-child .recipient-infoName{
+    @include font-size(26);
+
+    font-weight: 700;
+  }
+  &:nth-child(2) .recipient-infoName{
+    @include font-size(23);
+
+    font-weight: 600;
+  }
+  &:nth-child(3) .recipient-infoName{
+    @include font-size(20);
+
+    font-weight: 600;
+  }
+  .recipient-infoName > a{
+    color: $pl-orange;
+  }
+  margin-bottom: 25px;
 }

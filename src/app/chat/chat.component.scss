@@ -1,6 +1,15 @@
 @import '../../scss/mixins';
 @import '../../scss/colors';
 
+#close-exchange {
+
+  .btn-color {
+    background-color: $pl-light-gray;
+    border: 1px solid $pl-dark-gray3;
+  }
+  
+}
+
 .chat {
   max-width: 500px;
   width: 100%;
@@ -99,8 +108,9 @@ p {
 
 .button-box {
   @include display-flex;
-  @include justify-content(center);
-  margin: 0 0 50px;
+  @include justify-content(space-between);
+  margin: 0 auto 50px;
+  max-width: 500px;
 
   button {
     margin: 0 7px;

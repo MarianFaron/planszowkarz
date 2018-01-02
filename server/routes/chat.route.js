@@ -23,21 +23,18 @@ router.route('/chat')
   })
   .post((req, res) => {
     var users = [req.body.sender, req.body.recipient];
-    Chat.find({
-        $and:
-          [
-            {user1: {"$in": users}},
-            {user2: {"$in": users}}
-          ]
-        }, function(err,chat) {
+    var exchangeId = req.body.exchangeId;
+    Chat.findOne({exchange: exchangeId}, function(err,chat) {
   			if(err){
   				return res.status(400).json({message: "Bad Requested"});
-  			} else if (chat.length >= 1) {
+  			} else if (chat != undefined) {
           return res.status(200).json(chat);
         } else {
           var newChat = new Chat({
             user1: req.body.sender,
-            user2: req.body.recipient
+            user2: req.body.recipient,
+            exchange: exchangeId,
+            status: 'new'
           });
           // save the chat
           newChat.save((err) => {
@@ -67,6 +64,7 @@ router.route('/chat/:id')
       }
     })
   })
+
 
 router.route('/chat/:id/messages')
   // get all messages

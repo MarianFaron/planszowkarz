@@ -21,7 +21,7 @@ export class AppService {
   constructor (private http: Http, private notificationsService: NotificationsService) {
     if(this.isLoggedIn()) {
       this.getUnreadNotifications(this.getCurrentUser()._id);
-      this.socket = io.connect(this.getUrl(''), {query: {userId: this.getCurrentUser()._id}}, {transports:['websocket']});
+      this.socket = io.connect(this.getUrl(''), {query: {userId: this.getCurrentUser()._id}});
       this.getNotification();
     }
   }
