@@ -3,10 +3,15 @@
     <div class="col-md-6">
       <h3 class="section-header">Najwyżej oceniani użytkownicy</h3>
       <hr class="main-hr">
-      <div *ngIf="usersRankList" class="inner">
-        <div class="recipientWrapper" *ngFor="let user of usersRankList">
+      <div *ngIf="!usersRankList">
+        <div class="text-center">
+          <img src="../../assets/images/loading.gif" alt="" class="loading">
+        </div>
+      </div>
+      <div *ngIf="usersRankList">
+        <div class="recipientWrapper inner" *ngFor="let user of usersRankList" data-aos="fade-up">
           <div class="recipient">
-            <div class="recipient-info">
+            <div class="recipient-info stars">
               <p class="recipient-infoName" *ngIf="user.facebook"> <a routerLink="/user-profile/{{ user.local.login }}">{{user?.facebook.name}}</a></p>
               <p class="recipient-infoName" *ngIf="!user.facebook"> <a routerLink="/user-profile/{{ user.local.login }}">{{user?.local.login}}</a></p>
               <p><star-rating-comp [readOnly]="true" [labelText]="'Ocena społeczności: '" [labelPosition]="'top'" [starType]="'svg'" [rating]='user?.sumOfGrades/user?.numberOfRatings' [showHalfStars]="true"></star-rating-comp></p>
@@ -18,8 +23,13 @@
     <div class="col-md-6">
       <h3 class="section-header">Największa liczba wymian</h3>
       <hr class="main-hr">
-      <div *ngIf="usersGamesList" class="inner">
-        <div class="recipientWrapper" *ngFor="let user of usersGamesList">
+      <div *ngIf="!usersGamesList">
+        <div class="text-center">
+          <img src="../../assets/images/loading.gif" alt="" class="loading">
+        </div>
+      </div>
+      <div *ngIf="usersGamesList">
+        <div class="recipientWrapper inner" *ngFor="let user of usersGamesList" data-aos="fade-up">
           <div class="recipient">
             <div class="recipient-info">
               <p class="recipient-infoName" *ngIf="user.facebook"> <a routerLink="/user-profile/{{ user.local.login }}">{{user?.facebook.name}}</a></p>

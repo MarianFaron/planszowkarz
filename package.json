@@ -80,6 +80,7 @@
     "ng2-drag-drop": "^2.0.1",
     "ngx-swiper-wrapper": "^5.2.0",
     "protractor": "~5.1.0",
+    "requirejs": "^2.3.5",
     "slick": "^1.12.2",
     "slick-carousel": "^1.8.1",
     "socket.io": "^1.4.5",
