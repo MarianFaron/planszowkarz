@@ -46,11 +46,7 @@ export class UserHistoryAcceptedComponent implements OnInit {
 
 	  var currentUser = JSON.parse(localStorage.getItem('currentUser'));
 	  this.currentUserID = currentUser._id;
-		if(currentUser.facebook){
-			this.currentUserName = currentUser.facebook.name;
-		}else{
-			this.currentUserName = currentUser.local.login;
-		}
+		this.currentUserName = currentUser.local.login;
 	  this.userHistoryService.getHistoryExchanges(this.currentUserID)
 	                    .subscribe(
 	                      userHistory => {
@@ -91,9 +87,9 @@ export class UserHistoryAcceptedComponent implements OnInit {
 	subscribeGrade(){
     var sumOfGrades = Number(this.userInfo.sumOfGrades) + Number(this.rate.rating);
 		var numberOfRatings = this.userInfo.numberOfRatings+1;
+		var rank = sumOfGrades/numberOfRatings;
 
-		this.otherUserService.updateUser(this.userInfo._id, this.userInfo.dateBirth, this.userInfo.city, this.userInfo.contactNumber, this.userInfo.avatarImage,
-      this.userInfo.numberOfGames, this.userInfo.numberOfExchanges, numberOfRatings, sumOfGrades)
+		this.userHistoryService.updateUser(this.userInfo._id, numberOfRatings, sumOfGrades, rank)
 																																																.subscribe(
 																																																userInfo  => {
 																																																	this.userInfo;

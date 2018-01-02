@@ -13,6 +13,7 @@ import { UserHistory } from './user-history';
 export class UserHistoryService {
 
   private exchangeUrl = this.appService.getUrl('/app/exchanges');
+  private usersUrl = this.appService.getUrl('/app/edit-user');
 
   constructor (private http: Http, private appService: AppService) {}
 
@@ -78,6 +79,14 @@ export class UserHistoryService {
       let options = new RequestOptions({ headers: headers });
 
       return this.http.patch(`${this.exchangeUrl}/${id}`, {senderRate}, options)
+                    .map(this.appService.extractData)
+                    .catch(this.appService.handleError);
+  }
+  updateUser(id: string, numberOfRatings: number, sumOfGrades: number, rank: number){
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+
+      return this.http.patch(`${this.usersUrl}/${id}`, {sumOfGrades, numberOfRatings, rank}, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
   }

@@ -144,6 +144,7 @@ router.route('/verify')
           newUser.local.email = tempUser.email;
           newUser.local.password = tempUser.password;
           newUser.avatarImage = tempUser.avatarImage;
+          newUser.rank = 0;
 
 
           newUser.save(function(err) {
@@ -223,8 +224,11 @@ router.route('/edit-user/:id')
           user.numberOfRatings = req.body.numberOfRatings;
           user.sumOfGrades = req.body.sumOfGrades;
 
-          if(req.body.password != '' && req.body.password.length >= 3) {
-            user.local.password = user.generateHash(req.body.password);
+          if(req.body.password != '') {
+            if(req.body.password.length >= 3){
+              user.local.password = user.generateHash(req.body.password);
+            }
+            
           }
 
           user.save(function(err) {
@@ -232,6 +236,17 @@ router.route('/edit-user/:id')
               throw err;
           });
 
+        return res.status(200).json(user);
+      }
+    });
+  })
+  .patch((req, res) => {
+    User.findByIdAndUpdate({ _id: req.params.id }, req.body, (err, user) => {
+      if (err) {
+        return res.status(400).json({ message: "Bad Requested" });
+      } else if (!user) {
+        return res.status(404).json({ message: "User not Found" });
+      } else {
         return res.status(200).json(user);
       }
     });
@@ -265,7 +280,8 @@ router.route('/users')
         login: req.body.login,
         password: req.body.password,
         email: req.body.email,
-        avatarImage: req.body.avatarImage
+        avatarImage: req.body.avatarImage,
+        rank: req.body.rank
       });
       // save the user
       newUser.save((err) => {
@@ -284,7 +300,7 @@ router.route('/users')
   router.route('/users/rankRates')
   // get users for rank
   .get((req, res) => {
-    User.find({ "numberOfRatings" : { $gt: 0 } } ,(err, users) => {
+    User.find({ "numberOfRatings" : { $gt: 0 }, "rank" : { $gt: 0 } } ,(err, users) => {
       if (err) {
         return res.status(400).json({
           message: "Bad Requested"
@@ -292,7 +308,7 @@ router.route('/users')
       } else {
         return res.status(200).json( users );
       }
-    }).sort({ sumOfGrades: -1 }).limit(10);
+    }).sort({ rank: -1 }).limit(10);
   });
 
 
