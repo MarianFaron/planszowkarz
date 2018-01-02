@@ -25,7 +25,7 @@ import { AuthorsComponent } from './authors/authors.component';
 
 export const router: Routes = [
 	{ path: '', redirectTo: '/', pathMatch:'full'},
-	{ path: '', component: CoreComponent },
+	{ path: '', component: CoreComponent, pathMatch:'full'},
 	{ path: 'register', component: UsersComponent},
 	{ path: 'profile', component: ProfileComponent, canActivate: [AuthGuard],
 		children: [
