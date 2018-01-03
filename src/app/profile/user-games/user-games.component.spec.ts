@@ -89,7 +89,7 @@ describe('UserGameService', () => {
   });
 
   describe('should get user-game list', () => {
-    var usersUrl = 'http://localhost:8080/app/users/'
+    var usersUrl = 'https://planszowkarz.pl/app/users/'
     it('success - get user-game list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
         const id = '594a5c96d42c9038c46b25b9';
@@ -168,7 +168,7 @@ describe('UserGameService', () => {
   });
 
   describe('should add user-game to list', () => {
-    const userGamesUrl = 'http://localhost:8080/app/userGames';
+    const userGamesUrl = 'https://planszowkarz.pl/app/userGames';
     it('success - add user-game to list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
         expect(connection.request.url).toEqual(userGamesUrl);
@@ -235,7 +235,7 @@ describe('UserGameService', () => {
   });
 
   describe('should edit user-game on list', () => {
-    const userGamesUrl = 'http://localhost:8080/app/userGames/';
+    const userGamesUrl = 'https://planszowkarz.pl/app/userGames/';
     it('success - edit user-game on list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
       mockbackend.connections.subscribe(connection => {
         const id = '58ebec8a16f8161d00f8e063';
@@ -302,7 +302,7 @@ describe('UserGameService', () => {
   });
 
   describe('should delete user-game from list', () => {
-    const userGamesUrl = 'http://localhost:8080/app/userGames/';
+    const userGamesUrl = 'https://planszowkarz.pl/app/userGames/';
     it('success - delete user-game from list', async(inject([UserGameService, XHRBackend], (usergameservice, mockbackend) => {
       mockbackend.connections.subscribe(connection => {
         const id = '594a61a9d42c9038c46b25c4';

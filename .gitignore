@@ -4,6 +4,8 @@
 /dist
 /tmp
 /out-tsc
+package-lock.json
+/src/assets
 
 # dependencies
 /node_modules

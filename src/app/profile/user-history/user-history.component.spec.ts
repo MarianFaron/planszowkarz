@@ -65,7 +65,7 @@ describe('UserHistoryService', () => {
     it('Success request for user exchange history', async(inject([UserHistoryService, XHRBackend], (userhistoryservice, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
         var id = '594a5c96d42c9038c46b25b9';
-        expect(connection.request.url).toEqual('http://localhost:8080/app/exchanges/' + id);
+        expect(connection.request.url).toEqual('https://planszowkarz.pl/app/exchanges/' + id);
         expect(connection.request.method).toBe(RequestMethod.Get);
         //expect(connection.request.text()).toEqual(JSON.stringify('594a5c96d42c9038c46b25b9'));
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
@@ -117,7 +117,7 @@ describe('UserHistoryService', () => {
     it('Fail request for user exchange history', async(inject([UserHistoryService, XHRBackend], (userhistoryservice, mockbackend) => {
        mockbackend.connections.subscribe((connection) => {
         var id = '594a5c96d42c9038c46b25b9';
-        expect(connection.request.url).toEqual('http://localhost:8080/app/exchanges/' + id);
+        expect(connection.request.url).toEqual('https://planszowkarz.pl/app/exchanges/' + id);
         expect(connection.request.method).toBe(RequestMethod.Get);
         //expect(connection.request.text()).toEqual(JSON.stringify('594a5c96d42c9038c46b25b9'));
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
@@ -134,7 +134,7 @@ describe('UserHistoryService', () => {
     it('Success retrieving the history of sent requests', async(inject([UserHistoryService, XHRBackend], (userhistoryservice, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
         var id = '594a5c96d42c9038c46b25b9';
-        expect(connection.request.url).toEqual('http://localhost:8080/app/exchanges/' + id + '/send');
+        expect(connection.request.url).toEqual('https://planszowkarz.pl/app/exchanges/' + id + '/send');
         expect(connection.request.method).toBe(RequestMethod.Get);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         connection.mockRespond(new Response(new ResponseOptions({
@@ -184,7 +184,7 @@ describe('UserHistoryService', () => {
     it('Fail retrieving the history of sent requests', async(inject([UserHistoryService, XHRBackend], (userhistoryservice, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
         var id = '594a5c96d42c9038c46b25b9';
-        expect(connection.request.url).toEqual('http://localhost:8080/app/exchanges/' + id + '/send');
+        expect(connection.request.url).toEqual('https://planszowkarz.pl/app/exchanges/' + id + '/send');
         expect(connection.request.method).toBe(RequestMethod.Get);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         connection.mockRespond(new Response(new ResponseOptions({
@@ -200,7 +200,7 @@ describe('UserHistoryService', () => {
     it('Success retrieving the history of received requests', async(inject([UserHistoryService, XHRBackend], (userhistoryservice, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
         var id = '594d750e23e60c0de45af913';
-        expect(connection.request.url).toEqual('http://localhost:8080/app/exchanges/' + id + '/received');
+        expect(connection.request.url).toEqual('https://planszowkarz.pl/app/exchanges/' + id + '/received');
         expect(connection.request.method).toBe(RequestMethod.Get);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         connection.mockRespond(new Response(new ResponseOptions({
@@ -251,7 +251,7 @@ describe('UserHistoryService', () => {
     it('Fail retrieving the history of received requests', async(inject([UserHistoryService, XHRBackend], (userhistoryservice, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
         var id = '594a5c96d42c9038c46b25b9';
-        expect(connection.request.url).toEqual('http://localhost:8080/app/exchanges/' + id + '/received');
+        expect(connection.request.url).toEqual('https://planszowkarz.pl/app/exchanges/' + id + '/received');
         expect(connection.request.method).toBe(RequestMethod.Get);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         connection.mockRespond(new Response(new ResponseOptions({
@@ -267,7 +267,7 @@ describe('UserHistoryService', () => {
     it('Success discard a request for exchange', async(inject([UserHistoryService, XHRBackend], (userhistoryservice, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
         var id = '594a5c96d42c9038c46b25b9';
-        expect(connection.request.url).toEqual('http://localhost:8080/app/exchanges/' + id);
+        expect(connection.request.url).toEqual('https://planszowkarz.pl/app/exchanges/' + id);
         expect(connection.request.method).toBe(RequestMethod.Patch);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         connection.mockRespond(new Response(new ResponseOptions({
@@ -281,7 +281,7 @@ describe('UserHistoryService', () => {
     it('Fail discard a request for exchange', async(inject([UserHistoryService, XHRBackend], (userhistoryservice, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
         var id = '594a5c96d42c9038c46b25b9';
-        expect(connection.request.url).toEqual('http://localhost:8080/app/exchanges/' + id);
+        expect(connection.request.url).toEqual('https://planszowkarz.pl/app/exchanges/' + id);
         expect(connection.request.method).toBe(RequestMethod.Patch);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         connection.mockRespond(new Response(new ResponseOptions({
@@ -297,7 +297,7 @@ describe('UserHistoryService', () => {
     it('Success accept a request for exchange', async(inject([UserHistoryService, XHRBackend], (userhistoryservice, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
         var id = '594a5c96d42c9038c46b25b9'
-        expect(connection.request.url).toEqual('http://localhost:8080/app/exchanges/'+ id);
+        expect(connection.request.url).toEqual('https://planszowkarz.pl/app/exchanges/'+ id);
         expect(connection.request.method).toBe(RequestMethod.Patch);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         connection.mockRespond(new Response(new ResponseOptions({
@@ -311,7 +311,7 @@ describe('UserHistoryService', () => {
     it('Fail accept a request for exchange', async(inject([UserHistoryService, XHRBackend], (userhistoryservice, mockbackend) => {
       mockbackend.connections.subscribe((connection) => {
         var id = '594a5c96d42c9038c46b25b9'
-        expect(connection.request.url).toEqual('http://localhost:8080/app/exchanges/' + id);
+        expect(connection.request.url).toEqual('https://planszowkarz.pl/app/exchanges/' + id);
         expect(connection.request.method).toBe(RequestMethod.Patch);
         expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         connection.mockRespond(new Response(new ResponseOptions({

@@ -6,7 +6,7 @@ import { UserInfo } from './user-info/user-info';
 import { UserInfoService } from './user-info/user-info.service';
 import { ProfileService } from './profile.service';
 
-const URL = 'http://localhost:8080/app/uploads';
+const URL = 'https://planszowakrz.pl/app/uploads';
 
 @Component({
   selector: 'app-profile',
