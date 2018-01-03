@@ -50,3 +50,16 @@
     display: inline-block;
   }
 }
+
+
+.modal-dialog .alert-danger {
+  @include font-size(13);
+
+  border-radius: 0;
+  border: none;
+  color: $pl-red;
+  background-color: $pl-white;
+  font-weight: 600;
+  padding: 5px;
+  margin: 0;
+}
