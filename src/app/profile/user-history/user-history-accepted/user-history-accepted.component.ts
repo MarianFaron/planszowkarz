@@ -58,8 +58,6 @@ export class UserHistoryAcceptedComponent implements OnInit {
   startChat(exchangeId: string, sender: string, recipient: string) {
     this.chatService.startChat(exchangeId, sender, recipient).subscribe(
       chat => {
-        console.log('przenies do czatu');
-        console.log(chat);
         window.location.replace('/chat/'+chat._id);
       },
       error => this.errorMessage = <any>error);;

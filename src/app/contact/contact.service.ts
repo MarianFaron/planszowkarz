@@ -19,8 +19,6 @@ export class ContactService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    console.log("Serwis: " + subject);
-
     return this.http.post(this.contactUrl, { subject, content, authorEmail, authorName, authorSurname}, options)
     .map(this.appService.extractData)
     .catch(this.appService.handleError);
