@@ -63,7 +63,7 @@
 									</div>
 								</div>
 							</div>
-							<button type="submit" class="btn custom-button" [disabled]="!registerForm.form.valid || this.loginIsUsed == true" (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value, 'default.png'); registerUserLogin.value=''; registerUserEmail.value=''; registerUserPassword.value='';registerUserConfirmPassword.value=''">Zarejestruj</button>
+							<button type="submit" class="btn custom-button" [disabled]="!registerForm.form.valid || this.loginIsUsed == true" (click)="register(registerUserLogin.value, registerUserEmail.value, registerUserPassword.value, 'default.png', registerForm); registerUserLogin.value=''; registerUserEmail.value=''; registerUserPassword.value='';registerUserConfirmPassword.value='';">Zarejestruj</button>
 						</div>
 					</form>
 				</div>

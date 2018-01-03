@@ -106,7 +106,7 @@ export class UsersComponent implements OnInit {
 
   }
 
-  register(login: string, email: string, password: string, avatarImage: string) {
+  register(login: string, email: string, password: string, avatarImage: string, registerForm: any) {
 
     this.userGameService.register(login, email, password, avatarImage)
                         .map((response) => {
@@ -114,7 +114,9 @@ export class UsersComponent implements OnInit {
                             this.appService.showNotification('Powiadomienie', response.message.toString(), 'danger');
                           } else if(response.user) {
                             this.appService.showNotification('Powiadomienie', "E-mail aktywacyjny został wysłany.", 'success');
+                            registerForm.reset();
                           }
+                          
                         })
                         .subscribe(user => this.user, error => this.errorMessage = <any>error);
   }
