@@ -57,7 +57,6 @@ export class UserHistoryService {
   }
 
   saveAcceptExchange(id: string, senderGame: string, status: string, sender: Object, recipient: Object){
-    console.log(sender);
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
 

@@ -26,11 +26,11 @@ export class AppComponent implements OnDestroy {
   public isCollapsed:boolean = true;
 
   public collapsed(event:any):void {
-    console.log(event);
+    
   }
 
   public expanded(event:any):void {
-    console.log(event);
+    
   }
   query = {
     title: '',

@@ -53,7 +53,6 @@ router.route('/forgot')
       if (error) {
         return console.log(error);
       }
-      console.log('Message %s sent: %s', info.messageId, info.response);
     });
   });
 
@@ -113,7 +112,6 @@ router.route('/users/register')
             console.log(error);
             return false;
           } else {
-            console.log("Wysłano e-mail weryfikacyjny.");
             return res.json({
               "user": user
             });
@@ -152,7 +150,6 @@ router.route('/verify')
               throw err;
             } else {
               TempUser.remove({email: tempUser.email}, function() {
-                console.log("User was deleted");
               });
               return res.redirect('/register?success');
             }
@@ -161,10 +158,8 @@ router.route('/verify')
 
         });
       } else {
-        console.log("email is not verified");
       }
     } else {
-      console.log("Request is from unknown source");
     }
 
   });
@@ -212,8 +207,6 @@ router.route('/edit-user/:id')
           message: "User not Found"
         });
       } else {
-
-        console.log(req.body.password);
 
           user.dateBirth = req.body.dateBirth;
           user.city = req.body.city;
@@ -403,8 +396,6 @@ router.route('/users/:id/userGames')
 
 router.route('/users/login/:login')
   .get((req, res) => {
-    // console.log(req.params.login);
-    // var login = req.params.login;
     User.findOne({
       'local.login': req.params.login
     }, (err, user) => {

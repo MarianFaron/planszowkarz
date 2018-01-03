@@ -33,8 +33,6 @@ export class UserHistoryRejectedComponent implements OnInit {
 	                    .subscribe(
 	                      userHistory => {
 													this.userHistory = userHistory;
-													console.log(this.currentUserID);
-													console.log(userHistory);
 	                      },
 	                      error => this.errorMessage = <any>error);
 	}
