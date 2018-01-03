@@ -102,7 +102,6 @@ router.route('/exchanges/:id')
 				 notificationMessage = "Użytkownik: " + userName + " odrzucił twoją propozycję wymiany.";
 			}
 
-			console.log(notificationMessage);
 			var notification = new Notification();
 
 			notification.content = notificationMessage;

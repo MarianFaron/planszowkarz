@@ -71,7 +71,6 @@ router.route('/start')
         if (error) {
           return console.log(error);
         }
-        console.log('Message %s sent: %s', info.messageId, info.response);
       });
 
       res.json({message: "Wysłano prośbę o wymianę."});

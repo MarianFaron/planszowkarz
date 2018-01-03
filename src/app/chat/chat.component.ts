@@ -15,7 +15,7 @@ import * as io from 'socket.io-client';
 })
 export class ChatComponent implements OnInit {
 
-  constructor(private chatService: ChatService,private exchangeService: ExchangeService, private activeRoute: ActivatedRoute, private coreService: CoreService, private appService: AppService) { }
+  constructor(private chatService: ChatService,private exchangeService: ExchangeService, private activeRoute: ActivatedRoute, private coreService: CoreService, public appService: AppService) { }
 
   myId: string;
   friendId: string;

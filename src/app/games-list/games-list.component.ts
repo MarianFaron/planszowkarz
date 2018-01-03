@@ -89,8 +89,6 @@ export class GamesListComponent implements OnInit {
     this.getStatesCheckboxesValues();
     this.updateQueryValues();
 
-    console.log(this.query);
-
     this.appService.search(this.query)
                         .subscribe(
                           games => {
