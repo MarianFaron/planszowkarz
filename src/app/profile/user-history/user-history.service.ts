@@ -81,11 +81,11 @@ export class UserHistoryService {
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
   }
-  updateUser(id: string, numberOfRatings: number, sumOfGrades: number, rank: number){
+  updateUser(id: string, numberOfRatings: number, sumOfGrades: number,numberOfExchanges: number, rank: number){
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
 
-      return this.http.patch(`${this.usersUrl}/${id}`, {sumOfGrades, numberOfRatings, rank}, options)
+      return this.http.patch(`${this.usersUrl}/${id}`, {sumOfGrades, numberOfRatings, rank, numberOfExchanges}, options)
                     .map(this.appService.extractData)
                     .catch(this.appService.handleError);
   }

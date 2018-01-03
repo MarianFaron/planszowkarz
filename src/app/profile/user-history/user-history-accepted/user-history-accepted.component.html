@@ -101,30 +101,30 @@
                 <div *ngIf="history?.status == 'closed'" class="exchange-rating">
                   <div *ngIf="this.currentUserID != history.recipient._id && !history.senderRate">
                       <div *ngIf="!history?.sender.facebook && !history?.recipient.facebook">
-                          <star-rating-comp [starType]="'svg'" [rating]='5' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
+                          <star-rating-comp [starType]="'svg'" [rating]='0' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
                       </div>
                       <div *ngIf="!history?.sender.facebook && history?.recipient.facebook">
-                          <star-rating-comp [starType]="'svg'" [rating]='5' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
+                          <star-rating-comp [starType]="'svg'" [rating]='0' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
                       </div>
                       <div *ngIf="history?.sender.facebook && !history?.recipient.facebook">
-                          <star-rating-comp [starType]="'svg'" [rating]='5' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
+                          <star-rating-comp [starType]="'svg'" [rating]='0' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
                       </div>
                       <div *ngIf="history?.sender.facebook && history?.recipient.facebook">
-                          <star-rating-comp [starType]="'svg'" [rating]='5' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
+                          <star-rating-comp [starType]="'svg'" [rating]='0' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
                       </div>
                   </div>
                   <div *ngIf="this.currentUserID != history.sender._id && !history.recipientRate">
                       <div *ngIf="!history?.sender.facebook && !history?.recipient.facebook">
-                          <star-rating-comp [starType]="'svg'" [rating]='5' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
+                          <star-rating-comp [starType]="'svg'" [rating]='0' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
                       </div>
                       <div *ngIf="!history?.sender.facebook && history?.recipient.facebook">
-                          <star-rating-comp [starType]="'svg'" [rating]='5' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
+                          <star-rating-comp [starType]="'svg'" [rating]='0' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
                       </div>
                       <div *ngIf="history?.sender.facebook && !history?.recipient.facebook">
-                          <star-rating-comp [starType]="'svg'" [rating]='5' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
+                          <star-rating-comp [starType]="'svg'" [rating]='0' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
                       </div>
                       <div *ngIf="history?.sender.facebook && history?.recipient.facebook">
-                          <star-rating-comp [starType]="'svg'" [rating]='5' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
+                          <star-rating-comp [starType]="'svg'" [rating]='0' [hoverEnabled]="true" [labelText]="'Oceń wymianę:'" [labelPosition]="'top'" (onClick)="addGrade(history?.sender.local.login, history?.recipient.local.login, history?._id, $event)" [showHalfStars]="true" (onHoverRatingChange)="onHoverRatingChange($event)"></star-rating-comp>
                       </div>
                   </div>
                 </div>

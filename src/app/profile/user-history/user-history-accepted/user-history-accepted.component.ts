@@ -85,9 +85,10 @@ export class UserHistoryAcceptedComponent implements OnInit {
 	subscribeGrade(){
     var sumOfGrades = Number(this.userInfo.sumOfGrades) + Number(this.rate.rating);
 		var numberOfRatings = this.userInfo.numberOfRatings+1;
+		var numberOfExchanges = this.userInfo.numberOfExchanges + 1;
 		var rank = sumOfGrades/numberOfRatings;
 
-		this.userHistoryService.updateUser(this.userInfo._id, numberOfRatings, sumOfGrades, rank)
+		this.userHistoryService.updateUser(this.userInfo._id, numberOfRatings, sumOfGrades, numberOfExchanges, rank)
 																																																.subscribe(
 																																																userInfo  => {
 																																																	this.userInfo;

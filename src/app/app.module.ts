@@ -31,7 +31,6 @@ import { UserHistoryReceivedComponent } from './profile/user-history/user-histor
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { RatingComponent } from './rating/rating.component';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Component } from '@angular/core';
 import { Ng2DragDropModule } from "ng2-drag-drop";
 import { SlickModule } from 'ngx-slick';
