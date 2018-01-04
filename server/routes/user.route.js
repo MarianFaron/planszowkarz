@@ -155,7 +155,7 @@ router.route('/verify')
             } else {
               TempUser.remove({email: tempUser.email}, function() {
               });
-              return res.redirect('/register?success');
+              return res.redirect('/register?success=newUser._id');
             }
           });
 
@@ -220,6 +220,9 @@ router.route('/edit-user/:id')
           user.numberOfExchanges = req.body.numberOfExchanges;
           user.numberOfRatings = req.body.numberOfRatings;
           user.sumOfGrades = req.body.sumOfGrades;
+          if(req.body.isVerified == false) {
+            user.isVerified = true;
+          }
 
           if(req.body.password != '') {
             if(req.body.password.length >= 3){

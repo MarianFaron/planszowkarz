@@ -212,7 +212,7 @@ export class UserGamesComponent implements OnInit {
   editUserInfo(id: string) {
     var password = "";
     this.userConfigService.updateUser(id, this.userInfo.dateBirth, this.userInfo.city, this.userInfo.contactNumber, this.userInfo.avatarImage, password,
-                                      this.numberOfGames, this.userInfo.numberOfExchanges, this.userInfo.numberOfRatings, this.userInfo.sumOfGrades)
+                                      this.numberOfGames, this.userInfo.numberOfExchanges, this.userInfo.numberOfRatings, this.userInfo.sumOfGrades, true)
                           .subscribe(
                                 userInfo  => {
                                     // this.userInfo;
