@@ -15,7 +15,7 @@ import * as io from 'socket.io-client';
 })
 export class ChatComponent implements OnInit {
 
-  constructor(private chatService: ChatService,private exchangeService: ExchangeService, private activeRoute: ActivatedRoute, private coreService: CoreService, public appService: AppService) { }
+  constructor(private chatService: ChatService, private exchangeService: ExchangeService, private activeRoute: ActivatedRoute, private coreService: CoreService, public appService: AppService) { }
 
   myId: string;
   friendId: string;
@@ -73,6 +73,7 @@ export class ChatComponent implements OnInit {
        );
      }
    }
+
 
    closeExchange(chatId: string, userId: string) {
      this.exchangeService.closeExchange(chatId, userId).subscribe(

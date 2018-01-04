@@ -52,6 +52,10 @@ router.route('/forgot')
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         return console.log(error);
+      } else {
+        return res.status(200).json({
+          message: "Password changed"
+        });
       }
     });
   });
@@ -221,7 +225,7 @@ router.route('/edit-user/:id')
             if(req.body.password.length >= 3){
               user.local.password = user.generateHash(req.body.password);
             }
-            
+
           }
 
           user.save(function(err) {
@@ -261,7 +265,7 @@ router.route('/users')
       }
     });
   })
-  
+
   // post new user
   .post((req, res) => {
     if (!req.body.login || !req.body.password) {
@@ -414,6 +418,6 @@ router.route('/users/login/:login')
     });
   });
 
-  
+
 
 module.exports = router;
