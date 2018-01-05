@@ -40,7 +40,7 @@ export class UsersComponent implements OnInit {
         var user = this.appService.getUser(userId).subscribe(user => {
           if (!user.isVerified) {
             this.userConfigService.updateUser(
-              user._id, user.dateBirth, user.city, user.contactNumber, user.avatarImage, user.local.password, user.numberOfGames, user.numberOfExchanges, user.numberOfRatings, user.sumOfGrades, user.isVerified
+              user._id, user.dateBirth, user.city, user.contactNumber, user.avatarImage, '', user.numberOfGames, user.numberOfExchanges, user.numberOfRatings, user.sumOfGrades, user.isVerified
             ).subscribe(
               user => {
                 this.appService.showNotification('Powiadomienie', 'Pomyślnie zarejestrowano użytkownika.', 'success');
