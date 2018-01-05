@@ -31,6 +31,10 @@ var userGame = new Schema({
         },
         Image: {
             type: String,
+        },
+        isDeleted: {
+          type: Boolean,
+          default: false
         }
 }, {
     versionKey: false

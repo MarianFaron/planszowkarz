@@ -49,7 +49,6 @@ export class UserHistoryReceivedComponent implements OnInit {
 	}
 
 	acceptExchange(id: string, sender: Object){
-
 		if (this.senderGame == ""){
 			this.appService.showNotification('Powiadomienie', 'Wybierz grę', 'danger');
 		}

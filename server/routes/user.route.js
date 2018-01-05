@@ -155,7 +155,7 @@ router.route('/verify')
             } else {
               TempUser.remove({email: tempUser.email}, function() {
               });
-              return res.redirect('/register?success=newUser._id');
+              return res.redirect('/register?success='+newUser._id);
             }
           });
 
@@ -385,7 +385,8 @@ router.route('/users/:id')
 router.route('/users/:id/userGames')
   .get((req, res) => {
     userGame.find({
-      userID: req.params.id
+      userID: req.params.id,
+      isDeleted: false
     }, (err, game) => {
       if (err) {
         return res.status(400).json({
