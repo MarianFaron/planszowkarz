@@ -33,6 +33,7 @@ export class AppService {
     return this.http.get(`${this.getUrl('/app/users')}/${id}`, options)
                     .map((response: Response) => {
                       localStorage.setItem('currentUser', JSON.stringify(response.json()));
+                      return response.json();
                     })
                     .catch(this.handleError);
   }

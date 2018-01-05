@@ -70,7 +70,7 @@ var User = new Schema({
         default: 0
     },
     isVerified: {
-      tyoe: Boolean,
+      type: Boolean,
       default: false
     }
 }, {

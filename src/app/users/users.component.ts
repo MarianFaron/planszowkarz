@@ -33,22 +33,22 @@ export class UsersComponent implements OnInit {
   constructor(private appService: AppService, private userConfigService: UserConfigService, private userGameService: UsersService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // this.sub = this.route.queryParams.subscribe(params => {
-    //
-    //   var userId = params['success'];
-    //   if(userId) {
-    //     var user = this.appService.getUser(userId).subscribe(user => {
-    //       if (!user.isVerified) {
-    //         this.userConfigService.updateUser(
-    //           user._id, user.dateBirth, user.city, user.contactNumber, user.avatarImage, user.password, user.numberOfGames, user.numberOfExchanges, user.numberOfRatings, user.sumOfGrades, user.isVerified
-    //         ).subscribe(
-    //           user => {
-    //             this.appService.showNotification('Powiadomienie', 'Pomyślnie zarejestrowano użytkownika.', 'success');
-    //           }, error => {this.errorMessage = <any>error;});
-    //       }
-    //     });
-    //   }
-    // });
+    this.sub = this.route.queryParams.subscribe(params => {
+
+      var userId = params['success'];
+      if(userId) {
+        var user = this.appService.getUser(userId).subscribe(user => {
+          if (!user.isVerified) {
+            this.userConfigService.updateUser(
+              user._id, user.dateBirth, user.city, user.contactNumber, user.avatarImage, user.local.password, user.numberOfGames, user.numberOfExchanges, user.numberOfRatings, user.sumOfGrades, user.isVerified
+            ).subscribe(
+              user => {
+                this.appService.showNotification('Powiadomienie', 'Pomyślnie zarejestrowano użytkownika.', 'success');
+              }, error => {this.errorMessage = <any>error;});
+          }
+        });
+      }
+    });
     this.getUsers();
   }
 

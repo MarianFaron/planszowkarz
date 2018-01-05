@@ -115,6 +115,8 @@ router.route('/users/register')
           if (error) {
             console.log(error);
             return false;
+          } else {
+            return res.json({user: user});
           }
         });
       }
