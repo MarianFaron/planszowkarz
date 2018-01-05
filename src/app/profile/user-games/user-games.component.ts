@@ -23,7 +23,7 @@ export class UserGamesComponent implements OnInit {
 
   // PAGER
 
-  pager: any = {};
+  pager: any = {totalPages: 1};
   pagedItems: any[];
 
   errorMessage: string;
@@ -88,7 +88,7 @@ export class UserGamesComponent implements OnInit {
   public coverUploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'photo'});
 
   onChange(event: EventTarget) {
-    
+
     this.coverUploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
     this.coverUploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {};
 
@@ -98,7 +98,7 @@ export class UserGamesComponent implements OnInit {
     let files: FileList = target.files;
     file = files[0];
     this.gameImgName = file.name;
-    
+
   }
 
 
@@ -212,7 +212,7 @@ export class UserGamesComponent implements OnInit {
   editUserInfo(id: string) {
     var password = "";
     this.userConfigService.updateUser(id, this.userInfo.dateBirth, this.userInfo.city, this.userInfo.contactNumber, this.userInfo.avatarImage, password,
-                                      this.numberOfGames, this.userInfo.numberOfExchanges, this.userInfo.numberOfRatings, this.userInfo.sumOfGrades)
+                                      this.numberOfGames, this.userInfo.numberOfExchanges, this.userInfo.numberOfRatings, this.userInfo.sumOfGrades, true)
                           .subscribe(
                                 userInfo  => {
                                     // this.userInfo;
@@ -225,11 +225,11 @@ export class UserGamesComponent implements OnInit {
   }
 
   setPage(page: number) {
-    this.router.navigate(['/profile/games'], {queryParams: {page: page}});
-    if (page < 1 || page > this.pager.totalPages) {
+    if (page < 1) {
       return;
     }
     this.pager = this.pagerService.getPager(this.userGame.length, page);
     this.pagedItems = this.userGame.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    this.router.navigate(['/profile/games'], {queryParams: {page: page}});
   }
 }

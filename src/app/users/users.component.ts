@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User }              from './users';
 import { UsersService }       from './users.service';
+import { UserConfigService }       from '../profile/user-config/user-config.service';
 import { AppService }       from '../app.service';
 import { Router, ActivatedRoute } from '@angular/router'
 
@@ -8,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router'
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss', '../app.component.scss'],
-  providers: [AppService, UsersService]
+  providers: [AppService, UsersService, UserConfigService]
 })
 export class UsersComponent implements OnInit {
 
@@ -29,12 +30,23 @@ export class UsersComponent implements OnInit {
       avatarImage: 'default.png'
     };
 
-  constructor(private appService: AppService, private userGameService: UsersService, private route: ActivatedRoute) { }
+  constructor(private appService: AppService, private userConfigService: UserConfigService, private userGameService: UsersService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.sub = this.route.queryParams.subscribe(params => {
-      if(params['success']) {
-        this.appService.showNotification('Powiadomienie', 'Pomyślnie zarejestrowano użytkownika.', 'success')
+
+      var userId = params['success'];
+      if(userId) {
+        var user = this.appService.getUser(userId).subscribe(user => {
+          if (!user.isVerified) {
+            this.userConfigService.updateUser(
+              user._id, user.dateBirth, user.city, user.contactNumber, user.avatarImage, user.password, user.numberOfGames, user.numberOfExchanges, user.numberOfRatings, user.sumOfGrades, user.isVerified
+            ).subscribe(
+              user => {
+                this.appService.showNotification('Powiadomienie', 'Pomyślnie zarejestrowano użytkownika.', 'success');
+              }, error => {this.errorMessage = <any>error;});
+          }
+        });
       }
     });
     this.getUsers();
@@ -116,7 +128,7 @@ export class UsersComponent implements OnInit {
                             this.appService.showNotification('Powiadomienie', "E-mail aktywacyjny został wysłany.", 'success');
                             registerForm.reset();
                           }
-                          
+
                         })
                         .subscribe(user => this.user, error => this.errorMessage = <any>error);
   }

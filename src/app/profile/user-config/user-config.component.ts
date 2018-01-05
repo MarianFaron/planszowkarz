@@ -55,7 +55,7 @@ export class UserConfigComponent implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
-    this.checkFbUser();    
+    this.checkFbUser();
   }
 
   urlEditedUserImage: any;
@@ -130,7 +130,7 @@ export class UserConfigComponent implements OnInit {
     var y = this.model.datepicker.date.day;
     var date = '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
 
-    // edit user data without change user's avatar 
+    // edit user data without change user's avatar
 
     if(avatarImage == ""){
       this.avatarImgName = this.userInfo.avatarImage;
@@ -146,7 +146,7 @@ export class UserConfigComponent implements OnInit {
 
       this.userConfigService.updateUser(id, date, city, contactNumber, this.avatarImgName, password,
                                         this.userInfo.numberOfGames, this.userInfo.numberOfExchanges,
-                                        this.userInfo.numberOfRatings, this.userInfo.sumOfGrades)
+                                        this.userInfo.numberOfRatings, this.userInfo.sumOfGrades, true)
                             .subscribe(
                               userInfo  => {
                                   this.userInfo;
@@ -165,5 +165,5 @@ export class UserConfigComponent implements OnInit {
     else {
       this.appService.showNotification('Powiadomienie', 'Popraw dane w formularzu.', 'danger');
     }
-  }    
+  }
 }

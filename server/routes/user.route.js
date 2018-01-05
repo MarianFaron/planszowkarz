@@ -52,6 +52,10 @@ router.route('/forgot')
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         return console.log(error);
+      } else {
+        return res.status(200).json({
+          message: "Password changed"
+        });
       }
     });
   });
@@ -151,7 +155,7 @@ router.route('/verify')
             } else {
               TempUser.remove({email: tempUser.email}, function() {
               });
-              return res.redirect('/register?success');
+              return res.redirect('/register?success='+newUser._id);
             }
           });
 
@@ -216,12 +220,15 @@ router.route('/edit-user/:id')
           user.numberOfExchanges = req.body.numberOfExchanges;
           user.numberOfRatings = req.body.numberOfRatings;
           user.sumOfGrades = req.body.sumOfGrades;
+          if(req.body.isVerified == false) {
+            user.isVerified = true;
+          }
 
           if(req.body.password != '') {
             if(req.body.password.length >= 3){
               user.local.password = user.generateHash(req.body.password);
             }
-            
+
           }
 
           user.save(function(err) {
@@ -261,7 +268,7 @@ router.route('/users')
       }
     });
   })
-  
+
   // post new user
   .post((req, res) => {
     if (!req.body.login || !req.body.password) {
@@ -378,7 +385,8 @@ router.route('/users/:id')
 router.route('/users/:id/userGames')
   .get((req, res) => {
     userGame.find({
-      userID: req.params.id
+      userID: req.params.id,
+      isDeleted: false
     }, (err, game) => {
       if (err) {
         return res.status(400).json({
@@ -414,6 +422,6 @@ router.route('/users/login/:login')
     });
   });
 
-  
+
 
 module.exports = router;

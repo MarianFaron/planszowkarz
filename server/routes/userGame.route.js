@@ -34,7 +34,8 @@ router.route('/search')
         [
           {title: {$regex :"^.*"+queryTitle+".*$", $options: '-i'}},
           {state: {"$in": queryState}},
-          {category: {"$in": queryCategory}}
+          {category: {"$in": queryCategory}},
+          {isDeleted: false}
         ]
       }, function(err,games) {
 			if(err){
@@ -52,7 +53,7 @@ router.route('/search')
 router.route('/userGames')
 	// get all games
 	.get((req,res) => {
-		userGame.find().sort({createdDate: 1})
+		userGame.find({isDeleted: false}).sort({createdDate: 1})
 				.populate({
 					path: 'userID',
 					select: 'local.login facebook.name city'
@@ -88,7 +89,7 @@ router.route('/userGames')
 
 router.route('/userGames/:id')
 	.get((req, res) => {
-		userGame.findById(req.params.id)
+		userGame.findOne({_id: req.params.id, isDeleted: false})
 				.populate({
 					path: 'userID',
 					select: 'local.login facebook.name city'
@@ -116,13 +117,22 @@ router.route('/userGames/:id')
 	})
 
 	.delete((req, res) => {
-		userGame.findByIdAndRemove({_id: req.params.id}, (err, game) => {
+		userGame.findById(req.params.id, (err, game) => {
 			if(err) {
 				return res.status(400).json({message: "Bad Requested"});
 			} else if(!game){
 				return res.status(404).json({message: "Game not Found"});
 			} else {
-				return res.status(204).end();
+        game.isDeleted = true;
+        game.save(function(err) {
+          if (err) {
+            throw err;
+          }
+          else {
+            return res.status(201).json(game);
+          }
+        })
+
 			}
 		})
 	});
@@ -130,7 +140,7 @@ router.route('/userGames/:id')
 router.route('/sliderGames')
 	// get all games
 	.get((req,res) => {
-		userGame.find().sort({createdDate: -1})
+		userGame.find({isDeleted: false}).sort({createdDate: -1})
 				.populate({
 					path: 'userID',
 					select: 'local.login facebook.name city'
@@ -149,7 +159,7 @@ router.route('/paginationGames')
 	.get((req,res) => {
 		var page = 20;
 		var limit = 100;
-		userGame.find().sort({createdDate: -1})
+		userGame.find({isDeleted: false}).sort({createdDate: -1})
 				// .skip((page-1)*(limit+1))
     		// 	.limit(limit)
 				.populate({

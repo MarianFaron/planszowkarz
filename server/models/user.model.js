@@ -68,6 +68,10 @@ var User = new Schema({
     rank: {
         type: Number,
         default: 0
+    },
+    isVerified: {
+      tyoe: Boolean,
+      default: false
     }
 }, {
   versionKey: false

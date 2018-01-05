@@ -9,7 +9,7 @@
                 <a *ngIf="!history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.local.login}}">
                     {{history?.recipient.local.login}}
                 </a>
-                <a *ngIf="history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.facebook.name}}">
+                <a *ngIf="history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.local.login}}">
                     {{history?.recipient.facebook.name}}
                 </a>
                 propozycję wymiany za grę <strong>{{history?.recipientGame.title}}</strong>. Zaproponowałeś następujące gry:</p>

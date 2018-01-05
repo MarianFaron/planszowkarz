@@ -7,11 +7,11 @@
     background-color: $pl-light-gray;
     border: 1px solid $pl-dark-gray3;
   }
-  
+
 }
 
 .chat {
-  max-width: 500px;
+  max-width: 600px;
   width: 100%;
   margin: 0 auto 50px;
   background: $pl-white;
@@ -33,10 +33,11 @@
   .chat-content {
     height: 300px;
     overflow-y: scroll;
+    overflow-x: hidden;
     padding: 15px;
 
     .message {
-      width: 51%;
+      width: 70%;
       float: right;
       margin: 0 0 5px;
       position: relative;
@@ -47,7 +48,9 @@
         border-radius: 5px;
         padding: 8px;
         text-align: right;
+        word-wrap: break-word;
       }
+
 
       .message-date {
         text-align: right;
@@ -110,7 +113,7 @@ p {
   @include display-flex;
   @include justify-content(space-between);
   margin: 0 auto 50px;
-  max-width: 500px;
+  max-width: 600px;
 
   button {
     margin: 0 7px;

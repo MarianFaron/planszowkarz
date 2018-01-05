@@ -8,5 +8,6 @@ export class UserGame {
     public createdDate: Date,
     public modifiedDate: Date,
     public userID: string,
-    public Image: string) { }
+    public Image: string,
+    public isDeleted: boolean) { }
 }

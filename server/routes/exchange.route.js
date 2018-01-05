@@ -4,6 +4,7 @@ var Exchange = require('../models/exchange.model');
 var Chat = require('../models/chat.model');
 var User = require('../models/user.model');
 var Notification = require('../models/notification.model');
+var userGame = require('../models/userGame.model');
 
 router.route('/exchanges')
 	// get all games
@@ -209,7 +210,7 @@ router.route('/exchanges/:id/received')
 
 			Chat.findById(req.body.chatId, (err, chat) => {
 				if(err){
-					return res.status(400).json({message: "Bad Requested"});
+					return res.status(400).json({message: "Bad Requested 0"});
 				} else if(!chat){
 					return res.status(404).json({message: "Chat not Found"});
 				} else {
@@ -218,10 +219,11 @@ router.route('/exchanges/:id/received')
 
 					Exchange.findById(exchangeId, (err, exchange) => {
 						if(err){
-							return res.status(400).json({message: "Bad Requested"});
+							return res.status(400).json({message: "Bad Requested 1"});
 						} else if(!exchange){
 							return res.status(404).json({message: "Exchange not Found"});
 						} else {
+
 							if(req.body.userId == exchange.sender) {
 								exchange.isCLosedBySender = true;
 							} else {
@@ -229,8 +231,30 @@ router.route('/exchanges/:id/received')
 							}
 							if(exchange.isCLosedBySender && exchange.isClosedByRecipient) {
 								exchange.status = 'closed';
-
 								chat.status = 'closed';
+
+								userGame.findById(exchange.recipientGame, (err, game) => {
+									if(err) {
+										return res.status(400).json({message: "Bad Requested 2"});
+									} else if(!game){
+										return res.status(404).json({message: "Game not Found"});
+									} else {
+						        game.isDeleted = true;
+						        game.save();
+									}
+								});
+
+								userGame.findOne({title: exchange.senderGame, userID: exchange.sender}, (err, game) => {
+									if(err) {
+										return res.status(400).json({message: "Bad Requested 3"});
+									} else if(!game){
+										return res.status(404).json({message: "Game not Found"});
+									} else {
+						        game.isDeleted = true;
+						        game.save();
+									}
+								});
+
 								chat.save();
 							}
 							exchange.save((err) => {

@@ -9,7 +9,7 @@
                 <a *ngIf="!history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.local.login}}">
                     {{history?.recipient.local.login}}
                 </a>
-                <a *ngIf="history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.facebook.name}}">
+                <a *ngIf="history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.local.login}}">
                     {{history?.recipient.facebook.name}}
                 </a>
                 za pomocą czatu by ustalić szczegóły wymiany.
@@ -19,7 +19,7 @@
                 <a *ngIf="!history?.sender.facebook" class="transaction-link" routerLink="/user-profile/{{history?.sender.local.login}}">
                     {{history?.sender.local.login}}
                 </a>
-                <a *ngIf="history?.sender.facebook" class="transaction-link" routerLink="/user-profile/{{history?.sender.facebook.name}}">
+                <a *ngIf="history?.sender.facebook" class="transaction-link" routerLink="/user-profile/{{history?.sender.local.login}}">
                     {{history?.sender.facebook.name}}
                 </a>
                 za pomocą czatu by ustalić szczegóły wymiany.
@@ -39,13 +39,18 @@
 
             </div>
         </div>
+
         <div class="transaction-bottom">
             <div class="transaction-row">
                 <div class="transaction-column transaction-column-margin" *ngIf="history?.status== 'accepted'">
-                    <p>Status: <strong>Zaakceptowane</strong></p>
+                    <p>Status: <strong>Zaakceptowane</strong> <span *ngIf="(this.appService.getCurrentUser()._id == history?.recipient._id && history?.isClosedByRecipient)
+                                || (this.appService.getCurrentUser()._id == history?.sender._id && history?.isClosedBySender)">
+                      (Oczekiwanie na zakończenie przez drugiego użytkownika)
+                    </span></p>
                 </div>
                 <div class="transaction-column">
-                    <button *ngIf="history?.status != 'closed'" type="button" name="button" class="custom-button btn"
+                    <button *ngIf="history?.status != 'closed' && (this.appService.getCurrentUser()._id == history?.recipient._id && !history?.isClosedByRecipient)
+                                || (this.appService.getCurrentUser()._id == history?.sender._id && !history?.isClosedBySender)" type="button" name="button" class="custom-button btn"
                     (click)="this.startChat(history?._id, history.sender._id, history.recipient._id)"><i class="fa fa-comment"></i> Czat</button>
                 </div>
             </div>
@@ -64,7 +69,7 @@
                 <a *ngIf="!history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.local.login}}">
                     {{history?.recipient.local.login}}.
                 </a>
-                <a *ngIf="history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.facebook.name}}">
+                <a *ngIf="history?.recipient.facebook" class="transaction-link" routerLink="/user-profile/{{history?.recipient.local.login}}">
                     {{history?.recipient.facebook.name}}.
                 </a>
             </div>
@@ -73,7 +78,7 @@
                 <a *ngIf="!history?.sender.facebook" class="transaction-link" routerLink="/user-profile/{{history?.sender.local.login}}">
                     {{history?.sender.local.login}}.
                 </a>
-                <a *ngIf="history?.sender.facebook" class="transaction-link" routerLink="/user-profile/{{history?.sender.facebook.name}}">
+                <a *ngIf="history?.sender.facebook" class="transaction-link" routerLink="/user-profile/{{history?.sender.local.login}}">
                     {{history?.sender.facebook.name}}.
                 </a>
             </div>

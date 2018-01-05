@@ -102,7 +102,7 @@ export class ExchangeComponent implements OnInit{
     }
     this.senderGamesArray.push(singleSenderGame);
     this.droppedGames = this.droppedGames.filter(singleSenderGame => singleSenderGame.id !== id);
-    this.droppedGamesCounter +=1;     
+    this.droppedGamesCounter +=1;
   }
 
   // Zdarzenie po kliknięciu checkboxa, proponowanie gier na wymianę, dodanie lub usunięcie
@@ -144,7 +144,7 @@ export class ExchangeComponent implements OnInit{
     if(localStorage.getItem('currentUser')) {
       this.getSenderUserGames();
     }
-    this.getRecipientUserGame();  
+    this.getRecipientUserGame();
   }
 
   // Pobierz gry nadawcy
@@ -217,17 +217,17 @@ export class ExchangeComponent implements OnInit{
       for (var i =0; i < this.droppedGames.length; i++) {
         proposeGames.push(this.droppedGames[i].title);
       }
-      
+
       // Rejestracja wymiany
       this.exchangeService.saveExchange(proposeGames, recipientGameId, sender, recipient)
                           .subscribe(
                               exchange => {
                                   this.exchange = exchange
-                              }, error => this.errorMessage = <any>error); 
-       
+                              }, error => this.errorMessage = <any>error);
+
       //Wysłanie powiadomienia
       this.appService.startTransaction(recipientGame, recipient, proposeGames).subscribe();
-      proposeGames.length = 0; 
+      proposeGames.length = 0;
     }
   }
 }
