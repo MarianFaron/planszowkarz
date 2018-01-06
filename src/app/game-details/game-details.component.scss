@@ -72,6 +72,7 @@
         .right-col {
           position: relative;
           flex-basis: calc(100%/2);
+          width: 50%;
 
           @media screen and (max-width: 960px) {
             flex-basis: calc(100%/1);
@@ -97,6 +98,7 @@
               font-weight: normal;
               line-height: 26px;
               text-align: justify;
+              word-wrap: break-word;
             }
 
             .owner {

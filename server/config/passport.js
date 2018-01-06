@@ -112,7 +112,7 @@ module.exports = function(passport) {
 
             TempUser.findOne({
               'local.email': email
-            }, , function(err, user) {
+            }, function(err, user) {
               if (err)
                 return done(null, false, {message: "Wystąpił błąd."});
               else if (user) {
