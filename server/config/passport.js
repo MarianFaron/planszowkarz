@@ -109,17 +109,28 @@ module.exports = function(passport) {
           else if (user) {
             return done(null, false, {message: "Podany użytkownik już istnieje."});
           } else {
-            var newUser = new TempUser();
 
-            newUser.login = req.body.login;
-            newUser.email = email;
-            newUser.password = newUser.generateHash(password);
-            newUser.avatarImage = req.body.avatarImage;
-
-            newUser.save(function(err) {
+            TempUser.findOne({
+              'local.email': email
+            }, , function(err, user) {
               if (err)
-                throw err;
-              return done(null, newUser);
+                return done(null, false, {message: "Wystąpił błąd."});
+              else if (user) {
+                return done(null, false, {message: "Podany użytkownik już istnieje."});
+              } else {
+                var newUser = new TempUser();
+
+                newUser.login = req.body.login;
+                newUser.email = email;
+                newUser.password = newUser.generateHash(password);
+                newUser.avatarImage = req.body.avatarImage;
+
+                newUser.save(function(err) {
+                  if (err)
+                    throw err;
+                  return done(null, newUser);
+                });
+              }
             });
           }
         });
