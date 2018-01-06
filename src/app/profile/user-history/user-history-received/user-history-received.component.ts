@@ -45,7 +45,10 @@ export class UserHistoryReceivedComponent implements OnInit {
 	                        			this.getUserHistory();
 	                      			},
 	                      			error => this.errorMessage = <any>error);
-    this.appService.socket.emit('sendNotification', sender);
+    if(sender._id) {
+      this.appService.socket.emit('sendNotification', sender._id);
+    }
+
 		this.appService.showNotification('Powiadomienie', 'Wymiana została odrzucona', 'success');
 	}
 
@@ -63,7 +66,11 @@ export class UserHistoryReceivedComponent implements OnInit {
 		                        			this.getUserHistory();
 		                      			},
 		                      			error => this.errorMessage = <any>error);
-      this.appService.socket.emit('sendNotification', sender);
+      console.log(sender);
+      if(sender._id) {
+        this.appService.socket.emit('sendNotification', sender._id);
+      }
+
 			this.appService.showNotification('Powiadomienie', 'Wymiana została zaakceptowana', 'success');
 			this.senderGame = "";
 		}
