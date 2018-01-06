@@ -210,7 +210,7 @@ router.route('/exchanges/:id/received')
 
 			Chat.findById(req.body.chatId, (err, chat) => {
 				if(err){
-					return res.status(400).json({message: "Bad Requested 0"});
+					return res.status(400).json({message: "Bad Requested"});
 				} else if(!chat){
 					return res.status(404).json({message: "Chat not Found"});
 				} else {
@@ -219,7 +219,7 @@ router.route('/exchanges/:id/received')
 
 					Exchange.findById(exchangeId, (err, exchange) => {
 						if(err){
-							return res.status(400).json({message: "Bad Requested 1"});
+							return res.status(400).json({message: "Bad Requested"});
 						} else if(!exchange){
 							return res.status(404).json({message: "Exchange not Found"});
 						} else {
@@ -235,7 +235,7 @@ router.route('/exchanges/:id/received')
 
 								userGame.findById(exchange.recipientGame, (err, game) => {
 									if(err) {
-										return res.status(400).json({message: "Bad Requested 2"});
+										return res.status(400).json({message: "Bad Requested"});
 									} else if(!game){
 										return res.status(404).json({message: "Game not Found"});
 									} else {
@@ -244,9 +244,31 @@ router.route('/exchanges/:id/received')
 									}
 								});
 
+								User.findOne({_id: recipient}, (err, user) => {
+									if(err) {
+										return res.status(400).json({message: "Bad Requested"});
+									} else if(!user){
+										return res.status(404).json({message: "Game not Found"});
+									} else {
+										user.numberOfGames = user.numberOfGames - 1;
+										user.save();
+									}
+								});
+
+								User.findOne({_id: sender}, (err, user) => {
+									if(err) {
+										return res.status(400).json({message: "Bad Requested"});
+									} else if(!user){
+										return res.status(404).json({message: "Game not Found"});
+									} else {
+										user.numberOfGames = user.numberOfGames - 1;
+										user.save();
+									}
+								});
+
 								userGame.findOne({title: exchange.senderGame, userID: exchange.sender}, (err, game) => {
 									if(err) {
-										return res.status(400).json({message: "Bad Requested 3"});
+										return res.status(400).json({message: "Bad Requested"});
 									} else if(!game){
 										return res.status(404).json({message: "Game not Found"});
 									} else {
