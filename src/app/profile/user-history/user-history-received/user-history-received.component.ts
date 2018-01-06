@@ -36,7 +36,7 @@ export class UserHistoryReceivedComponent implements OnInit {
 	                      error => this.errorMessage = <any>error);
 	}
 
-	discardExchange(id: string, sender: Object){
+	discardExchange(id: string, sender: Object, senderId: string){
 		this.status = "rejected";
 		this.userHistoryService.saveDiscardExchane(id, this.status, sender, this.appService.getCurrentUser())
 								.subscribe(
@@ -45,14 +45,13 @@ export class UserHistoryReceivedComponent implements OnInit {
 	                        			this.getUserHistory();
 	                      			},
 	                      			error => this.errorMessage = <any>error);
-    if(sender._id) {
-      this.appService.socket.emit('sendNotification', sender._id);
-    }
+      this.appService.socket.emit('sendNotification', senderId);
+
 
 		this.appService.showNotification('Powiadomienie', 'Wymiana została odrzucona', 'success');
 	}
 
-	acceptExchange(id: string, sender: Object){
+	acceptExchange(id: string, sender: Object, senderId: string){
 		if (this.senderGame == ""){
 			this.appService.showNotification('Powiadomienie', 'Wybierz grę', 'danger');
 		}
@@ -66,10 +65,7 @@ export class UserHistoryReceivedComponent implements OnInit {
 		                        			this.getUserHistory();
 		                      			},
 		                      			error => this.errorMessage = <any>error);
-      console.log(sender);
-      if(sender._id) {
-        this.appService.socket.emit('sendNotification', sender._id);
-      }
+        this.appService.socket.emit('sendNotification', senderId);
 
 			this.appService.showNotification('Powiadomienie', 'Wymiana została zaakceptowana', 'success');
 			this.senderGame = "";

@@ -40,9 +40,9 @@
                     <p>Status: <strong>oczekiwanie na odpowiedź</strong></p>
                 </div>
                 <div class="transaction-column">
-                    <button class="btn btn-color" data-dismiss="modal" (click)="discardExchange(history._id, history.sender);">Odrzuć</button>
+                    <button class="btn btn-color" data-dismiss="modal" (click)="discardExchange(history._id, history.sender, history.sender._id);">Odrzuć</button>
                     <button class="btn custom-button" data-dismiss="modal" name="button" type="button"
-                            (click)="acceptExchange(history._id, history.sender);">Akceptuj</button>
+                            (click)="acceptExchange(history._id, history.sender, history.sender._id);">Akceptuj</button>
                 </div>
             </div>
         </div>
