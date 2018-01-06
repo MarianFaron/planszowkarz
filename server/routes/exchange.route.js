@@ -244,7 +244,7 @@ router.route('/exchanges/:id/received')
 									}
 								});
 
-								User.findOne({_id: recipient}, (err, user) => {
+								User.findOne({_id: exchange.recipient}, (err, user) => {
 									if(err) {
 										return res.status(400).json({message: "Bad Requested"});
 									} else if(!user){
@@ -255,7 +255,7 @@ router.route('/exchanges/:id/received')
 									}
 								});
 
-								User.findOne({_id: sender}, (err, user) => {
+								User.findOne({_id: exchange.sender}, (err, user) => {
 									if(err) {
 										return res.status(400).json({message: "Bad Requested"});
 									} else if(!user){
