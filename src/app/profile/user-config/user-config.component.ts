@@ -142,8 +142,6 @@ export class UserConfigComponent implements OnInit {
         password = '';
       }
 
-      this.profileService.updateUserInfo(date, city, contactNumber, this.avatarImgName);
-
       this.userConfigService.updateUser(id, date, city, contactNumber, this.avatarImgName, password,
                                         this.userInfo.numberOfGames, this.userInfo.numberOfExchanges,
                                         this.userInfo.numberOfRatings, this.userInfo.sumOfGrades, true)
@@ -153,15 +151,19 @@ export class UserConfigComponent implements OnInit {
                                   this.getUserInfo();
                                   this.appService.showNotification('Powiadomienie', 'Dane użytkownika zostały zmienione.', 'success');
                                   this.avatarUploader.uploadAll();
-                                  this.avatarUploader.clearQueue();
+                                  setTimeout(() => {
+                                    this.avatarUploader.clearQueue();
+                                  }, 250);
                                   this.urlEditedUserImage = '';
                               },
-                              error =>  {
+                              error => {
                                   this.errorMessage = <any>error
                               }
                             );
+      setTimeout(() => {
+        this.profileService.updateUserInfo(date, city, contactNumber, this.avatarImgName);
+      }, 250);      
     }
-
     else {
       this.appService.showNotification('Powiadomienie', 'Popraw dane w formularzu.', 'danger');
     }

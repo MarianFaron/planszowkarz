@@ -200,6 +200,9 @@ section#newGames {
           width: 150px;
           height: 150px;
           margin: 0 auto;
+          @include display-flex;
+          @include justify-content(center);
+          @include align-items(center);
 
           img {
             max-width: 100%;

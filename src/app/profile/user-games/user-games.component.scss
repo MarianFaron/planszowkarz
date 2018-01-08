@@ -253,6 +253,23 @@ textarea {
   }
 }
 
+.form-group > .label-row{
+  @include display-flex;
+
+  @include respond-to(small-mobile) {
+      @include flex-direction(column);
+  }
+
+  label{
+      width: auto;
+  }
+  
+  span{
+      margin: 0 0 0 5px;
+      color: $pl-red;
+  }
+}
+
 .form-group label {
   text-align: left;
 }

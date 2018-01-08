@@ -49,6 +49,8 @@ export class AppComponent implements OnDestroy {
                         error => this.errorMessage = <any>error);
     localStorage.clear();
     window.location.reload();
+    this.router.navigate(['']);
+    
   }
 
 

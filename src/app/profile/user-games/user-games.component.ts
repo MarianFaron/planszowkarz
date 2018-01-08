@@ -126,7 +126,9 @@ export class UserGamesComponent implements OnInit {
                             this.closeModal.nativeElement.click();
                             this.model.title = '';
                             this.coverUploader.uploadAll();
-                            this.coverUploader.clearQueue();
+                            setTimeout(() => {
+                              this.coverUploader.clearQueue();
+                            }, 250);
                             this.urlNewGameImage = '';
                           },
                           error =>  {
@@ -150,7 +152,9 @@ export class UserGamesComponent implements OnInit {
                               this.getUserGame();
                               this.appService.showNotification('Powiadomienie', 'Zapisano zmiany.', 'success');
                               this.coverUploader.uploadAll();
-                              this.coverUploader.clearQueue();
+                              setTimeout(() => {
+                                this.coverUploader.clearQueue();
+                              }, 250);
                               this.urlEditedGameImage = '';
                             },
                             error =>  {

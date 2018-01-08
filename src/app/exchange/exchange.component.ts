@@ -9,6 +9,7 @@ import { UserGameService } from './../profile/user-games/user-games.service';
 import { UserGame } from './../profile/user-games/user-games';
 import { UserInfoService } from './../profile/user-info/user-info.service';
 import { UserInfo } from './../profile/user-info/user-info';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-exchange',
@@ -137,7 +138,8 @@ export class ExchangeComponent implements OnInit{
     private activeRoute: ActivatedRoute,
     private exchangeService: ExchangeService,
     private coreService: CoreService,
-    private userInfoService: UserInfoService
+    private userInfoService: UserInfoService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -228,6 +230,7 @@ export class ExchangeComponent implements OnInit{
       //Wysłanie powiadomienia
       this.appService.startTransaction(recipientGame, recipient, proposeGames).subscribe();
       proposeGames.length = 0;
+      this.router.navigate(['']);
     }
   }
 }

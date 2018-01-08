@@ -85,9 +85,9 @@
                     Dodane przez: {{ game.userID.facebook.name }}
                   </a>
                 </div>
-                <div class="single-info">
+                <div *ngIf="game.userID?.city" class="single-info">
                   <span class="icon icon-marker" aria-hidden="true"></span>
-                  <p>Lokalizacja: Poznań</p>
+                  <p>Lokalizacja: {{ game.userID?.city }} </p>
                 </div>
                 <div class="single-info">
                   <span class="icon icon-date" aria-hidden="true"></span>

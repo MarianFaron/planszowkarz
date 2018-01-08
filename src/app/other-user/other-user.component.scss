@@ -281,7 +281,6 @@ hr.style1 {
           @include justify-content(flex-end);
           margin-top: 20px;
           @include align-items(center);
-          height: 100%;
 
           @media screen and (max-width: 400px) {
             @include justify-content(center);
