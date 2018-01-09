@@ -31,7 +31,7 @@ export class ContactComponent implements OnInit {
 
   ngOnInit() { }
 
-  sendMessage(valid, subject, content, authorEmail, authorName, authorSurname) {
+  sendMessage(valid, subject, content, authorEmail, authorName, authorSurname, form) {
     if(!valid) {
       this.appService.showNotification('Powiadomienie', 'Popraw dane w formularzu.', 'danger');
       return;
@@ -41,6 +41,7 @@ export class ContactComponent implements OnInit {
                                               .subscribe(
                                                 contactMessage  => {
                                                   this.contactMessage;
+                                                  form.reset();
                                                   this.appService.showNotification('Powiadomienie', 'Wysłano zgłoszenie.', 'success');
                                                 },
                                                 error =>  {
